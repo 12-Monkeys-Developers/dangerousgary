@@ -1,0 +1,47 @@
+<div class="standard-form character-main">
+
+  <div class="character-abilities">
+    <fieldset>
+      <legend class="rollable" data-action="rollSave" data-ability="str" data-tooltip="{{localize 'DANGEROUSGARY.RollStrength'}}" data-tooltip-direction="UP">{{localize
+          "DANGEROUSGARY.Labels.long.str"
+        }}</legend>
+      <div class="ability">
+        {{formInput systemFields.abilities.fields.str.fields.value value=system.abilities.str.value }}
+        <div class="divider">/</div>
+        {{formInput systemFields.abilities.fields.str.fields.max value=system.abilities.str.max }}
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend class="rollable" data-action="rollSave" data-ability="dex" data-tooltip="{{localize 'DANGEROUSGARY.RollDexterity'}}" data-tooltip-direction="UP">{{localize
+          "DANGEROUSGARY.Labels.long.dex"
+        }}</legend>
+      <div class="ability">
+        {{formInput systemFields.abilities.fields.dex.fields.value value=system.abilities.dex.value }}
+        <div class="divider">/</div>
+        {{formInput systemFields.abilities.fields.dex.fields.max value=system.abilities.dex.max }}
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend class="rollable" data-action="rollSave" data-ability="wil" data-tooltip="{{localize 'DANGEROUSGARY.RollWillpower'}}" data-tooltip-direction="UP">{{localize
+          "DANGEROUSGARY.Labels.long.wil"
+        }}</legend>
+      <div class="ability">
+        {{formInput systemFields.abilities.fields.wil.fields.value value=system.abilities.wil.value }}
+        <div class="divider">/</div>
+        {{formInput systemFields.abilities.fields.wil.fields.max value=system.abilities.wil.max }}
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>{{localize "DANGEROUSGARY.Labels.long.hp"}}</legend>
+      <div class="ability">
+        {{formInput systemFields.hp.fields.value value=system.hp.value }}
+        <div class="divider">/</div>
+        {{formInput systemFields.hp.fields.max value=system.hp.max }}
+      </div>
+    </fieldset>
+  </div>
+
+</div>

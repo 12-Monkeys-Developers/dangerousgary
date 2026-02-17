@@ -1,0 +1,154 @@
+{
+  "TYPES": {
+    "Actor": {
+      "character": "Character",
+      "encounter": "Encounter"
+    },
+    "Item": {
+      "equipment": "Equipment",
+      "attack": "Attack"
+    }
+  },
+  "DANGEROUSGARY": {
+    "Character": {
+      "FIELDS": {
+        "biography": {
+          "label": "Biography",
+          "hint": "A brief description of your character."
+        },
+        "hp": {
+          "label": "Hit Points",
+          "hint": "The amount of damage your character can take before dying."
+        },
+        "str": {
+          "label": "Strength",
+          "hint": "How strong your character is."
+        },
+        "dex": {
+          "label": "Dexterity",
+          "hint": "How agile your character is."
+        },
+        "wil": {
+          "label": "Willpower",
+          "hint": "How strong your character's will is."
+        }
+      }
+    },
+    "Encounter": {
+      "FIELDS": {
+        "description": {
+          "label": "Description",
+          "hint": "A brief description of the encounter."
+        },
+        "hp": {
+          "label": "Hit Points",
+          "hint": "The amount of damage the encounter can take before dying."
+        },
+        "str": {
+          "label": "Strength",
+          "hint": "How strong the encounter is."
+        },
+        "dex": {
+          "label": "Dexterity",
+          "hint": "How agile the encounter is."
+        },
+        "wil": {
+          "label": "Willpower",
+          "hint": "How strong the encounter's will is."
+        },
+        "armour": {
+          "label": "Armour"
+        }
+      }
+    },
+    "Equipment": {
+      "FIELDS": {
+        "subType": {
+          "label": "Type"
+        },
+        "description": {
+          "label": "Description"
+        },
+        "armour": {
+          "label": "Protection"
+        },
+        "quantity": {
+          "label": "Quantity"
+        },
+        "damageFormula": {
+          "label": "Damage Formula"
+        },
+        "equipped": {
+          "label": "Equipped"
+        },
+        "bulky": {
+          "label": "Bulky"
+        },
+        "blast": {
+          "label": "Blast"
+        },
+        "arcana": {
+          "label": "Arcana"
+        }
+      },
+      "SubType": {
+        "weapon": "Weapon",
+        "armour": "Armour",
+        "equipment": "Equipment"
+      }
+    },
+    "Attack": {
+      "FIELDS": {
+        "description": {
+          "label": "Description"
+        },
+        "damageFormula": {
+          "label": "Damage Formula"
+        },
+        "blast": {
+          "label": "Blast"
+        }
+      }
+    },
+    "Labels": {
+      "short": {
+        "hp": "HP",
+        "str": "Str",
+        "dex": "Dex",
+        "wil": "Wil",
+        "biography": "Bio"
+      },
+      "long": {
+        "hp": "Hit Protection",
+        "str": "Strength",
+        "dex": "Dexterity",
+        "wil": "Willpower",
+        "biography": "Biography",
+        "inventory": "Inventory",
+        "armour": "Armour",
+        "shortRest": "Short Rest",
+        "fullRest": "Full Rest",
+        "damage": "damage"
+      },
+      "details": "Details"
+    },
+    "Attacks": "Attacks",
+    "Add": "Add",
+    "Edit": "Edit",
+    "Delete": "Delete",
+    "RollStrength": "Roll Strength save",
+    "RollDexterity": "Roll Dexterity save",
+    "RollWillpower": "Roll Willpower save",
+    "RollDamage": "Roll Damage",
+    "NewAttack": "New Attack",
+    "NewEquipment": "New Equipment",
+    "Equip": "Equip",
+    "Unequip": "Unequip",
+    "Roll": {
+      "SaveRoll": "Save Roll of {ability} ({value})",
+      "Success": "Success",
+      "Failure": "Failure",
+      "AttackRollDamage": "Damage Roll of {itemName}"
+    }
+  }
+}

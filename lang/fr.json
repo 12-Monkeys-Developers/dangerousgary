@@ -1,0 +1,154 @@
+{
+  "TYPES": {
+    "Actor": {
+      "character": "Personnage",
+      "encounter": "Rencontre"
+    },
+    "Item": {
+      "equipment": "Équipement",
+      "attack": "Attaque"
+    }
+  },
+  "DANGEROUSGARY": {
+    "Character": {
+      "FIELDS": {
+        "biography": {
+          "label": "Biographie",
+          "hint": "Une brève description de votre personnage."
+        },
+        "hp": {
+          "label": "Points de Vie",
+          "hint": "La quantité de dégâts que votre personnage peut subir avant de mourir."
+        },
+        "str": {
+          "label": "Force",
+          "hint": "La force de votre personnage."
+        },
+        "dex": {
+          "label": "Dextérité",
+          "hint": "L'agilité de votre personnage."
+        },
+        "wil": {
+          "label": "Volonté",
+          "hint": "La volonté de votre personnage."
+        }
+      }
+    },
+    "Encounter": {
+      "FIELDS": {
+        "description": {
+          "label": "Description",
+          "hint": "Une brève description de la rencontre."
+        },
+        "hp": {
+          "label": "Points de Vie",
+          "hint": "La quantité de dégâts que la rencontre peut subir avant de mourir."
+        },
+        "str": {
+          "label": "Force",
+          "hint": "La force de la rencontre."
+        },
+        "dex": {
+          "label": "Dextérité",
+          "hint": "L'agilité de la rencontre."
+        },
+        "wil": {
+          "label": "Volonté",
+          "hint": "La volonté de la rencontre."
+        },
+        "armour": {
+          "label": "Armure"
+        }
+      }
+    },
+    "Equipment": {
+      "FIELDS": {
+        "subType": {
+          "label": "Type"
+        },
+        "description": {
+          "label": "Description"
+        },
+        "armour": {
+          "label": "Protection"
+        },
+        "quantity": {
+          "label": "Quantité"
+        },
+        "damageFormula": {
+          "label": "Formule de Dégâts"
+        },
+        "equipped": {
+          "label": "Équipé"
+        },
+        "bulky": {
+          "label": "Encombrant"
+        },
+        "blast": {
+          "label": "Explosif"
+        },
+        "arcana": {
+          "label": "Arcane"
+        }
+      },
+      "SubType": {
+        "weapon": "Arme",
+        "armour": "Armure",
+        "equipment": "Équipement"
+      }
+    },
+    "Attack": {
+      "FIELDS": {
+        "description": {
+          "label": "Description"
+        },
+        "damageFormula": {
+          "label": "Formule de Dégâts"
+        },
+        "blast": {
+          "label": "Explosion"
+        }
+      }
+    },
+    "Labels": {
+      "short": {
+        "hp": "PV",
+        "str": "For",
+        "dex": "Dex",
+        "wil": "Vol",
+        "biography": "Bio"
+      },
+      "long": {
+        "hp": "Points de vie",
+        "str": "Force",
+        "dex": "Dextérité",
+        "wil": "Volonté",
+        "biography": "Biographie",
+        "inventory": "Inventaire",
+        "armour": "Armure",
+        "shortRest": "Repos Court",
+        "fullRest": "Repos Long",
+        "damage": "dégâts"
+      },
+      "details": "Détails"
+    },
+    "Attacks": "Attaques",
+    "Add": "Ajouter",
+    "Edit": "Modifier",
+    "Delete": "Supprimer",
+    "RollDamage": "Lancer les Dégâts",
+    "RollStrength": "Lancer un Jet de Force",
+    "RollDexterity": "Lancer un Jet de Dextérité",
+    "RollWillpower": "Lancer un Jet de Volonté",
+    "NewAttack": "Nouvelle Attaque",
+    "NewEquipment": "Nouvel Équipement",
+    "Equip": "Équiper",
+    "Unequip": "Déséquiper",
+    "Roll": {
+      "SaveRoll": "Jet de Sauvegarde de {ability} ({value})",
+      "Success": "Succès",
+      "Failure": "Échec",
+      "AttackRollDamage": "Jet de Dégâts de {itemName}"
+    }
+  }
+}

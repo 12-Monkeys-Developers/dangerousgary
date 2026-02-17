@@ -1,0 +1,108 @@
+<div class="standard-form encounter-main">
+
+  <div class="encounter-header">
+
+    <div><img class="encounter-img" src="{{actor.img}}" data-edit="img" data-action="editImage" data-tooltip="{{actor.name}}" /></div>
+    <div class="encounter-details">
+      <div class="encounter-name">{{formInput fields.name value=source.name }}</div>
+      <div class="encounter-abilities">
+        <fieldset>
+          <legend class="rollable" data-action="rollSave" data-ability="str">{{localize "DANGEROUSGARY.Labels.long.str"}}</legend>
+          <div class="ability">
+            {{formInput systemFields.abilities.fields.str.fields.value value=system.abilities.str.value }}
+            <div class="divider">/</div>
+            {{formInput systemFields.abilities.fields.str.fields.max value=system.abilities.str.max }}
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend class="rollable" data-action="rollSave" data-ability="dex">{{localize "DANGEROUSGARY.Labels.long.dex"}}</legend>
+          <div class="ability">
+            {{formInput systemFields.abilities.fields.dex.fields.value value=system.abilities.dex.value }}
+            <div class="divider">/</div>
+            {{formInput systemFields.abilities.fields.dex.fields.max value=system.abilities.dex.max }}
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend class="rollable" data-action="rollSave" data-ability="wil">{{localize "DANGEROUSGARY.Labels.long.wil"}}</legend>
+          <div class="ability">
+            {{formInput systemFields.abilities.fields.wil.fields.value value=system.abilities.wil.value }}
+            <div class="divider">/</div>
+            {{formInput systemFields.abilities.fields.wil.fields.max value=system.abilities.wil.max }}
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>{{localize "DANGEROUSGARY.Labels.long.hp"}}</legend>
+          <div class="ability">
+            {{formInput systemFields.hp.fields.value value=system.hp.value }}
+            <div class="divider">/</div>
+            {{formInput systemFields.hp.fields.max value=system.hp.max }}
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>{{localize "DANGEROUSGARY.Labels.long.armour"}}</legend>
+          <div class="armour">
+            {{formInput systemFields.armour value=system.armour }}
+          </div>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+
+  <fieldset class="encounter-attacks">
+    <legend>{{localize "DANGEROUSGARY.Attacks"}}    <a class="item-control" data-action="createItem" data-type="attack" data-tooltip="{{localize 'DANGEROUSGARY.NewAttack'}}"><i class="fas fa-plus"></i></a></legend>
+    <div class="encounter-items-list">
+      {{#each attacks as |item id|}}
+        <div class="item" data-item-id="{{item.id}}">
+          <details>
+            <summary>
+              <span>
+                <span class="item-name">
+                  {{item.name}}
+                  {{#if item.system.hasQuantity}}
+                    ({{item.system.quantity}})
+                  {{/if}}
+                </span>
+                {{#if item.system.hasDamage}}
+                  <span class="item-info">{{item.system.damageFormula}} {{localize "DANGEROUSGARY.Labels.long.damage"}}</span>
+                {{/if}}
+                {{#if item.system.isBlast}}
+                  <span class="item-info">{{localize "DANGEROUSGARY.Equipment.FIELDS.blast.label"}}</span>
+                {{/if}}
+              </span>
+            </summary>
+            <div class="item-description">{{{item.enrichedDescription}}}</div>
+          </details>
+          <div class="item-controls">
+            {{#if item.system.hasDamage}}
+              <span class="rollable" data-action="rollDamage" data-name="{{item.name}}" data-formula="{{item.system.damageFormula}}" data-tooltip="{{localize 'DANGEROUSGARY.RollDamage'}}">
+                <i class="fas fa-dice-d20"></i>
+              </span>
+            {{/if}}
+            <a data-tooltip="{{localize 'DANGEROUSGARY.Edit'}}" data-action="edit" data-item-id="{{item.id}}"><i class="fas fa-edit"></i></a>
+            <a data-tooltip="{{localize 'DANGEROUSGARY.Delete'}}" data-action="delete" data-item-id="{{item.id}}"><i class="fas fa-trash"></i></a>
+          </div>
+        </div>
+      {{/each}}
+    </div>
+  </fieldset>
+
+
+
+  <fieldset class="encounter-description">
+    <legend>{{localize "DANGEROUSGARY.Encounter.FIELDS.description.label"}}</legend>
+    {{formInput
+      systemFields.description
+      enriched=enrichedDescription
+      value=system.description
+      documentUUID=actor.uuid
+      name="system.description"
+      collaborate="false"
+      toggled="true"
+    }}
+  </fieldset>
+
+</div>

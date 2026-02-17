@@ -1,0 +1,54 @@
+<section class="tab standard-form character-inventory {{#if tabs.inventory.active}} active{{/if}}" data-group="primary" data-tab="inventory">
+  <div class="character-items-list">
+    {{#each actor.items as |item id|}}
+      <div class="item" data-item-id="{{item.id}}">
+        <details>
+          <summary>
+            <span>
+              <span class="item-name">
+                {{item.name}}
+                {{#if item.system.hasQuantity}}
+                  ({{item.system.quantity}})
+                {{/if}}
+              </span>
+              {{#if item.system.isArcana}}
+                <span class="item-info">{{localize "DANGEROUSGARY.Equipment.FIELDS.arcana.label"}}</span>
+              {{/if}}
+              {{#if item.system.isBulky}}
+                <span class="item-info">{{localize "DANGEROUSGARY.Equipment.FIELDS.bulky.label"}}</span>
+              {{/if}}
+              {{#if item.system.isArmor}}
+                <span class="item-info">{{localize "DANGEROUSGARY.Labels.long.armour"}} {{item.system.armour}}</span>
+              {{/if}}
+              {{#if item.system.hasDamage}}
+                <span class="item-info">{{item.system.damageFormula}} {{localize "DANGEROUSGARY.Labels.long.damage"}}</span>
+              {{/if}}
+              {{#if item.system.isBlast}}
+                <span class="item-info">{{localize "DANGEROUSGARY.Equipment.FIELDS.blast.label"}}</span>
+              {{/if}}
+              {{#if item.system.isEquipped}}
+                <span class="item-info">{{localize "DANGEROUSGARY.Equipment.FIELDS.equipped.label"}}</span>
+              {{/if}}
+            </span>
+          </summary>
+          <div class="item-description">{{{item.enrichedDescription}}}</div>
+        </details>
+        <div class="item-controls">
+          {{#if item.system.isEquipped}}
+            {{#if item.system.hasDamage}}
+              <span class="rollable" data-action="rollDamage" data-name="{{item.name}}" data-formula="{{item.system.damageFormula}}" data-tooltip="{{localize 'DANGEROUSGARY.RollDamage'}}" data-tooltip-direction="UP">
+                <i class="fas fa-dice-d20"></i>
+              </span>
+            {{/if}}
+            <a data-tooltip="{{localize 'DANGEROUSGARY.Unequip'}}" data-action="unequip" data-item-id="{{item.id}}"><i class="fa-solid fa-shield"></i></a>
+          {{/if}}
+          {{#if (not item.system.isEquipped)}}
+            <a data-tooltip="{{localize 'DANGEROUSGARY.Equip'}}" data-action="equip" data-item-id="{{item.id}}"><i class="fa-regular fa-shield"></i></a>
+          {{/if}}
+          <a data-tooltip="{{localize 'DANGEROUSGARY.Edit'}}" data-action="edit" data-item-id="{{item.id}}"><i class="fas fa-edit"></i></a>
+          <a data-tooltip="{{localize 'DANGEROUSGARY.Delete'}}" data-action="delete" data-item-id="{{item.id}}"><i class="fas fa-trash"></i></a>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+</section>

@@ -1,0 +1,39 @@
+{
+  "id": "dangerousgary",
+  "title": "Dangerous Gary",
+  "description": "The Dangerous Gary system for FoundryVTT!",
+  "version": "#{VERSION}#",
+  "compatibility": {
+    "minimum": "13",
+    "verified": "13",
+    "maximum": "13"
+  },
+  "authors": [
+    {
+      "name": "Kristov"
+    }
+  ],
+  "esmodules": ["module/dangerousgary.mjs"],
+  "styles": ["css/dangerousgary.css"],
+  "scripts": [],
+  "packs": [],
+  "languages": [{
+    "lang": "en",
+    "name": "English",
+    "path": "lang/en.json"
+  },
+  {
+    "lang": "fr",
+    "name": "Français",
+    "path": "lang/fr.json"
+  }],
+  "grid": {
+    "distance": 5,
+    "units": "ft"
+  },
+  "primaryTokenAttribute": "health",
+  "url": "#{URL}#",
+  "manifest": "#{MANIFEST}#",
+  "download": "#{DOWNLOAD}#",
+  "license": "LICENSE"
+}

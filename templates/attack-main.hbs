@@ -1,0 +1,30 @@
+<div class="standard-form attack">
+  <section class="attack-main">
+    <div class="header">
+      <img src="{{item.img}}" data-edit="img" data-action="editImage" data-tooltip="{{item.name}}" />
+      {{formInput fields.name value=source.name }}
+    </div>
+    <div class="details">
+      <fieldset>
+        <legend>{{localize "DANGEROUSGARY.Labels.details"}}</legend>
+        {{formGroup systemFields.damageFormula value=system.damageFormula }}
+        {{formGroup systemFields.blast value=system.blast }}
+      </fieldset>
+    </div>
+  </section>
+  <section class="attack-description">
+    <fieldset>
+      <legend>{{localize "DANGEROUSGARY.Equipment.FIELDS.description.label"}}</legend>
+      {{formInput
+        systemFields.description
+        enriched=enrichedDescription
+        value=system.description
+        documentUUID=item.uuid
+        name="system.description"
+        collaborate="false"
+        toggled="true"
+        height="50"
+      }}
+    </fieldset>
+  </section>
+</div>

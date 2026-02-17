@@ -1,0 +1,300 @@
+@font-face {
+  font-family: "FeENrm28C";
+  src: url("../ui/fonts/feenrm28c.woff");
+}
+:root {
+  --font-primary: "FeENrm28C", sans-serif;
+  --font-secondary: "FeENrm28C", sans-serif;
+}
+/* Styles limited to Dangerous Gary sheets */
+.dangerousgary .grid-abilities {
+  display: grid;
+  margin: 10px 0;
+  padding: 0;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-column: span 5 / span 5;
+}
+.dangerousgary .grid-abilities fieldset {
+  border-radius: 5px;
+}
+.dangerousgary .grid-abilities fieldset legend {
+  font-weight: bold;
+}
+.dangerousgary .grid-abilities .ability {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 5px;
+  text-align: center;
+}
+.dangerousgary .grid-abilities .ability input {
+  width: 40px;
+  font-size: 1.2rem;
+}
+.dangerousgary .grid-abilities .ability .divider {
+  margin: 0 5px;
+  font-size: x-large;
+}
+.dangerousgary .no-padding {
+  padding: 0;
+}
+.dangerousgary .item-info {
+  margin-left: 4px;
+  border-style: solid;
+  border-width: thin;
+  border-radius: 3px;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+.dangerousgary.actor.character {
+  min-width: 675px;
+}
+.dangerousgary.actor.character .character-abilities {
+  display: grid;
+  margin: 10px 0;
+  padding: 0;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-column: span 4 / span 4;
+}
+.dangerousgary.actor.character .character-abilities fieldset {
+  border-radius: 5px;
+}
+.dangerousgary.actor.character .character-abilities fieldset legend {
+  font-weight: bold;
+}
+.dangerousgary.actor.character .character-abilities .ability {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 5px;
+  text-align: center;
+}
+.dangerousgary.actor.character .character-abilities .ability input {
+  width: 40px;
+  font-size: 1.2rem;
+}
+.dangerousgary.actor.character .character-abilities .ability .divider {
+  font-size: x-large;
+}
+.dangerousgary.actor.character .character-abilities .rollable:hover,
+.dangerousgary.actor.character .character-abilities .rollable:focus {
+  color: #3f2020;
+  text-shadow: 0 0 10px var(--color-shadow-primary);
+  cursor: url("systems/dangerousgary/ui/d20-highlight.svg") 32 24, pointer;
+}
+.dangerousgary.actor.character .character-header {
+  display: flex;
+  flex-direction: row;
+}
+.dangerousgary.actor.character .character-header .character-name input {
+  font-size: 1.5rem;
+}
+.dangerousgary.actor.character .character-header .character-img {
+  width: 100px;
+  flex: 0 0 25%;
+  /* Prend 25% de la largeur */
+}
+.dangerousgary.actor.character .character-header .character-details {
+  flex: 1;
+  /* Prend le reste de la largeur */
+  padding-left: 10px;
+  flex-direction: column;
+}
+.dangerousgary.actor.character .character-items-list .item {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+.dangerousgary.actor.character .character-items-list .item .item-name {
+  flex: 1;
+  font-weight: bold;
+}
+.dangerousgary.actor.character .character-items-list .item .item-quantity {
+  width: 40px;
+  font-size: 1.2rem;
+}
+.dangerousgary.actor.character .character-items-list .item summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.dangerousgary.actor.character nav {
+  margin: 10px 0 10px 0;
+}
+.dangerousgary.actor.encounter {
+  min-width: 675px;
+}
+.dangerousgary.actor.encounter .encounter-header {
+  display: flex;
+}
+.dangerousgary.actor.encounter .encounter-header .encounter-name input {
+  font-size: 1.5rem;
+}
+.dangerousgary.actor.encounter .encounter-header .encounter-img {
+  width: 100px;
+  flex: 0 0 25%;
+  /* Prend 25% de la largeur */
+}
+.dangerousgary.actor.encounter .encounter-header .encounter-details {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+}
+.dangerousgary.actor.encounter .encounter-header .encounter-details .encounter-abilities {
+  display: grid;
+  margin: 10px 0;
+  padding: 0;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-column: span 5 / span 5;
+}
+.dangerousgary.actor.encounter .encounter-header .encounter-details .encounter-abilities fieldset {
+  border-radius: 5px;
+}
+.dangerousgary.actor.encounter .encounter-header .encounter-details .encounter-abilities fieldset legend {
+  font-weight: bold;
+}
+.dangerousgary.actor.encounter .encounter-header .encounter-details .encounter-abilities .ability {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 5px;
+  text-align: center;
+}
+.dangerousgary.actor.encounter .encounter-header .encounter-details .encounter-abilities .ability input {
+  width: 40px;
+  font-size: 1.2rem;
+}
+.dangerousgary.actor.encounter .encounter-header .encounter-details .encounter-abilities .ability .divider {
+  font-size: x-large;
+}
+.dangerousgary.actor.encounter .encounter-header .encounter-details .encounter-abilities .armour {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5px;
+}
+.dangerousgary.actor.encounter .encounter-header .encounter-details .encounter-abilities .armour input {
+  width: 40px;
+  font-size: 1.2rem;
+  text-align: center;
+}
+.dangerousgary.actor.encounter .encounter-description {
+  border-radius: 5px;
+}
+.dangerousgary.actor.encounter .encounter-description legend {
+  font-weight: bold;
+}
+.dangerousgary.actor.encounter .encounter-items-list {
+  margin: 0 10px 20px 10px;
+}
+.dangerousgary.actor.encounter .encounter-items-list .item {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+.dangerousgary.actor.encounter .encounter-items-list .item .item-name {
+  flex: 1;
+  font-weight: bold;
+}
+.dangerousgary.actor.encounter .encounter-items-list .item .item-quantity {
+  width: 40px;
+  font-size: 1.2rem;
+}
+.dangerousgary.actor.encounter .encounter-items-list .item summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.dangerousgary .equipment .item-main,
+.dangerousgary .equipment .item-weapon,
+.dangerousgary .equipment .item-armour {
+  padding-bottom: 5px;
+}
+.dangerousgary .equipment .item-main fieldset,
+.dangerousgary .equipment .item-weapon fieldset,
+.dangerousgary .equipment .item-armour fieldset {
+  font-weight: bold;
+  border-radius: 5px;
+}
+.dangerousgary .equipment .item-description legend {
+  font-weight: bold;
+}
+.dangerousgary .equipment .item-main {
+  display: flex;
+  flex-direction: column;
+}
+.dangerousgary .equipment .item-main .header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.dangerousgary .equipment .item-main .header img {
+  width: 50px;
+  margin: 0 5px 5px 5px;
+}
+.dangerousgary .equipment .item-main fieldset {
+  font-weight: bold;
+  border-radius: 5px;
+}
+.dangerousgary .attack .attack-main,
+.dangerousgary .attack .attack-description {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 5px;
+}
+.dangerousgary .attack .attack-main fieldset legend,
+.dangerousgary .attack .attack-description fieldset legend {
+  font-weight: bold;
+  border-radius: 5px;
+}
+.dangerousgary .attack .attack-main .header,
+.dangerousgary .attack .attack-description .header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.dangerousgary .attack .attack-main .header img,
+.dangerousgary .attack .attack-description .header img {
+  width: 50px;
+  margin: 0 5px 5px 5px;
+}
+.dice-roll .intro-chat {
+  border-radius: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.dice-roll .intro-chat .intro-img {
+  padding: 5px;
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  object-position: center;
+  align-self: center;
+}
+.dice-roll .intro-chat .intro-right {
+  display: flex;
+  flex-direction: column;
+}
+.dice-roll .intro-chat .intro-right .introText {
+  font-size: 1.2em;
+  width: 210px;
+  padding-top: 0.5em;
+  text-align: center;
+}
+.dice-roll .intro-chat .intro-right .success {
+  color: green;
+  font-size: 1.3em;
+  width: 210px;
+  margin-top: 0;
+  text-align: center;
+}
+.dice-roll .intro-chat .intro-right .failure {
+  color: red;
+  font-size: 1.3em;
+  width: 210px;
+  margin-top: 0;
+  text-align: center;
+}
