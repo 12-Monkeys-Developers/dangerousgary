@@ -1,45 +1,40 @@
 // Import Modules
-import DangerousGaryActor from "./documents/actor.mjs";
-import DangerousGaryItem from "./documents/item.mjs";
-import DangerousGaryCharacterData from "./models/character.mjs";
-import DangerousGaryEncounterData from "./models/encounter.mjs";
-import DangerousGaryItemData from "./models/item.mjs";
-import DangerousGaryAttackData from "./models/attack.mjs";
-import DangerousGaryCharacterSheet from "./applications/sheets/character-sheet.mjs";
-import DangerousGaryEncounterSheet from "./applications/sheets/encounter-sheet.mjs";
-import DangerousGaryItemSheet from "./applications/sheets/item-sheet.mjs";
-import DangerousGaryAttackSheet from "./applications/sheets/attack-sheet.mjs";
+import * as models from "./models/_module.mjs"
+import * as documents from "./documents/_module.mjs"
+import * as applications from "./applications/_module.mjs"
 
 Hooks.once('init', async function () {
 
-  /**
-   * Set an initiative formula for the system
-   * @type {String}
-   */
-  CONFIG.Combat.initiative = {
-    formula: "@dex - 1d20",
-    decimals: 1
-  };
+  // Expose the system API
+  game.system.api = {
+    applications,
+    models,
+    documents,
+  }
 
-  // Define custom Entity classes
-  CONFIG.Actor.documentClass = DangerousGaryActor;
+  // Actor
+  CONFIG.Actor.documentClass = documents.DangerousGaryActor;
   CONFIG.Actor.dataModels = {
-    character: DangerousGaryCharacterData,
-    encounter: DangerousGaryEncounterData
+    character: models.DangerousGaryCharacterData,
+    encounter: models.DangerousGaryEncounterData
   };
 
-  CONFIG.Item.documentClass = DangerousGaryItem;
+  // Item
+  CONFIG.Item.documentClass = documents.DangerousGaryItem;
   CONFIG.Item.dataModels = {
-    equipment: DangerousGaryItemData,
-    attack: DangerousGaryAttackData
+    equipment: models.DangerousGaryItemData,
+    attack: models.DangerousGaryAttackData
   };
+
+  // Chat
+  CONFIG.ChatMessage.documentClass = documents.DangerousGaryChatMessage
 
   // Register sheet application classes
   foundry.documents.collections.Actors.unregisterSheet("core", foundry.appv1.sheets.ActorSheet);
-  foundry.documents.collections.Actors.registerSheet("dangerousgary", DangerousGaryCharacterSheet, { types: ["character"], makeDefault: true });
-  foundry.documents.collections.Actors.registerSheet("dangerousgary", DangerousGaryEncounterSheet, { types: ["encounter"], makeDefault: true });
+  foundry.documents.collections.Actors.registerSheet("dangerousgary", applications.DangerousGaryCharacterSheet, { types: ["character"], makeDefault: true });
+  foundry.documents.collections.Actors.registerSheet("dangerousgary", applications.DangerousGaryEncounterSheet, { types: ["encounter"], makeDefault: true });
   foundry.documents.collections.Items.unregisterSheet("core", foundry.appv1.sheets.ItemSheet);
-  foundry.documents.collections.Items.registerSheet("dangerousgary", DangerousGaryItemSheet, { types: ["equipment"], makeDefault: true });
-  foundry.documents.collections.Items.registerSheet("dangerousgary", DangerousGaryAttackSheet, { types: ["attack"], makeDefault: true });
+  foundry.documents.collections.Items.registerSheet("dangerousgary", applications.DangerousGaryItemSheet, { types: ["equipment"], makeDefault: true });
+  foundry.documents.collections.Items.registerSheet("dangerousgary", applications.DangerousGaryAttackSheet, { types: ["attack"], makeDefault: true });
 
 });
