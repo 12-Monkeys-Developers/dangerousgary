@@ -55,14 +55,27 @@ export default class DangerousGaryCharacterData extends foundry.abstract.TypeDat
   }
 
   /**
-   * A Full Rest requires a week of downtime at a comfortable location. This restores all Ability Scores
+   * Restore HP and recover ability points (capped at max).
+   * @param {number} abilityRecovery - number of points to recover per ability
    */
-  fullRest() {
+  _rest(abilityRecovery) {
     return this.parent.update({
       "system.hp.value": this.hp.max,
-      "system.abilities.str.value": this.abilities.str.max,
-      "system.abilities.dex.value": this.abilities.dex.max,
-      "system.abilities.wil.value": this.abilities.wil.max,
+      "system.abilities.str.value": Math.min(this.abilities.str.value + abilityRecovery, this.abilities.str.max),
+      "system.abilities.dex.value": Math.min(this.abilities.dex.value + abilityRecovery, this.abilities.dex.max),
+      "system.abilities.wil.value": Math.min(this.abilities.wil.value + abilityRecovery, this.abilities.wil.max),
     })
+  }
+
+  fullRest() {
+    return this._rest(1)
+  }
+
+  secureRest() {
+    return this._rest(2)
+  }
+
+  medicalRest() {
+    return this._rest(3)
   }
 }

@@ -1,26 +1,21 @@
 <div class="dice-roll">
-  <div class="intro-chat">
-    {{#if (ne data.actingCharImg "icons/svg/mystery-man.svg")}}
-      <div class="intro-img">
-        <img src="{{actingCharImg}}" title="{{actingCharName}}" />
-      </div>
-    {{/if}}
-    <div class="intro-right">
-      <p class="introText">{{{introText}}}</p>
-
+  <div class="roll-line">
+    <span class="roll-label">{{{introText}}}</span>
+    <span class="roll-total" {{#if formula}}data-tooltip="{{formula}}"{{/if}}>{{total}}</span>
     {{#if (eq rollType "save")}}
-          {{#if success}}
-        <p class="success">{{localize "DANGEROUSGARY.Roll.Success"}}</p>
+      {{#if success}}
+        {{#if isCritical}}
+          <span class="roll-icon success critical" data-tooltip="{{localize 'DANGEROUSGARY.Roll.Critical'}}"><i class="fas fa-check-double"></i></span>
+        {{else}}
+          <span class="roll-icon success" data-tooltip="{{localize 'DANGEROUSGARY.Roll.Success'}}"><i class="fas fa-check"></i></span>
+        {{/if}}
       {{else}}
-        <p class="failure">{{localize "DANGEROUSGARY.Roll.Failure"}}</p>
+        {{#if isFumble}}
+          <span class="roll-icon failure fumble" data-tooltip="{{localize 'DANGEROUSGARY.Roll.Fumble'}}"><i class="fas fa-skull-crossbones"></i></span>
+        {{else}}
+          <span class="roll-icon failure" data-tooltip="{{localize 'DANGEROUSGARY.Roll.Failure'}}"><i class="fas fa-times"></i></span>
+        {{/if}}
       {{/if}}
     {{/if}}
-
-    </div>
-  </div>
-  <div class="dice-result">
-    <div class="dice-formula">{{formula}}</div>
-    {{{tooltip}}}
-    <h4 class="dice-total">{{total}}</h4>
   </div>
 </div>

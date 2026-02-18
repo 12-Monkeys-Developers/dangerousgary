@@ -15,9 +15,6 @@
                   ({{item.system.quantity}})
                 {{/if}}
               </span>
-              {{#if item.system.isArcana}}
-                <span class="item-info">{{localize "DANGEROUSGARY.Equipment.FIELDS.arcana.label"}}</span>
-              {{/if}}
               {{#if item.system.isBulky}}
                 <span class="item-info">{{localize "DANGEROUSGARY.Equipment.FIELDS.bulky.label"}}</span>
               {{/if}}
@@ -26,12 +23,6 @@
               {{/if}}
               {{#if item.system.hasDamage}}
                 <span class="item-info">{{item.system.damageFormula}} {{localize "DANGEROUSGARY.Labels.long.damage"}}</span>
-              {{/if}}
-              {{#if item.system.isBlast}}
-                <span class="item-info">{{localize "DANGEROUSGARY.Equipment.FIELDS.blast.label"}}</span>
-              {{/if}}
-              {{#if item.system.isEquipped}}
-                <span class="item-info">{{localize "DANGEROUSGARY.Equipment.FIELDS.equipped.label"}}</span>
               {{/if}}
             </span>
           </summary>

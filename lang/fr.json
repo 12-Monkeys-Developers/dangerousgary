@@ -137,10 +137,15 @@
       "max": "max",
       "short": {
         "hp": "PV",
-        "str": "For",
-        "dex": "Dex",
-        "wil": "Vol",
+        "str": "FOR",
+        "dex": "DEX",
+        "wil": "VOL",
         "biography": "Bio"
+      },
+      "suffix": {
+        "str": "ce",
+        "dex": "térité",
+        "wil": "onté"
       },
       "long": {
         "hp": "Points de vie",
@@ -154,8 +159,10 @@
         "biography": "Biographie",
         "inventory": "Équipement",
         "armour": "Armure",
-        "shortRest": "Repos Court",
-        "fullRest": "Repos Long",
+        "shortRest": "Pause",
+        "fullRest": "Repos",
+        "secureRest": "Repos sécurisé",
+        "medicalRest": "Repos médicalisé",
         "damage": "dégâts"
       },
       "details": "Détails"
@@ -173,9 +180,11 @@
     "Equip": "Équiper",
     "Unequip": "Déséquiper",
     "Roll": {
-      "SaveRoll": "Jet de Sauvegarde de {ability} ({value})",
+      "SaveRoll": "Sauvegarde de {ability} ({value})",
       "Success": "Succès",
       "Failure": "Échec",
+      "Critical": "Critique",
+      "Fumble": "Fumble",
       "AttackRollDamage": "Jet de Dégâts de {itemName}"
     }
   }

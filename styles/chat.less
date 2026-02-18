@@ -1,40 +1,99 @@
-.dice-roll {
-  .intro-chat {
-    border-radius: 20px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    .intro-img {
-      padding: 5px;
-      width: 60px;
-      height: 60px;
-      object-fit: contain;
-      object-position: center;
-      align-self: center;
+& .chat-message {
+  background: #f4f4f4 url("/systems/dangerousgary/assets/fond_gris.webp") center / cover no-repeat;
+  color: #222;
+  border: 1px solid var(--dg-border-color);
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+  font-family: var(--dg-font-body);
+
+  span,
+  label {
+    color: #222;
+  }
+
+  &.whisper {
+    background: #f0e0e0;
+    border-color: var(--dg-text-red);
+  }
+
+  &.blind {
+    border: 2px solid var(--dg-text-red);
+  }
+
+  .whisper-to {
+    margin-top: -15px;
+    margin-left: 55px;
+  }
+
+  .message-header {
+    display: grid;
+    color: #222;
+    border-bottom: 1px solid var(--dg-text-red);
+    padding-bottom: 6px;
+    margin-bottom: 6px;
+
+    .message-metadata {
+      margin-top: -53px;
     }
-    .intro-right {
+
+    img {
+      max-width: 50px;
+      max-height: 50px;
+      margin-right: 4px;
+      border: 1px solid var(--dg-text-red);
+    }
+
+    .title {
+      font-size: 18px;
+      font-weight: bold;
+      display: inline;
+      text-wrap: auto;
+      color: var(--dg-text-red);
+    }
+
+    .message-sender {
       display: flex;
-      flex-direction: column;
-      .introText {
-        font-size: 1.2em;
-        width: 210px;
-        padding-top: 0.5em;
-        text-align: center;
-      }
-      .success {
-        color: green;
-        font-size: 1.3em;
-        width: 210px;
-        margin-top: 0;
-        text-align: center;
-      }
-      .failure {
-        color: red;
-        font-size: 1.3em;
-        width: 210px;
-        margin-top: 0;
-        text-align: center;
-      }
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+}
+
+.dice-roll {
+  .roll-line {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    gap: 8px;
+  }
+
+  .roll-label {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #222;
+  }
+
+  .roll-total {
+    font-size: 1.4em;
+    font-weight: bold;
+  }
+
+  .roll-icon {
+    font-size: 1.3em;
+
+    &.success {
+      color: #2e7d32;
+    }
+
+    &.critical {
+      color: #1b5e20;
+    }
+
+    &.failure {
+      color: #c62828;
+    }
+
+    &.fumble {
+      color: #b71c1c;
     }
   }
 }

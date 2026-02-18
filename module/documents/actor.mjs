@@ -24,20 +24,13 @@ export default class DangerousGaryActor extends Actor {
   async rollSave(ability) {
     const roll = await new Roll("1d20").roll()
     const total = roll.total
-    let success = false
     const abilityValue = this.system.abilities[ability].value
+    const isCritical = total === 1
+    const isFumble = total === 20
+    const success = total <= abilityValue || isCritical
 
-    if (total <= abilityValue) {
-      success = true
-    }
-
-    const abilityName = game.i18n.localize(`DANGEROUSGARY.Character.FIELDS.${ability}.label`)
-    let introText
-    if (success) {
-      introText = game.i18n.format("DANGEROUSGARY.Roll.SaveRoll", { ability: abilityName, value: abilityValue })
-    } else {
-      introText = game.i18n.format("DANGEROUSGARY.Roll.SaveRoll", { ability: abilityName, value: abilityValue })
-    }
+    const abilityShort = game.i18n.localize(`DANGEROUSGARY.Labels.short.${ability}`)
+    const introText = game.i18n.format("DANGEROUSGARY.Roll.SaveRoll", { ability: abilityShort, value: abilityValue })
 
     let chatData = {
       rollType: "save",
@@ -45,10 +38,10 @@ export default class DangerousGaryActor extends Actor {
       actingCharName: this.name,
       actingCharImg: this.img,
       introText,
-      formula: roll.formula,
-      total: total,
-      tooltip: await roll.getTooltip(),
+      total,
       success,
+      isCritical,
+      isFumble,
     }
 
     let chat = await new DangerousGaryChat(this).withTemplate("systems/dangerousgary/templates/roll-result.hbs").withData(chatData).withRolls([roll]).create()
@@ -74,9 +67,8 @@ export default class DangerousGaryActor extends Actor {
       actingCharName: this.name,
       actingCharImg: this.img,
       introText: label,
-      formula: roll.formula,
       total: roll.total,
-      tooltip: await roll.getTooltip(),
+      formula: roll.formula,
     }
 
     let chat = await new DangerousGaryChat(this).withTemplate("systems/dangerousgary/templates/roll-result.hbs").withData(chatData).withRolls([roll]).create()

@@ -137,10 +137,15 @@
       "max": "max",
       "short": {
         "hp": "HP",
-        "str": "Str",
-        "dex": "Dex",
-        "wil": "Wil",
+        "str": "STR",
+        "dex": "DEX",
+        "wil": "WIL",
         "biography": "Bio"
+      },
+      "suffix": {
+        "str": "ength",
+        "dex": "terity",
+        "wil": "lpower"
       },
       "long": {
         "hp": "Hit Protection",
@@ -154,8 +159,10 @@
         "biography": "Biography",
         "inventory": "Equipment",
         "armour": "Armour",
-        "shortRest": "Short Rest",
-        "fullRest": "Full Rest",
+        "shortRest": "Pause",
+        "fullRest": "Rest",
+        "secureRest": "Secure Rest",
+        "medicalRest": "Medical Rest",
         "damage": "damage"
       },
       "details": "Details"
@@ -173,9 +180,11 @@
     "Equip": "Equip",
     "Unequip": "Unequip",
     "Roll": {
-      "SaveRoll": "Save Roll of {ability} ({value})",
+      "SaveRoll": "{ability} Saving Throw ({value})",
       "Success": "Success",
       "Failure": "Failure",
+      "Critical": "Critical",
+      "Fumble": "Fumble",
       "AttackRollDamage": "Damage Roll of {itemName}"
     }
   }

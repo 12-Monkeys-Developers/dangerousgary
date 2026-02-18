@@ -18,8 +18,6 @@ export default class DangerousGaryItemData extends foundry.abstract.TypeDataMode
             damageFormula: new fields.StringField({ required: false, nullable: true }),
             equipped: new fields.BooleanField({ required: true, nullable: false, initial: false }),
             bulky: new fields.BooleanField({ required: true, nullable: false, initial: false }),
-            blast: new fields.BooleanField({ required: true, nullable: false, initial: false }),
-            arcana: new fields.BooleanField({ required: true, nullable: false, initial: false })
         };
     }
 
@@ -40,14 +38,6 @@ export default class DangerousGaryItemData extends foundry.abstract.TypeDataMode
 
     get isBulky() {
         return this.bulky;
-    }
-
-    get isBlast() {
-        return this.blast;
-    }
-
-    get isArcana() {
-        return this.arcana;
     }
 
     get hasQuantity() {

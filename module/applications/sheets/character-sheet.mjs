@@ -23,6 +23,8 @@ export default class DangerousGaryCharacterSheet extends HandlebarsApplicationMi
       rollDamage: DangerousGaryCharacterSheet.#onItemRollDamage,
       shortRest: DangerousGaryCharacterSheet.#onShortRest,
       fullRest: DangerousGaryCharacterSheet.#onFullRest,
+      secureRest: DangerousGaryCharacterSheet.#onSecureRest,
+      medicalRest: DangerousGaryCharacterSheet.#onMedicalRest,
       equip: DangerousGaryCharacterSheet.#onItemEquip,
       unequip: DangerousGaryCharacterSheet.#onItemUnequip,
       editImage: DangerousGaryCharacterSheet.#onEditImage,
@@ -117,6 +119,20 @@ export default class DangerousGaryCharacterSheet extends HandlebarsApplicationMi
         icon: "fas fa-bed",
         label: "DANGEROUSGARY.Labels.long.fullRest",
         action: "fullRest",
+      })
+    }
+    if (!controls.find((c) => c.action === "secureRest")) {
+      controls.push({
+        icon: "fas fa-house",
+        label: "DANGEROUSGARY.Labels.long.secureRest",
+        action: "secureRest",
+      })
+    }
+    if (!controls.find((c) => c.action === "medicalRest")) {
+      controls.push({
+        icon: "fas fa-kit-medical",
+        label: "DANGEROUSGARY.Labels.long.medicalRest",
+        action: "medicalRest",
       })
     }
 
@@ -250,6 +266,14 @@ export default class DangerousGaryCharacterSheet extends HandlebarsApplicationMi
    */
   static async #onFullRest(event, target) {
     await this.actor.system.fullRest()
+  }
+
+  static async #onSecureRest(event, target) {
+    await this.actor.system.secureRest()
+  }
+
+  static async #onMedicalRest(event, target) {
+    await this.actor.system.medicalRest()
   }
 
   static async #onItemEquip(event, target) {

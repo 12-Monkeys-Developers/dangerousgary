@@ -190,8 +190,11 @@
   font-size: 1.1rem;
 }
 .dangerousgary.actor.character .stats-panel .stat-label {
-  font-weight: bold;
-  text-transform: uppercase;
+  text-transform: none;
+  font-weight: normal;
+}
+.dangerousgary.actor.character .stats-panel .stat-label strong {
+  font-size: 1.15em;
 }
 .dangerousgary.actor.character .stats-panel .stat-sub-labels {
   display: flex;
@@ -505,41 +508,83 @@
   width: 50px;
   margin: 0 5px 5px 5px;
 }
-.dice-roll .intro-chat {
-  border-radius: 20px;
+.chat-message {
+  background: #f4f4f4 url("/systems/dangerousgary/assets/fond_gris.webp") center / cover no-repeat;
+  color: #222;
+  border: 1px solid var(--dg-border-color);
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+  font-family: var(--dg-font-body);
+}
+.chat-message span,
+.chat-message label {
+  color: #222;
+}
+.chat-message.whisper {
+  background: #f0e0e0;
+  border-color: var(--dg-text-red);
+}
+.chat-message.blind {
+  border: 2px solid var(--dg-text-red);
+}
+.chat-message .whisper-to {
+  margin-top: -15px;
+  margin-left: 55px;
+}
+.chat-message .message-header {
+  display: grid;
+  color: #222;
+  border-bottom: 1px solid var(--dg-text-red);
+  padding-bottom: 6px;
+  margin-bottom: 6px;
+}
+.chat-message .message-header .message-metadata {
+  margin-top: -53px;
+}
+.chat-message .message-header img {
+  max-width: 50px;
+  max-height: 50px;
+  margin-right: 4px;
+  border: 1px solid var(--dg-text-red);
+}
+.chat-message .message-header .title {
+  font-size: 18px;
+  font-weight: bold;
+  display: inline;
+  text-wrap: auto;
+  color: var(--dg-text-red);
+}
+.chat-message .message-header .message-sender {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  align-items: center;
 }
-.dice-roll .intro-chat .intro-img {
-  padding: 5px;
-  width: 60px;
-  height: 60px;
-  object-fit: contain;
-  object-position: center;
-  align-self: center;
-}
-.dice-roll .intro-chat .intro-right {
+.dice-roll .roll-line {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: baseline;
+  gap: 8px;
 }
-.dice-roll .intro-chat .intro-right .introText {
-  font-size: 1.2em;
-  width: 210px;
-  padding-top: 0.5em;
-  text-align: center;
+.dice-roll .roll-label {
+  font-size: 1.1em;
+  font-weight: bold;
+  color: #222;
 }
-.dice-roll .intro-chat .intro-right .success {
-  color: green;
+.dice-roll .roll-total {
+  font-size: 1.4em;
+  font-weight: bold;
+}
+.dice-roll .roll-icon {
   font-size: 1.3em;
-  width: 210px;
-  margin-top: 0;
-  text-align: center;
 }
-.dice-roll .intro-chat .intro-right .failure {
-  color: red;
-  font-size: 1.3em;
-  width: 210px;
-  margin-top: 0;
-  text-align: center;
+.dice-roll .roll-icon.success {
+  color: #2e7d32;
+}
+.dice-roll .roll-icon.critical {
+  color: #1b5e20;
+}
+.dice-roll .roll-icon.failure {
+  color: #c62828;
+}
+.dice-roll .roll-icon.fumble {
+  color: #b71c1c;
 }
