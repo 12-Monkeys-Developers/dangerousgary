@@ -80,6 +80,9 @@
         },
         "armour": {
           "label": "Armour"
+        },
+        "powers": {
+          "label": "Powers"
         }
       }
     },

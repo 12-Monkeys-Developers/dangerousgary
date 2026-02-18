@@ -23,7 +23,8 @@ export default class DangerousGaryEncounterData extends foundry.abstract.TypeDat
                     max: new fields.NumberField({ required: true, nullable: false, integer: true, initial: 10, min: 0 }),
                 })
             }),
-            armour: new fields.NumberField({ required: true, nullable: false, integer: true, initial: 0, min: 0 })
+            armour: new fields.NumberField({ required: true, nullable: false, integer: true, initial: 0, min: 0 }),
+            powers: new fields.HTMLField({ required: false, blank: true, initial: "", textSearch: true })
         };
     }
 

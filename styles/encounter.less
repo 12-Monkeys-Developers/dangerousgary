@@ -1,84 +1,144 @@
 &.actor.encounter {
   min-width: 675px;
+
+  .window-content {
+    background: var(--dg-bg-dark) url("/systems/dangerousgary/assets/fond_noir.webp") center / cover no-repeat;
+    padding: 10px;
+    font-family: var(--dg-font-body);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
   .encounter-header {
     display: flex;
-
-    .encounter-name {
-      input {
-        font-size: 1.5rem;
-      }
-    }
+    flex-direction: row;
+    align-items: center;
+    border-bottom: 3px solid var(--dg-text-red);
+    padding-bottom: 8px;
 
     .encounter-img {
-      width: 100px;
-      flex: 0 0 25%; /* Prend 25% de la largeur */
+      width: 80px;
+      height: 80px;
+      flex: 0 0 80px;
+      border: 2px solid var(--dg-text-red);
     }
 
     .encounter-details {
+      flex: 1;
+      padding-left: 12px;
+    }
+
+    .encounter-name input {
+      font-family: var(--dg-font-title);
+      color: var(--dg-text-red);
+      font-size: 2rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-shadow: 2px 2px 0px #000;
+      background: transparent;
+      border: none;
+      width: 100%;
+    }
+  }
+
+  .encounter-stats {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-top: 6px;
+
+    .stat-block {
       display: flex;
-      flex-direction: column;
-      margin-left: 10px;
+      align-items: center;
+      gap: 5px;
+    }
 
-      .encounter-abilities {
-        .grid-col(5);
+    .stat-label {
+      text-transform: none;
+      font-weight: normal;
+      color: #ccc;
 
-        fieldset {
-          legend {
-            font-weight: bold;
-          }
-          border-radius: 5px;
-        }
-
-        .ability {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          margin-top: 5px;
-          text-align: center;
-          input {
-            width: 40px;
-            font-size: 1.2rem;
-          }
-          .divider {
-            font-size: x-large;
-          }
-        }
-
-        .armour {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          margin-top: 5px;
-          input {
-            width: 40px;
-            font-size: 1.2rem;
-            text-align: center;
-          }
-        }
+      strong {
+        font-size: 1.15em;
       }
+    }
+
+    .stat-inputs {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+
+      input {
+        width: 40px;
+        font-size: 1.3rem;
+        font-weight: bold;
+        text-align: center;
+        border: none;
+        border-bottom: 2px solid var(--dg-text-red);
+        background: transparent;
+        color: #ccc;
+      }
+
+      .sep {
+        font-size: 1.5rem;
+        font-weight: lighter;
+        color: #ccc;
+      }
+    }
+  }
+
+  .rollable {
+    &:hover,
+    &:focus {
+      color: var(--dg-text-red);
+      text-shadow: 0 0 10px rgba(204, 0, 0, 0.5);
+      cursor: url("/systems/dangerousgary/assets/d20-highlight.svg") 32 24, pointer;
+    }
+  }
+
+  /* --- Shared panel fieldset style --- */
+  .encounter-attacks,
+  .encounter-powers,
+  .encounter-description {
+    background: var(--dg-box-bg) url("/systems/dangerousgary/assets/fond_gris.webp") center / cover no-repeat;
+    border: 1px solid var(--dg-border-color);
+    padding: 10px 15px;
+    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.6);
+    border-radius: 5px;
+
+    legend {
+      float: left;
+      width: 100%;
+      font-weight: bold;
+      color: var(--dg-text-red);
+      font-size: 1.4rem;
+      font-family: var(--dg-font-body);
+      margin-bottom: 6px;
+    }
+
+    > *:not(legend) {
+      clear: both;
     }
   }
 
   .encounter-description {
-    border-radius: 5px;
-    legend {
-      font-weight: bold;
-    }
+    flex: 1;
+    display: flex;
+    flex-direction: column;
   }
 
   .encounter-items-list {
-    margin: 0 10px 20px 10px;
+    margin: 0 10px 10px 10px;
     .item {
       display: flex;
       justify-content: space-between;
-      margin-top: 10px;
+      margin-top: 8px;
+      padding: 4px 0;
+      border-bottom: 1px solid #ddd;
       .item-name {
         flex: 1;
         font-weight: bold;
-      }
-      .item-quantity {
-        width: 40px;
-        font-size: 1.2rem;
       }
       summary {
         display: flex;

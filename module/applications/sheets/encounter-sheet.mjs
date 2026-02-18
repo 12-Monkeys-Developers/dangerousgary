@@ -43,6 +43,7 @@ export default class DangerousGaryEncounterSheet extends HandlebarsApplicationMi
       system: this.document.system,
       source: this.document.toObject(),
       enrichedDescription: await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.document.system.description, { async: true }),
+      enrichedPowers: await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.document.system.powers, { async: true }),
     })
 
     const attacks = []

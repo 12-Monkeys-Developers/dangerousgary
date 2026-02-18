@@ -339,82 +339,132 @@
 }
 .dangerousgary.actor.encounter {
   min-width: 675px;
+  /* --- Shared panel fieldset style --- */
+}
+.dangerousgary.actor.encounter .window-content {
+  background: var(--dg-bg-dark) url("/systems/dangerousgary/assets/fond_noir.webp") center / cover no-repeat;
+  padding: 10px;
+  font-family: var(--dg-font-body);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 .dangerousgary.actor.encounter .encounter-header {
   display: flex;
-}
-.dangerousgary.actor.encounter .encounter-header .encounter-name input {
-  font-size: 1.5rem;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: 3px solid var(--dg-text-red);
+  padding-bottom: 8px;
 }
 .dangerousgary.actor.encounter .encounter-header .encounter-img {
-  width: 100px;
-  flex: 0 0 25%;
-  /* Prend 25% de la largeur */
+  width: 80px;
+  height: 80px;
+  flex: 0 0 80px;
+  border: 2px solid var(--dg-text-red);
 }
 .dangerousgary.actor.encounter .encounter-header .encounter-details {
+  flex: 1;
+  padding-left: 12px;
+}
+.dangerousgary.actor.encounter .encounter-header .encounter-name input {
+  font-family: var(--dg-font-title);
+  color: var(--dg-text-red);
+  font-size: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 0px #000;
+  background: transparent;
+  border: none;
+  width: 100%;
+}
+.dangerousgary.actor.encounter .encounter-stats {
   display: flex;
-  flex-direction: column;
-  margin-left: 10px;
+  gap: 15px;
+  align-items: center;
+  margin-top: 6px;
 }
-.dangerousgary.actor.encounter .encounter-header .encounter-details .encounter-abilities {
-  display: grid;
-  margin: 10px 0;
-  padding: 0;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  grid-column: span 5 / span 5;
+.dangerousgary.actor.encounter .encounter-stats .stat-block {
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
-.dangerousgary.actor.encounter .encounter-header .encounter-details .encounter-abilities fieldset {
+.dangerousgary.actor.encounter .encounter-stats .stat-label {
+  text-transform: none;
+  font-weight: normal;
+  color: #ccc;
+}
+.dangerousgary.actor.encounter .encounter-stats .stat-label strong {
+  font-size: 1.15em;
+}
+.dangerousgary.actor.encounter .encounter-stats .stat-inputs {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.dangerousgary.actor.encounter .encounter-stats .stat-inputs input {
+  width: 40px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  text-align: center;
+  border: none;
+  border-bottom: 2px solid var(--dg-text-red);
+  background: transparent;
+  color: #ccc;
+}
+.dangerousgary.actor.encounter .encounter-stats .stat-inputs .sep {
+  font-size: 1.5rem;
+  font-weight: lighter;
+  color: #ccc;
+}
+.dangerousgary.actor.encounter .rollable:hover,
+.dangerousgary.actor.encounter .rollable:focus {
+  color: var(--dg-text-red);
+  text-shadow: 0 0 10px rgba(204, 0, 0, 0.5);
+  cursor: url("/systems/dangerousgary/assets/d20-highlight.svg") 32 24, pointer;
+}
+.dangerousgary.actor.encounter .encounter-attacks,
+.dangerousgary.actor.encounter .encounter-powers,
+.dangerousgary.actor.encounter .encounter-description {
+  background: var(--dg-box-bg) url("/systems/dangerousgary/assets/fond_gris.webp") center / cover no-repeat;
+  border: 1px solid var(--dg-border-color);
+  padding: 10px 15px;
+  box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.6);
   border-radius: 5px;
 }
-.dangerousgary.actor.encounter .encounter-header .encounter-details .encounter-abilities fieldset legend {
+.dangerousgary.actor.encounter .encounter-attacks legend,
+.dangerousgary.actor.encounter .encounter-powers legend,
+.dangerousgary.actor.encounter .encounter-description legend {
+  float: left;
+  width: 100%;
   font-weight: bold;
+  color: var(--dg-text-red);
+  font-size: 1.4rem;
+  font-family: var(--dg-font-body);
+  margin-bottom: 6px;
 }
-.dangerousgary.actor.encounter .encounter-header .encounter-details .encounter-abilities .ability {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 5px;
-  text-align: center;
-}
-.dangerousgary.actor.encounter .encounter-header .encounter-details .encounter-abilities .ability input {
-  width: 40px;
-  font-size: 1.2rem;
-}
-.dangerousgary.actor.encounter .encounter-header .encounter-details .encounter-abilities .ability .divider {
-  font-size: x-large;
-}
-.dangerousgary.actor.encounter .encounter-header .encounter-details .encounter-abilities .armour {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 5px;
-}
-.dangerousgary.actor.encounter .encounter-header .encounter-details .encounter-abilities .armour input {
-  width: 40px;
-  font-size: 1.2rem;
-  text-align: center;
+.dangerousgary.actor.encounter .encounter-attacks > *:not(legend),
+.dangerousgary.actor.encounter .encounter-powers > *:not(legend),
+.dangerousgary.actor.encounter .encounter-description > *:not(legend) {
+  clear: both;
 }
 .dangerousgary.actor.encounter .encounter-description {
-  border-radius: 5px;
-}
-.dangerousgary.actor.encounter .encounter-description legend {
-  font-weight: bold;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 .dangerousgary.actor.encounter .encounter-items-list {
-  margin: 0 10px 20px 10px;
+  margin: 0 10px 10px 10px;
 }
 .dangerousgary.actor.encounter .encounter-items-list .item {
   display: flex;
   justify-content: space-between;
-  margin-top: 10px;
+  margin-top: 8px;
+  padding: 4px 0;
+  border-bottom: 1px solid #ddd;
 }
 .dangerousgary.actor.encounter .encounter-items-list .item .item-name {
   flex: 1;
   font-weight: bold;
-}
-.dangerousgary.actor.encounter .encounter-items-list .item .item-quantity {
-  width: 40px;
-  font-size: 1.2rem;
 }
 .dangerousgary.actor.encounter .encounter-items-list .item summary {
   display: flex;

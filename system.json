@@ -39,7 +39,7 @@
         "htmlFields": ["biography"]
       },
       "encounter": {
-        "htmlFields": ["description"]
+        "htmlFields": ["description", "powers"]
       }
     },
     "Item": {
