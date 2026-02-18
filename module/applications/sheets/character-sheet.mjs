@@ -29,6 +29,7 @@ export default class DangerousGaryCharacterSheet extends HandlebarsApplicationMi
       unequip: DangerousGaryCharacterSheet.#onItemUnequip,
       editImage: DangerousGaryCharacterSheet.#onEditImage,
       createItem: DangerousGaryCharacterSheet.#onCreateItem,
+      rollClassSave: DangerousGaryCharacterSheet.#onRollClassSave,
     },
   }
 
@@ -39,12 +40,13 @@ export default class DangerousGaryCharacterSheet extends HandlebarsApplicationMi
     tabs: { template: "templates/generic/tab-navigation.hbs" },
     biography: { template: "systems/dangerousgary/templates/character-biography.hbs" },
     inventory: { template: "systems/dangerousgary/templates/character-inventory.hbs" },
+    classes: { template: "systems/dangerousgary/templates/character-classes.hbs" },
   }
 
   /** @override */
   static TABS = {
     primary: {
-      tabs: [{ id: "biography" }, { id: "inventory" }],
+      tabs: [{ id: "biography" }, { id: "inventory" }, { id: "classes" }],
       initial: "inventory",
       labelPrefix: "DANGEROUSGARY.Labels.long",
     },
@@ -80,6 +82,22 @@ export default class DangerousGaryCharacterSheet extends HandlebarsApplicationMi
         for (const item of itemsRaw) {
           item.enrichedDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(item.system.description, { async: true })
           context.items.push(item)
+        }
+        break
+      case "classes":
+        const classKeys = ["cleric", "fighter", "paladin", "druid", "monk", "thief", "bard", "mage", "ranger"]
+        context.talentsByClass = {}
+        for (const key of classKeys) context.talentsByClass[key] = []
+        const talentsRaw = this.actor.itemTypes.talent ?? []
+        for (const talent of talentsRaw) {
+          talent.enrichedDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(talent.system.description, { async: true })
+          const classKey = talent.system.talentClass
+          if (classKey && context.talentsByClass[classKey]) {
+            context.talentsByClass[classKey].push(talent)
+          }
+        }
+        for (const key of classKeys) {
+          context.talentsByClass[key].sort((a, b) => a.system.level - b.system.level)
         }
         break
     }
@@ -201,7 +219,7 @@ export default class DangerousGaryCharacterSheet extends HandlebarsApplicationMi
     switch (data.type) {
       case "Item":
         const item = await fromUuid(data.uuid)
-        if (item.type !== "equipment") return
+        if (item.type !== "equipment" && item.type !== "talent") return
         return await this.actor.createEmbeddedDocuments("Item", [item], { renderSheet: false })
     }
   }
@@ -327,9 +345,27 @@ export default class DangerousGaryCharacterSheet extends HandlebarsApplicationMi
       case "equipment":
         itemData.name = game.i18n.localize("DANGEROUSGARY.NewEquipment")
         break
+      case "talent":
+        itemData.name = game.i18n.localize("DANGEROUSGARY.NewTalent")
+        break
     }
 
     return this.actor.createEmbeddedDocuments("Item", [itemData])
+  }
+
+  static CLASS_ABILITY = {
+    cleric: "str", fighter: "str", paladin: "str",
+    druid: "dex", monk: "dex", thief: "dex",
+    bard: "wil", mage: "wil", ranger: "wil",
+  }
+
+  static async #onRollClassSave(event, target) {
+    const talentClass = target.dataset.talentClass
+    const ability = DangerousGaryCharacterSheet.CLASS_ABILITY[talentClass]
+    if (!ability) return
+    const itemId = target.dataset.itemId
+    const talent = this.actor.items.get(itemId)
+    await this.actor.rollSave(ability, { useMax: true, talentName: talent?.name })
   }
 
   //#endregion

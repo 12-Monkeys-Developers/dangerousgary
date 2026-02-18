@@ -1,4 +1,7 @@
 <div class="dice-roll">
+  {{#if talentName}}
+    <div class="roll-talent-name">{{talentName}}</div>
+  {{/if}}
   <div class="roll-line">
     <span class="roll-label">{{{introText}}}</span>
     <span class="roll-total" {{#if formula}}data-tooltip="{{formula}}"{{/if}}>{{total}}</span>

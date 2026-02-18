@@ -23,7 +23,8 @@ Hooks.once('init', async function () {
   CONFIG.Item.documentClass = documents.DangerousGaryItem;
   CONFIG.Item.dataModels = {
     equipment: models.DangerousGaryItemData,
-    attack: models.DangerousGaryAttackData
+    attack: models.DangerousGaryAttackData,
+    talent: models.DangerousGaryTalentData
   };
 
   // Chat
@@ -36,5 +37,6 @@ Hooks.once('init', async function () {
   foundry.documents.collections.Items.unregisterSheet("core", foundry.appv1.sheets.ItemSheet);
   foundry.documents.collections.Items.registerSheet("dangerousgary", applications.DangerousGaryItemSheet, { types: ["equipment"], makeDefault: true });
   foundry.documents.collections.Items.registerSheet("dangerousgary", applications.DangerousGaryAttackSheet, { types: ["attack"], makeDefault: true });
+  foundry.documents.collections.Items.registerSheet("dangerousgary", applications.DangerousGaryTalentSheet, { types: ["talent"], makeDefault: true });
 
 });

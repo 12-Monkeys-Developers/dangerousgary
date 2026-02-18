@@ -48,6 +48,9 @@
       },
       "attack": {
         "htmlFields": ["description"]
+      },
+      "talent": {
+        "htmlFields": ["description"]
       }
     }
   },

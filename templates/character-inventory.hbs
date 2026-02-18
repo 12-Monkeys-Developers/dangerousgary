@@ -4,7 +4,7 @@
     {{formInput systemFields.equipmentPoints value=system.equipmentPoints }}
   </div>
   <div class="character-items-list">
-    {{#each actor.items as |item id|}}
+    {{#each items as |item|}}
       <div class="item" data-item-id="{{item.id}}">
         <details>
           <summary>

@@ -19,6 +19,17 @@ export default class DangerousGaryCharacterData extends foundry.abstract.TypeDat
         second: new fields.StringField({ required: false, blank: true, initial: "" }),
         third: new fields.StringField({ required: false, blank: true, initial: "" }),
       }),
+      classes: new fields.SchemaField({
+        cleric: new fields.NumberField({ required: true, nullable: false, integer: true, initial: 0, min: 0, max: 9 }),
+        fighter: new fields.NumberField({ required: true, nullable: false, integer: true, initial: 0, min: 0, max: 9 }),
+        paladin: new fields.NumberField({ required: true, nullable: false, integer: true, initial: 0, min: 0, max: 9 }),
+        druid: new fields.NumberField({ required: true, nullable: false, integer: true, initial: 0, min: 0, max: 9 }),
+        monk: new fields.NumberField({ required: true, nullable: false, integer: true, initial: 0, min: 0, max: 9 }),
+        thief: new fields.NumberField({ required: true, nullable: false, integer: true, initial: 0, min: 0, max: 9 }),
+        bard: new fields.NumberField({ required: true, nullable: false, integer: true, initial: 0, min: 0, max: 9 }),
+        mage: new fields.NumberField({ required: true, nullable: false, integer: true, initial: 0, min: 0, max: 9 }),
+        ranger: new fields.NumberField({ required: true, nullable: false, integer: true, initial: 0, min: 0, max: 9 }),
+      }),
       abilities: new fields.SchemaField({
         str: new fields.SchemaField({
           value: new fields.NumberField({ required: true, nullable: false, integer: true, initial: 10, min: 0 }),

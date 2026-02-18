@@ -21,10 +21,10 @@ export default class DangerousGaryActor extends Actor {
    * @param {*} ability
    * @returns
    */
-  async rollSave(ability) {
+  async rollSave(ability, { useMax = false, talentName = null } = {}) {
     const roll = await new Roll("1d20").roll()
     const total = roll.total
-    const abilityValue = this.system.abilities[ability].value
+    const abilityValue = useMax ? this.system.abilities[ability].max : this.system.abilities[ability].value
     const isCritical = total === 1
     const isFumble = total === 20
     const success = total <= abilityValue || isCritical
@@ -37,6 +37,7 @@ export default class DangerousGaryActor extends Actor {
       abilityValue,
       actingCharName: this.name,
       actingCharImg: this.img,
+      talentName: talentName || null,
       introText,
       total,
       success,

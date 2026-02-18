@@ -474,6 +474,80 @@
   width: 50px;
   margin: 0 5px 5px 5px;
 }
+.dangerousgary .talent .talent-main {
+  display: flex;
+  flex-direction: column;
+}
+.dangerousgary .talent .talent-main .header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.dangerousgary .talent .talent-main .header img {
+  width: 50px;
+  margin: 0 5px 5px 5px;
+}
+.dangerousgary .talent .talent-main .details {
+  padding-bottom: 5px;
+}
+.dangerousgary .talent .talent-main .details fieldset {
+  font-weight: bold;
+  border-radius: 5px;
+}
+.dangerousgary .talent .talent-description legend {
+  font-weight: bold;
+}
+.dangerousgary.actor.character .character-classes.active {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.dangerousgary.actor.character .classes-panel .classes-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px 15px;
+}
+.dangerousgary.actor.character .classes-panel .class-cell .class-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.dangerousgary.actor.character .classes-panel .class-cell .class-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+.dangerousgary.actor.character .classes-panel .class-cell input[type="number"] {
+  width: 40px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-align: center;
+  border: none;
+  border-bottom: 2px solid var(--dg-text-red);
+  background: transparent;
+  color: #000;
+}
+.dangerousgary.actor.character .classes-panel .class-cell .class-talents-label {
+  display: block;
+  font-size: 1.1rem;
+  color: var(--dg-text-red);
+  font-weight: 700;
+}
+.dangerousgary.actor.character .classes-panel .class-cell .class-talents .talent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1px 0;
+}
+.dangerousgary.actor.character .classes-panel .class-cell .class-talents .talent .talent-name {
+  flex: 1;
+  font-size: 0.9rem;
+}
+.dangerousgary.actor.character .classes-panel .class-cell .class-talents .talent .talent-controls {
+  display: flex;
+  gap: 4px;
+  font-size: 0.8rem;
+}
 .dangerousgary prose-mirror {
   display: flex;
   flex-direction: column;
@@ -575,10 +649,16 @@
   flex-direction: row;
   align-items: center;
 }
+.dice-roll .roll-talent-name {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: var(--dg-text-red);
+  margin-bottom: 2px;
+}
 .dice-roll .roll-line {
   display: flex;
   justify-content: center;
-  align-items: baseline;
+  align-items: center;
   gap: 8px;
 }
 .dice-roll .roll-label {

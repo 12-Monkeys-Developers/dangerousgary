@@ -1,0 +1,69 @@
+&.actor.character {
+  .character-classes {
+    &.active {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+  }
+
+  .classes-panel {
+    .classes-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px 15px;
+    }
+
+    .class-cell {
+      .class-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .class-name {
+        font-size: 1.2rem;
+        font-weight: bold;
+      }
+
+      input[type="number"] {
+        width: 40px;
+        font-size: 1.1rem;
+        font-weight: bold;
+        text-align: center;
+        border: none;
+        border-bottom: 2px solid var(--dg-text-red);
+        background: transparent;
+        color: #000;
+      }
+
+      .class-talents-label {
+        display: block;
+        font-size: 1.1rem;
+        color: var(--dg-text-red);
+        font-weight: 700;
+      }
+
+      .class-talents {
+        .talent {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 1px 0;
+
+          .talent-name {
+            flex: 1;
+            font-size: 0.9rem;
+          }
+
+          .talent-controls {
+            display: flex;
+            gap: 4px;
+            font-size: 0.8rem;
+          }
+        }
+      }
+    }
+  }
+}

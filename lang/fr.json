@@ -6,7 +6,8 @@
     },
     "Item": {
       "equipment": "Équipement",
-      "attack": "Attaque"
+      "attack": "Attaque",
+      "talent": "Talent"
     }
   },
   "DANGEROUSGARY": {
@@ -118,6 +119,33 @@
         "equipment": "Équipement"
       }
     },
+    "Talent": {
+      "FIELDS": {
+        "talentClass": {
+          "label": "Classe"
+        },
+        "level": {
+          "label": "Niveau"
+        },
+        "description": {
+          "label": "Description"
+        },
+        "special": {
+          "label": "Spécial"
+        }
+      },
+      "Classes": {
+        "cleric": "Clerc",
+        "fighter": "Guerrier",
+        "paladin": "Paladin",
+        "druid": "Druide",
+        "monk": "Moine",
+        "thief": "Voleur",
+        "bard": "Barde",
+        "mage": "Magicien",
+        "ranger": "Rôdeur"
+      }
+    },
     "Attack": {
       "FIELDS": {
         "description": {
@@ -163,7 +191,9 @@
         "fullRest": "Repos",
         "secureRest": "Repos sécurisé",
         "medicalRest": "Repos médicalisé",
-        "damage": "dégâts"
+        "damage": "dégâts",
+        "classes": "Classe et talents",
+        "talents": "Talents"
       },
       "details": "Détails"
     },
@@ -171,12 +201,14 @@
     "Add": "Ajouter",
     "Edit": "Modifier",
     "Delete": "Supprimer",
+    "RollClassSave": "Lancer la sauvegarde de classe",
     "RollDamage": "Lancer les Dégâts",
     "RollStrength": "Lancer un Jet de Force",
     "RollDexterity": "Lancer un Jet de Dextérité",
     "RollWillpower": "Lancer un Jet de Volonté",
     "NewAttack": "Nouvelle Attaque",
     "NewEquipment": "Nouvel Équipement",
+    "NewTalent": "Nouveau Talent",
     "Equip": "Équiper",
     "Unequip": "Déséquiper",
     "Roll": {

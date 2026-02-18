@@ -6,7 +6,8 @@
     },
     "Item": {
       "equipment": "Equipment",
-      "attack": "Attack"
+      "attack": "Attack",
+      "talent": "Talent"
     }
   },
   "DANGEROUSGARY": {
@@ -118,6 +119,33 @@
         "equipment": "Equipment"
       }
     },
+    "Talent": {
+      "FIELDS": {
+        "talentClass": {
+          "label": "Class"
+        },
+        "level": {
+          "label": "Level"
+        },
+        "description": {
+          "label": "Description"
+        },
+        "special": {
+          "label": "Special"
+        }
+      },
+      "Classes": {
+        "cleric": "Cleric",
+        "fighter": "Fighter",
+        "paladin": "Paladin",
+        "druid": "Druid",
+        "monk": "Monk",
+        "thief": "Thief",
+        "bard": "Bard",
+        "mage": "Mage",
+        "ranger": "Ranger"
+      }
+    },
     "Attack": {
       "FIELDS": {
         "description": {
@@ -163,7 +191,9 @@
         "fullRest": "Rest",
         "secureRest": "Secure Rest",
         "medicalRest": "Medical Rest",
-        "damage": "damage"
+        "damage": "damage",
+        "classes": "Classes & Talents",
+        "talents": "Talents"
       },
       "details": "Details"
     },
@@ -174,9 +204,11 @@
     "RollStrength": "Roll Strength save",
     "RollDexterity": "Roll Dexterity save",
     "RollWillpower": "Roll Willpower save",
+    "RollClassSave": "Roll class save",
     "RollDamage": "Roll Damage",
     "NewAttack": "New Attack",
     "NewEquipment": "New Equipment",
+    "NewTalent": "New Talent",
     "Equip": "Equip",
     "Unequip": "Unequip",
     "Roll": {
