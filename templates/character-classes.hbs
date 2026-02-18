@@ -1,4 +1,5 @@
-<section class="tab standard-form character-classes {{#if tabs.classes.active}} active{{/if}}" data-group="primary" data-tab="classes">
+<section class="tab standard-form character-classes {{tab.cssClass}}" data-group="primary" data-tab="classes" {{#unless enableClasses}}hidden{{/unless}}>
+{{#if enableClasses}}
   <div class="osmose-block">
     <span class="osmose-label">{{localize "DANGEROUSGARY.Labels.long.osmose"}}</span>
     <div class="osmose-pips">
@@ -182,4 +183,5 @@
       </div>
     </div>
   </div>
+{{/if}}
 </section>

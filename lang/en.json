@@ -198,6 +198,12 @@
       },
       "details": "Details"
     },
+    "Settings": {
+      "enableClasses": {
+        "name": "Classes & Talents",
+        "hint": "Enable the Classes & Talents tab on the character sheet."
+      }
+    },
     "Attacks": "Attacks",
     "Add": "Add",
     "Edit": "Edit",

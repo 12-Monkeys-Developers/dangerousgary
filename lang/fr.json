@@ -198,6 +198,12 @@
       },
       "details": "Détails"
     },
+    "Settings": {
+      "enableClasses": {
+        "name": "Classe et talents",
+        "hint": "Active l'onglet Classe et talents sur la fiche de personnage."
+      }
+    },
     "Attacks": "Attaques",
     "Add": "Ajouter",
     "Edit": "Modifier",

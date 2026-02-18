@@ -38,7 +38,7 @@ export default class DangerousGaryCharacterSheet extends HandlebarsApplicationMi
   static PARTS = {
     header: { template: "systems/dangerousgary/templates/character-header.hbs" },
     main: { template: "systems/dangerousgary/templates/character-main.hbs" },
-    tabs: { template: "templates/generic/tab-navigation.hbs" },
+    tabs: { template: "systems/dangerousgary/templates/tab-navigation.hbs" },
     biography: { template: "systems/dangerousgary/templates/character-biography.hbs" },
     inventory: { template: "systems/dangerousgary/templates/character-inventory.hbs" },
     classes: { template: "systems/dangerousgary/templates/character-classes.hbs" },
@@ -56,12 +56,14 @@ export default class DangerousGaryCharacterSheet extends HandlebarsApplicationMi
   /** @override */
   async _prepareContext(options) {
     const context = await super._prepareContext(options)
+    const enableClasses = game.settings.get("dangerousgary", "enableClasses") || game.user.isGM
     Object.assign(context, {
       fields: this.document.schema.fields,
       systemFields: this.document.system.schema.fields,
       actor: this.document,
       system: this.document.system,
       source: this.document.toObject(),
+      enableClasses,
     })
     return context
   }
@@ -71,13 +73,20 @@ export default class DangerousGaryCharacterSheet extends HandlebarsApplicationMi
     context = await super._preparePartContext(partId, context, options)
 
     switch (partId) {
+      case "tabs":
+        if (!context.enableClasses) {
+          delete context.tabs.classes
+        }
+        break
       case "main":
         context.enrichedPerk = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.document.system.perk, { async: true })
         break
       case "biography":
+        context.tab = context.tabs.biography
         context.enrichedBiography = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.document.system.biography, { async: true })
         break
       case "inventory":
+        context.tab = context.tabs.inventory
         context.items = []
         const itemsRaw = this.actor.itemTypes.equipment
         for (const item of itemsRaw) {
@@ -86,6 +95,7 @@ export default class DangerousGaryCharacterSheet extends HandlebarsApplicationMi
         }
         break
       case "classes":
+        context.tab = context.tabs.classes
         const classKeys = ["cleric", "fighter", "paladin", "druid", "monk", "thief", "bard", "mage", "ranger"]
         context.talentsByClass = {}
         for (const key of classKeys) context.talentsByClass[key] = []
