@@ -1,10 +1,38 @@
 @font-face {
-  font-family: "FeENrm28C";
-  src: url("../ui/fonts/feenrm28c.woff");
+  font-family: 'Rye';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/rye/v17/r05XGLJT86YDFg.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Volkhov';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/volkhov/v18/SlGSmQieoJcKemNecTAEgA.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Volkhov';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/volkhov/v18/SlGQmQieoJcKemNeQTI.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Volkhov';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/volkhov/v18/SlGVmQieoJcKemNeeY4hoHQ.ttf) format('truetype');
 }
 :root {
-  --font-primary: "FeENrm28C", sans-serif;
-  --font-secondary: "FeENrm28C", sans-serif;
+  --dg-bg-dark: #1a1a1a;
+  --dg-text-red: #cc0000;
+  --dg-box-bg: #f4f4f4;
+  --dg-border-color: #000;
+  --dg-font-title: "Rye", serif;
+  --dg-font-body: "Volkhov", serif;
 }
 /* Styles limited to Dangerous Gary sheets */
 .dangerousgary .grid-abilities {
@@ -42,6 +70,7 @@
   margin-left: 4px;
   border-style: solid;
   border-width: thin;
+  border-color: var(--dg-text-red);
   border-radius: 3px;
   padding-left: 4px;
   padding-right: 4px;
@@ -49,63 +78,282 @@
   padding-bottom: 2px;
 }
 .dangerousgary.actor.character {
-  min-width: 675px;
+  min-width: 500px;
+  /* --- Panel mixin --- */
+  /* --- Window content: dark background --- */
+  /* --- Header: portrait + name --- */
+  /* --- Main grid: 2 columns --- */
+  /* --- Shared stat inputs --- */
+  /* --- Stats panel (left column) --- */
+  /* --- Left column --- */
+  /* --- Specialties panel --- */
+  /* --- Right column --- */
+  /* --- HP panel --- */
+  /* --- XP panel --- */
+  /* --- Perk panel --- */
+  /* --- Rollable elements --- */
+  /* --- Tabs: dark theme --- */
+  /* --- Biography tab --- */
+  /* --- Inventory tab --- */
 }
-.dangerousgary.actor.character .character-abilities {
-  display: grid;
-  margin: 10px 0;
-  padding: 0;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  grid-column: span 4 / span 4;
+.dangerousgary.actor.character .panel {
+  background: var(--dg-box-bg) url("/systems/dangerousgary/assets/fond_gris.webp") center / cover no-repeat;
+  border: 1px solid var(--dg-border-color);
+  padding: 10px 15px;
+  box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.6);
+  position: relative;
 }
-.dangerousgary.actor.character .character-abilities fieldset {
-  border-radius: 5px;
+.dangerousgary.actor.character .panel h2 {
+  color: var(--dg-text-red);
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  font-family: var(--dg-font-body);
 }
-.dangerousgary.actor.character .character-abilities fieldset legend {
-  font-weight: bold;
-}
-.dangerousgary.actor.character .character-abilities .ability {
+.dangerousgary.actor.character .window-content {
+  background: var(--dg-bg-dark) url("/systems/dangerousgary/assets/fond_noir.webp") center / cover no-repeat;
+  padding: 10px;
+  font-family: var(--dg-font-body);
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 5px;
-  text-align: center;
-}
-.dangerousgary.actor.character .character-abilities .ability input {
-  width: 40px;
-  font-size: 1.2rem;
-}
-.dangerousgary.actor.character .character-abilities .ability .divider {
-  font-size: x-large;
-}
-.dangerousgary.actor.character .character-abilities .rollable:hover,
-.dangerousgary.actor.character .character-abilities .rollable:focus {
-  color: #3f2020;
-  text-shadow: 0 0 10px var(--color-shadow-primary);
-  cursor: url("systems/dangerousgary/ui/d20-highlight.svg") 32 24, pointer;
+  flex-direction: column;
+  gap: 10px;
 }
 .dangerousgary.actor.character .character-header {
   display: flex;
   flex-direction: row;
-}
-.dangerousgary.actor.character .character-header .character-name input {
-  font-size: 1.5rem;
+  align-items: center;
+  border-bottom: 3px solid var(--dg-text-red);
+  padding-bottom: 8px;
 }
 .dangerousgary.actor.character .character-header .character-img {
-  width: 100px;
-  flex: 0 0 25%;
-  /* Prend 25% de la largeur */
+  width: 80px;
+  height: 80px;
+  flex: 0 0 80px;
+  border: 2px solid var(--dg-text-red);
 }
 .dangerousgary.actor.character .character-header .character-details {
   flex: 1;
-  /* Prend le reste de la largeur */
-  padding-left: 10px;
+  padding-left: 12px;
+}
+.dangerousgary.actor.character .character-header .character-name input {
+  font-family: var(--dg-font-title);
+  color: var(--dg-text-red);
+  font-size: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 0px #000;
+  background: transparent;
+  border: none;
+  width: 100%;
+}
+.dangerousgary.actor.character .character-header .character-short-description {
+  margin-left: 10px;
+}
+.dangerousgary.actor.character .character-header .character-short-description input {
+  color: #ccc;
+  border: none;
+  background: transparent;
+  font-size: 1rem;
+  width: 100%;
+}
+.dangerousgary.actor.character .main-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+.dangerousgary.actor.character .stat-inputs {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  justify-content: flex-end;
+  width: 120px;
+}
+.dangerousgary.actor.character .stat-inputs input {
+  width: 40px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  text-align: center;
+  border: none;
+  border-bottom: 2px solid var(--dg-text-red);
+  background: transparent;
+  color: #000;
+}
+.dangerousgary.actor.character .stat-inputs .sep {
+  font-size: 1.5rem;
+  font-weight: lighter;
+}
+.dangerousgary.actor.character .stats-panel .stat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+  font-size: 1.1rem;
+}
+.dangerousgary.actor.character .stats-panel .stat-label {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.dangerousgary.actor.character .stats-panel .stat-sub-labels {
+  display: flex;
+  justify-content: flex-end;
+  gap: 30px;
+  font-size: 0.75rem;
+  color: #444;
+  margin-right: 15px;
+  margin-top: -2px;
+  font-weight: bold;
+}
+.dangerousgary.actor.character .col-left {
+  display: flex;
   flex-direction: column;
+  gap: 15px;
+}
+.dangerousgary.actor.character .specs-panel input {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid var(--dg-text-red);
+  background: transparent;
+  font-size: 1rem;
+  padding: 2px 5px;
+  margin-bottom: 8px;
+}
+.dangerousgary.actor.character .col-right {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.dangerousgary.actor.character .hp-panel .hp-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.dangerousgary.actor.character .hp-panel .hp-row h2 {
+  margin-bottom: 0;
+}
+.dangerousgary.actor.character .xp-panel .xp-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.dangerousgary.actor.character .xp-panel .xp-row input {
+  width: 80px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  text-align: center;
+  border: none;
+  border-bottom: 2px solid var(--dg-text-red);
+  background: transparent;
+  color: #000;
+}
+.dangerousgary.actor.character .perk-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.dangerousgary.actor.character .perk-panel .perk-name {
+  margin-left: 15px;
+  margin-bottom: 2px;
+}
+.dangerousgary.actor.character .perk-panel .perk-name input {
+  font-weight: bold;
+  color: #000;
+  border: none;
+  border-bottom: 1px solid var(--dg-text-red);
+  background: transparent;
+  font-size: 1rem;
+  width: 100%;
+}
+.dangerousgary.actor.character .perk-panel .editor {
+  flex: 1;
+  min-height: 100px;
+}
+.dangerousgary.actor.character .rollable:hover,
+.dangerousgary.actor.character .rollable:focus {
+  color: var(--dg-text-red);
+  text-shadow: 0 0 10px rgba(204, 0, 0, 0.5);
+  cursor: url("/systems/dangerousgary/assets/d20-highlight.svg") 32 24, pointer;
+}
+.dangerousgary.actor.character nav.sheet-tabs {
+  margin: 5px 0;
+  border-bottom: 1px solid var(--dg-text-red);
+}
+.dangerousgary.actor.character nav.sheet-tabs a {
+  color: #ccc;
+  font-family: var(--dg-font-body);
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  padding: 4px 10px;
+  border: none;
+}
+.dangerousgary.actor.character nav.sheet-tabs a:hover {
+  color: var(--dg-text-red);
+  text-shadow: 0 0 6px rgba(204, 0, 0, 0.4);
+}
+.dangerousgary.actor.character nav.sheet-tabs a.active {
+  color: var(--dg-text-red);
+  border-bottom: 2px solid var(--dg-text-red);
+}
+.dangerousgary.actor.character .character-biography {
+  background: var(--dg-box-bg) url("/systems/dangerousgary/assets/fond_gris.webp") center / cover no-repeat;
+  border: 1px solid var(--dg-border-color);
+  padding: 10px 15px;
+  box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.6);
+  position: relative;
+}
+.dangerousgary.actor.character .character-biography h2 {
+  color: var(--dg-text-red);
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  font-family: var(--dg-font-body);
+}
+.dangerousgary.actor.character .character-biography .editor {
+  min-height: 200px;
+}
+.dangerousgary.actor.character .character-inventory {
+  background: var(--dg-box-bg) url("/systems/dangerousgary/assets/fond_gris.webp") center / cover no-repeat;
+  border: 1px solid var(--dg-border-color);
+  padding: 10px 15px;
+  box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.6);
+  position: relative;
+  gap: 0;
+}
+.dangerousgary.actor.character .character-inventory h2 {
+  color: var(--dg-text-red);
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  font-family: var(--dg-font-body);
+}
+.dangerousgary.actor.character .equipment-points {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 4px;
+  padding: 2px 0;
+}
+.dangerousgary.actor.character .equipment-points .equipment-points-label {
+  font-weight: bold;
+}
+.dangerousgary.actor.character .equipment-points input {
+  width: 50px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-align: center;
+  border: none;
+  border-bottom: 2px solid var(--dg-text-red);
+  background: transparent;
+  color: #000;
 }
 .dangerousgary.actor.character .character-items-list .item {
   display: flex;
   justify-content: space-between;
-  margin-top: 10px;
+  align-items: center;
+  margin-top: 8px;
+  padding: 4px 0;
+  border-bottom: 1px solid #ddd;
 }
 .dangerousgary.actor.character .character-items-list .item .item-name {
   flex: 1;
@@ -119,9 +367,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-.dangerousgary.actor.character nav {
-  margin: 10px 0 10px 0;
 }
 .dangerousgary.actor.encounter {
   min-width: 675px;

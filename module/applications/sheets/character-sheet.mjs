@@ -34,7 +34,7 @@ export default class DangerousGaryCharacterSheet extends HandlebarsApplicationMi
   static PARTS = {
     header: { template: "systems/dangerousgary/templates/character-header.hbs" },
     main: { template: "systems/dangerousgary/templates/character-main.hbs" },
-    tabs: { template: "systems/dangerousgary/templates/tab-navigation.hbs" },
+    tabs: { template: "templates/generic/tab-navigation.hbs" },
     biography: { template: "systems/dangerousgary/templates/character-biography.hbs" },
     inventory: { template: "systems/dangerousgary/templates/character-inventory.hbs" },
   }
@@ -42,10 +42,7 @@ export default class DangerousGaryCharacterSheet extends HandlebarsApplicationMi
   /** @override */
   static TABS = {
     primary: {
-      tabs: [
-        { id: "biography", icon: "fa-solid fa-book", create: false },
-        { id: "inventory", icon: "fa-solid fa-shapes", create: true },
-      ],
+      tabs: [{ id: "biography" }, { id: "inventory" }],
       initial: "inventory",
       labelPrefix: "DANGEROUSGARY.Labels.long",
     },
@@ -69,6 +66,9 @@ export default class DangerousGaryCharacterSheet extends HandlebarsApplicationMi
     context = await super._preparePartContext(partId, context, options)
 
     switch (partId) {
+      case "main":
+        context.enrichedPerk = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.document.system.perk, { async: true })
+        break
       case "biography":
         context.enrichedBiography = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.document.system.biography, { async: true })
         break

@@ -3,6 +3,10 @@
   "title": "Dangerous Gary",
   "description": "The Dangerous Gary system for FoundryVTT!",
   "version": "#{VERSION}#",
+  "url": "#{URL}#",
+  "manifest": "#{MANIFEST}#",
+  "download": "#{DOWNLOAD}#",
+  "license": "LICENSE",
   "compatibility": {
     "minimum": "13",
     "verified": "13",
@@ -17,23 +21,39 @@
   "styles": ["css/dangerousgary.css"],
   "scripts": [],
   "packs": [],
-  "languages": [{
-    "lang": "en",
-    "name": "English",
-    "path": "lang/en.json"
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    },
+    {
+      "lang": "fr",
+      "name": "Français",
+      "path": "lang/fr.json"
+    }
+  ],
+  "documentTypes": {
+    "Actor": {
+      "character": {
+        "htmlFields": ["biography"]
+      },
+      "encounter": {
+        "htmlFields": ["description"]
+      }
+    },
+    "Item": {
+      "equipment": {
+        "htmlFields": ["description"]
+      },
+      "attack": {
+        "htmlFields": ["description"]
+      }
+    }
   },
-  {
-    "lang": "fr",
-    "name": "Français",
-    "path": "lang/fr.json"
-  }],
   "grid": {
-    "distance": 5,
-    "units": "ft"
+    "distance": 2,
+    "units": "m"
   },
-  "primaryTokenAttribute": "health",
-  "url": "#{URL}#",
-  "manifest": "#{MANIFEST}#",
-  "download": "#{DOWNLOAD}#",
-  "license": "LICENSE"
+  "primaryTokenAttribute": "health"
 }

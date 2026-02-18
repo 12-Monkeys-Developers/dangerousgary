@@ -20,6 +20,27 @@
           "label": "Points de Vie",
           "hint": "La quantité de dégâts que votre personnage peut subir avant de mourir."
         },
+        "xp": {
+          "label": "Points d'expérience"
+        },
+        "perkName": {
+          "label": "Nom de l'atout"
+        },
+        "shortDescription": {
+          "label": "Description courte"
+        },
+        "equipmentPoints": {
+          "label": "Points d'équipement"
+        },
+        "perk": {
+          "label": "Atout"
+        },
+        "specialties": {
+          "label": "Spécialités",
+          "first": { "label": "Spécialité 1" },
+          "second": { "label": "Spécialité 2" },
+          "third": { "label": "Spécialité 3" }
+        },
         "str": {
           "label": "Force",
           "hint": "La force de votre personnage."
@@ -111,6 +132,9 @@
       }
     },
     "Labels": {
+      "abilities": "Caractéristiques",
+      "current": "actuel",
+      "max": "max",
       "short": {
         "hp": "PV",
         "str": "For",
@@ -123,8 +147,12 @@
         "str": "Force",
         "dex": "Dextérité",
         "wil": "Volonté",
+        "xp": "Points d'expérience",
+        "equipmentPoints": "Points d'équipement",
+        "perk": "Atout",
+        "specialties": "Spécialités",
         "biography": "Biographie",
-        "inventory": "Inventaire",
+        "inventory": "Équipement",
         "armour": "Armure",
         "shortRest": "Repos Court",
         "fullRest": "Repos Long",

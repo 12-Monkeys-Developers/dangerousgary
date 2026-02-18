@@ -1,58 +1,298 @@
 &.actor.character {
-  min-width: 675px;
-  .character-abilities {
-    .grid-col(4);
-    fieldset {
-      border-radius: 5px;
-      legend {
-        font-weight: bold;
-      }
+  min-width: 500px;
+
+  /* --- Panel mixin --- */
+  .panel {
+    background: var(--dg-box-bg) url("/systems/dangerousgary/assets/fond_gris.webp") center / cover no-repeat;
+    border: 1px solid var(--dg-border-color);
+    padding: 10px 15px;
+    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.6);
+    position: relative;
+
+    h2 {
+      color: var(--dg-text-red);
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      font-family: var(--dg-font-body);
+    }
+  }
+
+  /* --- Window content: dark background --- */
+  .window-content {
+    background: var(--dg-bg-dark) url("/systems/dangerousgary/assets/fond_noir.webp") center / cover no-repeat;
+    padding: 10px;
+    font-family: var(--dg-font-body);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  /* --- Header: portrait + name --- */
+  .character-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-bottom: 3px solid var(--dg-text-red);
+    padding-bottom: 8px;
+
+    .character-img {
+      width: 80px;
+      height: 80px;
+      flex: 0 0 80px;
+      border: 2px solid var(--dg-text-red);
     }
 
-    .ability {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 5px;
-      text-align: center;
+    .character-details {
+      flex: 1;
+      padding-left: 12px;
+    }
+
+    .character-name input {
+      font-family: var(--dg-font-title);
+      color: var(--dg-text-red);
+      font-size: 2rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-shadow: 2px 2px 0px #000;
+      background: transparent;
+      border: none;
+      width: 100%;
+    }
+
+    .character-short-description {
+      margin-left: 10px;
+
       input {
-        width: 40px;
-        font-size: 1.2rem;
-      }
-      .divider {
-        font-size: x-large;
-      }
-    }
-
-    .rollable {
-      &:hover,
-      &:focus {
-        color: rgb(63, 32, 32);
-        text-shadow: 0 0 10px var(--color-shadow-primary);
-        cursor: url("systems/dangerousgary/ui/d20-highlight.svg") 32 24, pointer;
+        color: #ccc;
+        border: none;
+        background: transparent;
+        font-size: 1rem;
+        width: 100%;
       }
     }
   }
 
-  .character-header {
-    display: flex;
-    flex-direction: row;
+  /* --- Main grid: 2 columns --- */
+  .main-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+  }
 
-    .character-name {
+  /* --- Shared stat inputs --- */
+  .stat-inputs {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    justify-content: flex-end;
+    width: 120px;
+
+    input {
+      width: 40px;
+      font-size: 1.3rem;
+      font-weight: bold;
+      text-align: center;
+      border: none;
+      border-bottom: 2px solid var(--dg-text-red);
+      background: transparent;
+      color: #000;
+    }
+
+    .sep {
+      font-size: 1.5rem;
+      font-weight: lighter;
+    }
+  }
+
+  /* --- Stats panel (left column) --- */
+  .stats-panel {
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 5px;
+      font-size: 1.1rem;
+    }
+
+    .stat-label {
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    .stat-sub-labels {
+      display: flex;
+      justify-content: flex-end;
+      gap: 30px;
+      font-size: 0.75rem;
+      color: #444;
+      margin-right: 15px;
+      margin-top: -2px;
+      font-weight: bold;
+    }
+  }
+
+  /* --- Left column --- */
+  .col-left {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  /* --- Specialties panel --- */
+  .specs-panel {
+    input {
+      width: 100%;
+      border: none;
+      border-bottom: 1px solid var(--dg-text-red);
+      background: transparent;
+      font-size: 1rem;
+      padding: 2px 5px;
+      margin-bottom: 8px;
+    }
+  }
+
+  /* --- Right column --- */
+  .col-right {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  /* --- HP panel --- */
+  .hp-panel {
+    .hp-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      h2 {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  /* --- XP panel --- */
+  .xp-panel {
+    .xp-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
       input {
-        font-size: 1.5rem;
+        width: 80px;
+        font-size: 1.3rem;
+        font-weight: bold;
+        text-align: center;
+        border: none;
+        border-bottom: 2px solid var(--dg-text-red);
+        background: transparent;
+        color: #000;
+      }
+    }
+  }
+
+  /* --- Perk panel --- */
+  .perk-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    .perk-name {
+      margin-left: 15px;
+      margin-bottom: 2px;
+
+      input {
+        font-weight: bold;
+        color: #000;
+        border: none;
+        border-bottom: 1px solid var(--dg-text-red);
+        background: transparent;
+        font-size: 1rem;
+        width: 100%;
       }
     }
 
-    .character-img {
-      width: 100px;
-      flex: 0 0 25%; /* Prend 25% de la largeur */
+
+
+    .editor {
+      flex: 1;
+      min-height: 100px;
+    }
+  }
+
+  /* --- Rollable elements --- */
+  .rollable {
+    &:hover,
+    &:focus {
+      color: var(--dg-text-red);
+      text-shadow: 0 0 10px rgba(204, 0, 0, 0.5);
+      cursor: url("/systems/dangerousgary/assets/d20-highlight.svg") 32 24, pointer;
+    }
+  }
+
+  /* --- Tabs: dark theme --- */
+  nav.sheet-tabs {
+    margin: 5px 0;
+    border-bottom: 1px solid var(--dg-text-red);
+
+    a {
+      color: #ccc;
+      font-family: var(--dg-font-body);
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      padding: 4px 10px;
+      border: none;
+
+      &:hover {
+        color: var(--dg-text-red);
+        text-shadow: 0 0 6px rgba(204, 0, 0, 0.4);
+      }
+
+      &.active {
+        color: var(--dg-text-red);
+        border-bottom: 2px solid var(--dg-text-red);
+      }
+    }
+  }
+
+  /* --- Biography tab --- */
+  .character-biography {
+    .panel;
+
+    .editor {
+      min-height: 200px;
+    }
+  }
+
+  /* --- Inventory tab --- */
+  .character-inventory {
+    .panel;
+    gap: 0;
+  }
+
+  .equipment-points {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 4px;
+    padding: 2px 0;
+
+    .equipment-points-label {
+      font-weight: bold;
     }
 
-    .character-details {
-      flex: 1; /* Prend le reste de la largeur */
-      padding-left: 10px;
-      flex-direction: column;
+    input {
+      width: 50px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      text-align: center;
+      border: none;
+      border-bottom: 2px solid var(--dg-text-red);
+      background: transparent;
+      color: #000;
     }
   }
 
@@ -60,24 +300,26 @@
     .item {
       display: flex;
       justify-content: space-between;
-      margin-top: 10px;
+      align-items: center;
+      margin-top: 8px;
+      padding: 4px 0;
+      border-bottom: 1px solid #ddd;
+
       .item-name {
         flex: 1;
         font-weight: bold;
       }
+
       .item-quantity {
         width: 40px;
         font-size: 1.2rem;
       }
+
       summary {
         display: flex;
         justify-content: space-between;
         align-items: center;
       }
     }
-  }
-
-  nav {
-    margin: 10px 0 10px 0;
   }
 }

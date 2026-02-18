@@ -20,6 +20,27 @@
           "label": "Hit Points",
           "hint": "The amount of damage your character can take before dying."
         },
+        "xp": {
+          "label": "Experience Points"
+        },
+        "perkName": {
+          "label": "Perk Name"
+        },
+        "shortDescription": {
+          "label": "Short Description"
+        },
+        "equipmentPoints": {
+          "label": "Equipment Points"
+        },
+        "perk": {
+          "label": "Perk"
+        },
+        "specialties": {
+          "label": "Specialties",
+          "first": { "label": "Specialty 1" },
+          "second": { "label": "Specialty 2" },
+          "third": { "label": "Specialty 3" }
+        },
         "str": {
           "label": "Strength",
           "hint": "How strong your character is."
@@ -111,6 +132,9 @@
       }
     },
     "Labels": {
+      "abilities": "Abilities",
+      "current": "current",
+      "max": "max",
       "short": {
         "hp": "HP",
         "str": "Str",
@@ -123,8 +147,12 @@
         "str": "Strength",
         "dex": "Dexterity",
         "wil": "Willpower",
+        "xp": "Experience Points",
+        "equipmentPoints": "Equipment Points",
+        "perk": "Perk",
+        "specialties": "Specialties",
         "biography": "Biography",
-        "inventory": "Inventory",
+        "inventory": "Equipment",
         "armour": "Armour",
         "shortRest": "Short Rest",
         "fullRest": "Full Rest",

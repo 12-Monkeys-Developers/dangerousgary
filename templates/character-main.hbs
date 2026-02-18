@@ -1,47 +1,79 @@
 <div class="standard-form character-main">
 
-  <div class="character-abilities">
-    <fieldset>
-      <legend class="rollable" data-action="rollSave" data-ability="str" data-tooltip="{{localize 'DANGEROUSGARY.RollStrength'}}" data-tooltip-direction="UP">{{localize
-          "DANGEROUSGARY.Labels.long.str"
-        }}</legend>
-      <div class="ability">
-        {{formInput systemFields.abilities.fields.str.fields.value value=system.abilities.str.value }}
-        <div class="divider">/</div>
-        {{formInput systemFields.abilities.fields.str.fields.max value=system.abilities.str.max }}
-      </div>
-    </fieldset>
+  <div class="main-grid">
+    <div class="col-left">
+    <div class="panel stats-panel">
+      <h2>{{localize "DANGEROUSGARY.Labels.abilities"}}</h2>
 
-    <fieldset>
-      <legend class="rollable" data-action="rollSave" data-ability="dex" data-tooltip="{{localize 'DANGEROUSGARY.RollDexterity'}}" data-tooltip-direction="UP">{{localize
-          "DANGEROUSGARY.Labels.long.dex"
-        }}</legend>
-      <div class="ability">
-        {{formInput systemFields.abilities.fields.dex.fields.value value=system.abilities.dex.value }}
-        <div class="divider">/</div>
-        {{formInput systemFields.abilities.fields.dex.fields.max value=system.abilities.dex.max }}
+      <div class="stat-row">
+        <span class="stat-label rollable" data-action="rollSave" data-ability="str" data-tooltip="{{localize 'DANGEROUSGARY.RollStrength'}}" data-tooltip-direction="UP">{{localize "DANGEROUSGARY.Labels.long.str"}}</span>
+        <div class="stat-inputs">
+          {{formInput systemFields.abilities.fields.str.fields.value value=system.abilities.str.value }}
+          <span class="sep">/</span>
+          {{formInput systemFields.abilities.fields.str.fields.max value=system.abilities.str.max }}
+        </div>
       </div>
-    </fieldset>
 
-    <fieldset>
-      <legend class="rollable" data-action="rollSave" data-ability="wil" data-tooltip="{{localize 'DANGEROUSGARY.RollWillpower'}}" data-tooltip-direction="UP">{{localize
-          "DANGEROUSGARY.Labels.long.wil"
-        }}</legend>
-      <div class="ability">
-        {{formInput systemFields.abilities.fields.wil.fields.value value=system.abilities.wil.value }}
-        <div class="divider">/</div>
-        {{formInput systemFields.abilities.fields.wil.fields.max value=system.abilities.wil.max }}
+      <div class="stat-row">
+        <span class="stat-label rollable" data-action="rollSave" data-ability="dex" data-tooltip="{{localize 'DANGEROUSGARY.RollDexterity'}}" data-tooltip-direction="UP">{{localize "DANGEROUSGARY.Labels.long.dex"}}</span>
+        <div class="stat-inputs">
+          {{formInput systemFields.abilities.fields.dex.fields.value value=system.abilities.dex.value }}
+          <span class="sep">/</span>
+          {{formInput systemFields.abilities.fields.dex.fields.max value=system.abilities.dex.max }}
+        </div>
       </div>
-    </fieldset>
 
-    <fieldset>
-      <legend>{{localize "DANGEROUSGARY.Labels.long.hp"}}</legend>
-      <div class="ability">
-        {{formInput systemFields.hp.fields.value value=system.hp.value }}
-        <div class="divider">/</div>
-        {{formInput systemFields.hp.fields.max value=system.hp.max }}
+      <div class="stat-row">
+        <span class="stat-label rollable" data-action="rollSave" data-ability="wil" data-tooltip="{{localize 'DANGEROUSGARY.RollWillpower'}}" data-tooltip-direction="UP">{{localize "DANGEROUSGARY.Labels.long.wil"}}</span>
+        <div class="stat-inputs">
+          {{formInput systemFields.abilities.fields.wil.fields.value value=system.abilities.wil.value }}
+          <span class="sep">/</span>
+          {{formInput systemFields.abilities.fields.wil.fields.max value=system.abilities.wil.max }}
+        </div>
       </div>
-    </fieldset>
+    </div>
+
+    <div class="panel specs-panel">
+      <h2>{{localize "DANGEROUSGARY.Labels.long.specialties"}}</h2>
+      {{formInput systemFields.specialties.fields.first value=system.specialties.first }}
+      {{formInput systemFields.specialties.fields.second value=system.specialties.second }}
+      {{formInput systemFields.specialties.fields.third value=system.specialties.third }}
+    </div>
+    </div>
+
+    <div class="col-right">
+      <div class="panel hp-panel">
+        <div class="hp-row">
+          <h2>{{localize "DANGEROUSGARY.Labels.long.hp"}}</h2>
+          <div class="stat-inputs">
+            {{formInput systemFields.hp.fields.value value=system.hp.value }}
+            <span class="sep">/</span>
+            {{formInput systemFields.hp.fields.max value=system.hp.max }}
+          </div>
+        </div>
+      </div>
+
+      <div class="panel xp-panel">
+        <div class="xp-row">
+          <h2>{{localize "DANGEROUSGARY.Labels.long.xp"}}</h2>
+          {{formInput systemFields.xp value=system.xp }}
+        </div>
+      </div>
+
+      <div class="panel perk-panel">
+        <h2>{{localize "DANGEROUSGARY.Labels.long.perk"}}</h2>
+        <div class="perk-name">{{formInput systemFields.perkName value=system.perkName }}</div>
+        {{formInput
+          systemFields.perk
+          enriched=enrichedPerk
+          value=system.perk
+          documentUUID=actor.uuid
+          name="system.perk"
+          collaborate="true"
+          toggled="true"
+        }}
+      </div>
+    </div>
   </div>
 
 </div>
