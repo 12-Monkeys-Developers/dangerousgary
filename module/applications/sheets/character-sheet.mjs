@@ -30,6 +30,7 @@ export default class DangerousGaryCharacterSheet extends HandlebarsApplicationMi
       editImage: DangerousGaryCharacterSheet.#onEditImage,
       createItem: DangerousGaryCharacterSheet.#onCreateItem,
       rollClassSave: DangerousGaryCharacterSheet.#onRollClassSave,
+      toggleOsmose: DangerousGaryCharacterSheet.#onToggleOsmose,
     },
   }
 
@@ -357,6 +358,13 @@ export default class DangerousGaryCharacterSheet extends HandlebarsApplicationMi
     cleric: "str", fighter: "str", paladin: "str",
     druid: "dex", monk: "dex", thief: "dex",
     bard: "wil", mage: "wil", ranger: "wil",
+  }
+
+  static async #onToggleOsmose(event, target) {
+    const clicked = Number(target.dataset.value)
+    const current = this.actor.system.osmose
+    const newValue = clicked === current ? current - 1 : clicked
+    await this.actor.update({ "system.osmose": newValue })
   }
 
   static async #onRollClassSave(event, target) {

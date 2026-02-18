@@ -1,4 +1,12 @@
 <section class="tab standard-form character-classes {{#if tabs.classes.active}} active{{/if}}" data-group="primary" data-tab="classes">
+  <div class="osmose-block">
+    <span class="osmose-label">{{localize "DANGEROUSGARY.Labels.long.osmose"}}</span>
+    <div class="osmose-pips">
+      <span class="osmose-pip {{#if (gte system.osmose 1)}}filled{{/if}}" data-action="toggleOsmose" data-value="1"></span>
+      <span class="osmose-pip {{#if (gte system.osmose 2)}}filled{{/if}}" data-action="toggleOsmose" data-value="2"></span>
+      <span class="osmose-pip {{#if (gte system.osmose 3)}}filled{{/if}}" data-action="toggleOsmose" data-value="3"></span>
+    </div>
+  </div>
   <div class="classes-panel panel">
     <div class="classes-grid">
       <div class="class-cell">
