@@ -10,6 +10,13 @@
     gap: 10px;
   }
 
+  .encounter-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
   .encounter-header {
     display: flex;
     flex-direction: row;
@@ -75,9 +82,12 @@
         font-weight: bold;
         text-align: center;
         border: none;
-        border-bottom: 2px solid var(--dg-text-red);
         background: transparent;
         color: #ccc;
+      }
+
+      input[name$=".value"] {
+        border-bottom: 2px solid var(--dg-text-red);
       }
 
       .sep {
@@ -126,6 +136,22 @@
     flex: 1;
     display: flex;
     flex-direction: column;
+  }
+
+  .encounter-powers {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    prose-mirror {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+
+      .editor-content {
+        flex: 1;
+      }
+    }
   }
 
   .encounter-items-list {

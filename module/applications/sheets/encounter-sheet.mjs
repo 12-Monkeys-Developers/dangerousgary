@@ -8,7 +8,7 @@ export default class DangerousGaryEncounterSheet extends HandlebarsApplicationMi
     classes: ["dangerousgary", "actor", "encounter"],
     position: {
       width: 870,
-      height: 400,
+      height: 500,
     },
     form: {
       submitOnChange: true,

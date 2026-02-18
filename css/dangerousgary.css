@@ -349,6 +349,12 @@
   flex-direction: column;
   gap: 10px;
 }
+.dangerousgary.actor.encounter .encounter-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
 .dangerousgary.actor.encounter .encounter-header {
   display: flex;
   flex-direction: row;
@@ -407,9 +413,11 @@
   font-weight: bold;
   text-align: center;
   border: none;
-  border-bottom: 2px solid var(--dg-text-red);
   background: transparent;
   color: #ccc;
+}
+.dangerousgary.actor.encounter .encounter-stats .stat-inputs input[name$=".value"] {
+  border-bottom: 2px solid var(--dg-text-red);
 }
 .dangerousgary.actor.encounter .encounter-stats .stat-inputs .sep {
   font-size: 1.5rem;
@@ -452,6 +460,19 @@
   display: flex;
   flex-direction: column;
 }
+.dangerousgary.actor.encounter .encounter-powers {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.dangerousgary.actor.encounter .encounter-powers prose-mirror {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.dangerousgary.actor.encounter .encounter-powers prose-mirror .editor-content {
+  flex: 1;
+}
 .dangerousgary.actor.encounter .encounter-items-list {
   margin: 0 10px 10px 10px;
 }
@@ -470,6 +491,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.dangerousgary.item.equipment .standard-form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 .dangerousgary.item.equipment .window-content {
   background: var(--dg-bg-dark) url("/systems/dangerousgary/assets/fond_noir.webp") center / cover no-repeat;
@@ -553,7 +580,15 @@
 .dangerousgary.item.equipment .item-armour fieldset > *:not(legend) {
   clear: both;
 }
+.dangerousgary.item.equipment .item-description {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
 .dangerousgary.item.equipment .item-description fieldset {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
   background: var(--dg-box-bg) url("/systems/dangerousgary/assets/fond_gris.webp") center / cover no-repeat;
   border: 1px solid var(--dg-border-color);
   padding: 10px 15px;
@@ -567,55 +602,209 @@
   color: var(--dg-text-red);
   font-size: 1.2rem;
   font-family: var(--dg-font-body);
-  margin-bottom: 6px;
 }
 .dangerousgary.item.equipment .item-description fieldset > *:not(legend) {
   clear: both;
 }
-.dangerousgary .attack .attack-main,
-.dangerousgary .attack .attack-description {
-  display: flex;
-  flex-direction: column;
-  padding-bottom: 5px;
-}
-.dangerousgary .attack .attack-main fieldset legend,
-.dangerousgary .attack .attack-description fieldset legend {
-  font-weight: bold;
-  border-radius: 5px;
-}
-.dangerousgary .attack .attack-main .header,
-.dangerousgary .attack .attack-description .header {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-.dangerousgary .attack .attack-main .header img,
-.dangerousgary .attack .attack-description .header img {
-  width: 50px;
-  margin: 0 5px 5px 5px;
-}
-.dangerousgary .talent .talent-main {
+.dangerousgary.item.equipment .item-description fieldset prose-mirror {
+  flex: 1;
   display: flex;
   flex-direction: column;
 }
-.dangerousgary .talent .talent-main .header {
+.dangerousgary.item.equipment .item-description fieldset prose-mirror .editor-content {
+  flex: 1;
+}
+.dangerousgary.item.attack .standard-form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.dangerousgary.item.attack .window-content {
+  background: var(--dg-bg-dark) url("/systems/dangerousgary/assets/fond_noir.webp") center / cover no-repeat;
+  padding: 10px;
+  font-family: var(--dg-font-body);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.dangerousgary.item.attack .attack-main {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.dangerousgary.item.attack .attack-main .header {
   display: flex;
   flex-direction: row;
   align-items: center;
+  border-bottom: 3px solid var(--dg-text-red);
+  padding-bottom: 8px;
 }
-.dangerousgary .talent .talent-main .header img {
-  width: 50px;
-  margin: 0 5px 5px 5px;
+.dangerousgary.item.attack .attack-main .header img {
+  width: 60px;
+  height: 60px;
+  flex: 0 0 60px;
+  border: 2px solid var(--dg-text-red);
 }
-.dangerousgary .talent .talent-main .details {
-  padding-bottom: 5px;
+.dangerousgary.item.attack .attack-main .header input {
+  font-family: var(--dg-font-title);
+  color: var(--dg-text-red);
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 0px #000;
+  background: transparent;
+  border: none;
+  width: 100%;
+  margin-left: 10px;
 }
-.dangerousgary .talent .talent-main .details fieldset {
-  font-weight: bold;
+.dangerousgary.item.attack .attack-main .details fieldset {
+  background: var(--dg-box-bg) url("/systems/dangerousgary/assets/fond_gris.webp") center / cover no-repeat;
+  border: 1px solid var(--dg-border-color);
+  padding: 10px 15px;
+  box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.6);
   border-radius: 5px;
 }
-.dangerousgary .talent .talent-description legend {
+.dangerousgary.item.attack .attack-main .details fieldset legend {
+  float: left;
+  width: 100%;
   font-weight: bold;
+  color: var(--dg-text-red);
+  font-size: 1.2rem;
+  font-family: var(--dg-font-body);
+}
+.dangerousgary.item.attack .attack-main .details fieldset > *:not(legend) {
+  clear: both;
+}
+.dangerousgary.item.attack .attack-description {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.dangerousgary.item.attack .attack-description fieldset {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: var(--dg-box-bg) url("/systems/dangerousgary/assets/fond_gris.webp") center / cover no-repeat;
+  border: 1px solid var(--dg-border-color);
+  padding: 10px 15px;
+  box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.6);
+  border-radius: 5px;
+}
+.dangerousgary.item.attack .attack-description fieldset legend {
+  float: left;
+  width: 100%;
+  font-weight: bold;
+  color: var(--dg-text-red);
+  font-size: 1.2rem;
+  font-family: var(--dg-font-body);
+}
+.dangerousgary.item.attack .attack-description fieldset > *:not(legend) {
+  clear: both;
+}
+.dangerousgary.item.attack .attack-description fieldset prose-mirror {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.dangerousgary.item.attack .attack-description fieldset prose-mirror .editor-content {
+  flex: 1;
+}
+.dangerousgary.item.talent .standard-form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.dangerousgary.item.talent .window-content {
+  background: var(--dg-bg-dark) url("/systems/dangerousgary/assets/fond_noir.webp") center / cover no-repeat;
+  padding: 10px;
+  font-family: var(--dg-font-body);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.dangerousgary.item.talent .talent-main {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.dangerousgary.item.talent .talent-main .header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: 3px solid var(--dg-text-red);
+  padding-bottom: 8px;
+}
+.dangerousgary.item.talent .talent-main .header img {
+  width: 60px;
+  height: 60px;
+  flex: 0 0 60px;
+  border: 2px solid var(--dg-text-red);
+}
+.dangerousgary.item.talent .talent-main .header input {
+  font-family: var(--dg-font-title);
+  color: var(--dg-text-red);
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 0px #000;
+  background: transparent;
+  border: none;
+  width: 100%;
+  margin-left: 10px;
+}
+.dangerousgary.item.talent .talent-main .details fieldset {
+  background: var(--dg-box-bg) url("/systems/dangerousgary/assets/fond_gris.webp") center / cover no-repeat;
+  border: 1px solid var(--dg-border-color);
+  padding: 10px 15px;
+  box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.6);
+  border-radius: 5px;
+}
+.dangerousgary.item.talent .talent-main .details fieldset legend {
+  float: left;
+  width: 100%;
+  font-weight: bold;
+  color: var(--dg-text-red);
+  font-size: 1.2rem;
+  font-family: var(--dg-font-body);
+}
+.dangerousgary.item.talent .talent-main .details fieldset > *:not(legend) {
+  clear: both;
+}
+.dangerousgary.item.talent .talent-description {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.dangerousgary.item.talent .talent-description fieldset {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: var(--dg-box-bg) url("/systems/dangerousgary/assets/fond_gris.webp") center / cover no-repeat;
+  border: 1px solid var(--dg-border-color);
+  padding: 10px 15px;
+  box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.6);
+  border-radius: 5px;
+}
+.dangerousgary.item.talent .talent-description fieldset legend {
+  float: left;
+  width: 100%;
+  font-weight: bold;
+  color: var(--dg-text-red);
+  font-size: 1.2rem;
+  font-family: var(--dg-font-body);
+}
+.dangerousgary.item.talent .talent-description fieldset > *:not(legend) {
+  clear: both;
+}
+.dangerousgary.item.talent .talent-description fieldset prose-mirror {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.dangerousgary.item.talent .talent-description fieldset prose-mirror .editor-content {
+  flex: 1;
 }
 .dangerousgary.actor.character .character-classes.active {
   flex: 1;

@@ -155,10 +155,7 @@
           "label": "Description"
         },
         "damageFormula": {
-          "label": "Formule de Dégâts"
-        },
-        "blast": {
-          "label": "Explosion"
+          "label": "Dégâts"
         }
       }
     },

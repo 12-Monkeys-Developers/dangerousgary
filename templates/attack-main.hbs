@@ -8,13 +8,12 @@
       <fieldset>
         <legend>{{localize "DANGEROUSGARY.Labels.details"}}</legend>
         {{formGroup systemFields.damageFormula value=system.damageFormula }}
-        {{formGroup systemFields.blast value=system.blast }}
       </fieldset>
     </div>
   </section>
   <section class="attack-description">
     <fieldset>
-      <legend>{{localize "DANGEROUSGARY.Equipment.FIELDS.description.label"}}</legend>
+      <legend>{{localize "DANGEROUSGARY.Attack.FIELDS.description.label"}}</legend>
       {{formInput
         systemFields.description
         enriched=enrichedDescription
