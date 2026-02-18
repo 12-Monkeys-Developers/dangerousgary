@@ -124,16 +124,6 @@
       }
     }
 
-    .stat-sub-labels {
-      display: flex;
-      justify-content: flex-end;
-      gap: 30px;
-      font-size: 0.75rem;
-      color: #444;
-      margin-right: 15px;
-      margin-top: -2px;
-      font-weight: bold;
-    }
   }
 
   /* --- Left column --- */
@@ -145,6 +135,8 @@
 
   /* --- Specialties panel --- */
   .specs-panel {
+    padding-bottom: 35px;
+
     input {
       width: 100%;
       border: none;
@@ -221,7 +213,6 @@
 
     .editor {
       flex: 1;
-      min-height: 100px;
     }
   }
 
@@ -256,7 +247,6 @@
 
       &.active {
         color: var(--dg-text-red);
-        border-bottom: 2px solid var(--dg-text-red);
       }
     }
   }
@@ -265,8 +255,20 @@
   .character-biography {
     .panel;
 
-    .editor {
-      min-height: 200px;
+    &.active {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    prose-mirror {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+
+      .editor-content {
+        flex: 1;
+      }
     }
   }
 
@@ -312,11 +314,6 @@
       .item-name {
         flex: 1;
         font-weight: bold;
-      }
-
-      .item-quantity {
-        width: 40px;
-        font-size: 1.2rem;
       }
 
       summary {

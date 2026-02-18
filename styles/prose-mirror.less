@@ -1,0 +1,67 @@
+prose-mirror {
+  display: flex;
+  flex-direction: column;
+  height: auto !important;
+
+  /* --- Read mode --- */
+  &.inactive {
+    .editor-content {
+      padding: 4px 8px;
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
+
+    button.toggle {
+      align-self: flex-end;
+      font-size: 0.75rem;
+      opacity: 0.5;
+
+      &:hover {
+        opacity: 1;
+        color: var(--dg-text-red);
+      }
+    }
+  }
+
+  /* --- Edit mode --- */
+  &.active {
+    .editor-menu {
+      padding: 2px;
+      gap: 2px;
+      border-bottom: 1px solid var(--dg-border-color);
+
+      button {
+        font-size: 0.7rem;
+        padding: 2px 4px;
+        min-width: unset;
+        min-height: unset;
+
+        i {
+          font-size: 0.7rem;
+        }
+
+        span {
+          font-size: 0.7rem;
+        }
+      }
+
+      .pm-dropdown ul {
+        font-size: 0.7rem;
+      }
+    }
+
+    .editor-container {
+      .editor-content {
+        min-height: 60px;
+        padding: 4px 8px;
+        font-size: 0.95rem;
+        line-height: 1.4;
+      }
+    }
+
+    button.toggle {
+      align-self: flex-end;
+      font-size: 0.75rem;
+    }
+  }
+}

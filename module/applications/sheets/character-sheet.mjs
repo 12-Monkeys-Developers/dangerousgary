@@ -7,7 +7,7 @@ export default class DangerousGaryCharacterSheet extends HandlebarsApplicationMi
   static DEFAULT_OPTIONS = {
     classes: ["dangerousgary", "actor", "character"],
     position: {
-      width: 750,
+      width: 900,
       height: 800,
     },
     form: {

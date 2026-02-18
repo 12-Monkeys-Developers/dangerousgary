@@ -35,37 +35,6 @@
   --dg-font-body: "Volkhov", serif;
 }
 /* Styles limited to Dangerous Gary sheets */
-.dangerousgary .grid-abilities {
-  display: grid;
-  margin: 10px 0;
-  padding: 0;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  grid-column: span 5 / span 5;
-}
-.dangerousgary .grid-abilities fieldset {
-  border-radius: 5px;
-}
-.dangerousgary .grid-abilities fieldset legend {
-  font-weight: bold;
-}
-.dangerousgary .grid-abilities .ability {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 5px;
-  text-align: center;
-}
-.dangerousgary .grid-abilities .ability input {
-  width: 40px;
-  font-size: 1.2rem;
-}
-.dangerousgary .grid-abilities .ability .divider {
-  margin: 0 5px;
-  font-size: x-large;
-}
-.dangerousgary .no-padding {
-  padding: 0;
-}
 .dangerousgary .item-info {
   margin-left: 4px;
   border-style: solid;
@@ -196,20 +165,13 @@
 .dangerousgary.actor.character .stats-panel .stat-label strong {
   font-size: 1.15em;
 }
-.dangerousgary.actor.character .stats-panel .stat-sub-labels {
-  display: flex;
-  justify-content: flex-end;
-  gap: 30px;
-  font-size: 0.75rem;
-  color: #444;
-  margin-right: 15px;
-  margin-top: -2px;
-  font-weight: bold;
-}
 .dangerousgary.actor.character .col-left {
   display: flex;
   flex-direction: column;
   gap: 15px;
+}
+.dangerousgary.actor.character .specs-panel {
+  padding-bottom: 35px;
 }
 .dangerousgary.actor.character .specs-panel input {
   width: 100%;
@@ -268,7 +230,6 @@
 }
 .dangerousgary.actor.character .perk-panel .editor {
   flex: 1;
-  min-height: 100px;
 }
 .dangerousgary.actor.character .rollable:hover,
 .dangerousgary.actor.character .rollable:focus {
@@ -295,7 +256,6 @@
 }
 .dangerousgary.actor.character nav.sheet-tabs a.active {
   color: var(--dg-text-red);
-  border-bottom: 2px solid var(--dg-text-red);
 }
 .dangerousgary.actor.character .character-biography {
   background: var(--dg-box-bg) url("/systems/dangerousgary/assets/fond_gris.webp") center / cover no-repeat;
@@ -311,8 +271,18 @@
   margin-bottom: 8px;
   font-family: var(--dg-font-body);
 }
-.dangerousgary.actor.character .character-biography .editor {
-  min-height: 200px;
+.dangerousgary.actor.character .character-biography.active {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.dangerousgary.actor.character .character-biography prose-mirror {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.dangerousgary.actor.character .character-biography prose-mirror .editor-content {
+  flex: 1;
 }
 .dangerousgary.actor.character .character-inventory {
   background: var(--dg-box-bg) url("/systems/dangerousgary/assets/fond_gris.webp") center / cover no-repeat;
@@ -361,10 +331,6 @@
 .dangerousgary.actor.character .character-items-list .item .item-name {
   flex: 1;
   font-weight: bold;
-}
-.dangerousgary.actor.character .character-items-list .item .item-quantity {
-  width: 40px;
-  font-size: 1.2rem;
 }
 .dangerousgary.actor.character .character-items-list .item summary {
   display: flex;
@@ -507,6 +473,57 @@
 .dangerousgary .attack .attack-description .header img {
   width: 50px;
   margin: 0 5px 5px 5px;
+}
+.dangerousgary prose-mirror {
+  display: flex;
+  flex-direction: column;
+  height: auto !important;
+  /* --- Read mode --- */
+  /* --- Edit mode --- */
+}
+.dangerousgary prose-mirror.inactive .editor-content {
+  padding: 4px 8px;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+.dangerousgary prose-mirror.inactive button.toggle {
+  align-self: flex-end;
+  font-size: 0.75rem;
+  opacity: 0.5;
+}
+.dangerousgary prose-mirror.inactive button.toggle:hover {
+  opacity: 1;
+  color: var(--dg-text-red);
+}
+.dangerousgary prose-mirror.active .editor-menu {
+  padding: 2px;
+  gap: 2px;
+  border-bottom: 1px solid var(--dg-border-color);
+}
+.dangerousgary prose-mirror.active .editor-menu button {
+  font-size: 0.7rem;
+  padding: 2px 4px;
+  min-width: unset;
+  min-height: unset;
+}
+.dangerousgary prose-mirror.active .editor-menu button i {
+  font-size: 0.7rem;
+}
+.dangerousgary prose-mirror.active .editor-menu button span {
+  font-size: 0.7rem;
+}
+.dangerousgary prose-mirror.active .editor-menu .pm-dropdown ul {
+  font-size: 0.7rem;
+}
+.dangerousgary prose-mirror.active .editor-container .editor-content {
+  min-height: 60px;
+  padding: 4px 8px;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+.dangerousgary prose-mirror.active button.toggle {
+  align-self: flex-end;
+  font-size: 0.75rem;
 }
 .chat-message {
   background: #f4f4f4 url("/systems/dangerousgary/assets/fond_gris.webp") center / cover no-repeat;
