@@ -471,36 +471,106 @@
   justify-content: space-between;
   align-items: center;
 }
-.dangerousgary .equipment .item-main,
-.dangerousgary .equipment .item-weapon,
-.dangerousgary .equipment .item-armour {
-  padding-bottom: 5px;
-}
-.dangerousgary .equipment .item-main fieldset,
-.dangerousgary .equipment .item-weapon fieldset,
-.dangerousgary .equipment .item-armour fieldset {
-  font-weight: bold;
-  border-radius: 5px;
-}
-.dangerousgary .equipment .item-description legend {
-  font-weight: bold;
-}
-.dangerousgary .equipment .item-main {
+.dangerousgary.item.equipment .window-content {
+  background: var(--dg-bg-dark) url("/systems/dangerousgary/assets/fond_noir.webp") center / cover no-repeat;
+  padding: 10px;
+  font-family: var(--dg-font-body);
   display: flex;
   flex-direction: column;
+  gap: 10px;
 }
-.dangerousgary .equipment .item-main .header {
+.dangerousgary.item.equipment .item-main {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.dangerousgary.item.equipment .item-main .header {
   display: flex;
   flex-direction: row;
   align-items: center;
+  border-bottom: 3px solid var(--dg-text-red);
+  padding-bottom: 8px;
 }
-.dangerousgary .equipment .item-main .header img {
-  width: 50px;
-  margin: 0 5px 5px 5px;
+.dangerousgary.item.equipment .item-main .header img {
+  width: 60px;
+  height: 60px;
+  flex: 0 0 60px;
+  border: 2px solid var(--dg-text-red);
 }
-.dangerousgary .equipment .item-main fieldset {
-  font-weight: bold;
+.dangerousgary.item.equipment .item-main .header input {
+  font-family: var(--dg-font-title);
+  color: var(--dg-text-red);
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 0px #000;
+  background: transparent;
+  border: none;
+  width: 100%;
+  margin-left: 10px;
+}
+.dangerousgary.item.equipment .item-main .details fieldset {
+  background: var(--dg-box-bg) url("/systems/dangerousgary/assets/fond_gris.webp") center / cover no-repeat;
+  border: 1px solid var(--dg-border-color);
+  padding: 10px 15px;
+  box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.6);
   border-radius: 5px;
+}
+.dangerousgary.item.equipment .item-main .details fieldset legend {
+  float: left;
+  width: 100%;
+  font-weight: bold;
+  color: var(--dg-text-red);
+  font-size: 1.2rem;
+  font-family: var(--dg-font-body);
+}
+.dangerousgary.item.equipment .item-main .details fieldset > *:not(legend) {
+  clear: both;
+}
+.dangerousgary.item.equipment .item-main .details fieldset .inline-fields {
+  display: flex;
+  gap: 15px;
+}
+.dangerousgary.item.equipment .item-weapon fieldset,
+.dangerousgary.item.equipment .item-armour fieldset {
+  background: var(--dg-box-bg) url("/systems/dangerousgary/assets/fond_gris.webp") center / cover no-repeat;
+  border: 1px solid var(--dg-border-color);
+  padding: 10px 15px;
+  box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.6);
+  border-radius: 5px;
+}
+.dangerousgary.item.equipment .item-weapon fieldset legend,
+.dangerousgary.item.equipment .item-armour fieldset legend {
+  float: left;
+  width: 100%;
+  font-weight: bold;
+  color: var(--dg-text-red);
+  font-size: 1.2rem;
+  font-family: var(--dg-font-body);
+  margin-bottom: 6px;
+}
+.dangerousgary.item.equipment .item-weapon fieldset > *:not(legend),
+.dangerousgary.item.equipment .item-armour fieldset > *:not(legend) {
+  clear: both;
+}
+.dangerousgary.item.equipment .item-description fieldset {
+  background: var(--dg-box-bg) url("/systems/dangerousgary/assets/fond_gris.webp") center / cover no-repeat;
+  border: 1px solid var(--dg-border-color);
+  padding: 10px 15px;
+  box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.6);
+  border-radius: 5px;
+}
+.dangerousgary.item.equipment .item-description fieldset legend {
+  float: left;
+  width: 100%;
+  font-weight: bold;
+  color: var(--dg-text-red);
+  font-size: 1.2rem;
+  font-family: var(--dg-font-body);
+  margin-bottom: 6px;
+}
+.dangerousgary.item.equipment .item-description fieldset > *:not(legend) {
+  clear: both;
 }
 .dangerousgary .attack .attack-main,
 .dangerousgary .attack .attack-description {

@@ -1,37 +1,119 @@
-.equipment {
-  .item-main,
-  .item-weapon,
-  .item-armour {
-    padding-bottom: 5px;
-    fieldset {
-      font-weight: bold;
-      border-radius: 5px;
-    }
-  }
-
-  .item-description {
-    legend {
-      font-weight: bold;
-    }
+&.item.equipment {
+  .window-content {
+    background: var(--dg-bg-dark) url("/systems/dangerousgary/assets/fond_noir.webp") center / cover no-repeat;
+    padding: 10px;
+    font-family: var(--dg-font-body);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
 
   .item-main {
     display: flex;
     flex-direction: column;
+    gap: 10px;
 
     .header {
       display: flex;
       flex-direction: row;
       align-items: center;
+      border-bottom: 3px solid var(--dg-text-red);
+      padding-bottom: 8px;
+
       img {
-        width: 50px;
-        margin: 0 5px 5px 5px;
+        width: 60px;
+        height: 60px;
+        flex: 0 0 60px;
+        border: 2px solid var(--dg-text-red);
+      }
+
+      input {
+        font-family: var(--dg-font-title);
+        color: var(--dg-text-red);
+        font-size: 1.6rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        text-shadow: 2px 2px 0px #000;
+        background: transparent;
+        border: none;
+        width: 100%;
+        margin-left: 10px;
       }
     }
 
-    fieldset {
-      font-weight: bold;
+    .details fieldset {
+      background: var(--dg-box-bg) url("/systems/dangerousgary/assets/fond_gris.webp") center / cover no-repeat;
+      border: 1px solid var(--dg-border-color);
+      padding: 10px 15px;
+      box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.6);
       border-radius: 5px;
+
+      legend {
+        float: left;
+        width: 100%;
+        font-weight: bold;
+        color: var(--dg-text-red);
+        font-size: 1.2rem;
+        font-family: var(--dg-font-body);
+      }
+
+      > *:not(legend) {
+        clear: both;
+      }
+
+      .inline-fields {
+        display: flex;
+        gap: 15px;
+      }
+    }
+  }
+
+  .item-weapon,
+  .item-armour {
+    fieldset {
+      background: var(--dg-box-bg) url("/systems/dangerousgary/assets/fond_gris.webp") center / cover no-repeat;
+      border: 1px solid var(--dg-border-color);
+      padding: 10px 15px;
+      box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.6);
+      border-radius: 5px;
+
+      legend {
+        float: left;
+        width: 100%;
+        font-weight: bold;
+        color: var(--dg-text-red);
+        font-size: 1.2rem;
+        font-family: var(--dg-font-body);
+        margin-bottom: 6px;
+      }
+
+      > *:not(legend) {
+        clear: both;
+      }
+    }
+  }
+
+  .item-description {
+    fieldset {
+      background: var(--dg-box-bg) url("/systems/dangerousgary/assets/fond_gris.webp") center / cover no-repeat;
+      border: 1px solid var(--dg-border-color);
+      padding: 10px 15px;
+      box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.6);
+      border-radius: 5px;
+
+      legend {
+        float: left;
+        width: 100%;
+        font-weight: bold;
+        color: var(--dg-text-red);
+        font-size: 1.2rem;
+        font-family: var(--dg-font-body);
+        margin-bottom: 6px;
+      }
+
+      > *:not(legend) {
+        clear: both;
+      }
     }
   }
 }

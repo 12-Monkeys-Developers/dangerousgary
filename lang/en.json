@@ -101,7 +101,7 @@
           "label": "Quantity"
         },
         "damageFormula": {
-          "label": "Damage Formula"
+          "label": "Damage"
         },
         "equipped": {
           "label": "Equipped"
