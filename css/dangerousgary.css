@@ -320,6 +320,17 @@
   background: transparent;
   color: #000;
 }
+.dangerousgary.actor.character .character-items-list {
+  display: grid;
+  grid-template-columns: 1fr 1px 1fr;
+  gap: 0 15px;
+}
+.dangerousgary.actor.character .character-items-list::before {
+  content: "";
+  grid-column: 2;
+  grid-row: -1;
+  background: #ddd;
+}
 .dangerousgary.actor.character .character-items-list .item {
   display: flex;
   justify-content: space-between;
