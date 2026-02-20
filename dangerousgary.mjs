@@ -1,7 +1,7 @@
 // Import Modules
-import * as models from "./models/_module.mjs"
-import * as documents from "./documents/_module.mjs"
-import * as applications from "./applications/_module.mjs"
+import * as models from "./module/models/_module.mjs"
+import * as documents from "./module/documents/_module.mjs"
+import * as applications from "./module/applications/_module.mjs"
 
 Hooks.once('init', async function () {
 
