@@ -1,0 +1,27 @@
+name: Image-miroir
+type: talent
+img: icons/svg/sun.svg
+system:
+  description: Copie les effets d'un Talent de niveau 1 utilisé au cours du round.
+  level: 1
+  talentClass: mage
+  special: false
+_id: W3I5BmcA8ksG7pEG
+effects: []
+folder: 9ARkPKoxLlIw6CpZ
+sort: 0
+ownership:
+  default: 0
+  WZRoT3G3WIpWZ9k4: 3
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+  coreVersion: '13.351'
+  systemId: dangerousgary
+  systemVersion: '#{VERSION}#'
+  createdTime: 1771602647316
+  modifiedTime: 1771602647316
+  lastModifiedBy: WZRoT3G3WIpWZ9k4
+_key: '!items!W3I5BmcA8ksG7pEG'

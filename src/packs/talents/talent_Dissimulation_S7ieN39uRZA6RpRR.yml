@@ -1,0 +1,29 @@
+name: Dissimulation
+type: talent
+img: icons/svg/sun.svg
+system:
+  description: >-
+    Cache un objet (taille dague max) de façon indétectable même par fouille.
+    Dure 10 min/niveau.
+  level: 2
+  talentClass: thief
+  special: false
+_id: S7ieN39uRZA6RpRR
+effects: []
+folder: ahJ1iBed4N0422Zw
+sort: 100000
+ownership:
+  default: 0
+  WZRoT3G3WIpWZ9k4: 3
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+  coreVersion: '13.351'
+  systemId: dangerousgary
+  systemVersion: '#{VERSION}#'
+  createdTime: 1771602654632
+  modifiedTime: 1771602654632
+  lastModifiedBy: WZRoT3G3WIpWZ9k4
+_key: '!items!S7ieN39uRZA6RpRR'

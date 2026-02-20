@@ -1,0 +1,29 @@
+name: Invisibilité
+type: talent
+img: icons/svg/sun.svg
+system:
+  description: >-
+    Presque invisible pendant X rounds (niveau de Voleur). Attaques contre le
+    donjexeur sont contraintes.
+  level: 8
+  talentClass: thief
+  special: false
+_id: Ml4HoVsucyEj26mA
+effects: []
+folder: ahJ1iBed4N0422Zw
+sort: 296875
+ownership:
+  default: 0
+  WZRoT3G3WIpWZ9k4: 3
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+  coreVersion: '13.351'
+  systemId: dangerousgary
+  systemVersion: '#{VERSION}#'
+  createdTime: 1771602654632
+  modifiedTime: 1771602654632
+  lastModifiedBy: WZRoT3G3WIpWZ9k4
+_key: '!items!Ml4HoVsucyEj26mA'

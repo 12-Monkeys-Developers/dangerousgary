@@ -1,0 +1,29 @@
+name: Désagrégation
+type: talent
+img: icons/svg/sun.svg
+system:
+  description: >-
+    Brise un objet (max 1m3) à moins de 10m. Sans effet sur les murs, portes ou
+    Artefacts.
+  level: 4
+  talentClass: druid
+  special: false
+_id: QTgZIAwxZAEKET80
+effects: []
+folder: RPWzSGerdn4BJGqe
+sort: 100000
+ownership:
+  default: 0
+  WZRoT3G3WIpWZ9k4: 3
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+  coreVersion: '13.351'
+  systemId: dangerousgary
+  systemVersion: '#{VERSION}#'
+  createdTime: 1771602643481
+  modifiedTime: 1771602643481
+  lastModifiedBy: WZRoT3G3WIpWZ9k4
+_key: '!items!QTgZIAwxZAEKET80'

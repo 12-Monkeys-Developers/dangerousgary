@@ -1,0 +1,20 @@
+type: Item
+folder: null
+name: Guerrier
+color: null
+sorting: m
+_id: 9CTmLXGlcltkgY77
+description: ''
+sort: 400000
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+  coreVersion: '13.351'
+  systemId: dangerousgary
+  systemVersion: '#{VERSION}#'
+  createdTime: 1771602645699
+  modifiedTime: 1771602645715
+  lastModifiedBy: WZRoT3G3WIpWZ9k4
+_key: '!folders!9CTmLXGlcltkgY77'

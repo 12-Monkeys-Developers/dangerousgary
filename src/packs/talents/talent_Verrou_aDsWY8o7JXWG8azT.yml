@@ -1,0 +1,29 @@
+name: Verrou
+type: talent
+img: icons/svg/sun.svg
+system:
+  description: >-
+    Crée une barrière bloquant un Passage ou une Porte pendant 1h/niveau de
+    Druide.
+  level: 8
+  talentClass: druid
+  special: false
+_id: aDsWY8o7JXWG8azT
+effects: []
+folder: RPWzSGerdn4BJGqe
+sort: 450000
+ownership:
+  default: 0
+  WZRoT3G3WIpWZ9k4: 3
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+  coreVersion: '13.351'
+  systemId: dangerousgary
+  systemVersion: '#{VERSION}#'
+  createdTime: 1771602643481
+  modifiedTime: 1771602643481
+  lastModifiedBy: WZRoT3G3WIpWZ9k4
+_key: '!items!aDsWY8o7JXWG8azT'

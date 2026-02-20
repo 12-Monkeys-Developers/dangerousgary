@@ -20,7 +20,20 @@
   "esmodules": ["module/dangerousgary.mjs"],
   "styles": ["css/dangerousgary.css"],
   "scripts": [],
-  "packs": [],
+  "packs": [
+    {
+      "name": "talents",
+      "label": "Talents",
+      "system": "dangerousgary",
+      "path": "packs/talents",
+      "type": "Item",
+      "ownership": {
+        "PLAYER": "NONE",
+        "TRUSTED": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    }
+  ],
   "languages": [
     {
       "lang": "en",
@@ -58,5 +71,6 @@
     "distance": 2,
     "units": "m"
   },
-  "primaryTokenAttribute": "health"
+  "primaryTokenAttribute": "hp",
+  "secondaryTokenAttribute": "abilities.str"
 }

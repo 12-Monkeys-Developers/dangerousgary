@@ -1,0 +1,27 @@
+name: Apprenti
+type: talent
+img: icons/svg/sun.svg
+system:
+  description: Permet de relancer immédiatement un dé de dégâts ayant obtenu '1'.
+  level: 1
+  talentClass: fighter
+  special: true
+_id: tH2Ka7KH5zUwkOOh
+effects: []
+folder: 9CTmLXGlcltkgY77
+sort: 100000
+ownership:
+  default: 0
+  WZRoT3G3WIpWZ9k4: 3
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+  coreVersion: '13.351'
+  systemId: dangerousgary
+  systemVersion: '#{VERSION}#'
+  createdTime: 1771602645707
+  modifiedTime: 1771602645707
+  lastModifiedBy: WZRoT3G3WIpWZ9k4
+_key: '!items!tH2Ka7KH5zUwkOOh'

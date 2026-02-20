@@ -1,0 +1,29 @@
+name: Confusion
+type: talent
+img: icons/svg/sun.svg
+system:
+  description: >-
+    Cible un Monstre à moins de 10m. Son attaque est contrainte durant son
+    prochain tour.
+  level: 4
+  talentClass: bard
+  special: false
+_id: xf4noALRjHyUuTJh
+effects: []
+folder: yCpkYLh4D6uNFcpn
+sort: 125000
+ownership:
+  default: 0
+  WZRoT3G3WIpWZ9k4: 3
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+  coreVersion: '13.351'
+  systemId: dangerousgary
+  systemVersion: '#{VERSION}#'
+  createdTime: 1771602639752
+  modifiedTime: 1771602639752
+  lastModifiedBy: WZRoT3G3WIpWZ9k4
+_key: '!items!xf4noALRjHyUuTJh'

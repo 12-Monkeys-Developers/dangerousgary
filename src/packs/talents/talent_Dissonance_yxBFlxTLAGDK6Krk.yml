@@ -1,0 +1,29 @@
+name: Dissonance
+type: talent
+img: icons/svg/sun.svg
+system:
+  description: >-
+    Annule les effets d'un Pouvoir non-passif qu'un Monstre à moins de 10m vient
+    d'utiliser.
+  level: 5
+  talentClass: bard
+  special: true
+_id: yxBFlxTLAGDK6Krk
+effects: []
+folder: yCpkYLh4D6uNFcpn
+sort: 137500
+ownership:
+  default: 0
+  WZRoT3G3WIpWZ9k4: 3
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+  coreVersion: '13.351'
+  systemId: dangerousgary
+  systemVersion: '#{VERSION}#'
+  createdTime: 1771602639752
+  modifiedTime: 1771602639752
+  lastModifiedBy: WZRoT3G3WIpWZ9k4
+_key: '!items!yxBFlxTLAGDK6Krk'

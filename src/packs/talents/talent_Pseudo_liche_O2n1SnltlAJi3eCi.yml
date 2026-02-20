@@ -1,0 +1,29 @@
+name: Pseudo-liche
+type: talent
+img: icons/svg/sun.svg
+system:
+  description: >-
+    Immunise contre les Talents de niveau 1 à 7 pendant un nombre de rounds égal
+    au niveau de Paladin.
+  level: 8
+  talentClass: paladin
+  special: false
+_id: O2n1SnltlAJi3eCi
+effects: []
+folder: BHpgl1LzHSyBYFjr
+sort: 300000
+ownership:
+  default: 0
+  WZRoT3G3WIpWZ9k4: 3
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+  coreVersion: '13.351'
+  systemId: dangerousgary
+  systemVersion: '#{VERSION}#'
+  createdTime: 1771602650866
+  modifiedTime: 1771602650866
+  lastModifiedBy: WZRoT3G3WIpWZ9k4
+_key: '!items!O2n1SnltlAJi3eCi'

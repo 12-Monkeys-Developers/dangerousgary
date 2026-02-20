@@ -1,0 +1,29 @@
+name: Force d'âme
+type: talent
+img: icons/svg/sun.svg
+system:
+  description: >-
+    Convertit une perte de points de Force en perte de points de Volonté pour
+    éviter le choc.
+  level: 5
+  talentClass: paladin
+  special: true
+_id: YRFinkhVOnW3seUY
+effects: []
+folder: BHpgl1LzHSyBYFjr
+sort: 93750
+ownership:
+  default: 0
+  WZRoT3G3WIpWZ9k4: 3
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+  coreVersion: '13.351'
+  systemId: dangerousgary
+  systemVersion: '#{VERSION}#'
+  createdTime: 1771602650866
+  modifiedTime: 1771602650866
+  lastModifiedBy: WZRoT3G3WIpWZ9k4
+_key: '!items!YRFinkhVOnW3seUY'

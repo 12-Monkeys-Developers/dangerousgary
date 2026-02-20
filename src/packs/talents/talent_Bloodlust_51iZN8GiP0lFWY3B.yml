@@ -1,0 +1,30 @@
+name: Bloodlust
+type: talent
+img: icons/svg/sun.svg
+system:
+  description: >-
+    Dégâts maximum en mêlée pendant X rounds (niveau de Guerrier). Ne peut plus
+    utiliser d'autre Talent/Artefact ni esquiver (ennemis lancent 2 dés
+    d'attaque).
+  level: 8
+  talentClass: fighter
+  special: false
+_id: 51iZN8GiP0lFWY3B
+effects: []
+folder: 9CTmLXGlcltkgY77
+sort: 150000
+ownership:
+  default: 0
+  WZRoT3G3WIpWZ9k4: 3
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+  coreVersion: '13.351'
+  systemId: dangerousgary
+  systemVersion: '#{VERSION}#'
+  createdTime: 1771602645707
+  modifiedTime: 1771602645707
+  lastModifiedBy: WZRoT3G3WIpWZ9k4
+_key: '!items!51iZN8GiP0lFWY3B'

@@ -1,0 +1,29 @@
+name: Interdit
+type: talent
+img: icons/svg/sun.svg
+system:
+  description: >-
+    Choisit un Talent (niv 1-6) d'une classe maîtrisée. Il devient inopérant
+    dans un rayon de 10m pendant 1 round/niveau de Magicien.
+  level: 7
+  talentClass: mage
+  special: false
+_id: Et8gV3LwMtjAa9GH
+effects: []
+folder: 9ARkPKoxLlIw6CpZ
+sort: 112110
+ownership:
+  default: 0
+  WZRoT3G3WIpWZ9k4: 3
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+  coreVersion: '13.351'
+  systemId: dangerousgary
+  systemVersion: '#{VERSION}#'
+  createdTime: 1771602647316
+  modifiedTime: 1771602647316
+  lastModifiedBy: WZRoT3G3WIpWZ9k4
+_key: '!items!Et8gV3LwMtjAa9GH'

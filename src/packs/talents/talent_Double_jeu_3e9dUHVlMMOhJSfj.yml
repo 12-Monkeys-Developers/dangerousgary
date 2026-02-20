@@ -1,0 +1,27 @@
+name: Double-jeu
+type: talent
+img: icons/svg/sun.svg
+system:
+  description: Permet de transformer une sauvegarde de classe ratée en réussite.
+  level: 3
+  talentClass: mage
+  special: true
+_id: 3e9dUHVlMMOhJSfj
+effects: []
+folder: 9ARkPKoxLlIw6CpZ
+sort: 106250
+ownership:
+  default: 0
+  WZRoT3G3WIpWZ9k4: 3
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+  coreVersion: '13.351'
+  systemId: dangerousgary
+  systemVersion: '#{VERSION}#'
+  createdTime: 1771602647316
+  modifiedTime: 1771602647316
+  lastModifiedBy: WZRoT3G3WIpWZ9k4
+_key: '!items!3e9dUHVlMMOhJSfj'

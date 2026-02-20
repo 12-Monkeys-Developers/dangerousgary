@@ -1,0 +1,27 @@
+name: Pattes d'araignée
+type: talent
+img: icons/svg/sun.svg
+system:
+  description: Grimpe sans effort sur des parois verticales pendant 1 min/niveau de Voleur.
+  level: 4
+  talentClass: thief
+  special: false
+_id: 3I58tbIt7NMg3Whm
+effects: []
+folder: ahJ1iBed4N0422Zw
+sort: 250000
+ownership:
+  default: 0
+  WZRoT3G3WIpWZ9k4: 3
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+  coreVersion: '13.351'
+  systemId: dangerousgary
+  systemVersion: '#{VERSION}#'
+  createdTime: 1771602654632
+  modifiedTime: 1771602654632
+  lastModifiedBy: WZRoT3G3WIpWZ9k4
+_key: '!items!3I58tbIt7NMg3Whm'

@@ -1,0 +1,29 @@
+name: Œil du rôdeur
+type: talent
+img: icons/svg/sun.svg
+system:
+  description: >-
+    Invoque une sphère mobile indestructible par laquelle le donjexeur voit.
+    Dure 1 min/niveau.
+  level: 6
+  talentClass: ranger
+  special: false
+_id: uuF0STPk2iBuak8U
+effects: []
+folder: AiI39bnA6xwtMdSD
+sort: 150000
+ownership:
+  default: 0
+  WZRoT3G3WIpWZ9k4: 3
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+  coreVersion: '13.351'
+  systemId: dangerousgary
+  systemVersion: '#{VERSION}#'
+  createdTime: 1771602652456
+  modifiedTime: 1771602652456
+  lastModifiedBy: WZRoT3G3WIpWZ9k4
+_key: '!items!uuF0STPk2iBuak8U'

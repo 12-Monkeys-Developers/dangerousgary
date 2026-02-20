@@ -1,0 +1,27 @@
+name: Petite téléportation
+type: talent
+img: icons/svg/sun.svg
+system:
+  description: Téléportation immédiate vers un lieu visible à moins de 20m.
+  level: 6
+  talentClass: thief
+  special: false
+_id: GKfu6pFcecn55QJ6
+effects: []
+folder: ahJ1iBed4N0422Zw
+sort: 287500
+ownership:
+  default: 0
+  WZRoT3G3WIpWZ9k4: 3
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+  coreVersion: '13.351'
+  systemId: dangerousgary
+  systemVersion: '#{VERSION}#'
+  createdTime: 1771602654632
+  modifiedTime: 1771602654632
+  lastModifiedBy: WZRoT3G3WIpWZ9k4
+_key: '!items!GKfu6pFcecn55QJ6'

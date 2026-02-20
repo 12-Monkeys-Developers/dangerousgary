@@ -1,0 +1,29 @@
+name: Précision
+type: talent
+img: icons/svg/sun.svg
+system:
+  description: >-
+    Les dégâts ignorent l'Armure adverse pendant un nombre de rounds égal au
+    niveau de Guerrier.
+  level: 3
+  talentClass: fighter
+  special: false
+_id: jkiCMUUvUnOeuWcG
+effects: []
+folder: 9CTmLXGlcltkgY77
+sort: 137500
+ownership:
+  default: 0
+  WZRoT3G3WIpWZ9k4: 3
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+  coreVersion: '13.351'
+  systemId: dangerousgary
+  systemVersion: '#{VERSION}#'
+  createdTime: 1771602645707
+  modifiedTime: 1771602645707
+  lastModifiedBy: WZRoT3G3WIpWZ9k4
+_key: '!items!jkiCMUUvUnOeuWcG'

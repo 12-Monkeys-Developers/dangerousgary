@@ -1,0 +1,29 @@
+name: Œil du nain
+type: talent
+img: icons/svg/sun.svg
+system:
+  description: >-
+    Voit à travers une paroi (&lt; 1m) tant qu'il reste en contact. Dure 1
+    round/niveau de Rôdeur.
+  level: 3
+  talentClass: ranger
+  special: false
+_id: XH58XBox9JhoaJc3
+effects: []
+folder: AiI39bnA6xwtMdSD
+sort: 75000
+ownership:
+  default: 0
+  WZRoT3G3WIpWZ9k4: 3
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+  coreVersion: '13.351'
+  systemId: dangerousgary
+  systemVersion: '#{VERSION}#'
+  createdTime: 1771602652456
+  modifiedTime: 1771602652456
+  lastModifiedBy: WZRoT3G3WIpWZ9k4
+_key: '!items!XH58XBox9JhoaJc3'

@@ -1,0 +1,20 @@
+type: Item
+folder: null
+name: Rôdeur
+color: null
+sorting: m
+_id: AiI39bnA6xwtMdSD
+description: ''
+sort: 800000
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+  coreVersion: '13.351'
+  systemId: dangerousgary
+  systemVersion: '#{VERSION}#'
+  createdTime: 1771602652443
+  modifiedTime: 1771602652466
+  lastModifiedBy: WZRoT3G3WIpWZ9k4
+_key: '!folders!AiI39bnA6xwtMdSD'

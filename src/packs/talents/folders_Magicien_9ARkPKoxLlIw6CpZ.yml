@@ -1,0 +1,20 @@
+type: Item
+folder: null
+name: Magicien
+color: null
+sorting: m
+_id: 9ARkPKoxLlIw6CpZ
+description: ''
+sort: 500000
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+  coreVersion: '13.351'
+  systemId: dangerousgary
+  systemVersion: '#{VERSION}#'
+  createdTime: 1771602647307
+  modifiedTime: 1771602647324
+  lastModifiedBy: WZRoT3G3WIpWZ9k4
+_key: '!folders!9ARkPKoxLlIw6CpZ'

@@ -1,0 +1,27 @@
+name: Anti-Artefact
+type: talent
+img: icons/svg/sun.svg
+system:
+  description: Transforme un Artefact touché en objet normal pendant 1h/niveau de Druide.
+  level: 5
+  talentClass: druid
+  special: false
+_id: slWmEHnvFJZ132HT
+effects: []
+folder: RPWzSGerdn4BJGqe
+sort: 87500
+ownership:
+  default: 0
+  WZRoT3G3WIpWZ9k4: 3
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+  coreVersion: '13.351'
+  systemId: dangerousgary
+  systemVersion: '#{VERSION}#'
+  createdTime: 1771602643481
+  modifiedTime: 1771602643481
+  lastModifiedBy: WZRoT3G3WIpWZ9k4
+_key: '!items!slWmEHnvFJZ132HT'

@@ -1,0 +1,29 @@
+name: Aimant
+type: talent
+img: icons/svg/sun.svg
+system:
+  description: >-
+    Un objet (max 1m3) à moins de 10m apparaît instantanément dans les mains du
+    donjexeur.
+  level: 6
+  talentClass: druid
+  special: false
+_id: ZelF06Z772XkgSLY
+effects: []
+folder: RPWzSGerdn4BJGqe
+sort: 150000
+ownership:
+  default: 0
+  WZRoT3G3WIpWZ9k4: 3
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+  coreVersion: '13.351'
+  systemId: dangerousgary
+  systemVersion: '#{VERSION}#'
+  createdTime: 1771602643481
+  modifiedTime: 1771602643481
+  lastModifiedBy: WZRoT3G3WIpWZ9k4
+_key: '!items!ZelF06Z772XkgSLY'

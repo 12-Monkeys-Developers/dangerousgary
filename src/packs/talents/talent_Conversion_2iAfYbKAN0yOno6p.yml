@@ -1,0 +1,29 @@
+name: Conversion
+type: talent
+img: icons/svg/sun.svg
+system:
+  description: >-
+    Convertit l'énergie d'un Talent venant d'être lancé en un éclair infligeant
+    (Niveau du Talent + 8) dégâts à une cible à moins de 10m.
+  level: 8
+  talentClass: mage
+  special: true
+_id: 2iAfYbKAN0yOno6p
+effects: []
+folder: 9ARkPKoxLlIw6CpZ
+sort: 112500
+ownership:
+  default: 0
+  WZRoT3G3WIpWZ9k4: 3
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+  coreVersion: '13.351'
+  systemId: dangerousgary
+  systemVersion: '#{VERSION}#'
+  createdTime: 1771602647316
+  modifiedTime: 1771602647316
+  lastModifiedBy: WZRoT3G3WIpWZ9k4
+_key: '!items!2iAfYbKAN0yOno6p'

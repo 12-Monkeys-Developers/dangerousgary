@@ -1,0 +1,30 @@
+name: Contrôle des Monstres
+type: talent
+img: icons/svg/sun.svg
+system:
+  description: >-
+    Cible à moins de 10m. Sur échec de sauvegarde de Volonté, devient une
+    marionnette pendant un nombre de rounds égal au niveau de Barde. Interdit
+    l'usage d'autre Talent.
+  level: 7
+  talentClass: bard
+  special: false
+_id: QgwRj7iCnIU1IOAQ
+effects: []
+folder: yCpkYLh4D6uNFcpn
+sort: 150000
+ownership:
+  default: 0
+  WZRoT3G3WIpWZ9k4: 3
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+  coreVersion: '13.351'
+  systemId: dangerousgary
+  systemVersion: '#{VERSION}#'
+  createdTime: 1771602639752
+  modifiedTime: 1771602639752
+  lastModifiedBy: WZRoT3G3WIpWZ9k4
+_key: '!items!QgwRj7iCnIU1IOAQ'

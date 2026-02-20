@@ -1,0 +1,27 @@
+name: Volonté de fer
+type: talent
+img: icons/svg/sun.svg
+system:
+  description: Bonus de +3 aux sauvegardes de Volonté pendant 1 round/niveau de Moine.
+  level: 3
+  talentClass: monk
+  special: false
+_id: 7hPnbKqpil6o0vGS
+effects: []
+folder: DttKDJFvXZfj9rK9
+sort: 175000
+ownership:
+  default: 0
+  WZRoT3G3WIpWZ9k4: 3
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+  coreVersion: '13.351'
+  systemId: dangerousgary
+  systemVersion: '#{VERSION}#'
+  createdTime: 1771602648962
+  modifiedTime: 1771602648962
+  lastModifiedBy: WZRoT3G3WIpWZ9k4
+_key: '!items!7hPnbKqpil6o0vGS'

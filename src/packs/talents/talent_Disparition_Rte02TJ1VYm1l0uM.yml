@@ -1,0 +1,29 @@
+name: Disparition
+type: talent
+img: icons/svg/sun.svg
+system:
+  description: >-
+    Totalement indétectable et inciblable pendant 9 minutes. Prend fin en cas
+    d'attaque ou usage de Talent/Artefact.
+  level: 9
+  talentClass: thief
+  special: false
+_id: Rte02TJ1VYm1l0uM
+effects: []
+folder: ahJ1iBed4N0422Zw
+sort: 300000
+ownership:
+  default: 0
+  WZRoT3G3WIpWZ9k4: 3
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+  coreVersion: '13.351'
+  systemId: dangerousgary
+  systemVersion: '#{VERSION}#'
+  createdTime: 1771602654632
+  modifiedTime: 1771602654632
+  lastModifiedBy: WZRoT3G3WIpWZ9k4
+_key: '!items!Rte02TJ1VYm1l0uM'

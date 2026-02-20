@@ -1,0 +1,29 @@
+name: Œil du dragon
+type: talent
+img: icons/svg/sun.svg
+system:
+  description: >-
+    Les Artefacts émettent une aura brunâtre visible uniquement par le donjexeur
+    pendant 1 min/niveau.
+  level: 4
+  talentClass: ranger
+  special: false
+_id: eYYeURJB1SwlP39D
+effects: []
+folder: AiI39bnA6xwtMdSD
+sort: 87500
+ownership:
+  default: 0
+  WZRoT3G3WIpWZ9k4: 3
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+  coreVersion: '13.351'
+  systemId: dangerousgary
+  systemVersion: '#{VERSION}#'
+  createdTime: 1771602652456
+  modifiedTime: 1771602652456
+  lastModifiedBy: WZRoT3G3WIpWZ9k4
+_key: '!items!eYYeURJB1SwlP39D'

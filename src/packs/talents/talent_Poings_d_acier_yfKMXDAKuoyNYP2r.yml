@@ -1,0 +1,29 @@
+name: Poings d'acier
+type: talent
+img: icons/svg/sun.svg
+system:
+  description: >-
+    Les attaques au corps à corps infligent 1D8 dégâts pendant 1 round/niveau de
+    Moine.
+  level: 2
+  talentClass: monk
+  special: false
+_id: yfKMXDAKuoyNYP2r
+effects: []
+folder: DttKDJFvXZfj9rK9
+sort: 150000
+ownership:
+  default: 0
+  WZRoT3G3WIpWZ9k4: 3
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+  coreVersion: '13.351'
+  systemId: dangerousgary
+  systemVersion: '#{VERSION}#'
+  createdTime: 1771602648962
+  modifiedTime: 1771602648962
+  lastModifiedBy: WZRoT3G3WIpWZ9k4
+_key: '!items!yfKMXDAKuoyNYP2r'

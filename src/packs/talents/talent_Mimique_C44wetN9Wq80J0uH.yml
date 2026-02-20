@@ -1,0 +1,29 @@
+name: Mimique
+type: talent
+img: icons/svg/sun.svg
+system:
+  description: >-
+    Acquiert le Pouvoir non-passif qu'un Monstre à moins de 10m vient d'utiliser
+    pendant un nombre de rounds égal au niveau de Barde.
+  level: 6
+  talentClass: bard
+  special: true
+_id: C44wetN9Wq80J0uH
+effects: []
+folder: yCpkYLh4D6uNFcpn
+sort: 143750
+ownership:
+  default: 0
+  WZRoT3G3WIpWZ9k4: 3
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+  coreVersion: '13.351'
+  systemId: dangerousgary
+  systemVersion: '#{VERSION}#'
+  createdTime: 1771602639752
+  modifiedTime: 1771602639752
+  lastModifiedBy: WZRoT3G3WIpWZ9k4
+_key: '!items!C44wetN9Wq80J0uH'

@@ -1,0 +1,29 @@
+name: Focus
+type: talent
+img: icons/svg/sun.svg
+system:
+  description: >-
+    Augmente une caractéristique (Force, Dex, Vol) de 3 points (max 18) pendant
+    1 round/niveau de Moine.
+  level: 8
+  talentClass: monk
+  special: false
+_id: OMnl1sqQgw85EiUj
+effects: []
+folder: DttKDJFvXZfj9rK9
+sort: 600000
+ownership:
+  default: 0
+  WZRoT3G3WIpWZ9k4: 3
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+  coreVersion: '13.351'
+  systemId: dangerousgary
+  systemVersion: '#{VERSION}#'
+  createdTime: 1771602648962
+  modifiedTime: 1771602648962
+  lastModifiedBy: WZRoT3G3WIpWZ9k4
+_key: '!items!OMnl1sqQgw85EiUj'

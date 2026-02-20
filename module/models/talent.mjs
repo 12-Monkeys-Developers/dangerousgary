@@ -28,4 +28,19 @@ export default class DangerousGaryTalentData extends foundry.abstract.TypeDataMo
 
   /** @override */
   static LOCALIZATION_PREFIXES = ["DANGEROUSGARY.Talent"]
+
+  /** @inheritDoc */
+  async _preCreate(data, options, user) {
+    let updates = {}
+    const stats = this.parent._stats
+
+    // Pour un item non dupliqué, non provenant d'un compendium et non exporté
+    if (!stats.duplicateSource && !stats.compendiumSource && !stats.exportSource) {
+      // Image par défaut
+      if (!foundry.utils.hasProperty(data, "img")) {
+        updates.img = "icons/svg/sun.svg"
+      }
+    }
+    this.parent.updateSource(updates)
+  }  
 }

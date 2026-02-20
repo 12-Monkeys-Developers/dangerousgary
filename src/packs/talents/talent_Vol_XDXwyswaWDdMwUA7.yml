@@ -1,0 +1,29 @@
+name: Vol
+type: talent
+img: icons/svg/sun.svg
+system:
+  description: >-
+    S'élève et se déplace dans les airs à vitesse de marche pendant 1 min/niveau
+    de Voleur.
+  level: 5
+  talentClass: thief
+  special: false
+_id: XDXwyswaWDdMwUA7
+effects: []
+folder: ahJ1iBed4N0422Zw
+sort: 275000
+ownership:
+  default: 0
+  WZRoT3G3WIpWZ9k4: 3
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+  coreVersion: '13.351'
+  systemId: dangerousgary
+  systemVersion: '#{VERSION}#'
+  createdTime: 1771602654632
+  modifiedTime: 1771602654632
+  lastModifiedBy: WZRoT3G3WIpWZ9k4
+_key: '!items!XDXwyswaWDdMwUA7'

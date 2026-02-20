@@ -1,0 +1,29 @@
+name: Initiation
+type: talent
+img: icons/svg/sun.svg
+system:
+  description: >-
+    Augmente le niveau de toutes les classes de +4 (max 9) pendant un nombre de
+    rounds égal au niveau de Magicien (sans donner les Talents associés).
+  level: 4
+  talentClass: mage
+  special: false
+_id: ioAoE4ISFCblV1T4
+effects: []
+folder: 9ARkPKoxLlIw6CpZ
+sort: 109375
+ownership:
+  default: 0
+  WZRoT3G3WIpWZ9k4: 3
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+  coreVersion: '13.351'
+  systemId: dangerousgary
+  systemVersion: '#{VERSION}#'
+  createdTime: 1771602647316
+  modifiedTime: 1771602647316
+  lastModifiedBy: WZRoT3G3WIpWZ9k4
+_key: '!items!ioAoE4ISFCblV1T4'

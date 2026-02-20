@@ -1,0 +1,29 @@
+name: Brise-lame
+type: talent
+img: icons/svg/sun.svg
+system:
+  description: >-
+    Les armes de mêlée non-Artefacts frappant le donjexeur se brisent pendant X
+    rounds (niveau de Paladin).
+  level: 7
+  talentClass: paladin
+  special: false
+_id: iftGoQk5MbW0E7lp
+effects: []
+folder: BHpgl1LzHSyBYFjr
+sort: 200000
+ownership:
+  default: 0
+  WZRoT3G3WIpWZ9k4: 3
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+  coreVersion: '13.351'
+  systemId: dangerousgary
+  systemVersion: '#{VERSION}#'
+  createdTime: 1771602650866
+  modifiedTime: 1771602650866
+  lastModifiedBy: WZRoT3G3WIpWZ9k4
+_key: '!items!iftGoQk5MbW0E7lp'

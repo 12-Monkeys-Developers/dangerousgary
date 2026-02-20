@@ -1,0 +1,29 @@
+name: Bouclier anti-projectiles
+type: talent
+img: icons/svg/sun.svg
+system:
+  description: >-
+    Les projectiles s'arrêtent à 1m du donjexeur. Dure un nombre de rounds égal
+    au niveau de Paladin.
+  level: 6
+  talentClass: paladin
+  special: false
+_id: 3WWuGwCN1QTbRij6
+effects: []
+folder: BHpgl1LzHSyBYFjr
+sort: 100000
+ownership:
+  default: 0
+  WZRoT3G3WIpWZ9k4: 3
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+  coreVersion: '13.351'
+  systemId: dangerousgary
+  systemVersion: '#{VERSION}#'
+  createdTime: 1771602650866
+  modifiedTime: 1771602650866
+  lastModifiedBy: WZRoT3G3WIpWZ9k4
+_key: '!items!3WWuGwCN1QTbRij6'

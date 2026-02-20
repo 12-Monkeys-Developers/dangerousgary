@@ -1,0 +1,27 @@
+name: Contresort
+type: talent
+img: icons/svg/sun.svg
+system:
+  description: Annule les effets d'un Talent qui vient d'être utilisé.
+  level: 5
+  talentClass: mage
+  special: true
+_id: NF4ar1oLM4oFQvqt
+effects: []
+folder: 9ARkPKoxLlIw6CpZ
+sort: 110938
+ownership:
+  default: 0
+  WZRoT3G3WIpWZ9k4: 3
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+  coreVersion: '13.351'
+  systemId: dangerousgary
+  systemVersion: '#{VERSION}#'
+  createdTime: 1771602647316
+  modifiedTime: 1771602647316
+  lastModifiedBy: WZRoT3G3WIpWZ9k4
+_key: '!items!NF4ar1oLM4oFQvqt'

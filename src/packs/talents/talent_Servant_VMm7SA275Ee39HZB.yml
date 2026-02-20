@@ -1,0 +1,29 @@
+name: Servant
+type: talent
+img: icons/svg/sun.svg
+system:
+  description: >-
+    Cible à moins de 10m. Sur échec de Volonté, devient une marionnette jusqu'à
+    la sortie du Donjon. Interdit l'usage d'autre Talent.
+  level: 9
+  talentClass: bard
+  special: false
+_id: VMm7SA275Ee39HZB
+effects: []
+folder: yCpkYLh4D6uNFcpn
+sort: 800000
+ownership:
+  default: 0
+  WZRoT3G3WIpWZ9k4: 3
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+  coreVersion: '13.351'
+  systemId: dangerousgary
+  systemVersion: '#{VERSION}#'
+  createdTime: 1771602639752
+  modifiedTime: 1771602639752
+  lastModifiedBy: WZRoT3G3WIpWZ9k4
+_key: '!items!VMm7SA275Ee39HZB'

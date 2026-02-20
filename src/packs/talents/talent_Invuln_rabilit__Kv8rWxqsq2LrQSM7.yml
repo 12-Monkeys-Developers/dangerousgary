@@ -1,0 +1,27 @@
+name: Invulnérabilité
+type: talent
+img: icons/svg/sun.svg
+system:
+  description: Annule une perte de points de caractéristique venant de se produire.
+  level: 6
+  talentClass: monk
+  special: true
+_id: Kv8rWxqsq2LrQSM7
+effects: []
+folder: DttKDJFvXZfj9rK9
+sort: 350000
+ownership:
+  default: 0
+  WZRoT3G3WIpWZ9k4: 3
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+  coreVersion: '13.351'
+  systemId: dangerousgary
+  systemVersion: '#{VERSION}#'
+  createdTime: 1771602648962
+  modifiedTime: 1771602648962
+  lastModifiedBy: WZRoT3G3WIpWZ9k4
+_key: '!items!Kv8rWxqsq2LrQSM7'

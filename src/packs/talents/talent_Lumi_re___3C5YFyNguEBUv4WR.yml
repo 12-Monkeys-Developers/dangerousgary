@@ -1,0 +1,29 @@
+name: Lumière !
+type: talent
+img: icons/svg/sun.svg
+system:
+  description: >-
+    Un objet éclaire comme une torche. Les monstres subissent -1 à leurs
+    sauvegardes. Dure 1 min/niveau de Druide.
+  level: 1
+  talentClass: druid
+  special: false
+_id: 3C5YFyNguEBUv4WR
+effects: []
+folder: RPWzSGerdn4BJGqe
+sort: 0
+ownership:
+  default: 0
+  WZRoT3G3WIpWZ9k4: 3
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+  coreVersion: '13.351'
+  systemId: dangerousgary
+  systemVersion: '#{VERSION}#'
+  createdTime: 1771602643481
+  modifiedTime: 1771602643481
+  lastModifiedBy: WZRoT3G3WIpWZ9k4
+_key: '!items!3C5YFyNguEBUv4WR'

@@ -1,0 +1,20 @@
+type: Item
+folder: null
+name: Druide
+color: null
+sorting: m
+_id: RPWzSGerdn4BJGqe
+description: ''
+sort: 300000
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+  coreVersion: '13.351'
+  systemId: dangerousgary
+  systemVersion: '#{VERSION}#'
+  createdTime: 1771602643472
+  modifiedTime: 1771602643489
+  lastModifiedBy: WZRoT3G3WIpWZ9k4
+_key: '!folders!RPWzSGerdn4BJGqe'

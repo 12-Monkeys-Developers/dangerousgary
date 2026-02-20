@@ -1,0 +1,29 @@
+name: Parade
+type: talent
+img: icons/svg/sun.svg
+system:
+  description: >-
+    Annule les dégâts d'une attaque, mais l'arme devient inutilisable pour le
+    reste du combat.
+  level: 4
+  talentClass: fighter
+  special: true
+_id: 35YbX7MZ7wpLmvR1
+effects: []
+folder: 9CTmLXGlcltkgY77
+sort: 143750
+ownership:
+  default: 0
+  WZRoT3G3WIpWZ9k4: 3
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+  coreVersion: '13.351'
+  systemId: dangerousgary
+  systemVersion: '#{VERSION}#'
+  createdTime: 1771602645707
+  modifiedTime: 1771602645707
+  lastModifiedBy: WZRoT3G3WIpWZ9k4
+_key: '!items!35YbX7MZ7wpLmvR1'

@@ -1,0 +1,29 @@
+name: Éclipsant
+type: talent
+img: icons/svg/sun.svg
+system:
+  description: >-
+    Après avoir subi des dégâts, permet de se déplacer de quelques cm et de
+    faire relancer le dé de dégâts.
+  level: 1
+  talentClass: thief
+  special: true
+_id: gz5w72XtEUWjzMfD
+effects: []
+folder: ahJ1iBed4N0422Zw
+sort: 0
+ownership:
+  default: 0
+  WZRoT3G3WIpWZ9k4: 3
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+  coreVersion: '13.351'
+  systemId: dangerousgary
+  systemVersion: '#{VERSION}#'
+  createdTime: 1771602654632
+  modifiedTime: 1771602654632
+  lastModifiedBy: WZRoT3G3WIpWZ9k4
+_key: '!items!gz5w72XtEUWjzMfD'

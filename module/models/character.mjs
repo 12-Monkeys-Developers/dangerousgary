@@ -51,6 +51,25 @@ export default class DangerousGaryCharacterData extends foundry.abstract.TypeDat
   /** @override */
   static LOCALIZATION_PREFIXES = ["DANGEROUSGARY.Character"]
 
+  /** @inheritDoc */
+  async _preCreate(data, options, user) {
+    const allowed = await super._preCreate(data, options, user)
+    if (allowed === false) return false
+
+    const updates = {
+      prototypeToken: {
+        actorLink: true,
+        disposition: CONST.TOKEN_DISPOSITIONS.FRIENDLY,
+        sight: {
+          enabled: true,
+          visionMode: "basic",
+        },
+      },
+    }
+
+    this.parent.updateSource(updates)
+  }
+
   /** @override */
   prepareBaseData() {
     this.armour = this.parent.items

@@ -1,0 +1,29 @@
+name: Fracassement
+type: talent
+img: icons/svg/sun.svg
+system:
+  description: >-
+    Fait exploser un Artefact à moins de 10m. 1D12 dégâts au porteur, 1D6 dans
+    un rayon de 5m.
+  level: 9
+  talentClass: druid
+  special: false
+_id: yyJ9Okm9Uzg6VBUX
+effects: []
+folder: RPWzSGerdn4BJGqe
+sort: 500000
+ownership:
+  default: 0
+  WZRoT3G3WIpWZ9k4: 3
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+  coreVersion: '13.351'
+  systemId: dangerousgary
+  systemVersion: '#{VERSION}#'
+  createdTime: 1771602643481
+  modifiedTime: 1771602643481
+  lastModifiedBy: WZRoT3G3WIpWZ9k4
+_key: '!items!yyJ9Okm9Uzg6VBUX'

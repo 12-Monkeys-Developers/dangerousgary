@@ -1,0 +1,29 @@
+name: Vivacité
+type: talent
+img: icons/svg/sun.svg
+system:
+  description: >-
+    Lance deux dés de dégâts au corps à corps/mêlée et garde le meilleur pendant
+    1 round/niveau de Moine.
+  level: 7
+  talentClass: monk
+  special: false
+_id: bjoVJL9GlS6SFMhh
+effects: []
+folder: DttKDJFvXZfj9rK9
+sort: 500000
+ownership:
+  default: 0
+  WZRoT3G3WIpWZ9k4: 3
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+  coreVersion: '13.351'
+  systemId: dangerousgary
+  systemVersion: '#{VERSION}#'
+  createdTime: 1771602648962
+  modifiedTime: 1771602648962
+  lastModifiedBy: WZRoT3G3WIpWZ9k4
+_key: '!items!bjoVJL9GlS6SFMhh'

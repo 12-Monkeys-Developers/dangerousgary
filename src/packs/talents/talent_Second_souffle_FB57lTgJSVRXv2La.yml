@@ -1,0 +1,27 @@
+name: Second souffle
+type: talent
+img: icons/svg/sun.svg
+system:
+  description: Touche un donjexeur qui récupère 3 points de vie.
+  level: 1
+  talentClass: cleric
+  special: false
+_id: FB57lTgJSVRXv2La
+effects: []
+folder: fAOUCPQUo3MuWp88
+sort: 0
+ownership:
+  default: 0
+  WZRoT3G3WIpWZ9k4: 3
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+  coreVersion: '13.351'
+  systemId: dangerousgary
+  systemVersion: '#{VERSION}#'
+  createdTime: 1771602641870
+  modifiedTime: 1771602641870
+  lastModifiedBy: WZRoT3G3WIpWZ9k4
+_key: '!items!FB57lTgJSVRXv2La'

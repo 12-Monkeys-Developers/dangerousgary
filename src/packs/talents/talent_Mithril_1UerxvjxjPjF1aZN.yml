@@ -1,0 +1,29 @@
+name: Mithril
+type: talent
+img: icons/svg/sun.svg
+system:
+  description: >-
+    Un vêtement offre 1 point d'Armure (remplace l'existant) pendant 1
+    min/niveau de Paladin.
+  level: 1
+  talentClass: paladin
+  special: false
+_id: 1UerxvjxjPjF1aZN
+effects: []
+folder: BHpgl1LzHSyBYFjr
+sort: 0
+ownership:
+  default: 0
+  WZRoT3G3WIpWZ9k4: 3
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+  coreVersion: '13.351'
+  systemId: dangerousgary
+  systemVersion: '#{VERSION}#'
+  createdTime: 1771602650866
+  modifiedTime: 1771602650866
+  lastModifiedBy: WZRoT3G3WIpWZ9k4
+_key: '!items!1UerxvjxjPjF1aZN'
