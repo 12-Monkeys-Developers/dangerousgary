@@ -255,11 +255,7 @@ export default class DangerousGaryCharacterSheet extends HandlebarsApplicationMi
   static async #onItemDelete(event, target) {
     const itemId = target.getAttribute("data-item-id")
     const item = this.actor.items.get(itemId)
-    if (item.system.quantity > 1) {
-      await item.update({ "system.quantity": item.system.quantity - 1 })
-    } else {
-      item.delete()
-    }
+    item.delete()
   }
 
   /**

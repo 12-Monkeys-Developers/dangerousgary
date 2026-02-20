@@ -16,7 +16,6 @@ export default class DangerousGaryItemData extends foundry.abstract.TypeDataMode
       }),
       description: new fields.HTMLField({ required: false, blank: true, initial: "", textSearch: true }),
       armour: new fields.NumberField({ required: true, nullable: false, integer: true, initial: 0, min: 0 }),
-      quantity: new fields.NumberField({ required: true, nullable: false, integer: true, initial: 0, min: 0 }),
       damageFormula: new fields.StringField({ required: false, nullable: true }),
       equipped: new fields.BooleanField({ required: true, nullable: false, initial: false }),
       bulky: new fields.BooleanField({ required: true, nullable: false, initial: false }),
@@ -55,10 +54,6 @@ export default class DangerousGaryItemData extends foundry.abstract.TypeDataMode
 
   get isBulky() {
     return this.bulky
-  }
-
-  get hasQuantity() {
-    return this.quantity > 1
   }
 
   get hasDamage() {

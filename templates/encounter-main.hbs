@@ -57,9 +57,6 @@
               <span>
                 <span class="item-name" data-tooltip="{{{item.enrichedDescription}}}">
                   {{item.name}}
-                  {{#if item.system.hasQuantity}}
-                    ({{item.system.quantity}})
-                  {{/if}}
                 </span>
                 {{#if item.system.hasDamage}}
                   <span class="item-info">{{item.system.damageFormula}} {{localize "DANGEROUSGARY.Labels.long.damage"}}</span>

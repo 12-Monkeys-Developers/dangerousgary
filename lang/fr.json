@@ -97,9 +97,6 @@
         "armour": {
           "label": "Protection"
         },
-        "quantity": {
-          "label": "Quantité"
-        },
         "damageFormula": {
           "label": "Dégâts"
         },
