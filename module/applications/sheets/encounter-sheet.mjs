@@ -83,28 +83,30 @@ export default class DangerousGaryEncounterSheet extends HandlebarsApplicationMi
     return this.isEditable
   }
 
+  /**
+   * Define whether a user is able to conclude a drag-and-drop workflow for a given drop selector
+   * @param {string} selector       The candidate HTML selector for the drop target
+   * @returns {boolean}             Can the current user drop on this selector?
+   * @protected
+   */
   _canDragDrop(selector) {
     return this.isEditable
   }
 
-  _onDragStart(event) {
-    const el = event.currentTarget
-    if ("link" in event.target.dataset) return
-
-    let dragData = null
-
-    if (!dragData) return
-
-    event.dataTransfer.setData("text/plain", JSON.stringify(dragData))
-  }
-
+  /**
+   * Callback actions which occur when a dragged element is over a drop target.
+   * @param {DragEvent} event       The originating DragEvent
+   * @protected
+   */
   _onDragOver(event) {}
 
+  /**
+   * Callback actions which occur when a dragged element is dropped on a target.
+   * @param {DragEvent} event       The originating DragEvent
+   * @protected
+   */
   async _onDrop(event) {
     const data = ux.TextEditor.implementation.getDragEventData(event)
-    const item = this.item
-    const allowed = Hooks.call("dropItemSheetData", item, this, data)
-    if (allowed === false) return
 
     // Handle different data types
     switch (data.type) {

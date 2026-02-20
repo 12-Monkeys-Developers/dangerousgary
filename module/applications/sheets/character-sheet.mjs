@@ -191,24 +191,6 @@ export default class DangerousGaryCharacterSheet extends HandlebarsApplicationMi
   }
 
   /**
-   * Callback actions which occur at the beginning of a drag start workflow.
-   * @param {DragEvent} event       The originating DragEvent
-   * @protected
-   */
-  _onDragStart(event) {
-    const el = event.currentTarget
-    if ("link" in event.target.dataset) return
-
-    // Extract the data you need
-    let dragData = null
-
-    if (!dragData) return
-
-    // Set data transfer
-    event.dataTransfer.setData("text/plain", JSON.stringify(dragData))
-  }
-
-  /**
    * Callback actions which occur when a dragged element is over a drop target.
    * @param {DragEvent} event       The originating DragEvent
    * @protected
@@ -222,9 +204,6 @@ export default class DangerousGaryCharacterSheet extends HandlebarsApplicationMi
    */
   async _onDrop(event) {
     const data = ux.TextEditor.implementation.getDragEventData(event)
-    const item = this.item
-    const allowed = Hooks.call("dropItemSheetData", item, this, data)
-    if (allowed === false) return
 
     // Handle different data types
     switch (data.type) {
@@ -361,9 +340,15 @@ export default class DangerousGaryCharacterSheet extends HandlebarsApplicationMi
   }
 
   static CLASS_ABILITY = {
-    cleric: "str", fighter: "str", paladin: "str",
-    druid: "dex", monk: "dex", thief: "dex",
-    bard: "wil", mage: "wil", ranger: "wil",
+    cleric: "str",
+    fighter: "str",
+    paladin: "str",
+    druid: "dex",
+    monk: "dex",
+    thief: "dex",
+    bard: "wil",
+    mage: "wil",
+    ranger: "wil",
   }
 
   static async #onToggleOsmose(event, target) {

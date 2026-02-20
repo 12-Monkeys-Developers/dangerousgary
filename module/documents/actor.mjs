@@ -8,7 +8,7 @@ export default class DangerousGaryActor extends Actor {
     const prototypeToken = {}
     if (this.type === "character") {
       Object.assign(prototypeToken, {
-        sight: { enabled: true },
+        sight: { enabled: true, visionMode: "basic" },
         actorLink: true,
         disposition: CONST.TOKEN_DISPOSITIONS.FRIENDLY,
       })

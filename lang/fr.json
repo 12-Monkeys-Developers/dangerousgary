@@ -105,12 +105,6 @@
         },
         "bulky": {
           "label": "Encombrant"
-        },
-        "blast": {
-          "label": "Explosif"
-        },
-        "arcana": {
-          "label": "Arcane"
         }
       },
       "SubType": {
