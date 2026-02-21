@@ -1,6 +1,14 @@
 import DangerousGaryChat from "../chat.mjs"
 
 export default class DangerousGaryActor extends Actor {
+  get isCharacter() {
+    return this.type === "character"
+  }
+
+  get isEncounter() {
+    return this.type === "encounter"
+  }
+
   async _preCreate(data, options, user) {
     await super._preCreate(data, options, user)
 

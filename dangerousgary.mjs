@@ -39,6 +39,10 @@ Hooks.once('init', async function () {
   foundry.documents.collections.Items.registerSheet("dangerousgary", applications.DangerousGaryAttackSheet, { types: ["attack"], makeDefault: true });
   foundry.documents.collections.Items.registerSheet("dangerousgary", applications.DangerousGaryTalentSheet, { types: ["talent"], makeDefault: true });
 
+  // Combat
+  CONFIG.ui.combat = applications.DangerousGaryCombatTracker
+  CONFIG.Combat.documentClass = documents.DangerousGaryCombat
+
   // Settings
   game.settings.register("dangerousgary", "enableClasses", {
     name: "DANGEROUSGARY.Settings.enableClasses.name",
