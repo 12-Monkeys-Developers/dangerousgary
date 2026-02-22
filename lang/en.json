@@ -106,6 +106,9 @@
         "bulky": {
           "label": "Bulky"
         },
+        "criticalDamage": {
+          "label": "Critical Damage"
+        },
         "weaponCategory": {
           "label": "Category"
         }
@@ -228,7 +231,8 @@
       "Failure": "Failure",
       "Critical": "Critical",
       "Fumble": "Fumble",
-      "AttackRollDamage": "Damage Roll of {itemName}"
+      "AttackRollDamage": "Damage Roll of {itemName}",
+      "CriticalDamage": "Critical Damage"
     }
   }
 }

@@ -65,9 +65,11 @@ export default class DangerousGaryActor extends Actor {
    * @param {*} itemName
    * @param {*} formula
    */
-  async rollDamage(itemName, formula) {
-    const roll = await new Roll(formula).roll()
+  async rollDamage(itemName, formula, { criticalDamage = false } = {}) {
+    const rollFormula = criticalDamage ? formula.replace(/(\d+d\d+)/gi, "$1xo") : formula
+    const roll = await new Roll(rollFormula).roll()
     const result = roll.total
+    const isCriticalDamage = criticalDamage && roll.dice.some(die => die.results.some(r => r.exploded))
 
     const label = game.i18n.format("DANGEROUSGARY.Roll.AttackRollDamage", { itemName })
 
@@ -78,6 +80,7 @@ export default class DangerousGaryActor extends Actor {
       introText: label,
       total: roll.total,
       formula: roll.formula,
+      isCriticalDamage,
     }
 
     let chat = await new DangerousGaryChat(this).withTemplate("systems/dangerousgary/templates/roll-result.hbs").withData(chatData).withRolls([roll]).create()

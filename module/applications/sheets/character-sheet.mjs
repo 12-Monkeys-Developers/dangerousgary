@@ -253,7 +253,8 @@ export default class DangerousGaryCharacterSheet extends HandlebarsApplicationMi
   static async #onItemRollDamage(event, target) {
     const itemName = target.getAttribute("data-name")
     const formula = target.getAttribute("data-formula")
-    const roll = await this.actor.rollDamage(itemName, formula)
+    const criticalDamage = target.getAttribute("data-critical-damage") === "true"
+    const roll = await this.actor.rollDamage(itemName, formula, { criticalDamage })
   }
 
   /**

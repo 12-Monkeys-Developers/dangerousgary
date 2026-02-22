@@ -1,3 +1,5 @@
+import DangerousGaryItemData from "../../models/item.mjs"
+
 const { HandlebarsApplicationMixin } = foundry.applications.api
 
 export default class DangerousGaryItemSheet extends HandlebarsApplicationMixin(foundry.applications.sheets.ItemSheetV2) {
@@ -39,6 +41,34 @@ export default class DangerousGaryItemSheet extends HandlebarsApplicationMixin(f
       enrichedDescription: await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.document.system.description, { async: true })
     }
     return context;
+  }
+
+  /** @inheritDoc */
+  async _onRender(context, options) {
+    await super._onRender(context, options)
+    this._weaponCategoryListener()
+  }
+
+  _weaponCategoryListener() {
+    const selector = this.element.querySelector('select[name="system.weaponCategory"]')
+    if (selector) {
+      selector.addEventListener("change", this._onChangeWeaponCategory.bind(this))
+    }
+  }
+
+  async _onChangeWeaponCategory(event) {
+    event.preventDefault()
+    if (!this.isEditable) return
+    const newCategory = event.target.value
+    const defaults = DangerousGaryItemData.WEAPON_DEFAULTS[newCategory]
+    if (defaults) {
+      await this.document.update({
+        system: {
+          damageFormula: defaults.damageFormula,
+          criticalDamage: defaults.criticalDamage,
+        },
+      })
+    }
   }
 
   static async #onEditImage(event, target) {

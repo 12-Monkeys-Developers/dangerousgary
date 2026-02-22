@@ -328,7 +328,7 @@
 .dangerousgary.actor.character .character-items-list::before {
   content: "";
   grid-column: 2;
-  grid-row: -1;
+  grid-row: 1 / -1;
   background: #ddd;
 }
 .dangerousgary.actor.character .character-items-list .item {
@@ -1038,4 +1038,7 @@
 }
 .dice-roll .roll-icon.fumble {
   color: #b71c1c;
+}
+.dice-roll .roll-icon.critical-damage {
+  color: #e65100;
 }

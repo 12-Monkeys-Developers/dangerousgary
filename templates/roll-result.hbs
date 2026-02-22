@@ -20,5 +20,8 @@
         {{/if}}
       {{/if}}
     {{/if}}
+    {{#if isCriticalDamage}}
+      <span class="roll-icon critical-damage" data-tooltip="{{localize 'DANGEROUSGARY.Roll.CriticalDamage'}}"><i class="fas fa-burst"></i></span>
+    {{/if}}
   </div>
 </div>
