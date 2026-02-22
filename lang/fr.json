@@ -105,12 +105,25 @@
         },
         "bulky": {
           "label": "Encombrant"
+        },
+        "weaponCategory": {
+          "label": "Catégorie"
         }
       },
       "SubType": {
         "weapon": "Arme",
         "armour": "Armure",
         "equipment": "Équipement"
+      },
+      "WeaponCategory": {
+        "melee": "Corps à corps",
+        "meleeWeapons": "Armes de mêlée",
+        "rangedWeapons": "Armes à distance",
+        "greatMeleeWeapons": "Grandes armes de mêlée",
+        "handguns": "Armes de poing",
+        "warWeapons": "Armes de guerre",
+        "rifles": "Fusils",
+        "other": "Autres"
       }
     },
     "Talent": {

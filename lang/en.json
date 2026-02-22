@@ -105,12 +105,25 @@
         },
         "bulky": {
           "label": "Bulky"
+        },
+        "weaponCategory": {
+          "label": "Category"
         }
       },
       "SubType": {
         "weapon": "Weapon",
         "armour": "Armour",
         "equipment": "Equipment"
+      },
+      "WeaponCategory": {
+        "melee": "Melee",
+        "meleeWeapons": "Melee Weapons",
+        "rangedWeapons": "Ranged Weapons",
+        "greatMeleeWeapons": "Great Melee Weapons",
+        "handguns": "Handguns",
+        "warWeapons": "War Weapons",
+        "rifles": "Rifles",
+        "other": "Other"
       }
     },
     "Talent": {
