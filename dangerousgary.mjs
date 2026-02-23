@@ -2,6 +2,7 @@
 import * as models from "./module/models/_module.mjs"
 import * as documents from "./module/documents/_module.mjs"
 import * as applications from "./module/applications/_module.mjs"
+import { Macros } from "./module/macros.mjs"
 
 Hooks.once('init', async function () {
 
@@ -54,4 +55,11 @@ Hooks.once('init', async function () {
     requiresReload: true,
   })
 
-});
+})
+
+Hooks.on("hotbarDrop", (bar, data, slot) => {
+  if (["rollDamage", "Item"].includes(data.type)) {
+    Macros.createDangerousGaryMacro(data, slot)
+    return false
+  }
+})

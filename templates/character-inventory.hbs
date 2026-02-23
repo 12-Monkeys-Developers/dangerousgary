@@ -5,7 +5,7 @@
   </div>
   <div class="character-items-list">
     {{#each items as |item|}}
-      <div class="item" data-item-id="{{item.id}}">
+      <div class="item {{#if item.system.hasDamage}}draggable{{/if}}" data-item-id="{{item.id}}" data-drag-type="rollDamage">
         <details>
           <summary>
             <span>

@@ -191,6 +191,33 @@ export default class DangerousGaryCharacterSheet extends HandlebarsApplicationMi
   }
 
   /**
+   * Callback actions which occur at the beginning of a drag start workflow.
+   * @param {DragEvent} event       The originating DragEvent
+   * @protected
+   */
+  _onDragStart(event) {
+    const el = event.currentTarget.closest(".draggable")
+    if (!el) return
+    const dragType = el.dataset.dragType
+    const itemId = el.dataset.itemId
+    if (!dragType || !itemId) return
+
+    let dragData = null
+    switch (dragType) {
+      case "rollDamage":
+        dragData = {
+          type: "rollDamage",
+          actorId: this.document.id,
+          itemId,
+        }
+        break
+    }
+
+    if (!dragData) return
+    event.dataTransfer.setData("text/plain", JSON.stringify(dragData))
+  }
+
+  /**
    * Callback actions which occur when a dragged element is over a drop target.
    * @param {DragEvent} event       The originating DragEvent
    * @protected
