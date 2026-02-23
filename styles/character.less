@@ -322,6 +322,14 @@
       padding: 4px 0;
       border-bottom: 1px solid #ddd;
 
+      &:nth-child(odd) {
+        grid-column: 1;
+      }
+
+      &:nth-child(even) {
+        grid-column: 3;
+      }
+
       .item-name {
         flex: 1;
         font-weight: bold;

@@ -339,6 +339,12 @@
   padding: 4px 0;
   border-bottom: 1px solid #ddd;
 }
+.dangerousgary.actor.character .character-items-list .item:nth-child(odd) {
+  grid-column: 1;
+}
+.dangerousgary.actor.character .character-items-list .item:nth-child(even) {
+  grid-column: 3;
+}
 .dangerousgary.actor.character .character-items-list .item .item-name {
   flex: 1;
   font-weight: bold;
