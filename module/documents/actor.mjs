@@ -29,7 +29,7 @@ export default class DangerousGaryActor extends Actor {
    * @param {*} ability
    * @returns
    */
-  async rollSave(ability, { useMax = false, talentName = null } = {}) {
+  async rollSave(ability, { useMax = false, talentName = null, talentLevel = null } = {}) {
     const roll = await new Roll("1d20").roll()
     const total = roll.total
     const abilityValue = useMax ? this.system.abilities[ability].max : this.system.abilities[ability].value
@@ -51,6 +51,22 @@ export default class DangerousGaryActor extends Actor {
       success,
       isCritical,
       isFumble,
+    }
+
+    // Talent failure: lose HP equal to talent level, overflow to STR
+    if (!success && talentLevel) {
+      let damage = talentLevel
+      const currentHp = this.system.hp.value
+      const hpLost = Math.min(damage, currentHp)
+      const strLost = damage - hpLost
+      const updates = { "system.hp.value": currentHp - hpLost }
+      if (strLost > 0) {
+        updates["system.abilities.str.value"] = Math.max(0, this.system.abilities.str.value - strLost)
+      }
+      await this.update(updates)
+      chatData.talentDamage = damage
+      chatData.talentHpLost = hpLost
+      chatData.talentStrLost = strLost
     }
 
     let chat = await new DangerousGaryChat(this).withTemplate("systems/dangerousgary/templates/roll-result.hbs").withData(chatData).withRolls([roll]).create()

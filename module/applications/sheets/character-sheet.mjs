@@ -365,7 +365,7 @@ export default class DangerousGaryCharacterSheet extends HandlebarsApplicationMi
     if (!ability) return
     const itemId = target.dataset.itemId
     const talent = this.actor.items.get(itemId)
-    await this.actor.rollSave(ability, { useMax: true, talentName: talent?.name })
+    await this.actor.rollSave(ability, { useMax: true, talentName: talent?.name, talentLevel: talent?.system.level })
   }
 
   //#endregion

@@ -24,4 +24,14 @@
       <span class="roll-icon critical-damage" data-tooltip="{{localize 'DANGEROUSGARY.Roll.CriticalDamage'}}"><i class="fas fa-burst"></i></span>
     {{/if}}
   </div>
+  {{#if talentDamage}}
+    <div class="roll-talent-damage">
+      <i class="fas fa-heart-crack"></i>
+      {{#if talentStrLost}}
+        {{localize "DANGEROUSGARY.Roll.TalentDamageWithStr" hp=talentHpLost str=talentStrLost}}
+      {{else}}
+        {{localize "DANGEROUSGARY.Roll.TalentDamage" hp=talentHpLost}}
+      {{/if}}
+    </div>
+  {{/if}}
 </div>

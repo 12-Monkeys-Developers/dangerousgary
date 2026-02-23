@@ -233,7 +233,9 @@
       "Critical": "Critique",
       "Fumble": "Fumble",
       "AttackRollDamage": "Jet de Dégâts de {itemName}",
-      "CriticalDamage": "Dommages critiques"
+      "CriticalDamage": "Dommages critiques",
+      "TalentDamage": "-{hp} PV",
+      "TalentDamageWithStr": "-{hp} PV, -{str} FOR"
     }
   }
 }

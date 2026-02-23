@@ -1042,3 +1042,12 @@
 .dice-roll .roll-icon.critical-damage {
   color: #e65100;
 }
+.dice-roll .roll-talent-damage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+  font-weight: bold;
+  color: #c62828;
+}

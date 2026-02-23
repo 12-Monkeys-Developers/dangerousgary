@@ -233,7 +233,9 @@
       "Critical": "Critical",
       "Fumble": "Fumble",
       "AttackRollDamage": "Damage Roll of {itemName}",
-      "CriticalDamage": "Critical Damage"
+      "CriticalDamage": "Critical Damage",
+      "TalentDamage": "-{hp} HP",
+      "TalentDamageWithStr": "-{hp} HP, -{str} STR"
     }
   }
 }
