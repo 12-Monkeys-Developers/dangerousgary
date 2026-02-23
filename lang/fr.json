@@ -116,7 +116,8 @@
       "SubType": {
         "weapon": "Arme",
         "armour": "Armure",
-        "equipment": "Équipement"
+        "equipment": "Équipement",
+        "artefact": "Artefact"
       },
       "WeaponCategory": {
         "melee": "Corps à corps",

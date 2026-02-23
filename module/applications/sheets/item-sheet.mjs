@@ -32,13 +32,20 @@ export default class DangerousGaryItemSheet extends HandlebarsApplicationMixin(f
 
   /** @override */
   async _prepareContext() {
+    const subTypeField = this.document.system.schema.fields.subType
+    const enableClasses = game.settings.get("dangerousgary", "enableClasses")
+    const subTypeChoices = Object.fromEntries(
+      Object.entries(subTypeField.choices).filter(([key]) => enableClasses || key !== "artefact")
+    )
+
     const context = {
       fields: this.document.schema.fields,
       systemFields: this.document.system.schema.fields,
       item: this.document,
       system: this.document.system,
       source: this.document.toObject(),
-      enrichedDescription: await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.document.system.description, { async: true })
+      enrichedDescription: await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.document.system.description, { async: true }),
+      subTypeChoices,
     }
     return context;
   }

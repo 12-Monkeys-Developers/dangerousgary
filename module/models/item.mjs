@@ -12,6 +12,7 @@ export default class DangerousGaryItemData extends foundry.abstract.TypeDataMode
           equipment: { label: "DANGEROUSGARY.Equipment.SubType.equipment" },
           armour: { label: "DANGEROUSGARY.Equipment.SubType.armour" },
           weapon: { label: "DANGEROUSGARY.Equipment.SubType.weapon" },
+          artefact: { label: "DANGEROUSGARY.Equipment.SubType.artefact" },
         },
       }),
       weaponCategory: new fields.StringField({
