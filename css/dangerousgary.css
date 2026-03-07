@@ -67,6 +67,7 @@
 }
 .dangerousgary.actor.character .panel {
   background: var(--dg-box-bg) url("/systems/dangerousgary/assets/fond_gris.webp") center / cover no-repeat;
+  color: #222;
   border: 1px solid var(--dg-border-color);
   padding: 10px 15px;
   box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.6);
@@ -178,6 +179,7 @@
   border: none;
   border-bottom: 1px solid var(--dg-text-red);
   background: transparent;
+  color: #000;
   font-size: 1rem;
   padding: 2px 5px;
   margin-bottom: 8px;
@@ -259,6 +261,7 @@
 }
 .dangerousgary.actor.character .character-biography {
   background: var(--dg-box-bg) url("/systems/dangerousgary/assets/fond_gris.webp") center / cover no-repeat;
+  color: #222;
   border: 1px solid var(--dg-border-color);
   padding: 10px 15px;
   box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.6);
@@ -286,6 +289,7 @@
 }
 .dangerousgary.actor.character .character-inventory {
   background: var(--dg-box-bg) url("/systems/dangerousgary/assets/fond_gris.webp") center / cover no-repeat;
+  color: #222;
   border: 1px solid var(--dg-border-color);
   padding: 10px 15px;
   box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.6);
@@ -451,10 +455,19 @@
 .dangerousgary.actor.encounter .encounter-powers,
 .dangerousgary.actor.encounter .encounter-description {
   background: var(--dg-box-bg) url("/systems/dangerousgary/assets/fond_gris.webp") center / cover no-repeat;
+  color: #222;
   border: 1px solid var(--dg-border-color);
   padding: 10px 15px;
   box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.6);
   border-radius: 5px;
+}
+.dangerousgary.actor.encounter .encounter-attacks input,
+.dangerousgary.actor.encounter .encounter-powers input,
+.dangerousgary.actor.encounter .encounter-description input,
+.dangerousgary.actor.encounter .encounter-attacks select,
+.dangerousgary.actor.encounter .encounter-powers select,
+.dangerousgary.actor.encounter .encounter-description select {
+  color: #222;
 }
 .dangerousgary.actor.encounter .encounter-attacks legend,
 .dangerousgary.actor.encounter .encounter-powers legend,
@@ -514,6 +527,13 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+.dangerousgary.item.equipment fieldset {
+  color: #222;
+}
+.dangerousgary.item.equipment fieldset input,
+.dangerousgary.item.equipment fieldset select {
+  color: #222;
 }
 .dangerousgary.item.equipment .window-content {
   background: var(--dg-bg-dark) url("/systems/dangerousgary/assets/fond_noir.webp") center / cover no-repeat;
@@ -637,6 +657,13 @@
   flex-direction: column;
   gap: 10px;
 }
+.dangerousgary.item.attack fieldset {
+  color: #222;
+}
+.dangerousgary.item.attack fieldset input,
+.dangerousgary.item.attack fieldset select {
+  color: #222;
+}
 .dangerousgary.item.attack .window-content {
   background: var(--dg-bg-dark) url("/systems/dangerousgary/assets/fond_noir.webp") center / cover no-repeat;
   padding: 10px;
@@ -732,6 +759,13 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+.dangerousgary.item.talent fieldset {
+  color: #222;
+}
+.dangerousgary.item.talent fieldset input,
+.dangerousgary.item.talent fieldset select {
+  color: #222;
 }
 .dangerousgary.item.talent .window-content {
   background: var(--dg-bg-dark) url("/systems/dangerousgary/assets/fond_noir.webp") center / cover no-repeat;
