@@ -1,7 +1,7 @@
 {
   "id": "dangerousgary",
   "title": "Dangerous Gary",
-  "description": "The Dangerous Gary system for FoundryVTT!",
+  "description": "Le système Dangerous Gary pour FoundryVTT",
   "version": "#{VERSION}#",
   "url": "#{URL}#",
   "manifest": "#{MANIFEST}#",
