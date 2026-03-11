@@ -1,3 +1,8 @@
+1.1.1
+- Un équipement de type Arme peut être ajouté à la hotbar : il permet de lancer les dégâts
+- Prise en compte du thème Sombre
+- Grid : 1,5m par défaut
+
 1.1.0
 - Combat tracker personnalisé avec initiative de groupe (PJ puis PNJ) et réordonnancement par drag-and-drop
 - Ajout des dégâts critiques sur les armes (dés explosifs) avec indicateur visuel dans le chat et l'inventaire
