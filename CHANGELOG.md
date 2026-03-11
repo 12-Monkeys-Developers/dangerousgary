@@ -1,4 +1,5 @@
 1.1.1
+- Release officielle
 - Un équipement de type Arme peut être ajouté à la hotbar : il permet de lancer les dégâts
 - Prise en compte du thème Sombre
 - Grid : 1,5m par défaut
@@ -11,4 +12,4 @@
 - Perte de PV (et de FOR si insuffisant) en cas d'échec d'un jet de talent, avec indication dans le chat
 
 1.0.0
-- Release officielle
+- Première version beta

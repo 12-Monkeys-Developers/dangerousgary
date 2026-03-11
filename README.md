@@ -1,5 +1,15 @@
 # Système Dangerous Gary pour Foundry VTT
 
+<div align="center">
+
+![Supported Foundry VTT versions](https://img.shields.io/endpoint?url=https%3A%2F%2Ffoundryshields.com%2Fversion%3Fstyle%3Dflat%26url%3Dhttps%3A%2F%2Fraw.githubusercontent.com%2F12-Monkeys-Developers%2Fdangerousgary%2Fmain%2Fsystem.json)
+![Latest Release](https://img.shields.io/github/v/release/12-Monkeys-Developers/dangerousgary?label=Latest%20release)
+
+</div>
+
+
+# Disclaimer
+
 Dangerous Gary © est un jeu de rôle édité par Les XII Singes © 2025
 
 La marque Les XII Singes est la propriété de ReSpell © 5 bis avenue des Clairs-Chênes 95370 Montigny-lès-Cormeilles. Basé sur le SRD de Mark Of the Odd par Chris McDowall, auteur de Into the Odd www.bastionland.com.
@@ -7,11 +17,13 @@ Les marques Dungeons & Dragons © et Mordenkainen © sont la propriété de Wiza
 
 Les visuels utilisés sur Foundry VTT sont réalisés par Maxime Plasse (https://www.maxsmaps.com/). Ils sont fournis pour l'utilisation de Foundry VTT. Toute autre utilisation ou reproduction d'image doit obtenir l'accord de ReSpell / Les XII Singes.
 
-Rejoignez la communauté Discord FR : <a href='https://discord.gg/pPSDNJk'>Foundry VTT Discord FR</a>
+# Contribution
 
 Ce système est développé par Kristov.
 
 # Fonctionnalités
+
+![Oscar Zimmer](assets/fiche_oscar_zimmer.png)
 
 ## Général
 
@@ -78,3 +90,18 @@ Ce système est développé par Kristov.
   - Initiative automatique : les PJ passent avant les PNJ
   - Combat tracker personnalisé : pas de boutons de jet d'initiative ni d'affichage d'initiative (initiative côté-basée)
   - Réorganisation par drag & drop de l'ordre des combattants dans le tracker (MJ uniquement)
+
+
+# Communauté
+
+<p>Rejoignez-nous sur le serveur <a href="https://discord.gg/lafonderie">Discord francophone dédié à Foundry Virtual Tabletop</a><br />
+Nous serons ravis d'y avoir vos retours sur le système, des signalements de bug, des idées d'amélioration, ou simplement des encouragements !</p>
+
+# Licences
+<ul>
+<li>Le code HTML, CSS et Javascript de ce projet est placé sous <a href="https://choosealicense.com/licenses/gpl-3.0/">licence GNU General Public License v3.0</a></li>
+
+<li>All HTML, CSS and Javascript in this project is licensed under <a href="https://choosealicense.com/licenses/gpl-3.0/">GNU General Public License v3.0</a></li>
+
+<li>Foundry VTT support is covered by the following license: <a href="https://foundryvtt.com/article/license/">Limited License Agreement for module development 17/02/2021</a>.</li>
+</ul>
