@@ -5,7 +5,7 @@ export class Macros {
         const actor = game.actors.get(dropData.actorId)
         const item = actor?.items.get(dropData.itemId)
         if (!item) return
-        const command = `const actor = game.actors.get('${dropData.actorId}')\nconst item = actor?.items.get('${dropData.itemId}')\nif (item) actor.rollDamage(item.name, item.system.damageFormula, { criticalDamage: item.system.criticalDamage })`
+        const command = `// Clic: Jet de dégâts | Shift+Clic: Options (contrainte/exaltée)\nconst actor = game.actors.get('${dropData.actorId}')\nconst item = actor?.items.get('${dropData.itemId}')\nif (item) { if (event?.shiftKey) { actor.promptDamageRoll(item.name, item.system.damageFormula, { criticalDamage: item.system.criticalDamage }) } else { actor.rollDamage(item.name, item.system.damageFormula, { criticalDamage: item.system.criticalDamage }) } }`
         const macroName = `${item.name} (${actor.name})`
         this.createMacro(slot, macroName, command, item.img)
         break

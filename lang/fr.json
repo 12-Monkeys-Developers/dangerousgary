@@ -228,7 +228,7 @@
       "Exalted": "Exaltée (dégâts max)"
     },
     "RollDamage": "Lancer les Dégâts",
-    "RollDamageTooltip": "Clic gauche : Lancer les dégâts<br>Clic droit : Options (contrainte/exaltée)",
+    "RollDamageTooltip": "Clic : Lancer les dégâts<br>Shift+Clic : Options (contrainte/exaltée)",
     "RollStrength": "Lancer un Jet de Force",
     "RollStrengthTooltip": "Clic : Jet de Force<br>Shift+Clic : Jet de classe (max)",
     "RollDexterity": "Lancer un Jet de Dextérité",

@@ -3,11 +3,12 @@
 - Combat tracker : au début de chaque round, les PJ sont classés par dextérité décroissante
 - Combat tracker : le drag-and-drop reste disponible pour réordonner librement pendant le round
 - Combat tracker : les combattants ayant joué sont visuellement atténués (opacité réduite)
-- Attaques contraintes et exaltées : clic droit sur le dé de dégâts pour choisir le type d'attaque (contrainte = 1d4, exaltée = dégâts max)
-- Infobulle enrichie sur le dé de dégâts (clic gauche / clic droit)
+- Attaques contraintes et exaltées : Shift+Clic sur le dé de dégâts pour choisir le type d'attaque (contrainte = 1d4, exaltée = dégâts max)
+- Macro hotbar arme : Shift+Clic ouvre le dialogue d'options de dégâts
 - Zone de saisie libre "Équipement divers" sous la liste d'items dans l'onglet Équipement
 - Shift+Clic sur une caractéristique (fiche personnage) : jet de classe (valeur max)
 - Drag-and-drop des caractéristiques vers la hotbar (Clic : jet normal, Shift+Clic : jet de classe)
+- Infobulle dans le chat précisant le type de sauvegarde (caractéristique ou classe)
 
 1.1.1
 - Release officielle

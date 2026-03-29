@@ -234,7 +234,7 @@
       "Exalted": "Exalted (max damage)"
     },
     "RollDamage": "Roll Damage",
-    "RollDamageTooltip": "Left click: Roll damage<br>Right click: Options (constrained/exalted)",
+    "RollDamageTooltip": "Click: Roll damage<br>Shift+Click: Options (constrained/exalted)",
     "NewAttack": "New Attack",
     "NewEquipment": "New Equipment",
     "NewTalent": "New Talent",
