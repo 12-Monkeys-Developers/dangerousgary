@@ -1082,6 +1082,12 @@
 .dice-roll .roll-icon.critical-damage {
   color: #e65100;
 }
+.dice-roll .roll-icon.constrained {
+  color: #5d4037;
+}
+.dice-roll .roll-icon.exalted {
+  color: #f9a825;
+}
 .dice-roll .roll-talent-damage {
   display: flex;
   justify-content: center;

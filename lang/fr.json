@@ -217,7 +217,15 @@
     "Edit": "Modifier",
     "Delete": "Supprimer",
     "RollClassSave": "Lancer la sauvegarde de classe",
+    "Dialog": {
+      "DamageOptions": "Options de dégâts",
+      "AttackType": "Type d'attaque",
+      "Normal": "Normale",
+      "Constrained": "Contrainte (1d4)",
+      "Exalted": "Exaltée (dégâts max)"
+    },
     "RollDamage": "Lancer les Dégâts",
+    "RollDamageTooltip": "Clic gauche : Lancer les dégâts<br>Clic droit : Options (contrainte/exaltée)",
     "RollStrength": "Lancer un Jet de Force",
     "RollDexterity": "Lancer un Jet de Dextérité",
     "RollWillpower": "Lancer un Jet de Volonté",
@@ -234,6 +242,8 @@
       "Fumble": "Fumble",
       "AttackRollDamage": "Jet de Dégâts de {itemName}",
       "CriticalDamage": "Dommages critiques",
+      "Constrained": "Attaque contrainte",
+      "Exalted": "Attaque exaltée",
       "TalentDamage": "-{hp} PV",
       "TalentDamageWithStr": "-{hp} PV, -{str} FOR"
     }

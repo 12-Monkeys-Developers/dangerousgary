@@ -130,6 +130,17 @@ export default class DangerousGaryCharacterSheet extends HandlebarsApplicationMi
         drop: this._onDrop.bind(this),
       },
     }).bind(this.element)
+
+    // Clic droit sur dé de dégâts → dialogue contrainte/exaltée
+    this.element.querySelectorAll('[data-action="rollDamage"]').forEach((el) => {
+      el.addEventListener("contextmenu", async (event) => {
+        event.preventDefault()
+        const itemName = el.getAttribute("data-name")
+        const formula = el.getAttribute("data-formula")
+        const criticalDamage = el.getAttribute("data-critical-damage") === "true"
+        await this.actor.promptDamageRoll(itemName, formula, { criticalDamage })
+      })
+    })
   }
 
   /** @override */

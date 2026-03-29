@@ -75,6 +75,16 @@ export default class DangerousGaryEncounterSheet extends HandlebarsApplicationMi
         drop: this._onDrop.bind(this),
       },
     }).bind(this.element)
+
+    // Clic droit sur dé de dégâts → dialogue contrainte/exaltée
+    this.element.querySelectorAll('[data-action="rollDamage"]').forEach((el) => {
+      el.addEventListener("contextmenu", async (event) => {
+        event.preventDefault()
+        const itemName = el.getAttribute("data-name")
+        const formula = el.getAttribute("data-formula")
+        await this.actor.promptDamageRoll(itemName, formula)
+      })
+    })
   }
 
   //#region Drag-and-Drop Workflow

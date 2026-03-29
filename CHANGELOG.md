@@ -3,6 +3,8 @@
 - Combat tracker : au début de chaque round, les PJ sont classés par dextérité décroissante
 - Combat tracker : le drag-and-drop reste disponible pour réordonner librement pendant le round
 - Combat tracker : les combattants ayant joué sont visuellement atténués (opacité réduite)
+- Attaques contraintes et exaltées : clic droit sur le dé de dégâts pour choisir le type d'attaque (contrainte = 1d4, exaltée = dégâts max)
+- Infobulle enrichie sur le dé de dégâts (clic gauche / clic droit)
 
 1.1.1
 - Release officielle

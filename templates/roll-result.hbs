@@ -23,6 +23,12 @@
     {{#if isCriticalDamage}}
       <span class="roll-icon critical-damage" data-tooltip="{{localize 'DANGEROUSGARY.Roll.CriticalDamage'}}"><i class="fas fa-burst"></i></span>
     {{/if}}
+    {{#if isConstrained}}
+      <span class="roll-icon constrained" data-tooltip="{{localize 'DANGEROUSGARY.Roll.Constrained'}}"><i class="fas fa-link"></i></span>
+    {{/if}}
+    {{#if isExalted}}
+      <span class="roll-icon exalted" data-tooltip="{{localize 'DANGEROUSGARY.Roll.Exalted'}}"><i class="fas fa-crown"></i></span>
+    {{/if}}
   </div>
   {{#if talentDamage}}
     <div class="roll-talent-damage">

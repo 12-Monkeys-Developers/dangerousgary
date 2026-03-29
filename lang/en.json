@@ -220,7 +220,15 @@
     "RollDexterity": "Roll Dexterity save",
     "RollWillpower": "Roll Willpower save",
     "RollClassSave": "Roll class save",
+    "Dialog": {
+      "DamageOptions": "Damage Options",
+      "AttackType": "Attack Type",
+      "Normal": "Normal",
+      "Constrained": "Constrained (1d4)",
+      "Exalted": "Exalted (max damage)"
+    },
     "RollDamage": "Roll Damage",
+    "RollDamageTooltip": "Left click: Roll damage<br>Right click: Options (constrained/exalted)",
     "NewAttack": "New Attack",
     "NewEquipment": "New Equipment",
     "NewTalent": "New Talent",
@@ -234,6 +242,8 @@
       "Fumble": "Fumble",
       "AttackRollDamage": "Damage Roll of {itemName}",
       "CriticalDamage": "Critical Damage",
+      "Constrained": "Constrained Attack",
+      "Exalted": "Exalted Attack",
       "TalentDamage": "-{hp} HP",
       "TalentDamageWithStr": "-{hp} HP, -{str} STR"
     }

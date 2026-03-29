@@ -81,11 +81,19 @@ export default class DangerousGaryActor extends Actor {
    * @param {*} itemName
    * @param {*} formula
    */
-  async rollDamage(itemName, formula, { criticalDamage = false } = {}) {
-    const rollFormula = criticalDamage ? formula.replace(/(\d+d\d+)/gi, "$1xo") : formula
-    const roll = await new Roll(rollFormula).roll()
+  async rollDamage(itemName, formula, { criticalDamage = false, constrained = false, exalted = false } = {}) {
+    let roll
+    if (constrained) {
+      roll = await new Roll("1d4").roll()
+    } else if (exalted) {
+      const maxFormula = formula.replace(/(\d+)d(\d+)/gi, (_, num, faces) => String(Number(num) * Number(faces)))
+      roll = await new Roll(maxFormula).roll()
+    } else {
+      const rollFormula = criticalDamage ? formula.replace(/(\d+d\d+)/gi, "$1xo") : formula
+      roll = await new Roll(rollFormula).roll()
+    }
     const result = roll.total
-    const isCriticalDamage = criticalDamage && roll.dice.some(die => die.results.some(r => r.exploded))
+    const isCriticalDamage = !constrained && !exalted && criticalDamage && roll.dice.some((die) => die.results.some((r) => r.exploded))
 
     const label = game.i18n.format("DANGEROUSGARY.Roll.AttackRollDamage", { itemName })
 
@@ -97,6 +105,8 @@ export default class DangerousGaryActor extends Actor {
       total: roll.total,
       formula: roll.formula,
       isCriticalDamage,
+      isConstrained: constrained,
+      isExalted: exalted,
     }
 
     let chat = await new DangerousGaryChat(this).withTemplate("systems/dangerousgary/templates/roll-result.hbs").withData(chatData).withRolls([roll]).create()
@@ -104,5 +114,30 @@ export default class DangerousGaryActor extends Actor {
     await chat.display()
 
     return { roll, result }
+  }
+
+  async promptDamageRoll(itemName, formula, { criticalDamage = false } = {}) {
+    const attackType = await foundry.applications.api.DialogV2.prompt({
+      window: { title: game.i18n.localize("DANGEROUSGARY.Dialog.DamageOptions") },
+      content: `
+        <fieldset class="damage-options">
+          <legend>${game.i18n.localize("DANGEROUSGARY.Dialog.AttackType")}</legend>
+          <label><input type="radio" name="attackType" value="normal" checked> ${game.i18n.localize("DANGEROUSGARY.Dialog.Normal")}</label>
+          <label><input type="radio" name="attackType" value="constrained"> ${game.i18n.localize("DANGEROUSGARY.Dialog.Constrained")}</label>
+          <label><input type="radio" name="attackType" value="exalted"> ${game.i18n.localize("DANGEROUSGARY.Dialog.Exalted")}</label>
+        </fieldset>
+      `,
+      ok: {
+        label: game.i18n.localize("DANGEROUSGARY.RollDamage"),
+        callback: (event, button, dialog) => new FormData(button.form).get("attackType"),
+      },
+      rejectClose: false,
+    })
+    if (!attackType) return
+    return this.rollDamage(itemName, formula, {
+      criticalDamage,
+      constrained: attackType === "constrained",
+      exalted: attackType === "exalted",
+    })
   }
 }
