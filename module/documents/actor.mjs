@@ -51,6 +51,7 @@ export default class DangerousGaryActor extends Actor {
       success,
       isCritical,
       isFumble,
+      isClassSave: useMax,
     }
 
     // Talent failure: lose HP equal to talent level, overflow to STR

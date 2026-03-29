@@ -3,7 +3,7 @@
     <div class="roll-talent-name">{{talentName}}</div>
   {{/if}}
   <div class="roll-line">
-    <span class="roll-label">{{{introText}}}</span>
+    <span class="roll-label" {{#if (eq rollType "save")}}data-tooltip="{{#if isClassSave}}{{localize 'DANGEROUSGARY.Roll.ClassSave'}}{{else}}{{localize 'DANGEROUSGARY.Roll.AbilitySave'}}{{/if}}"{{/if}}>{{{introText}}}</span>
     <span class="roll-total" {{#if formula}}data-tooltip="{{formula}}"{{/if}}>{{total}}</span>
     {{#if (eq rollType "save")}}
       {{#if success}}

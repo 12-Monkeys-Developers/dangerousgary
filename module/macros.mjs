@@ -1,7 +1,7 @@
 export class Macros {
   static createDangerousGaryMacro = async function (dropData, slot) {
     switch (dropData.type) {
-      case "rollDamage":
+      case "rollDamage": {
         const actor = game.actors.get(dropData.actorId)
         const item = actor?.items.get(dropData.itemId)
         if (!item) return
@@ -9,6 +9,17 @@ export class Macros {
         const macroName = `${item.name} (${actor.name})`
         this.createMacro(slot, macroName, command, item.img)
         break
+      }
+      case "rollSave": {
+        const actor = game.actors.get(dropData.actorId)
+        if (!actor) return
+        const ability = dropData.ability
+        const abilityLabel = game.i18n.localize(`DANGEROUSGARY.Labels.short.${ability}`)
+        const command = `// Clic: Jet de caractéristique | Shift+Clic: Jet de classe (max)\nconst actor = game.actors.get('${dropData.actorId}')\nif (actor) actor.rollSave('${ability}', { useMax: event?.shiftKey })`
+        const macroName = `${abilityLabel} (${actor.name})`
+        this.createMacro(slot, macroName, command, "icons/svg/d20-grey.svg")
+        break
+      }
     }
   }
 

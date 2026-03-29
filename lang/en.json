@@ -220,11 +220,11 @@
     "Edit": "Edit",
     "Delete": "Delete",
     "RollStrength": "Roll Strength save",
-    "RollStrengthTooltip": "Left click: Strength save<br>Right click: Class save (max)",
+    "RollStrengthTooltip": "Click: Strength save<br>Shift+Click: Class save (max)",
     "RollDexterity": "Roll Dexterity save",
-    "RollDexterityTooltip": "Left click: Dexterity save<br>Right click: Class save (max)",
+    "RollDexterityTooltip": "Click: Dexterity save<br>Shift+Click: Class save (max)",
     "RollWillpower": "Roll Willpower save",
-    "RollWillpowerTooltip": "Left click: Willpower save<br>Right click: Class save (max)",
+    "RollWillpowerTooltip": "Click: Willpower save<br>Shift+Click: Class save (max)",
     "RollClassSave": "Roll class save",
     "Dialog": {
       "DamageOptions": "Damage Options",
@@ -250,6 +250,8 @@
       "CriticalDamage": "Critical Damage",
       "Constrained": "Constrained Attack",
       "Exalted": "Exalted Attack",
+      "AbilitySave": "Ability save",
+      "ClassSave": "Class save",
       "TalentDamage": "-{hp} HP",
       "TalentDamageWithStr": "-{hp} HP, -{str} STR"
     }

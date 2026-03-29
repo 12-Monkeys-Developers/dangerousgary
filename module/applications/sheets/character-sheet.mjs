@@ -143,14 +143,6 @@ export default class DangerousGaryCharacterSheet extends HandlebarsApplicationMi
       })
     })
 
-    // Clic droit sur caractéristique → jet de classe (useMax)
-    this.element.querySelectorAll('[data-action="rollSave"]').forEach((el) => {
-      el.addEventListener("contextmenu", async (event) => {
-        event.preventDefault()
-        const ability = el.getAttribute("data-ability")
-        await this.actor.rollSave(ability, { useMax: true })
-      })
-    })
   }
 
   /** @override */
@@ -220,16 +212,24 @@ export default class DangerousGaryCharacterSheet extends HandlebarsApplicationMi
     const el = event.currentTarget.closest(".draggable")
     if (!el) return
     const dragType = el.dataset.dragType
-    const itemId = el.dataset.itemId
-    if (!dragType || !itemId) return
+    if (!dragType) return
 
     let dragData = null
     switch (dragType) {
       case "rollDamage":
+        const itemId = el.dataset.itemId
+        if (!itemId) return
         dragData = {
           type: "rollDamage",
           actorId: this.document.id,
           itemId,
+        }
+        break
+      case "rollSave":
+        dragData = {
+          type: "rollSave",
+          actorId: this.document.id,
+          ability: el.dataset.ability,
         }
         break
     }
@@ -291,7 +291,7 @@ export default class DangerousGaryCharacterSheet extends HandlebarsApplicationMi
    */
   static async #onItemRollSave(event, target) {
     const ability = target.getAttribute("data-ability")
-    const roll = await this.actor.rollSave(ability)
+    await this.actor.rollSave(ability, { useMax: event.shiftKey })
   }
 
   /**

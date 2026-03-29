@@ -230,11 +230,11 @@
     "RollDamage": "Lancer les Dégâts",
     "RollDamageTooltip": "Clic gauche : Lancer les dégâts<br>Clic droit : Options (contrainte/exaltée)",
     "RollStrength": "Lancer un Jet de Force",
-    "RollStrengthTooltip": "Clic gauche : Jet de Force<br>Clic droit : Jet de classe (max)",
+    "RollStrengthTooltip": "Clic : Jet de Force<br>Shift+Clic : Jet de classe (max)",
     "RollDexterity": "Lancer un Jet de Dextérité",
-    "RollDexterityTooltip": "Clic gauche : Jet de Dextérité<br>Clic droit : Jet de classe (max)",
+    "RollDexterityTooltip": "Clic : Jet de Dextérité<br>Shift+Clic : Jet de classe (max)",
     "RollWillpower": "Lancer un Jet de Volonté",
-    "RollWillpowerTooltip": "Clic gauche : Jet de Volonté<br>Clic droit : Jet de classe (max)",
+    "RollWillpowerTooltip": "Clic : Jet de Volonté<br>Shift+Clic : Jet de classe (max)",
     "NewAttack": "Nouvelle Attaque",
     "NewEquipment": "Nouvel Équipement",
     "NewTalent": "Nouveau Talent",
@@ -250,6 +250,8 @@
       "CriticalDamage": "Dommages critiques",
       "Constrained": "Attaque contrainte",
       "Exalted": "Attaque exaltée",
+      "AbilitySave": "Sauvegarde de caractéristique",
+      "ClassSave": "Sauvegarde de classe",
       "TalentDamage": "-{hp} PV",
       "TalentDamageWithStr": "-{hp} PV, -{str} FOR"
     }
