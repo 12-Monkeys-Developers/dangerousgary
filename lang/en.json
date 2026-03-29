@@ -220,8 +220,11 @@
     "Edit": "Edit",
     "Delete": "Delete",
     "RollStrength": "Roll Strength save",
+    "RollStrengthTooltip": "Left click: Strength save<br>Right click: Class save (max)",
     "RollDexterity": "Roll Dexterity save",
+    "RollDexterityTooltip": "Left click: Dexterity save<br>Right click: Class save (max)",
     "RollWillpower": "Roll Willpower save",
+    "RollWillpowerTooltip": "Left click: Willpower save<br>Right click: Class save (max)",
     "RollClassSave": "Roll class save",
     "Dialog": {
       "DamageOptions": "Damage Options",

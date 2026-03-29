@@ -142,6 +142,15 @@ export default class DangerousGaryCharacterSheet extends HandlebarsApplicationMi
         await this.actor.promptDamageRoll(itemName, formula, { criticalDamage })
       })
     })
+
+    // Clic droit sur caractéristique → jet de classe (useMax)
+    this.element.querySelectorAll('[data-action="rollSave"]').forEach((el) => {
+      el.addEventListener("contextmenu", async (event) => {
+        event.preventDefault()
+        const ability = el.getAttribute("data-ability")
+        await this.actor.rollSave(ability, { useMax: true })
+      })
+    })
   }
 
   /** @override */
