@@ -33,6 +33,9 @@
         "equipmentPoints": {
           "label": "Points d'équipement"
         },
+        "equipmentMisc": {
+          "label": "Équipement divers"
+        },
         "perk": {
           "label": "Atout"
         },

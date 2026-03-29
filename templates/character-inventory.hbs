@@ -46,4 +46,15 @@
       </div>
     {{/each}}
   </div>
+  <div class="misc-equipment">
+    {{formInput
+      systemFields.equipmentMisc
+      enriched=enrichedMiscEquipment
+      value=system.equipmentMisc
+      documentUUID=actor.uuid
+      name="system.equipmentMisc"
+      collaborate="true"
+      toggled="true"
+    }}
+  </div>
 </section>

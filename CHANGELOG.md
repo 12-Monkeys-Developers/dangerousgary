@@ -5,6 +5,7 @@
 - Combat tracker : les combattants ayant joué sont visuellement atténués (opacité réduite)
 - Attaques contraintes et exaltées : clic droit sur le dé de dégâts pour choisir le type d'attaque (contrainte = 1d4, exaltée = dégâts max)
 - Infobulle enrichie sur le dé de dégâts (clic gauche / clic droit)
+- Zone de saisie libre "Équipement divers" sous la liste d'items dans l'onglet Équipement
 
 1.1.1
 - Release officielle

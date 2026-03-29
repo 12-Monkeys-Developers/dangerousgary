@@ -93,6 +93,7 @@ export default class DangerousGaryCharacterSheet extends HandlebarsApplicationMi
           item.enrichedDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(item.system.description, { async: true })
           context.items.push(item)
         }
+        context.enrichedMiscEquipment = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.document.system.equipmentMisc, { async: true })
         break
       case "classes":
         context.tab = context.tabs.classes

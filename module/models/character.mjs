@@ -12,6 +12,7 @@ export default class DangerousGaryCharacterData extends foundry.abstract.TypeDat
       xp: new fields.NumberField({ required: true, nullable: false, integer: true, initial: 0, min: 0 }),
       shortDescription: new fields.StringField({ required: false, blank: true, initial: "" }),
       equipmentPoints: new fields.NumberField({ required: true, nullable: false, integer: true, initial: 0, min: 0 }),
+      equipmentMisc: new fields.HTMLField({ required: false, blank: true, initial: "" }),
       perkName: new fields.StringField({ required: false, blank: true, initial: "" }),
       perk: new fields.HTMLField({ required: false, blank: true, initial: "" }),
       specialties: new fields.SchemaField({
