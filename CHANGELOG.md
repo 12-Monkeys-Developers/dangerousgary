@@ -9,6 +9,7 @@
 - Shift+Clic sur une caractéristique (fiche personnage) : jet de classe (valeur max)
 - Drag-and-drop des caractéristiques vers la hotbar (Clic : jet normal, Shift+Clic : jet de classe)
 - Infobulle dans le chat précisant le type de sauvegarde (caractéristique ou classe)
+- Correction de l'affichage des items en mode sombre : labels, listes déroulantes et champs de saisie désormais lisibles sur les fiches Talent, Équipement et Attaque
 
 1.1.1
 - Release officielle

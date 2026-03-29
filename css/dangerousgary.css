@@ -531,9 +531,13 @@
 .dangerousgary.item.equipment fieldset {
   color: #222;
 }
+.dangerousgary.item.equipment fieldset label {
+  color: #222;
+}
 .dangerousgary.item.equipment fieldset input,
 .dangerousgary.item.equipment fieldset select {
   color: #222;
+  background-color: #f0f0f0;
 }
 .dangerousgary.item.equipment .window-content {
   background: var(--dg-bg-dark) url("/systems/dangerousgary/assets/fond_noir.webp") center / cover no-repeat;
@@ -660,9 +664,13 @@
 .dangerousgary.item.attack fieldset {
   color: #222;
 }
+.dangerousgary.item.attack fieldset label {
+  color: #222;
+}
 .dangerousgary.item.attack fieldset input,
 .dangerousgary.item.attack fieldset select {
   color: #222;
+  background-color: #f0f0f0;
 }
 .dangerousgary.item.attack .window-content {
   background: var(--dg-bg-dark) url("/systems/dangerousgary/assets/fond_noir.webp") center / cover no-repeat;
@@ -763,9 +771,13 @@
 .dangerousgary.item.talent fieldset {
   color: #222;
 }
+.dangerousgary.item.talent fieldset label {
+  color: #222;
+}
 .dangerousgary.item.talent fieldset input,
 .dangerousgary.item.talent fieldset select {
   color: #222;
+  background-color: #f0f0f0;
 }
 .dangerousgary.item.talent .window-content {
   background: var(--dg-bg-dark) url("/systems/dangerousgary/assets/fond_noir.webp") center / cover no-repeat;
