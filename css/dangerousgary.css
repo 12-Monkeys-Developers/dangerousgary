@@ -1091,3 +1091,12 @@
   font-weight: bold;
   color: #c62828;
 }
+.combat-tracker .combatant .fa-fist-raised {
+  color: gray;
+}
+.combat-tracker .combatant .fa-fist-raised.acted {
+  color: #2e7d32;
+}
+.combat-tracker .combatant.has-acted {
+  opacity: 0.5;
+}

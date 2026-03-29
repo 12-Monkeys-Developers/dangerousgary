@@ -43,6 +43,7 @@ Hooks.once('init', async function () {
   // Combat
   CONFIG.ui.combat = applications.DangerousGaryCombatTracker
   CONFIG.Combat.documentClass = documents.DangerousGaryCombat
+  CONFIG.Combatant.documentClass = documents.DangerousGaryCombatant
 
   // Settings
   game.settings.register("dangerousgary", "enableClasses", {

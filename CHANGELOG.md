@@ -1,3 +1,9 @@
+1.2.0
+- Combat tracker : les combattants qui ont déjà joué sont automatiquement placés après ceux qui n'ont pas encore joué (bouton "A joué" pour le MJ et les owners)
+- Combat tracker : au début de chaque round, les PJ sont classés par dextérité décroissante
+- Combat tracker : le drag-and-drop reste disponible pour réordonner librement pendant le round
+- Combat tracker : les combattants ayant joué sont visuellement atténués (opacité réduite)
+
 1.1.1
 - Release officielle
 - Un équipement de type Arme peut être ajouté à la hotbar : il permet de lancer les dégâts

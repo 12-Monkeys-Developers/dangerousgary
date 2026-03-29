@@ -1,14 +1,50 @@
 const { ux, sidebar } = foundry.applications
 
 export default class DangerousGaryCombatTracker extends sidebar.tabs.CombatTracker {
+  static DEFAULT_OPTIONS = {
+    actions: {
+      combatantAct: DangerousGaryCombatTracker.#onCombatantAct,
+    },
+  }
+
+  static PARTS = {
+    header: {
+      template: "templates/sidebar/tabs/combat/header.hbs",
+    },
+    tracker: {
+      template: "systems/dangerousgary/templates/combat-tracker.hbs",
+      scrollable: [""],
+    },
+    footer: {
+      template: "templates/sidebar/tabs/combat/footer.hbs",
+    },
+  }
+
+  /** @override */
+  async _prepareTurnContext(combat, combatant, index) {
+    const turn = await super._prepareTurnContext(combat, combatant, index)
+    turn.hasActed = combatant.getFlag("world", "hasActed")
+    return turn
+  }
+
+  static #onCombatantAct(...args) {
+    return this._onAct(...args)
+  }
+
+  async _onAct(event, target) {
+    event.preventDefault()
+    const combat = this.viewed
+    const combatant = combat.combatants.get(target.dataset.combatantId)
+    await combatant.setFlag("world", "hasActed", !combatant.getFlag("world", "hasActed"))
+  }
+
   /** @inheritdoc */
   async _onRender(context, options) {
     await super._onRender(context, options)
 
-    // Supprime l'affichage de l'initiative et des boutons de roll d'initiative
+    // Supprime les boutons de roll d'initiative (le template custom n'affiche déjà plus l'initiative)
     this.element.querySelector('.encounter-controls.combat .control-buttons.left [data-action="rollAll"]')?.remove()
     this.element.querySelector('.encounter-controls.combat .control-buttons.left [data-action="rollNPC"]')?.remove()
-    this.element.querySelectorAll(".token-initiative").forEach((el) => el.remove())
 
     new ux.DragDrop.implementation({
       dragSelector: ".combatant",
@@ -25,38 +61,19 @@ export default class DangerousGaryCombatTracker extends sidebar.tabs.CombatTrack
     }).bind(this.element)
   }
 
-  /**
-   * An event that occurs when a drag workflow begins for a draggable combatant on the combat tracker.
-   * @param {DragEvent} event       The initiating drag start event.
-   * @returns {Promise<void>}
-   * @protected
-   */
   async _onDragStart(event) {
     const li = event.currentTarget
     const combatant = this.viewed.combatants.get(li.dataset.combatantId)
     if (!combatant) return
     const dragData = combatant.toDragData()
-    // Contient type et uuid
     event.dataTransfer.setData("text/plain", JSON.stringify(dragData))
   }
 
-  /**
-   * An event that occurs when a drag workflow moves over a drop target.
-   * @param {DragEvent} event
-   * @protected
-   */
   _onDragOver(event) {}
 
-  /**
-   * An event that occurs when data is dropped into a drop target.
-   * @param {DragEvent} event
-   * @returns {Promise<void>}
-   * @protected
-   */
   async _onDrop(event) {
     event.stopPropagation()
     const data = ux.TextEditor.implementation.getDragEventData(event)
-    // Attributs type uuid
     const combatant = fromUuidSync(data.uuid)
     if (!combatant) return
 
@@ -65,17 +82,15 @@ export default class DangerousGaryCombatTracker extends sidebar.tabs.CombatTrack
     const targetCombatant = combatant.parent.combatants.get(targetCombatantId)
     if (!targetCombatant) return
 
-    // Nouvelle initiative du combatant droppé = initiative du combatant cible
+    // Nouvelle initiative du combatant droppé = initiative du combattant cible
     const newInitiative = targetCombatant.initiative
 
     // Le combattant droppé avait une initiative inférieure à celle du combattant cible
     if (combatant.initiative < targetCombatant.initiative) {
-      // Le combattant cible est décalé d'une unité pour laisser la place
       await targetCombatant.update({ initiative: targetCombatant.initiative - 10 })
     }
     // Le combattant droppé avait une initiative supérieure ou égale à celle du combattant cible
     else if (combatant.initiative >= targetCombatant.initiative) {
-      // Le combattant cible est décalé d'une unité pour laisser la place
       await targetCombatant.update({ initiative: targetCombatant.initiative + 10 })
     }
     await combatant.update({ initiative: newInitiative })
