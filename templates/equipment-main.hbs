@@ -35,6 +35,72 @@
       </fieldset>
     </section>
   {{/if}}
+  
+  {{#if (eq item.system.subType "artefact")}}
+	<section class="item-artefact">
+      <fieldset>
+		<legend>{{localize "DANGEROUSGARY.Equipment.SubType.artefact"}}</legend>
+        <div class="inline-fields">
+			{{formGroup systemFields.allowedClasses.fields.bard value=system.allowedClasses.bard label=(localize "DANGEROUSGARY.Equipment.FIELDS.allowedClasses.fields.bard.label")}}
+			{{formGroup systemFields.allowedClasses.fields.cleric value=system.allowedClasses.cleric label=(localize "DANGEROUSGARY.Equipment.FIELDS.allowedClasses.fields.cleric.label")}}
+			{{formGroup systemFields.allowedClasses.fields.druid value=system.allowedClasses.druid label=(localize "DANGEROUSGARY.Equipment.FIELDS.allowedClasses.fields.druid.label")}}
+			{{formGroup systemFields.allowedClasses.fields.fighter value=system.allowedClasses.fighter label=(localize "DANGEROUSGARY.Equipment.FIELDS.allowedClasses.fields.fighter.label")}}
+			{{formGroup systemFields.allowedClasses.fields.mage value=system.allowedClasses.mage label=(localize "DANGEROUSGARY.Equipment.FIELDS.allowedClasses.fields.mage.label")}}
+			{{formGroup systemFields.allowedClasses.fields.monk value=system.allowedClasses.monk label=(localize "DANGEROUSGARY.Equipment.FIELDS.allowedClasses.fields.monk.label")}}
+			{{formGroup systemFields.allowedClasses.fields.paladin value=system.allowedClasses.paladin label=(localize "DANGEROUSGARY.Equipment.FIELDS.allowedClasses.fields.paladin.label")}}
+			{{formGroup systemFields.allowedClasses.fields.ranger value=system.allowedClasses.ranger label=(localize "DANGEROUSGARY.Equipment.FIELDS.allowedClasses.fields.ranger.label")}}
+			{{formGroup systemFields.allowedClasses.fields.thief value=system.allowedClasses.thief label=(localize "DANGEROUSGARY.Equipment.FIELDS.allowedClasses.fields.thief.label")}}
+        </div>
+		<div class="artefact-levels">
+		   <div class="artefact-level" data-level="1">
+			<div class="artefact-level-row">
+			  {{formGroup systemFields.artefactLevels.fields.level1.fields.level value=system.artefactLevels.level1.level }}
+			  {{formInput
+				systemFields.artefactLevels.fields.level1.fields.description
+				enriched=enrichedLevel1Description
+				value=system.artefactLevels.level1.description
+				documentUUID=item.uuid
+				name="system.artefactLevels.level1.description"
+				collaborate="false"
+				toggled="true"
+				height="50"
+			  }}
+			</div>
+		  </div>
+		  <div class="artefact-level" data-level="2">
+			<div class="artefact-level-row">
+			  {{formGroup systemFields.artefactLevels.fields.level2.fields.level value=system.artefactLevels.level2.level }}
+			  {{formInput
+				systemFields.artefactLevels.fields.level2.fields.description
+				enriched=enrichedLevel2Description
+				value=system.artefactLevels.level2.description
+				documentUUID=item.uuid
+				name="system.artefactLevels.level2.description"
+				collaborate="false"
+				toggled="true"
+				height="50"
+			  }}
+			</div>
+		  </div>
+		  <div class="artefact-level" data-level="3">
+			<div class="artefact-level-row">
+			  {{formGroup systemFields.artefactLevels.fields.level3.fields.level value=system.artefactLevels.level3.level }}
+			  {{formInput
+				systemFields.artefactLevels.fields.level3.fields.description
+				enriched=enrichedLevel3Description
+				value=system.artefactLevels.level3.description
+				documentUUID=item.uuid
+				name="system.artefactLevels.level3.description"
+				collaborate="false"
+				toggled="true"
+				height="50"
+			  }}
+			</div>
+		  </div>
+		</div>
+	  </fieldset>
+    </section>
+  {{/if}}
 
   <section class="item-description">
     <fieldset>

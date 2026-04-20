@@ -36,6 +36,31 @@ export default class DangerousGaryItemData extends foundry.abstract.TypeDataMode
       equipped: new fields.BooleanField({ required: true, nullable: false, initial: false }),
       bulky: new fields.BooleanField({ required: true, nullable: false, initial: false }),
       criticalDamage: new fields.BooleanField({ required: true, nullable: false, initial: false }),
+	  allowedClasses: new fields.SchemaField({
+		bard: new fields.BooleanField({ initial: false }),
+		cleric: new fields.BooleanField({ initial: false }),
+		fighter: new fields.BooleanField({ initial: false }),
+		druid: new fields.BooleanField({ initial: false }),
+		paladin: new fields.BooleanField({ initial: false }),
+		monk: new fields.BooleanField({ initial: false }),
+		mage: new fields.BooleanField({ initial: false }),
+		ranger: new fields.BooleanField({initial: false }),
+		thief: new fields.BooleanField({ initial: false }),
+		}),
+	  artefactLevels: new fields.SchemaField({
+		  level1: new fields.SchemaField({
+			level: new fields.NumberField({ required: true, nullable: false, integer: true, initial: 1, min: 1 }),
+			description: new fields.HTMLField({ required: false, blank: true, initial: "" }),
+		  }),
+		  level2: new fields.SchemaField({
+			level: new fields.NumberField({ required: true, nullable: false, integer: true, initial: 2, min: 1 }),
+			description: new fields.HTMLField({ required: false, blank: true, initial: "" }),
+		  }),
+		  level3: new fields.SchemaField({
+			level: new fields.NumberField({ required: true, nullable: false, integer: true, initial: 3, min: 1 }),
+			description: new fields.HTMLField({ required: false, blank: true, initial: "" }),
+		  }),
+		}),
     }
   }
 

@@ -45,6 +45,9 @@ export default class DangerousGaryItemSheet extends HandlebarsApplicationMixin(f
       system: this.document.system,
       source: this.document.toObject(),
       enrichedDescription: await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.document.system.description, { async: true }),
+	  enrichedLevel1Description: await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.document.system.artefactLevels.level1.description, { async: true }),
+	  enrichedLevel2Description: await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.document.system.artefactLevels.level2.description, { async: true }),
+	  enrichedLevel3Description: await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.document.system.artefactLevels.level3.description, { async: true }),
       subTypeChoices,
     }
     return context;
@@ -54,6 +57,7 @@ export default class DangerousGaryItemSheet extends HandlebarsApplicationMixin(f
   async _onRender(context, options) {
     await super._onRender(context, options)
     this._weaponCategoryListener()
+	this._artefactClassesListener()
   }
 
   _weaponCategoryListener() {
@@ -61,6 +65,35 @@ export default class DangerousGaryItemSheet extends HandlebarsApplicationMixin(f
     if (selector) {
       selector.addEventListener("change", this._onChangeWeaponCategory.bind(this))
     }
+  }
+  
+  _artefactClassesListener() {
+	  const checkboxes = this.element.querySelectorAll(
+		'.item-artefact input[type="checkbox"]'
+	  )
+	  if (!checkboxes.length) return
+
+	  const updateState = () => {
+		const checked = [...checkboxes].filter(cb => cb.checked)
+		const count = checked.length
+		const limitReached = count >= 3
+
+		for (const cb of checkboxes) {
+		  if (!cb.checked) cb.disabled = limitReached
+		}
+
+		const visibleLevels = 3 - (count >= 2 ? count - 1 : 0)
+		const levels = this.element.querySelectorAll('.artefact-level')
+		levels.forEach((el, i) => {
+		  el.style.display = (i < visibleLevels) ? "" : "none"
+		})
+	  }
+
+	  for (const cb of checkboxes) {
+		cb.addEventListener("change", updateState)
+	  }
+
+	  updateState()
   }
 
   async _onChangeWeaponCategory(event) {

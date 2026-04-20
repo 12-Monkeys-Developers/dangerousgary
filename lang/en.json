@@ -114,7 +114,47 @@
         },
         "weaponCategory": {
           "label": "Category"
-        }
+        },
+		"allowedClasses": {
+          "label": "Necessary Classes",
+          "fields": {
+            "bard": { "label": "Bard" },
+            "cleric": { "label": "Cleric" },
+            "fighter": { "label": "Fighter" },
+            "druid": { "label": "Druid" },
+            "paladin": { "label": "Paladin" },
+            "monk": { "label": "Monk" },
+            "mage": { "label": "Mage" },
+            "ranger": { "label": "Ranger" },
+            "thief": { "label": "Thief" }
+          }
+        },
+		"artefactLevels": {
+		  "label": "Artefact Levels",
+		  "fields": {
+			"level1": {
+			  "label": "Level 1",
+			  "fields": {
+				"level": { "label": "Level" },
+				"description": { "label": "Description" }
+			  }
+			},
+			"level2": {
+			  "label": "Level 2",
+			  "fields": {
+				"level": { "label": "Level" },
+				"description": { "label": "Description" }
+			  }
+			},
+			"level3": {
+			  "label": "Level 3",
+			  "fields": {
+				"level": { "label": "Level" },
+				"description": { "label": "Description" }
+			  }
+			}
+		  }
+		}
       },
       "SubType": {
         "weapon": "Weapon",

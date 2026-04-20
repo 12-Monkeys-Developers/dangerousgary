@@ -600,7 +600,8 @@
   gap: 15px;
 }
 .dangerousgary.item.equipment .item-weapon fieldset,
-.dangerousgary.item.equipment .item-armour fieldset {
+.dangerousgary.item.equipment .item-armour fieldset,
+.dangerousgary.item.equipment .item-artefact fieldset {
   background: var(--dg-box-bg) url("/systems/dangerousgary/assets/fond_gris.webp") center / cover no-repeat;
   border: 1px solid var(--dg-border-color);
   padding: 10px 15px;
@@ -608,7 +609,8 @@
   border-radius: 5px;
 }
 .dangerousgary.item.equipment .item-weapon fieldset legend,
-.dangerousgary.item.equipment .item-armour fieldset legend {
+.dangerousgary.item.equipment .item-armour fieldset legend,
+.dangerousgary.item.equipment .item-artefact fieldset legend {
   float: left;
   width: 100%;
   font-weight: bold;
@@ -618,9 +620,65 @@
   margin-bottom: 6px;
 }
 .dangerousgary.item.equipment .item-weapon fieldset > *:not(legend),
-.dangerousgary.item.equipment .item-armour fieldset > *:not(legend) {
+.dangerousgary.item.equipment .item-armour fieldset > *:not(legend),
+.dangerousgary.item.equipment .item-artefact fieldset > *:not(legend) {
   clear: both;
 }
+
+.dangerousgary.item.equipment .item-artefact fieldset .inline-fields {
+  clear: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.dangerousgary.item.equipment .item-artefact fieldset .inline-fields .form-group {
+  clear: none;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  gap: 5px;
+  width: auto;
+}
+
+.dangerousgary.item.equipment .item-artefact .artefact-level-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  clear: none;
+  margin-bottom: 4px;
+}
+
+.dangerousgary.item.equipment .item-artefact .artefact-level-row .form-group {
+  clear: none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: 0 0 auto;
+}
+
+.dangerousgary.item.equipment .item-artefact .artefact-level-row .form-group input[type="number"] {
+  width: 30px;
+  text-align: center;
+}
+
+.dangerousgary.item.equipment .item-artefact .artefact-level-row input[type="text"] {
+  flex: 1;
+}
+
+.dangerousgary.item.equipment .item-artefact .artefact-level-row prose-mirror {
+  flex: 1;
+  position: relative;
+}
+
+.dangerousgary.item.equipment .item-artefact .artefact-level-row prose-mirror button.toggle {
+  display: block;
+  position: absolute;
+  top: 2px;
+  right: 2px;
+}
+
 .dangerousgary.item.equipment .item-description {
   flex: 1;
   display: flex;
