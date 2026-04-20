@@ -89,7 +89,8 @@
   }
 
   .item-weapon,
-  .item-armour {
+  .item-armour,
+  .item-artefact {
     fieldset {
       background: var(--dg-box-bg) url("/systems/dangerousgary/assets/fond_gris.webp") center / cover no-repeat;
       border: 1px solid var(--dg-border-color);
@@ -109,6 +110,61 @@
 
       > *:not(legend) {
         clear: both;
+      }
+    }
+  }
+
+  .item-artefact {
+    fieldset .inline-fields {
+        clear: none;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: center;
+    
+        .form-group {
+          clear: none;
+          display: flex;
+          flex-direction: row-reverse;
+          align-items: center;
+          gap: 5px;
+          width: auto;
+        }
+    }
+    .artefact-level-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      clear: none;
+      margin-bottom: 4px;
+
+      .form-group {
+        clear: none;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        flex: 0 0 auto;
+
+        input[type="number"] {
+          width: 30px;
+          text-align: center;
+        }
+      }
+
+      input[type="text"] {
+        flex: 1;
+      }
+
+      prose-mirror {
+        flex: 1;
+        position: relative;
+
+        button.toggle {
+          display: block;
+          position: absolute;
+          top: 2px;
+          right: 2px;
+        }
       }
     }
   }
