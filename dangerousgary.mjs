@@ -25,7 +25,8 @@ Hooks.once('init', async function () {
   CONFIG.Item.dataModels = {
     equipment: models.DangerousGaryItemData,
     attack: models.DangerousGaryAttackData,
-    talent: models.DangerousGaryTalentData
+    talent: models.DangerousGaryTalentData,
+    artefact: models.DangerousGaryArtefactData
   };
 
   // Chat
@@ -39,6 +40,7 @@ Hooks.once('init', async function () {
   foundry.documents.collections.Items.registerSheet("dangerousgary", applications.DangerousGaryItemSheet, { types: ["equipment"], makeDefault: true });
   foundry.documents.collections.Items.registerSheet("dangerousgary", applications.DangerousGaryAttackSheet, { types: ["attack"], makeDefault: true });
   foundry.documents.collections.Items.registerSheet("dangerousgary", applications.DangerousGaryTalentSheet, { types: ["talent"], makeDefault: true });
+  foundry.documents.collections.Items.registerSheet("dangerousgary", applications.DangerousGaryArtefactSheet, { types: ["artefact"], makeDefault: true });
 
   // Combat
   CONFIG.ui.combat = applications.DangerousGaryCombatTracker
