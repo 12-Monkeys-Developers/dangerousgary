@@ -1,8 +1,7 @@
 import DangerousGaryItemData from "../../models/item.mjs"
+import DangerousGaryBaseItemSheet from "./base-item-sheet.mjs"
 
-const { HandlebarsApplicationMixin } = foundry.applications.api
-
-export default class DangerousGaryItemSheet extends HandlebarsApplicationMixin(foundry.applications.sheets.ItemSheetV2) {
+export default class DangerousGaryItemSheet extends DangerousGaryBaseItemSheet {
 
 
   /** @override */
@@ -42,6 +41,7 @@ export default class DangerousGaryItemSheet extends HandlebarsApplicationMixin(f
       source: this.document.toObject(),
       enrichedDescription: await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.document.system.description, { async: true }),
       subTypeChoices: subTypeField.choices,
+      locked: this.isPlayMode,
     }
   }
 

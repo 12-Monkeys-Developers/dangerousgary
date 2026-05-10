@@ -227,6 +227,7 @@
       "LevelAbbr": "Lv.",
       "RequiredLevel": "Required Level"
     },
+    "SheetModeEdit": "Toggle between edit mode and read mode",
     "NewArtefact": "New Artefact",
     "Attacks": "Attacks",
     "Add": "Add",

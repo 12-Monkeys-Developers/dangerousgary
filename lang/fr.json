@@ -227,6 +227,7 @@
       "LevelAbbr": "Niv.",
       "RequiredLevel": "Niveau requis"
     },
+    "SheetModeEdit": "Basculer entre le mode édition et le mode lecture",
     "NewArtefact": "Nouvel Artefact",
     "Attacks": "Attaques",
     "Add": "Ajouter",

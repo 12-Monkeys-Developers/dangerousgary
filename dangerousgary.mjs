@@ -3,6 +3,7 @@ import * as models from "./module/models/_module.mjs"
 import * as documents from "./module/documents/_module.mjs"
 import * as applications from "./module/applications/_module.mjs"
 import { Macros } from "./module/macros.mjs"
+import "./module/elements/toggle-switch.mjs"
 
 Hooks.once('init', async function () {
 

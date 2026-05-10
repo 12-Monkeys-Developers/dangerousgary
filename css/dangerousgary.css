@@ -1228,6 +1228,56 @@
   align-self: flex-end;
   font-size: 0.75rem;
 }
+.dangerousgary dg-toggle-switch {
+  --toggle-switch-height: 20px;
+  --toggle-switch-width: 36px;
+  --toggle-switch-padding: 3px;
+  --toggle-switch-track-color-unchecked: black;
+  --toggle-switch-track-color-checked: var(--dg-text-red);
+  --toggle-switch-thumb-color: white;
+  --toggle-switch-thumb-width: calc(var(--toggle-switch-height) - var(--toggle-switch-padding) * 2);
+  --toggle-switch-thumb-height: var(--toggle-switch-thumb-width);
+  --toggle-switch-transition-time: 250ms;
+  cursor: pointer;
+  display: inline-block;
+  width: var(--toggle-switch-width);
+  height: var(--toggle-switch-height);
+}
+.dangerousgary dg-toggle-switch track {
+  background: var(--toggle-switch-track-color-unchecked);
+  border-radius: calc((var(--toggle-switch-height) * 2) / 3);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.45);
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  padding: var(--toggle-switch-padding);
+  width: 100%;
+}
+.dangerousgary dg-toggle-switch thumb {
+  background: var(--toggle-switch-thumb-color);
+  border-radius: 100%;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.45);
+  display: block;
+  height: var(--toggle-switch-thumb-height);
+  transition: margin-left var(--toggle-switch-transition-time) ease;
+  width: var(--toggle-switch-thumb-width);
+}
+.dangerousgary dg-toggle-switch[checked] track {
+  background: var(--toggle-switch-track-color-checked);
+}
+.dangerousgary dg-toggle-switch[checked] thumb {
+  margin-left: calc(100% - var(--toggle-switch-thumb-width));
+}
+.dangerousgary select:disabled,
+.dangerousgary input:disabled,
+.dangerousgary multi-checkbox.disabled,
+.dangerousgary input[type="checkbox"]:disabled,
+.dangerousgary label:has(input[type="checkbox"]:disabled) {
+  pointer-events: none;
+  opacity: 0.6;
+  cursor: not-allowed;
+}
 .chat-message {
   background: #f4f4f4 url("/systems/dangerousgary/assets/fond_gris.webp") center / cover no-repeat;
   color: #222;

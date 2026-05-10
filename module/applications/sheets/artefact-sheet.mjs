@@ -1,6 +1,6 @@
-const { HandlebarsApplicationMixin } = foundry.applications.api
+import DangerousGaryBaseItemSheet from "./base-item-sheet.mjs"
 
-export default class DangerousGaryArtefactSheet extends HandlebarsApplicationMixin(foundry.applications.sheets.ItemSheetV2) {
+export default class DangerousGaryArtefactSheet extends DangerousGaryBaseItemSheet {
 
   /** @override */
   static DEFAULT_OPTIONS = {
@@ -52,6 +52,7 @@ export default class DangerousGaryArtefactSheet extends HandlebarsApplicationMix
       canAddCapacity: Object.keys(capacities).length < 3 && Object.keys(capacities).length + this.document.system.allowedClasses.size < 4,
       capacityLevelField: this.document.system.schema.fields.artefactCapacities.element.fields.level,
       capacityDescField: this.document.system.schema.fields.artefactCapacities.element.fields.description,
+      locked: this.isPlayMode,
     }
   }
 

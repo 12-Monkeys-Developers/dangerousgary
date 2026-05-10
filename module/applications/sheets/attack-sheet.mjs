@@ -1,6 +1,6 @@
-const { HandlebarsApplicationMixin } = foundry.applications.api
+import DangerousGaryBaseItemSheet from "./base-item-sheet.mjs"
 
-export default class DangerousGaryAttackSheet extends HandlebarsApplicationMixin(foundry.applications.sheets.ItemSheetV2) {
+export default class DangerousGaryAttackSheet extends DangerousGaryBaseItemSheet {
 
 
   /** @override */
@@ -36,7 +36,8 @@ export default class DangerousGaryAttackSheet extends HandlebarsApplicationMixin
       item: this.document,
       system: this.document.system,
       source: this.document.toObject(),
-      enrichedDescription: await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.document.system.description, { async: true })
+      enrichedDescription: await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.document.system.description, { async: true }),
+      locked: this.isPlayMode,
     }
     return context;
   }

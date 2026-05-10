@@ -1,6 +1,6 @@
-const { HandlebarsApplicationMixin } = foundry.applications.api
+import DangerousGaryBaseItemSheet from "./base-item-sheet.mjs"
 
-export default class DangerousGaryTalentSheet extends HandlebarsApplicationMixin(foundry.applications.sheets.ItemSheetV2) {
+export default class DangerousGaryTalentSheet extends DangerousGaryBaseItemSheet {
   /** @override */
   static DEFAULT_OPTIONS = {
     classes: ["dangerousgary", "item", "talent"],
@@ -41,6 +41,7 @@ export default class DangerousGaryTalentSheet extends HandlebarsApplicationMixin
       source: this.document.toObject(),
       enrichedDescription: await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.document.system.description, { async: true }),
       talentClassChoices,
+      locked: this.isPlayMode,
     }
     return context
   }

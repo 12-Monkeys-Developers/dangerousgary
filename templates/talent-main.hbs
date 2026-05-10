@@ -7,9 +7,9 @@
     <div class="details">
       <fieldset>
         <legend>{{localize "DANGEROUSGARY.Labels.details"}}</legend>
-        {{formGroup systemFields.talentClass value=system.talentClass choices=talentClassChoices }}
-        {{formGroup systemFields.level value=system.level }}
-        {{formGroup systemFields.special value=system.special }}
+        {{formGroup systemFields.talentClass value=system.talentClass choices=talentClassChoices disabled=locked }}
+        {{formGroup systemFields.level value=system.level disabled=locked }}
+        {{formGroup systemFields.special value=system.special disabled=locked }}
       </fieldset>
     </div>
   </section>

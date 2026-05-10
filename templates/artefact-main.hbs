@@ -9,7 +9,7 @@
   <section class="item-artefact">
     <fieldset>
       <legend>{{localize "DANGEROUSGARY.Artefact.FIELDS.allowedClasses.label"}}</legend>
-      {{formInput systemFields.allowedClasses value=system.allowedClasses type="checkboxes" localize=true}}
+      {{formInput systemFields.allowedClasses value=system.allowedClasses type="checkboxes" localize=true disabled=locked}}
     </fieldset>
     <fieldset>
       <legend>{{localize "DANGEROUSGARY.Artefact.FIELDS.artefactCapacities.label"}}</legend>
@@ -18,11 +18,13 @@
           <div class="artefact-capacity" data-key="{{cap.key}}">
             <div class="capacity-header">
               <label>{{localize "DANGEROUSGARY.Artefact.RequiredLevel"}}</label>
-              {{formInput @root.capacityLevelField value=cap.level name=(concat "system.artefactCapacities." cap.key ".level")}}
+              {{formInput @root.capacityLevelField value=cap.level name=(concat "system.artefactCapacities." cap.key ".level") disabled=@root.locked}}
+              {{#unless @root.locked}}
               <button type="button" class="remove-capacity-btn" data-action="removeCapacity" data-key="{{cap.key}}"
                       data-tooltip="{{localize 'DANGEROUSGARY.Artefact.RemoveCapacity'}}">
                 <i class="fas fa-trash"></i>
               </button>
+              {{/unless}}
             </div>
             {{formInput
               @root.capacityDescField
@@ -38,9 +40,11 @@
         {{/each}}
       </div>
       {{#if canAddCapacity}}
+        {{#unless locked}}
         <button type="button" class="add-capacity-btn" data-action="addCapacity">
           <i class="fas fa-plus"></i> {{localize "DANGEROUSGARY.Artefact.AddCapacity"}}
         </button>
+        {{/unless}}
       {{/if}}
     </fieldset>
   </section>
