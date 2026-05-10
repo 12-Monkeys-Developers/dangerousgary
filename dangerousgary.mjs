@@ -62,7 +62,7 @@ Hooks.once('init', async function () {
 })
 
 Hooks.on("hotbarDrop", (bar, data, slot) => {
-  if (["rollDamage", "rollSave", "Item"].includes(data.type)) {
+  if (["rollDamage", "rollSave", "rollClassSave", "Item"].includes(data.type)) {
     Macros.createDangerousGaryMacro(data, slot)
     return false
   }

@@ -18,7 +18,7 @@
         <span class="class-talents-label">{{localize "DANGEROUSGARY.Labels.long.talents"}}</span>
         <div class="class-talents">
           {{#each talentsByClass.cleric as |talent|}}
-            <div class="talent" data-item-id="{{talent.id}}">
+            <div class="talent draggable" draggable="true" data-item-id="{{talent.id}}" data-drag-type="rollClassSave" data-talent-class="{{talent.system.talentClass}}">
               <span class="talent-name" data-tooltip="{{{talent.enrichedDescription}}}" data-tooltip-direction="UP">{{talent.name}}{{#if talent.system.special}}*{{/if}} ({{talent.system.level}})</span>
               <div class="talent-controls">
                 <span class="rollable" data-action="rollClassSave" data-talent-class="{{talent.system.talentClass}}" data-item-id="{{talent.id}}" data-tooltip="{{localize 'DANGEROUSGARY.RollClassSave'}}" data-tooltip-direction="UP"><i class="fas fa-dice-d20"></i></span>
@@ -39,7 +39,7 @@
         <span class="class-talents-label">{{localize "DANGEROUSGARY.Labels.long.talents"}}</span>
         <div class="class-talents">
           {{#each talentsByClass.fighter as |talent|}}
-            <div class="talent" data-item-id="{{talent.id}}">
+            <div class="talent draggable" draggable="true" data-item-id="{{talent.id}}" data-drag-type="rollClassSave" data-talent-class="{{talent.system.talentClass}}">
               <span class="talent-name" data-tooltip="{{{talent.enrichedDescription}}}" data-tooltip-direction="UP">{{talent.name}}{{#if talent.system.special}}*{{/if}} ({{talent.system.level}})</span>
               <div class="talent-controls">
                 <span class="rollable" data-action="rollClassSave" data-talent-class="{{talent.system.talentClass}}" data-item-id="{{talent.id}}" data-tooltip="{{localize 'DANGEROUSGARY.RollClassSave'}}" data-tooltip-direction="UP"><i class="fas fa-dice-d20"></i></span>
@@ -60,7 +60,7 @@
         <span class="class-talents-label">{{localize "DANGEROUSGARY.Labels.long.talents"}}</span>
         <div class="class-talents">
           {{#each talentsByClass.paladin as |talent|}}
-            <div class="talent" data-item-id="{{talent.id}}">
+            <div class="talent draggable" draggable="true" data-item-id="{{talent.id}}" data-drag-type="rollClassSave" data-talent-class="{{talent.system.talentClass}}">
               <span class="talent-name" data-tooltip="{{{talent.enrichedDescription}}}" data-tooltip-direction="UP">{{talent.name}}{{#if talent.system.special}}*{{/if}} ({{talent.system.level}})</span>
               <div class="talent-controls">
                 <span class="rollable" data-action="rollClassSave" data-talent-class="{{talent.system.talentClass}}" data-item-id="{{talent.id}}" data-tooltip="{{localize 'DANGEROUSGARY.RollClassSave'}}" data-tooltip-direction="UP"><i class="fas fa-dice-d20"></i></span>
@@ -81,7 +81,7 @@
         <span class="class-talents-label">{{localize "DANGEROUSGARY.Labels.long.talents"}}</span>
         <div class="class-talents">
           {{#each talentsByClass.druid as |talent|}}
-            <div class="talent" data-item-id="{{talent.id}}">
+            <div class="talent draggable" draggable="true" data-item-id="{{talent.id}}" data-drag-type="rollClassSave" data-talent-class="{{talent.system.talentClass}}">
               <span class="talent-name" data-tooltip="{{{talent.enrichedDescription}}}" data-tooltip-direction="UP">{{talent.name}}{{#if talent.system.special}}*{{/if}} ({{talent.system.level}})</span>
               <div class="talent-controls">
                 <span class="rollable" data-action="rollClassSave" data-talent-class="{{talent.system.talentClass}}" data-item-id="{{talent.id}}" data-tooltip="{{localize 'DANGEROUSGARY.RollClassSave'}}" data-tooltip-direction="UP"><i class="fas fa-dice-d20"></i></span>
@@ -102,7 +102,7 @@
         <span class="class-talents-label">{{localize "DANGEROUSGARY.Labels.long.talents"}}</span>
         <div class="class-talents">
           {{#each talentsByClass.monk as |talent|}}
-            <div class="talent" data-item-id="{{talent.id}}">
+            <div class="talent draggable" draggable="true" data-item-id="{{talent.id}}" data-drag-type="rollClassSave" data-talent-class="{{talent.system.talentClass}}">
               <span class="talent-name" data-tooltip="{{{talent.enrichedDescription}}}" data-tooltip-direction="UP">{{talent.name}}{{#if talent.system.special}}*{{/if}} ({{talent.system.level}})</span>
               <div class="talent-controls">
                 <span class="rollable" data-action="rollClassSave" data-talent-class="{{talent.system.talentClass}}" data-item-id="{{talent.id}}" data-tooltip="{{localize 'DANGEROUSGARY.RollClassSave'}}" data-tooltip-direction="UP"><i class="fas fa-dice-d20"></i></span>
@@ -123,7 +123,7 @@
         <span class="class-talents-label">{{localize "DANGEROUSGARY.Labels.long.talents"}}</span>
         <div class="class-talents">
           {{#each talentsByClass.thief as |talent|}}
-            <div class="talent" data-item-id="{{talent.id}}">
+            <div class="talent draggable" draggable="true" data-item-id="{{talent.id}}" data-drag-type="rollClassSave" data-talent-class="{{talent.system.talentClass}}">
               <span class="talent-name" data-tooltip="{{{talent.enrichedDescription}}}" data-tooltip-direction="UP">{{talent.name}}{{#if talent.system.special}}*{{/if}} ({{talent.system.level}})</span>
               <div class="talent-controls">
                 <span class="rollable" data-action="rollClassSave" data-talent-class="{{talent.system.talentClass}}" data-item-id="{{talent.id}}" data-tooltip="{{localize 'DANGEROUSGARY.RollClassSave'}}" data-tooltip-direction="UP"><i class="fas fa-dice-d20"></i></span>
@@ -144,7 +144,7 @@
         <span class="class-talents-label">{{localize "DANGEROUSGARY.Labels.long.talents"}}</span>
         <div class="class-talents">
           {{#each talentsByClass.bard as |talent|}}
-            <div class="talent" data-item-id="{{talent.id}}">
+            <div class="talent draggable" draggable="true" data-item-id="{{talent.id}}" data-drag-type="rollClassSave" data-talent-class="{{talent.system.talentClass}}">
               <span class="talent-name" data-tooltip="{{{talent.enrichedDescription}}}" data-tooltip-direction="UP">{{talent.name}}{{#if talent.system.special}}*{{/if}} ({{talent.system.level}})</span>
               <div class="talent-controls">
                 <span class="rollable" data-action="rollClassSave" data-talent-class="{{talent.system.talentClass}}" data-item-id="{{talent.id}}" data-tooltip="{{localize 'DANGEROUSGARY.RollClassSave'}}" data-tooltip-direction="UP"><i class="fas fa-dice-d20"></i></span>
@@ -165,7 +165,7 @@
         <span class="class-talents-label">{{localize "DANGEROUSGARY.Labels.long.talents"}}</span>
         <div class="class-talents">
           {{#each talentsByClass.mage as |talent|}}
-            <div class="talent" data-item-id="{{talent.id}}">
+            <div class="talent draggable" draggable="true" data-item-id="{{talent.id}}" data-drag-type="rollClassSave" data-talent-class="{{talent.system.talentClass}}">
               <span class="talent-name" data-tooltip="{{{talent.enrichedDescription}}}" data-tooltip-direction="UP">{{talent.name}}{{#if talent.system.special}}*{{/if}} ({{talent.system.level}})</span>
               <div class="talent-controls">
                 <span class="rollable" data-action="rollClassSave" data-talent-class="{{talent.system.talentClass}}" data-item-id="{{talent.id}}" data-tooltip="{{localize 'DANGEROUSGARY.RollClassSave'}}" data-tooltip-direction="UP"><i class="fas fa-dice-d20"></i></span>
@@ -186,7 +186,7 @@
         <span class="class-talents-label">{{localize "DANGEROUSGARY.Labels.long.talents"}}</span>
         <div class="class-talents">
           {{#each talentsByClass.ranger as |talent|}}
-            <div class="talent" data-item-id="{{talent.id}}">
+            <div class="talent draggable" draggable="true" data-item-id="{{talent.id}}" data-drag-type="rollClassSave" data-talent-class="{{talent.system.talentClass}}">
               <span class="talent-name" data-tooltip="{{{talent.enrichedDescription}}}" data-tooltip-direction="UP">{{talent.name}}{{#if talent.system.special}}*{{/if}} ({{talent.system.level}})</span>
               <div class="talent-controls">
                 <span class="rollable" data-action="rollClassSave" data-talent-class="{{talent.system.talentClass}}" data-item-id="{{talent.id}}" data-tooltip="{{localize 'DANGEROUSGARY.RollClassSave'}}" data-tooltip-direction="UP"><i class="fas fa-dice-d20"></i></span>

@@ -1181,6 +1181,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 1px 0;
+  cursor: grab;
 }
 .dangerousgary.actor.character .classes-panel .class-cell .class-talents .talent .talent-name {
   flex: 1;

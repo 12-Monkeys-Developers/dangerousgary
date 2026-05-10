@@ -1,3 +1,10 @@
+1.3.0
+- Artefacts : nouveau type d'item avec capacités utilisables et message dédié dans le chat
+- Mise à jour automatique du niveau de classe lors de l'ajout ou la suppression d'un talent
+- Slider Lecture/Écriture sur les fiches items (Équipement, Attaque, Talent, Artefact)
+- Slider Lecture/Écriture sur les fiches actors (Personnage, Rencontre)
+- Drag-and-drop d'un talent vers la hotbar : crée une macro de jet de sauvegarde de classe
+
 1.2.0
 - Combat tracker : les combattants qui ont déjà joué sont automatiquement placés après ceux qui n'ont pas encore joué (bouton "A joué" pour le MJ et les owners)
 - Combat tracker : au début de chaque round, les PJ sont classés par dextérité décroissante

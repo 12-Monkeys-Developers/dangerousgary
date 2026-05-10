@@ -248,6 +248,16 @@ export default class DangerousGaryCharacterSheet extends DangerousGaryBaseActorS
           ability: el.dataset.ability,
         }
         break
+      case "rollClassSave":
+        const ability = DangerousGaryCharacterSheet.CLASS_ABILITY[el.dataset.talentClass]
+        if (!ability) return
+        dragData = {
+          type: "rollClassSave",
+          actorId: this.document.id,
+          itemId: el.dataset.itemId,
+          ability,
+        }
+        break
     }
 
     if (!dragData) return

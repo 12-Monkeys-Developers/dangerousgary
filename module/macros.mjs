@@ -20,6 +20,15 @@ export class Macros {
         this.createMacro(slot, macroName, command, "icons/svg/d20-grey.svg")
         break
       }
+      case "rollClassSave": {
+        const actor = game.actors.get(dropData.actorId)
+        const item = actor?.items.get(dropData.itemId)
+        if (!item) return
+        const command = `const actor = game.actors.get('${dropData.actorId}')\nconst item = actor?.items.get('${dropData.itemId}')\nif (item) actor.rollSave('${dropData.ability}', { useMax: true, talentName: item.name, talentLevel: item.system.level })`
+        const macroName = `${item.name} (${actor.name})`
+        this.createMacro(slot, macroName, command, item.img || "icons/svg/sun.svg")
+        break
+      }
     }
   }
 
