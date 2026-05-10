@@ -10,7 +10,7 @@
         <div class="stat-inputs">
           {{formInput systemFields.abilities.fields.str.fields.value value=system.abilities.str.value }}
           <span class="sep">/</span>
-          {{formInput systemFields.abilities.fields.str.fields.max value=system.abilities.str.max }}
+          {{formInput systemFields.abilities.fields.str.fields.max value=system.abilities.str.max disabled=locked }}
         </div>
       </div>
 
@@ -19,7 +19,7 @@
         <div class="stat-inputs">
           {{formInput systemFields.abilities.fields.dex.fields.value value=system.abilities.dex.value }}
           <span class="sep">/</span>
-          {{formInput systemFields.abilities.fields.dex.fields.max value=system.abilities.dex.max }}
+          {{formInput systemFields.abilities.fields.dex.fields.max value=system.abilities.dex.max disabled=locked }}
         </div>
       </div>
 
@@ -28,16 +28,16 @@
         <div class="stat-inputs">
           {{formInput systemFields.abilities.fields.wil.fields.value value=system.abilities.wil.value }}
           <span class="sep">/</span>
-          {{formInput systemFields.abilities.fields.wil.fields.max value=system.abilities.wil.max }}
+          {{formInput systemFields.abilities.fields.wil.fields.max value=system.abilities.wil.max disabled=locked }}
         </div>
       </div>
     </div>
 
     <div class="panel specs-panel">
       <h2>{{localize "DANGEROUSGARY.Labels.long.specialties"}}</h2>
-      {{formInput systemFields.specialties.fields.first value=system.specialties.first }}
-      {{formInput systemFields.specialties.fields.second value=system.specialties.second }}
-      {{formInput systemFields.specialties.fields.third value=system.specialties.third }}
+      {{formInput systemFields.specialties.fields.first value=system.specialties.first disabled=locked }}
+      {{formInput systemFields.specialties.fields.second value=system.specialties.second disabled=locked }}
+      {{formInput systemFields.specialties.fields.third value=system.specialties.third disabled=locked }}
     </div>
     </div>
 
@@ -48,7 +48,7 @@
           <div class="stat-inputs">
             {{formInput systemFields.hp.fields.value value=system.hp.value }}
             <span class="sep">/</span>
-            {{formInput systemFields.hp.fields.max value=system.hp.max }}
+            {{formInput systemFields.hp.fields.max value=system.hp.max disabled=locked }}
           </div>
         </div>
       </div>
@@ -56,13 +56,13 @@
       <div class="panel xp-panel">
         <div class="xp-row">
           <h2>{{localize "DANGEROUSGARY.Labels.long.xp"}}</h2>
-          {{formInput systemFields.xp value=system.xp }}
+          {{formInput systemFields.xp value=system.xp disabled=locked }}
         </div>
       </div>
 
       <div class="panel perk-panel">
         <h2>{{localize "DANGEROUSGARY.Labels.long.perk"}}</h2>
-        <div class="perk-name">{{formInput systemFields.perkName value=system.perkName }}</div>
+        <div class="perk-name">{{formInput systemFields.perkName value=system.perkName disabled=locked }}</div>
         {{formInput
           systemFields.perk
           enriched=enrichedPerk
@@ -71,6 +71,7 @@
           name="system.perk"
           collaborate="true"
           toggled="true"
+          disabled=locked
         }}
       </div>
     </div>

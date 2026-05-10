@@ -1,10 +1,10 @@
 import DangerousGaryChat from "../../chat.mjs"
+import DangerousGaryBaseActorSheet from "./base-actor-sheet.mjs"
 
-const { sheets, ux } = foundry.applications
-const { HandlebarsApplicationMixin } = foundry.applications.api
+const { ux } = foundry.applications
 const { DragDrop } = foundry.applications.ux
 
-export default class DangerousGaryCharacterSheet extends HandlebarsApplicationMixin(sheets.ActorSheetV2) {
+export default class DangerousGaryCharacterSheet extends DangerousGaryBaseActorSheet {
   /** @override */
   static DEFAULT_OPTIONS = {
     classes: ["dangerousgary", "actor", "character"],
@@ -67,6 +67,7 @@ export default class DangerousGaryCharacterSheet extends HandlebarsApplicationMi
       system: this.document.system,
       source: this.document.toObject(),
       enableClasses,
+      locked: this.isPlayMode,
     })
     return context
   }

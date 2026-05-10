@@ -1,8 +1,9 @@
-const { sheets, ux } = foundry.applications
-const { HandlebarsApplicationMixin } = foundry.applications.api
+import DangerousGaryBaseActorSheet from "./base-actor-sheet.mjs"
+
+const { ux } = foundry.applications
 const { DragDrop } = foundry.applications.ux
 
-export default class DangerousGaryEncounterSheet extends HandlebarsApplicationMixin(sheets.ActorSheetV2) {
+export default class DangerousGaryEncounterSheet extends DangerousGaryBaseActorSheet {
   /** @override */
   static DEFAULT_OPTIONS = {
     classes: ["dangerousgary", "actor", "encounter"],
@@ -44,6 +45,7 @@ export default class DangerousGaryEncounterSheet extends HandlebarsApplicationMi
       source: this.document.toObject(),
       enrichedDescription: await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.document.system.description, { async: true }),
       enrichedPowers: await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.document.system.powers, { async: true }),
+      locked: this.isPlayMode,
     })
 
     const attacks = []

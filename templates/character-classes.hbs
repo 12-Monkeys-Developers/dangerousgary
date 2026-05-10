@@ -2,10 +2,10 @@
 {{#if enableClasses}}
   <div class="osmose-block">
     <span class="osmose-label">{{localize "DANGEROUSGARY.Labels.long.osmose"}}</span>
-    <div class="osmose-pips">
-      <span class="osmose-pip {{#if (gte system.osmose 1)}}filled{{/if}}" data-action="toggleOsmose" data-value="1"></span>
-      <span class="osmose-pip {{#if (gte system.osmose 2)}}filled{{/if}}" data-action="toggleOsmose" data-value="2"></span>
-      <span class="osmose-pip {{#if (gte system.osmose 3)}}filled{{/if}}" data-action="toggleOsmose" data-value="3"></span>
+    <div class="osmose-pips {{#if locked}}disabled{{/if}}">
+      <span class="osmose-pip {{#if (gte system.osmose 1)}}filled{{/if}}" {{#unless locked}}data-action="toggleOsmose"{{/unless}} data-value="1"></span>
+      <span class="osmose-pip {{#if (gte system.osmose 2)}}filled{{/if}}" {{#unless locked}}data-action="toggleOsmose"{{/unless}} data-value="2"></span>
+      <span class="osmose-pip {{#if (gte system.osmose 3)}}filled{{/if}}" {{#unless locked}}data-action="toggleOsmose"{{/unless}} data-value="3"></span>
     </div>
   </div>
   <div class="classes-panel panel">
@@ -13,7 +13,7 @@
       <div class="class-cell">
         <div class="class-header">
           <span class="class-name">{{localize "DANGEROUSGARY.Talent.Classes.cleric"}} ({{localize "DANGEROUSGARY.Labels.short.str"}})</span>
-          <input type="number" name="system.classes.cleric" value="{{system.classes.cleric}}" min="0" max="9" />
+          <input type="number" name="system.classes.cleric" value="{{system.classes.cleric}}" min="0" max="9" {{#if locked}}disabled{{/if}} />
         </div>
         <span class="class-talents-label">{{localize "DANGEROUSGARY.Labels.long.talents"}}</span>
         <div class="class-talents">
@@ -22,8 +22,10 @@
               <span class="talent-name" data-tooltip="{{{talent.enrichedDescription}}}" data-tooltip-direction="UP">{{talent.name}}{{#if talent.system.special}}*{{/if}} ({{talent.system.level}})</span>
               <div class="talent-controls">
                 <span class="rollable" data-action="rollClassSave" data-talent-class="{{talent.system.talentClass}}" data-item-id="{{talent.id}}" data-tooltip="{{localize 'DANGEROUSGARY.RollClassSave'}}" data-tooltip-direction="UP"><i class="fas fa-dice-d20"></i></span>
+                {{#unless @root.locked}}
                 <a data-action="edit" data-item-id="{{talent.id}}"><i class="fas fa-edit"></i></a>
                 <a data-action="delete" data-item-id="{{talent.id}}"><i class="fas fa-trash"></i></a>
+                {{/unless}}
               </div>
             </div>
           {{/each}}
@@ -32,7 +34,7 @@
       <div class="class-cell">
         <div class="class-header">
           <span class="class-name">{{localize "DANGEROUSGARY.Talent.Classes.fighter"}} ({{localize "DANGEROUSGARY.Labels.short.str"}})</span>
-          <input type="number" name="system.classes.fighter" value="{{system.classes.fighter}}" min="0" max="9" />
+          <input type="number" name="system.classes.fighter" value="{{system.classes.fighter}}" min="0" max="9" {{#if locked}}disabled{{/if}} />
         </div>
         <span class="class-talents-label">{{localize "DANGEROUSGARY.Labels.long.talents"}}</span>
         <div class="class-talents">
@@ -41,8 +43,10 @@
               <span class="talent-name" data-tooltip="{{{talent.enrichedDescription}}}" data-tooltip-direction="UP">{{talent.name}}{{#if talent.system.special}}*{{/if}} ({{talent.system.level}})</span>
               <div class="talent-controls">
                 <span class="rollable" data-action="rollClassSave" data-talent-class="{{talent.system.talentClass}}" data-item-id="{{talent.id}}" data-tooltip="{{localize 'DANGEROUSGARY.RollClassSave'}}" data-tooltip-direction="UP"><i class="fas fa-dice-d20"></i></span>
+                {{#unless @root.locked}}
                 <a data-action="edit" data-item-id="{{talent.id}}"><i class="fas fa-edit"></i></a>
                 <a data-action="delete" data-item-id="{{talent.id}}"><i class="fas fa-trash"></i></a>
+                {{/unless}}
               </div>
             </div>
           {{/each}}
@@ -51,7 +55,7 @@
       <div class="class-cell">
         <div class="class-header">
           <span class="class-name">{{localize "DANGEROUSGARY.Talent.Classes.paladin"}} ({{localize "DANGEROUSGARY.Labels.short.str"}})</span>
-          <input type="number" name="system.classes.paladin" value="{{system.classes.paladin}}" min="0" max="9" />
+          <input type="number" name="system.classes.paladin" value="{{system.classes.paladin}}" min="0" max="9" {{#if locked}}disabled{{/if}} />
         </div>
         <span class="class-talents-label">{{localize "DANGEROUSGARY.Labels.long.talents"}}</span>
         <div class="class-talents">
@@ -60,8 +64,10 @@
               <span class="talent-name" data-tooltip="{{{talent.enrichedDescription}}}" data-tooltip-direction="UP">{{talent.name}}{{#if talent.system.special}}*{{/if}} ({{talent.system.level}})</span>
               <div class="talent-controls">
                 <span class="rollable" data-action="rollClassSave" data-talent-class="{{talent.system.talentClass}}" data-item-id="{{talent.id}}" data-tooltip="{{localize 'DANGEROUSGARY.RollClassSave'}}" data-tooltip-direction="UP"><i class="fas fa-dice-d20"></i></span>
+                {{#unless @root.locked}}
                 <a data-action="edit" data-item-id="{{talent.id}}"><i class="fas fa-edit"></i></a>
                 <a data-action="delete" data-item-id="{{talent.id}}"><i class="fas fa-trash"></i></a>
+                {{/unless}}
               </div>
             </div>
           {{/each}}
@@ -70,7 +76,7 @@
       <div class="class-cell">
         <div class="class-header">
           <span class="class-name">{{localize "DANGEROUSGARY.Talent.Classes.druid"}} ({{localize "DANGEROUSGARY.Labels.short.dex"}})</span>
-          <input type="number" name="system.classes.druid" value="{{system.classes.druid}}" min="0" max="9" />
+          <input type="number" name="system.classes.druid" value="{{system.classes.druid}}" min="0" max="9" {{#if locked}}disabled{{/if}} />
         </div>
         <span class="class-talents-label">{{localize "DANGEROUSGARY.Labels.long.talents"}}</span>
         <div class="class-talents">
@@ -79,8 +85,10 @@
               <span class="talent-name" data-tooltip="{{{talent.enrichedDescription}}}" data-tooltip-direction="UP">{{talent.name}}{{#if talent.system.special}}*{{/if}} ({{talent.system.level}})</span>
               <div class="talent-controls">
                 <span class="rollable" data-action="rollClassSave" data-talent-class="{{talent.system.talentClass}}" data-item-id="{{talent.id}}" data-tooltip="{{localize 'DANGEROUSGARY.RollClassSave'}}" data-tooltip-direction="UP"><i class="fas fa-dice-d20"></i></span>
+                {{#unless @root.locked}}
                 <a data-action="edit" data-item-id="{{talent.id}}"><i class="fas fa-edit"></i></a>
                 <a data-action="delete" data-item-id="{{talent.id}}"><i class="fas fa-trash"></i></a>
+                {{/unless}}
               </div>
             </div>
           {{/each}}
@@ -89,7 +97,7 @@
       <div class="class-cell">
         <div class="class-header">
           <span class="class-name">{{localize "DANGEROUSGARY.Talent.Classes.monk"}} ({{localize "DANGEROUSGARY.Labels.short.dex"}})</span>
-          <input type="number" name="system.classes.monk" value="{{system.classes.monk}}" min="0" max="9" />
+          <input type="number" name="system.classes.monk" value="{{system.classes.monk}}" min="0" max="9" {{#if locked}}disabled{{/if}} />
         </div>
         <span class="class-talents-label">{{localize "DANGEROUSGARY.Labels.long.talents"}}</span>
         <div class="class-talents">
@@ -98,8 +106,10 @@
               <span class="talent-name" data-tooltip="{{{talent.enrichedDescription}}}" data-tooltip-direction="UP">{{talent.name}}{{#if talent.system.special}}*{{/if}} ({{talent.system.level}})</span>
               <div class="talent-controls">
                 <span class="rollable" data-action="rollClassSave" data-talent-class="{{talent.system.talentClass}}" data-item-id="{{talent.id}}" data-tooltip="{{localize 'DANGEROUSGARY.RollClassSave'}}" data-tooltip-direction="UP"><i class="fas fa-dice-d20"></i></span>
+                {{#unless @root.locked}}
                 <a data-action="edit" data-item-id="{{talent.id}}"><i class="fas fa-edit"></i></a>
                 <a data-action="delete" data-item-id="{{talent.id}}"><i class="fas fa-trash"></i></a>
+                {{/unless}}
               </div>
             </div>
           {{/each}}
@@ -108,7 +118,7 @@
       <div class="class-cell">
         <div class="class-header">
           <span class="class-name">{{localize "DANGEROUSGARY.Talent.Classes.thief"}} ({{localize "DANGEROUSGARY.Labels.short.dex"}})</span>
-          <input type="number" name="system.classes.thief" value="{{system.classes.thief}}" min="0" max="9" />
+          <input type="number" name="system.classes.thief" value="{{system.classes.thief}}" min="0" max="9" {{#if locked}}disabled{{/if}} />
         </div>
         <span class="class-talents-label">{{localize "DANGEROUSGARY.Labels.long.talents"}}</span>
         <div class="class-talents">
@@ -117,8 +127,10 @@
               <span class="talent-name" data-tooltip="{{{talent.enrichedDescription}}}" data-tooltip-direction="UP">{{talent.name}}{{#if talent.system.special}}*{{/if}} ({{talent.system.level}})</span>
               <div class="talent-controls">
                 <span class="rollable" data-action="rollClassSave" data-talent-class="{{talent.system.talentClass}}" data-item-id="{{talent.id}}" data-tooltip="{{localize 'DANGEROUSGARY.RollClassSave'}}" data-tooltip-direction="UP"><i class="fas fa-dice-d20"></i></span>
+                {{#unless @root.locked}}
                 <a data-action="edit" data-item-id="{{talent.id}}"><i class="fas fa-edit"></i></a>
                 <a data-action="delete" data-item-id="{{talent.id}}"><i class="fas fa-trash"></i></a>
+                {{/unless}}
               </div>
             </div>
           {{/each}}
@@ -127,7 +139,7 @@
       <div class="class-cell">
         <div class="class-header">
           <span class="class-name">{{localize "DANGEROUSGARY.Talent.Classes.bard"}} ({{localize "DANGEROUSGARY.Labels.short.wil"}})</span>
-          <input type="number" name="system.classes.bard" value="{{system.classes.bard}}" min="0" max="9" />
+          <input type="number" name="system.classes.bard" value="{{system.classes.bard}}" min="0" max="9" {{#if locked}}disabled{{/if}} />
         </div>
         <span class="class-talents-label">{{localize "DANGEROUSGARY.Labels.long.talents"}}</span>
         <div class="class-talents">
@@ -136,8 +148,10 @@
               <span class="talent-name" data-tooltip="{{{talent.enrichedDescription}}}" data-tooltip-direction="UP">{{talent.name}}{{#if talent.system.special}}*{{/if}} ({{talent.system.level}})</span>
               <div class="talent-controls">
                 <span class="rollable" data-action="rollClassSave" data-talent-class="{{talent.system.talentClass}}" data-item-id="{{talent.id}}" data-tooltip="{{localize 'DANGEROUSGARY.RollClassSave'}}" data-tooltip-direction="UP"><i class="fas fa-dice-d20"></i></span>
+                {{#unless @root.locked}}
                 <a data-action="edit" data-item-id="{{talent.id}}"><i class="fas fa-edit"></i></a>
                 <a data-action="delete" data-item-id="{{talent.id}}"><i class="fas fa-trash"></i></a>
+                {{/unless}}
               </div>
             </div>
           {{/each}}
@@ -146,7 +160,7 @@
       <div class="class-cell">
         <div class="class-header">
           <span class="class-name">{{localize "DANGEROUSGARY.Talent.Classes.mage"}} ({{localize "DANGEROUSGARY.Labels.short.wil"}})</span>
-          <input type="number" name="system.classes.mage" value="{{system.classes.mage}}" min="0" max="9" />
+          <input type="number" name="system.classes.mage" value="{{system.classes.mage}}" min="0" max="9" {{#if locked}}disabled{{/if}} />
         </div>
         <span class="class-talents-label">{{localize "DANGEROUSGARY.Labels.long.talents"}}</span>
         <div class="class-talents">
@@ -155,8 +169,10 @@
               <span class="talent-name" data-tooltip="{{{talent.enrichedDescription}}}" data-tooltip-direction="UP">{{talent.name}}{{#if talent.system.special}}*{{/if}} ({{talent.system.level}})</span>
               <div class="talent-controls">
                 <span class="rollable" data-action="rollClassSave" data-talent-class="{{talent.system.talentClass}}" data-item-id="{{talent.id}}" data-tooltip="{{localize 'DANGEROUSGARY.RollClassSave'}}" data-tooltip-direction="UP"><i class="fas fa-dice-d20"></i></span>
+                {{#unless @root.locked}}
                 <a data-action="edit" data-item-id="{{talent.id}}"><i class="fas fa-edit"></i></a>
                 <a data-action="delete" data-item-id="{{talent.id}}"><i class="fas fa-trash"></i></a>
+                {{/unless}}
               </div>
             </div>
           {{/each}}
@@ -165,7 +181,7 @@
       <div class="class-cell">
         <div class="class-header">
           <span class="class-name">{{localize "DANGEROUSGARY.Talent.Classes.ranger"}} ({{localize "DANGEROUSGARY.Labels.short.wil"}})</span>
-          <input type="number" name="system.classes.ranger" value="{{system.classes.ranger}}" min="0" max="9" />
+          <input type="number" name="system.classes.ranger" value="{{system.classes.ranger}}" min="0" max="9" {{#if locked}}disabled{{/if}} />
         </div>
         <span class="class-talents-label">{{localize "DANGEROUSGARY.Labels.long.talents"}}</span>
         <div class="class-talents">
@@ -174,8 +190,10 @@
               <span class="talent-name" data-tooltip="{{{talent.enrichedDescription}}}" data-tooltip-direction="UP">{{talent.name}}{{#if talent.system.special}}*{{/if}} ({{talent.system.level}})</span>
               <div class="talent-controls">
                 <span class="rollable" data-action="rollClassSave" data-talent-class="{{talent.system.talentClass}}" data-item-id="{{talent.id}}" data-tooltip="{{localize 'DANGEROUSGARY.RollClassSave'}}" data-tooltip-direction="UP"><i class="fas fa-dice-d20"></i></span>
+                {{#unless @root.locked}}
                 <a data-action="edit" data-item-id="{{talent.id}}"><i class="fas fa-edit"></i></a>
                 <a data-action="delete" data-item-id="{{talent.id}}"><i class="fas fa-trash"></i></a>
+                {{/unless}}
               </div>
             </div>
           {{/each}}
