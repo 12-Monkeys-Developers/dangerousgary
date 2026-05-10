@@ -273,7 +273,11 @@ export default class DangerousGaryCharacterSheet extends HandlebarsApplicationMi
       case "Item":
         const item = await fromUuid(data.uuid)
         if (item.type !== "equipment" && item.type !== "talent" && item.type !== "artefact") return
-        return await this.actor.createEmbeddedDocuments("Item", [item], { renderSheet: false })
+        await this.actor.createEmbeddedDocuments("Item", [item], { renderSheet: false })
+        if (item.type === "talent" && item.system.talentClass) {
+          await this._updateClassLevel(item.system.talentClass)
+        }
+        return
     }
   }
 
@@ -297,7 +301,11 @@ export default class DangerousGaryCharacterSheet extends HandlebarsApplicationMi
   static async #onItemDelete(event, target) {
     const itemId = target.getAttribute("data-item-id")
     const item = this.actor.items.get(itemId)
-    item.delete()
+    const talentClass = item.type === "talent" ? item.system.talentClass : null
+    await item.delete()
+    if (talentClass) {
+      await this._updateClassLevel(talentClass)
+    }
   }
 
   /**
@@ -408,6 +416,11 @@ export default class DangerousGaryCharacterSheet extends HandlebarsApplicationMi
     }
 
     return this.actor.createEmbeddedDocuments("Item", [itemData])
+  }
+
+  async _updateClassLevel(classKey) {
+    const count = this.actor.itemTypes.talent.filter(t => t.system.talentClass === classKey).length
+    await this.actor.update({ [`system.classes.${classKey}`]: count })
   }
 
   static CLASS_ABILITY = {
