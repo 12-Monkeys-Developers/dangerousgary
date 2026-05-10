@@ -71,8 +71,10 @@
                 <i class="fas fa-dice-d20"></i>
               </span>
             {{/if}}
+            {{#unless @root.locked}}
             <a data-tooltip="{{localize 'DANGEROUSGARY.Edit'}}" data-action="edit" data-item-id="{{item.id}}"><i class="fas fa-edit"></i></a>
             <a data-tooltip="{{localize 'DANGEROUSGARY.Delete'}}" data-action="delete" data-item-id="{{item.id}}"><i class="fas fa-trash"></i></a>
+            {{/unless}}
           </div>
         </div>
       {{/each}}

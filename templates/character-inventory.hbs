@@ -40,8 +40,10 @@
           {{#if (not item.system.isEquipped)}}
             <a data-tooltip="{{localize 'DANGEROUSGARY.Equip'}}" data-action="equip" data-item-id="{{item.id}}"><i class="fa-regular fa-shield"></i></a>
           {{/if}}
+          {{#unless @root.locked}}
           <a data-tooltip="{{localize 'DANGEROUSGARY.Edit'}}" data-action="edit" data-item-id="{{item.id}}"><i class="fas fa-edit"></i></a>
           <a data-tooltip="{{localize 'DANGEROUSGARY.Delete'}}" data-action="delete" data-item-id="{{item.id}}"><i class="fas fa-trash"></i></a>
+          {{/unless}}
         </div>
       </div>
     {{/each}}
@@ -74,21 +76,25 @@
                     <i class="fas fa-hand-sparkles"></i>
                   </a>
                 {{else}}
-                  <i class="fas fa-lock capacity-lock"></i>
+                  <i class="fas fa-lock capacity-lock" data-tooltip="{{localize 'DANGEROUSGARY.Artefact.CapacityLocked'}}"></i>
                 {{/if}}
               </div>
             {{/each}}
           </div>
         </details>
         <div class="item-controls">
+          {{#unless @root.locked}}
           <a data-tooltip="{{localize 'DANGEROUSGARY.Edit'}}" data-action="edit" data-item-id="{{item.id}}"><i class="fas fa-edit"></i></a>
           <a data-tooltip="{{localize 'DANGEROUSGARY.Delete'}}" data-action="delete" data-item-id="{{item.id}}"><i class="fas fa-trash"></i></a>
+          {{/unless}}
         </div>
       </div>
     {{/each}}
   </div>
   {{/if}}
+  {{#if (or (not locked) enrichedMiscEquipment)}}
   <div class="misc-equipment">
+    <h3 class="misc-equipment-title">{{localize "DANGEROUSGARY.Labels.long.miscEquipment"}}</h3>
     {{formInput
       systemFields.equipmentMisc
       enriched=enrichedMiscEquipment
@@ -99,4 +105,5 @@
       toggled="true"
     }}
   </div>
+  {{/if}}
 </section>

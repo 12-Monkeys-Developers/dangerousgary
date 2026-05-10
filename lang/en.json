@@ -205,7 +205,8 @@
         "damage": "damage",
         "classes": "Classes & Talents",
         "talents": "Talents",
-        "osmose": "Osmosis"
+        "osmose": "Osmosis",
+        "miscEquipment": "Miscellaneous"
       },
       "details": "Details"
     },
@@ -225,7 +226,8 @@
       "RemoveCapacity": "Remove Capacity",
       "UseCapacity": "Use this capacity",
       "LevelAbbr": "Lv.",
-      "RequiredLevel": "Required Level"
+      "RequiredLevel": "Required Level",
+      "CapacityLocked": "Class level too low to unlock this capacity"
     },
     "SheetModeEdit": "Toggle between edit mode and read mode",
     "NewArtefact": "New Artefact",

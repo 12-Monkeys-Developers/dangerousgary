@@ -35,6 +35,10 @@
   --dg-font-body: "Volkhov", serif;
 }
 /* Styles limited to Dangerous Gary sheets */
+.dangerousgary input[type="checkbox"],
+.dangerousgary input[type="radio"] {
+  --checkbox-checked-color: var(--dg-text-red);
+}
 .dangerousgary .item-info {
   margin-left: 4px;
   border-style: solid;
@@ -361,7 +365,6 @@
 .dangerousgary.actor.character .character-artefacts-list {
   margin-top: 10px;
   padding-top: 8px;
-  border-top: 2px solid var(--dg-text-red);
 }
 .dangerousgary.actor.character .character-artefacts-list .artefact-item {
   display: flex;
@@ -430,6 +433,14 @@
 .dangerousgary.actor.character .character-artefacts-list .artefact-capacity .use-artefact:hover {
   color: var(--dg-text-red);
   text-shadow: 0 0 6px rgba(204, 0, 0, 0.4);
+}
+.dangerousgary.actor.character .misc-equipment-title {
+  text-align: center;
+  color: var(--dg-text-red);
+  font-size: 1.2rem;
+  font-weight: 700;
+  font-family: var(--dg-font-body);
+  margin: 10px 0 4px;
 }
 .dangerousgary.actor.encounter {
   min-width: 675px;
@@ -1026,11 +1037,14 @@
   border-left: 3px solid var(--dg-text-red);
   padding-left: 8px;
 }
-.dangerousgary.item.artefact .item-artefact .artefact-capacity prose-mirror {
-  --editor-min-height: 0;
+.dangerousgary.item.artefact .item-artefact .artefact-capacity prose-mirror.inactive {
+  --min-height: 0;
 }
-.dangerousgary.item.artefact .item-artefact .artefact-capacity prose-mirror .editor-content {
-  min-height: 2rem;
+.dangerousgary.item.artefact .item-artefact .artefact-capacity prose-mirror.inactive .editor-content {
+  position: relative;
+}
+.dangerousgary.item.artefact .item-artefact .artefact-capacity prose-mirror.active {
+  --min-height: 8rem;
 }
 .dangerousgary.item.artefact .item-artefact .capacity-header {
   display: flex;
@@ -1271,12 +1285,20 @@
 }
 .dangerousgary select:disabled,
 .dangerousgary input:disabled,
-.dangerousgary multi-checkbox.disabled,
-.dangerousgary input[type="checkbox"]:disabled,
-.dangerousgary label:has(input[type="checkbox"]:disabled) {
+.dangerousgary multi-checkbox.disabled {
   pointer-events: none;
   opacity: 0.6;
   cursor: not-allowed;
+}
+.dangerousgary input[type="checkbox"]:disabled:not(:checked),
+.dangerousgary label:has(input[type="checkbox"]:disabled:not(:checked)) {
+  pointer-events: none;
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.dangerousgary input[type="checkbox"]:disabled:checked {
+  --checkbox-checked-color: var(--dg-text-red);
+  pointer-events: none;
 }
 .chat-message {
   background: #f4f4f4 url("/systems/dangerousgary/assets/fond_gris.webp") center / cover no-repeat;

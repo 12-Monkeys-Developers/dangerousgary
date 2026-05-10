@@ -65,6 +65,13 @@ export default class DangerousGaryArtefactSheet extends DangerousGaryBaseItemShe
   _artefactClassesListener() {
     const container = this.element.querySelector("multi-checkbox[name='system.allowedClasses']")
     if (!container) return
+
+    if (this.isPlayMode) {
+      const checkboxes = container.querySelectorAll("input[type='checkbox']")
+      for (const cb of checkboxes) cb.disabled = true
+      return
+    }
+
     const capacityCount = Object.keys(this.document.system.artefactCapacities).length
     const maxClasses = Math.min(3, 4 - capacityCount)
 

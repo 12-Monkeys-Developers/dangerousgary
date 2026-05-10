@@ -96,12 +96,16 @@
       border-left: 3px solid var(--dg-text-red);
       padding-left: 8px;
 
-      prose-mirror {
-        --editor-min-height: 0;
+      prose-mirror.inactive {
+        --min-height: 0;
 
         .editor-content {
-          min-height: 2rem;
+          position: relative;
         }
+      }
+
+      prose-mirror.active {
+        --min-height: 8rem;
       }
     }
 

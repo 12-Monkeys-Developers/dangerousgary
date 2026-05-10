@@ -47,10 +47,20 @@ dg-toggle-switch {
 
 select:disabled,
 input:disabled,
-multi-checkbox.disabled,
-input[type="checkbox"]:disabled,
-label:has(input[type="checkbox"]:disabled) {
+multi-checkbox.disabled {
   pointer-events: none;
   opacity: 0.6;
   cursor: not-allowed;
+}
+
+input[type="checkbox"]:disabled:not(:checked),
+label:has(input[type="checkbox"]:disabled:not(:checked)) {
+  pointer-events: none;
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+input[type="checkbox"]:disabled:checked {
+  --checkbox-checked-color: var(--dg-text-red);
+  pointer-events: none;
 }
