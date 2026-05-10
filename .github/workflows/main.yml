@@ -40,7 +40,7 @@ env:
   # FoundryVTT uses this URL to check whether the current module version that
   # is installed is the latest version. This URL should NOT change,
   # otherwise FoundryVTT won't be able to perform this check.
-  latest_manifest_url: "https://github.com/${{github.repository}}/releases/latest/download/system.json"
+  latest_manifest_url: "https://github.com/${{github.repository}}/releases/download/${{github.event.release.tag_name}}/system.json"
 
   # The URL to the module archive associated with the module release being
   # processed by this workflow.
@@ -151,4 +151,12 @@ jobs:
           tag: ${{ github.event.release.tag_name }}
           body: ${{ github.event.release.body }}
 
-      
+      - name: Deploy Release
+        id: deploy_release
+        uses: fjogeleit/http-request-action@v1
+        with:
+          url: 'https://api.foundryvtt.com/_api/packages/release_version'
+          method: 'POST'
+          contentType: 'application/json'
+          customHeaders: '{"Authorization": "${{ secrets.FVTT_PACKAGE_RELEASE_TOKEN }}"}'
+          data: '{"id": "dangerousgary","dry-run":false,"release":{"version":"${{github.event.release.tag_name}}","manifest":"https://github.com/12-Monkeys-Developers/dangerousgary/releases/download/${{github.event.release.tag_name}}/system.json","notes":"https://github.com/12-Monkeys-Developers/dangerousgary/blob/main/CHANGELOG.md","compatibility":{"minimum":"13","verified":"13","maximum":"13"}}}'      
