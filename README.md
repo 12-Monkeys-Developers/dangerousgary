@@ -30,7 +30,7 @@ Ce système est développé par Kristov.
   - Localisation : anglais et français
   - Token lié automatiquement pour les personnages, avec vision activée
   - PV et FOR affichés sur les barres du token (attribut primaire et secondaire)
-  - Grille configurée en mètres (2m par case)
+  - Grille configurée en mètres (1,5m par case)
   - Compatible Foundry VTT v13
 
 ## Fiches de personnage
@@ -42,23 +42,33 @@ Ce système est développé par Kristov.
   - Spécialités : trois emplacements de spécialité
   - Biographie : éditeur de texte riche dédié (onglet)
   - Portrait modifiable
+  - Slider Lecture/Écriture : bascule entre mode consultation (verrouillé) et mode édition sur toutes les fiches (personnages, rencontres, items)
 
   ## Inventaire
 
-  - 4 sous-types d'équipement : équipement, armure, arme, artefact (artefact uniquement si les classes sont activées)
+  - 3 sous-types d'équipement : équipement, armure, arme
   - 7 catégories d'armes : mêlée, armes de mêlée, armes à distance, grandes armes de mêlée, pistolets, fusils, armes de guerre — chacune avec formule de dégâts et dégâts critiques
   - Équiper/déséquiper les objets en un clic
   - Dégâts critiques : les armes marquées « critique » utilisent le modificateur de dé xo (explosion unique) ; une icône s'affiche dans le chat uniquement quand le dé a effectivement explosé
   - Objet encombrant (bulky) : indicateur visuel dans l'inventaire
   - Points d'équipement : compteur sur l'onglet inventaire
   - Description enrichie affichée en tooltip au survol du nom de l'objet
-  - Drag & drop des armes vers la hotbar pour créer automatiquement une macro de jet de dégâts
+  - Zone de saisie libre "Équipement divers" sous la liste d'items
+
+  ## Artefacts (optionnel, nécessite l'activation des classes)
+
+  - Type d'item dédié, distinct de l'équipement
+  - Capacités déverrouillables par niveau de classe
+  - Utilisation d'une capacité avec message dédié dans le chat
 
   ## Jets de dés
 
   - Jets de sauvegarde : 1d20 sous la valeur de la caractéristique (FOR/DEX/VOL) — critique sur 1, fumble sur 20
+  - Shift+Clic sur une caractéristique : jet de classe (contre la valeur maximum)
   - Jets de dégâts : formule configurable par arme/attaque, avec support des dégâts critiques (explosion de dé)
+  - Attaques contraintes et exaltées : Shift+Clic sur le dé de dégâts pour choisir le type (contrainte = 1d4, exaltée = dégâts max)
   - Cartes de chat personnalisées avec portrait de l'acteur, résultat du jet, icônes de succès/échec/critique/fumble
+  - Infobulle dans le chat précisant le type de sauvegarde (caractéristique ou classe)
 
   ## Repos
 
@@ -85,11 +95,21 @@ Ce système est développé par Kristov.
   - Jets de sauvegarde et de dégâts depuis la fiche
   - Drag & drop d'attaques depuis le compendium ou d'autres sources
 
+  ## Macros & Hotbar
+
+  - Drag-and-drop des armes vers la hotbar : Clic = jet de dégâts, Shift+Clic = options (contrainte/exaltée)
+  - Drag-and-drop des caractéristiques vers la hotbar : Clic = jet normal, Shift+Clic = jet de classe (max)
+  - Drag-and-drop des talents vers la hotbar : jet de sauvegarde de classe
+
   ## Combat
 
   - Initiative automatique : les PJ passent avant les PNJ
   - Combat tracker personnalisé : pas de boutons de jet d'initiative ni d'affichage d'initiative (initiative côté-basée)
   - Réorganisation par drag & drop de l'ordre des combattants dans le tracker (MJ uniquement)
+  - Bouton "A joué" (MJ et propriétaires) pour marquer un combattant comme ayant agi
+  - Au début de chaque round, les PJ sont automatiquement classés par dextérité décroissante
+  - Les combattants ayant joué sont automatiquement placés après ceux qui n'ont pas encore joué
+  - Les combattants ayant joué sont visuellement atténués (opacité réduite)
 
 
 # Communauté
