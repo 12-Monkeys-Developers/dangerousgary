@@ -1,3 +1,5 @@
+import DangerousGaryChat from "../../chat.mjs"
+
 const { sheets, ux } = foundry.applications
 const { HandlebarsApplicationMixin } = foundry.applications.api
 const { DragDrop } = foundry.applications.ux
@@ -31,6 +33,7 @@ export default class DangerousGaryCharacterSheet extends HandlebarsApplicationMi
       createItem: DangerousGaryCharacterSheet.#onCreateItem,
       rollClassSave: DangerousGaryCharacterSheet.#onRollClassSave,
       toggleOsmose: DangerousGaryCharacterSheet.#onToggleOsmose,
+      useArtefact: DangerousGaryCharacterSheet.#onUseArtefact,
     },
   }
 
@@ -88,10 +91,34 @@ export default class DangerousGaryCharacterSheet extends HandlebarsApplicationMi
       case "inventory":
         context.tab = context.tabs.inventory
         context.items = []
-        const itemsRaw = this.actor.itemTypes.equipment
-        for (const item of itemsRaw) {
+        context.artefacts = []
+        for (const item of this.actor.itemTypes.equipment) {
           item.enrichedDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(item.system.description, { async: true })
           context.items.push(item)
+        }
+        if (context.enableClasses) {
+          for (const item of this.actor.itemTypes.artefact ?? []) {
+            item.enrichedDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(item.system.description, { async: true })
+            const allowedClasses = item.system.allowedClasses
+            const classes = this.document.system.classes
+            let bestClassLevel = 0
+            const allowedClassLabels = []
+            for (const key of allowedClasses) {
+              allowedClassLabels.push(game.i18n.localize(`DANGEROUSGARY.Talent.Classes.${key}`))
+              if (classes[key] > bestClassLevel) bestClassLevel = classes[key]
+            }
+            const capacities = []
+            for (const [key, cap] of Object.entries(item.system.artefactCapacities)) {
+              capacities.push({
+                key,
+                level: cap.level,
+                description: await foundry.applications.ux.TextEditor.implementation.enrichHTML(cap.description, { async: true }),
+                unlocked: bestClassLevel >= cap.level,
+              })
+            }
+            item.artefactData = { bestClassLevel, allowedClassLabels, capacities, canUse: bestClassLevel >= 1 }
+            context.artefacts.push(item)
+          }
         }
         context.enrichedMiscEquipment = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.document.system.equipmentMisc, { async: true })
         break
@@ -245,8 +272,12 @@ export default class DangerousGaryCharacterSheet extends HandlebarsApplicationMi
     switch (data.type) {
       case "Item":
         const item = await fromUuid(data.uuid)
-        if (item.type !== "equipment" && item.type !== "talent") return
-        return await this.actor.createEmbeddedDocuments("Item", [item], { renderSheet: false })
+        if (item.type !== "equipment" && item.type !== "talent" && item.type !== "artefact") return
+        await this.actor.createEmbeddedDocuments("Item", [item], { renderSheet: false })
+        if (item.type === "talent" && item.system.talentClass) {
+          await this._updateClassLevel(item.system.talentClass)
+        }
+        return
     }
   }
 
@@ -270,7 +301,11 @@ export default class DangerousGaryCharacterSheet extends HandlebarsApplicationMi
   static async #onItemDelete(event, target) {
     const itemId = target.getAttribute("data-item-id")
     const item = this.actor.items.get(itemId)
-    item.delete()
+    const talentClass = item.type === "talent" ? item.system.talentClass : null
+    await item.delete()
+    if (talentClass) {
+      await this._updateClassLevel(talentClass)
+    }
   }
 
   /**
@@ -375,9 +410,17 @@ export default class DangerousGaryCharacterSheet extends HandlebarsApplicationMi
       case "talent":
         itemData.name = game.i18n.localize("DANGEROUSGARY.NewTalent")
         break
+      case "artefact":
+        itemData.name = game.i18n.localize("DANGEROUSGARY.NewArtefact")
+        break
     }
 
     return this.actor.createEmbeddedDocuments("Item", [itemData])
+  }
+
+  async _updateClassLevel(classKey) {
+    const count = this.actor.itemTypes.talent.filter(t => t.system.talentClass === classKey).length
+    await this.actor.update({ [`system.classes.${classKey}`]: count })
   }
 
   static CLASS_ABILITY = {
@@ -397,6 +440,27 @@ export default class DangerousGaryCharacterSheet extends HandlebarsApplicationMi
     const current = this.actor.system.osmose
     const newValue = clicked === current ? current - 1 : clicked
     await this.actor.update({ "system.osmose": newValue })
+  }
+
+  static async #onUseArtefact(event, target) {
+    const itemId = target.dataset.itemId
+    const capacityKey = target.dataset.capacityKey
+    const item = this.actor.items.get(itemId)
+    if (!item) return
+    const capacity = item.system.artefactCapacities[capacityKey]
+    if (!capacity) return
+    const enrichedDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(capacity.description, { async: true })
+    const chatData = {
+      itemName: item.name,
+      itemImg: item.img,
+      capacityLevel: capacity.level,
+      capacityDescription: enrichedDescription,
+    }
+    const chat = await new DangerousGaryChat(this.actor)
+      .withTemplate("systems/dangerousgary/templates/artefact-use.hbs")
+      .withData(chatData)
+      .create()
+    if (chat) await chat.display()
   }
 
   static async #onRollClassSave(event, target) {

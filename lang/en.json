@@ -7,7 +7,8 @@
     "Item": {
       "equipment": "Equipment",
       "attack": "Attack",
-      "talent": "Talent"
+      "talent": "Talent",
+      "artefact": "Artefact"
     }
   },
   "DANGEROUSGARY": {
@@ -119,8 +120,7 @@
       "SubType": {
         "weapon": "Weapon",
         "armour": "Armour",
-        "equipment": "Equipment",
-        "artefact": "Artefact"
+        "equipment": "Equipment"
       },
       "WeaponCategory": {
         "melee": "Melee",
@@ -215,6 +215,19 @@
         "hint": "Enable the Classes & Talents tab on the character sheet."
       }
     },
+    "Artefact": {
+      "FIELDS": {
+        "description": { "label": "Description" },
+        "allowedClasses": { "label": "Required Classes" },
+        "artefactCapacities": { "label": "Capacities" }
+      },
+      "AddCapacity": "Add Capacity",
+      "RemoveCapacity": "Remove Capacity",
+      "UseCapacity": "Use this capacity",
+      "LevelAbbr": "Lv.",
+      "RequiredLevel": "Required Level"
+    },
+    "NewArtefact": "New Artefact",
     "Attacks": "Attacks",
     "Add": "Add",
     "Edit": "Edit",

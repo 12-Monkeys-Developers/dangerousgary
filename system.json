@@ -64,6 +64,9 @@
       },
       "talent": {
         "htmlFields": ["description"]
+      },
+      "artefact": {
+        "htmlFields": ["description"]
       }
     }
   },

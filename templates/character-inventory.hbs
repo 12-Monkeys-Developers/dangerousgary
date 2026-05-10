@@ -46,6 +46,48 @@
       </div>
     {{/each}}
   </div>
+  {{#if artefacts.length}}
+  <div class="character-artefacts-list">
+    {{#each artefacts as |item|}}
+      <div class="artefact-item {{#unless item.artefactData.canUse}}artefact-unusable{{/unless}}" data-item-id="{{item.id}}">
+        <details>
+          <summary>
+            <span>
+              <i class="fas fa-gem artefact-icon"></i>
+              <span class="item-name" data-tooltip="{{{item.enrichedDescription}}}">{{item.name}}</span>
+              <span class="artefact-classes">
+                {{#each item.artefactData.allowedClassLabels as |cls|}}
+                  <span class="artefact-class-badge">{{cls}}</span>
+                {{/each}}
+              </span>
+            </span>
+          </summary>
+          <div class="artefact-capacities">
+            {{#each item.artefactData.capacities as |cap|}}
+              <div class="artefact-capacity {{#if cap.unlocked}}unlocked{{else}}locked{{/if}}">
+                <span class="capacity-level">{{localize "DANGEROUSGARY.Artefact.LevelAbbr"}} {{cap.level}}</span>
+                <span class="capacity-description">{{{cap.description}}}</span>
+                {{#if cap.unlocked}}
+                  <a class="use-artefact" data-action="useArtefact"
+                     data-item-id="{{../item.id}}" data-capacity-key="{{cap.key}}"
+                     data-tooltip="{{localize 'DANGEROUSGARY.Artefact.UseCapacity'}}">
+                    <i class="fas fa-hand-sparkles"></i>
+                  </a>
+                {{else}}
+                  <i class="fas fa-lock capacity-lock"></i>
+                {{/if}}
+              </div>
+            {{/each}}
+          </div>
+        </details>
+        <div class="item-controls">
+          <a data-tooltip="{{localize 'DANGEROUSGARY.Edit'}}" data-action="edit" data-item-id="{{item.id}}"><i class="fas fa-edit"></i></a>
+          <a data-tooltip="{{localize 'DANGEROUSGARY.Delete'}}" data-action="delete" data-item-id="{{item.id}}"><i class="fas fa-trash"></i></a>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+  {{/if}}
   <div class="misc-equipment">
     {{formInput
       systemFields.equipmentMisc

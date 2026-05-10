@@ -358,6 +358,79 @@
   justify-content: space-between;
   align-items: center;
 }
+.dangerousgary.actor.character .character-artefacts-list {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 2px solid var(--dg-text-red);
+}
+.dangerousgary.actor.character .character-artefacts-list .artefact-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 0;
+  border-bottom: 1px solid #ddd;
+}
+.dangerousgary.actor.character .character-artefacts-list .artefact-item.artefact-unusable {
+  opacity: 0.7;
+}
+.dangerousgary.actor.character .character-artefacts-list .artefact-item summary {
+  display: flex;
+  align-items: center;
+}
+.dangerousgary.actor.character .character-artefacts-list .artefact-item .artefact-icon {
+  color: var(--dg-text-red);
+  margin-right: 6px;
+}
+.dangerousgary.actor.character .character-artefacts-list .artefact-item .item-name {
+  font-weight: bold;
+}
+.dangerousgary.actor.character .character-artefacts-list .artefact-item .artefact-classes {
+  margin-left: 8px;
+}
+.dangerousgary.actor.character .character-artefacts-list .artefact-item .artefact-class-badge {
+  font-size: 0.75rem;
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 3px;
+  padding: 1px 5px;
+  margin-left: 3px;
+}
+.dangerousgary.actor.character .character-artefacts-list .artefact-capacities {
+  padding: 4px 0 4px 20px;
+}
+.dangerousgary.actor.character .character-artefacts-list .artefact-capacity {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  padding: 2px 0;
+}
+.dangerousgary.actor.character .character-artefacts-list .artefact-capacity.locked {
+  opacity: 0.4;
+}
+.dangerousgary.actor.character .character-artefacts-list .artefact-capacity .capacity-level {
+  font-weight: bold;
+  font-size: 0.85rem;
+  color: var(--dg-text-red);
+  white-space: nowrap;
+}
+.dangerousgary.actor.character .character-artefacts-list .artefact-capacity .capacity-description {
+  font-size: 0.9rem;
+}
+.dangerousgary.actor.character .character-artefacts-list .artefact-capacity .capacity-description p {
+  margin: 0;
+}
+.dangerousgary.actor.character .character-artefacts-list .artefact-capacity .capacity-lock {
+  font-size: 0.75rem;
+  color: #888;
+}
+.dangerousgary.actor.character .character-artefacts-list .artefact-capacity .use-artefact {
+  font-size: 0.85rem;
+  color: #888;
+  cursor: pointer;
+}
+.dangerousgary.actor.character .character-artefacts-list .artefact-capacity .use-artefact:hover {
+  color: var(--dg-text-red);
+  text-shadow: 0 0 6px rgba(204, 0, 0, 0.4);
+}
 .dangerousgary.actor.encounter {
   min-width: 675px;
   /* --- Shared panel fieldset style --- */
@@ -869,6 +942,156 @@
 .dangerousgary.item.talent .talent-description fieldset prose-mirror .editor-content {
   flex: 1;
 }
+.dangerousgary.item.artefact .standard-form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.dangerousgary.item.artefact fieldset {
+  color: #222;
+}
+.dangerousgary.item.artefact fieldset label {
+  color: #222;
+}
+.dangerousgary.item.artefact fieldset input,
+.dangerousgary.item.artefact fieldset select {
+  color: #222;
+  background-color: #f0f0f0;
+}
+.dangerousgary.item.artefact .window-content {
+  background: var(--dg-bg-dark) url("/systems/dangerousgary/assets/fond_noir.webp") center / cover no-repeat;
+  padding: 10px;
+  font-family: var(--dg-font-body);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.dangerousgary.item.artefact .artefact-main {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.dangerousgary.item.artefact .artefact-main .header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: 3px solid var(--dg-text-red);
+  padding-bottom: 8px;
+}
+.dangerousgary.item.artefact .artefact-main .header img {
+  width: 60px;
+  height: 60px;
+  flex: 0 0 60px;
+  border: 2px solid var(--dg-text-red);
+}
+.dangerousgary.item.artefact .artefact-main .header input {
+  font-family: var(--dg-font-title);
+  color: var(--dg-text-red);
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 0px #000;
+  background: transparent;
+  border: none;
+  width: 100%;
+  margin-left: 10px;
+}
+.dangerousgary.item.artefact .item-artefact fieldset {
+  background: var(--dg-box-bg) url("/systems/dangerousgary/assets/fond_gris.webp") center / cover no-repeat;
+  border: 1px solid var(--dg-border-color);
+  padding: 10px 15px;
+  box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.6);
+  border-radius: 5px;
+}
+.dangerousgary.item.artefact .item-artefact fieldset legend {
+  float: left;
+  width: 100%;
+  font-weight: bold;
+  color: var(--dg-text-red);
+  font-size: 1.2rem;
+  font-family: var(--dg-font-body);
+  margin-bottom: 6px;
+}
+.dangerousgary.item.artefact .item-artefact fieldset > *:not(legend) {
+  clear: both;
+}
+.dangerousgary.item.artefact .item-artefact .artefact-capacities {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 6px;
+}
+.dangerousgary.item.artefact .item-artefact .artefact-capacity {
+  border-left: 3px solid var(--dg-text-red);
+  padding-left: 8px;
+}
+.dangerousgary.item.artefact .item-artefact .artefact-capacity prose-mirror {
+  --editor-min-height: 0;
+}
+.dangerousgary.item.artefact .item-artefact .artefact-capacity prose-mirror .editor-content {
+  min-height: 2rem;
+}
+.dangerousgary.item.artefact .item-artefact .capacity-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.dangerousgary.item.artefact .item-artefact .capacity-header label {
+  font-weight: bold;
+  white-space: nowrap;
+}
+.dangerousgary.item.artefact .item-artefact .capacity-header select {
+  width: 60px;
+}
+.dangerousgary.item.artefact .item-artefact .capacity-header .remove-capacity-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #888;
+  padding: 2px 4px;
+}
+.dangerousgary.item.artefact .item-artefact .capacity-header .remove-capacity-btn:hover {
+  color: var(--dg-text-red);
+}
+.dangerousgary.item.artefact .item-artefact .add-capacity-btn {
+  margin-top: 6px;
+  cursor: pointer;
+}
+.dangerousgary.item.artefact .artefact-description {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.dangerousgary.item.artefact .artefact-description fieldset {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: var(--dg-box-bg) url("/systems/dangerousgary/assets/fond_gris.webp") center / cover no-repeat;
+  border: 1px solid var(--dg-border-color);
+  padding: 10px 15px;
+  box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.6);
+  border-radius: 5px;
+}
+.dangerousgary.item.artefact .artefact-description fieldset legend {
+  float: left;
+  width: 100%;
+  font-weight: bold;
+  color: var(--dg-text-red);
+  font-size: 1.2rem;
+  font-family: var(--dg-font-body);
+}
+.dangerousgary.item.artefact .artefact-description fieldset > *:not(legend) {
+  clear: both;
+}
+.dangerousgary.item.artefact .artefact-description fieldset prose-mirror {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.dangerousgary.item.artefact .artefact-description fieldset prose-mirror .editor-content {
+  flex: 1;
+}
 .dangerousgary.actor.character .character-classes.active {
   flex: 1;
   display: flex;
@@ -1108,6 +1331,36 @@
   margin-top: 4px;
   font-weight: bold;
   color: #c62828;
+}
+.artefact-use .artefact-use-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid var(--dg-text-red);
+  padding-bottom: 6px;
+  margin-bottom: 6px;
+}
+.artefact-use .artefact-use-img {
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--dg-text-red);
+}
+.artefact-use .artefact-use-name {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: var(--dg-text-red);
+}
+.artefact-use .artefact-use-level {
+  font-weight: bold;
+  font-size: 0.85rem;
+  color: var(--dg-text-red);
+}
+.artefact-use .artefact-use-description {
+  margin-top: 4px;
+  font-size: 0.95rem;
+}
+.artefact-use .artefact-use-description p {
+  margin: 0;
 }
 .combat-tracker .combatant .fa-fist-raised {
   color: gray;

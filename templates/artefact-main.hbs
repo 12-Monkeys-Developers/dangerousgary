@@ -1,0 +1,63 @@
+<div class="standard-form artefact">
+  <section class="artefact-main">
+    <div class="header">
+      <img src="{{item.img}}" data-edit="img" data-action='editImage' data-tooltip="{{item.name}}" />
+      {{formInput fields.name value=source.name }}
+    </div>
+  </section>
+
+  <section class="item-artefact">
+    <fieldset>
+      <legend>{{localize "DANGEROUSGARY.Artefact.FIELDS.allowedClasses.label"}}</legend>
+      {{formInput systemFields.allowedClasses value=system.allowedClasses type="checkboxes" localize=true}}
+    </fieldset>
+    <fieldset>
+      <legend>{{localize "DANGEROUSGARY.Artefact.FIELDS.artefactCapacities.label"}}</legend>
+      <div class="artefact-capacities">
+        {{#each enrichedCapacities as |cap|}}
+          <div class="artefact-capacity" data-key="{{cap.key}}">
+            <div class="capacity-header">
+              <label>{{localize "DANGEROUSGARY.Artefact.RequiredLevel"}}</label>
+              {{formInput @root.capacityLevelField value=cap.level name=(concat "system.artefactCapacities." cap.key ".level")}}
+              <button type="button" class="remove-capacity-btn" data-action="removeCapacity" data-key="{{cap.key}}"
+                      data-tooltip="{{localize 'DANGEROUSGARY.Artefact.RemoveCapacity'}}">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+            {{formInput
+              @root.capacityDescField
+              enriched=cap.enrichedDescription
+              value=cap.description
+              documentUUID=@root.item.uuid
+              name=(concat "system.artefactCapacities." cap.key ".description")
+              collaborate="false"
+              toggled="true"
+              height="50"
+            }}
+          </div>
+        {{/each}}
+      </div>
+      {{#if canAddCapacity}}
+        <button type="button" class="add-capacity-btn" data-action="addCapacity">
+          <i class="fas fa-plus"></i> {{localize "DANGEROUSGARY.Artefact.AddCapacity"}}
+        </button>
+      {{/if}}
+    </fieldset>
+  </section>
+
+  <section class="artefact-description">
+    <fieldset>
+      <legend>{{localize "DANGEROUSGARY.Artefact.FIELDS.description.label"}}</legend>
+      {{formInput
+        systemFields.description
+        enriched=enrichedDescription
+        value=system.description
+        documentUUID=item.uuid
+        name="system.description"
+        collaborate="false"
+        toggled="true"
+        height="50"
+      }}
+    </fieldset>
+  </section>
+</div>
