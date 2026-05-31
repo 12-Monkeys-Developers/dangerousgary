@@ -159,4 +159,4 @@ jobs:
           method: 'POST'
           contentType: 'application/json'
           customHeaders: '{"Authorization": "${{ secrets.FVTT_PACKAGE_RELEASE_TOKEN }}"}'
-          data: '{"id": "dangerousgary","dry-run":false,"release":{"version":"${{github.event.release.tag_name}}","manifest":"https://github.com/12-Monkeys-Developers/dangerousgary/releases/download/${{github.event.release.tag_name}}/system.json","notes":"https://github.com/12-Monkeys-Developers/dangerousgary/blob/main/CHANGELOG.md","compatibility":{"minimum":"13","verified":"13","maximum":"13"}}}'      
+          data: '{"id": "dangerousgary","dry-run":false,"release":{"version":"${{github.event.release.tag_name}}","manifest":"https://github.com/12-Monkeys-Developers/dangerousgary/releases/download/${{github.event.release.tag_name}}/system.json","notes":"https://github.com/12-Monkeys-Developers/dangerousgary/blob/main/CHANGELOG.md","compatibility":{"minimum":"13","verified":"14","maximum":"14"}}}'      

@@ -213,7 +213,7 @@
     "Settings": {
       "enableClasses": {
         "name": "Classe et talents",
-        "hint": "Active l'onglet Classe et talents sur la fiche de personnage."
+        "hint": "Permet aux joueurs d'accéder à l'onglet Classe et talents sur la fiche de personnage."
       }
     },
     "Artefact": {

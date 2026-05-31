@@ -213,7 +213,7 @@
     "Settings": {
       "enableClasses": {
         "name": "Classes & Talents",
-        "hint": "Enable the Classes & Talents tab on the character sheet."
+        "hint": "Allows players to access the Classes & Talents tab on the character sheet."
       }
     },
     "Artefact": {

@@ -1,3 +1,6 @@
+1.3.1
+- Ajoute le support de Foundry V14
+
 1.3.0
 - Artefacts : nouveau type d'item avec capacités utilisables et message dédié dans le chat
 - Mise à jour automatique du niveau de classe lors de l'ajout ou la suppression d'un talent
