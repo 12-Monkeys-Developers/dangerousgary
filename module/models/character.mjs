@@ -61,7 +61,7 @@ export default class DangerousGaryCharacterData extends foundry.abstract.TypeDat
 
   /**
    * Restore HP and recover ability points (capped at max).
-   * @param {number} abilityRecovery - number of points to recover per ability
+   * @param {number} abilityRecovery number of points to recover per ability
    */
   _rest(abilityRecovery) {
     return this.parent.update({

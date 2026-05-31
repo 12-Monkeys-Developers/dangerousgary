@@ -1,9 +1,12 @@
 # Node Modules
 node_modules/
 
-# Claude
-CLAUDE.md
-
 # Foundry VTT
-/packs
+packs
 styles/**/*.css
+
+# Tools
+.claudeignore
+CLAUDE.md
+.claude/
+docs/

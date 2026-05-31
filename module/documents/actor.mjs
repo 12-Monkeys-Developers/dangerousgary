@@ -27,6 +27,10 @@ export default class DangerousGaryActor extends Actor {
   /**
    * Roll a save for ability
    * @param {*} ability
+   * @param root0
+   * @param root0.useMax
+   * @param root0.talentName
+   * @param root0.talentLevel
    * @returns
    */
   async rollSave(ability, { useMax = false, talentName = null, talentLevel = null } = {}) {
@@ -81,6 +85,10 @@ export default class DangerousGaryActor extends Actor {
    *
    * @param {*} itemName
    * @param {*} formula
+   * @param root0
+   * @param root0.criticalDamage
+   * @param root0.constrained
+   * @param root0.exalted
    */
   async rollDamage(itemName, formula, { criticalDamage = false, constrained = false, exalted = false } = {}) {
     let roll
