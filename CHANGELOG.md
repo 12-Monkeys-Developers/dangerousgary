@@ -1,3 +1,7 @@
+# 1.3.6
+
+- Release technique : correction de l'url du manifeste
+
 # 1.3.5
 
 - Ajoute le support de Foundry V14
