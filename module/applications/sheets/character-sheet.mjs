@@ -284,6 +284,13 @@ export default class DangerousGaryCharacterSheet extends DangerousGaryBaseActorS
       case "Item":
         const item = await fromUuid(data.uuid)
         if (item.type !== "equipment" && item.type !== "talent" && item.type !== "artefact") return
+        if (item.type === "talent") {
+          const duplicate = this.actor.itemTypes.talent.find(t => t.name === item.name)
+          if (duplicate) {
+            ui.notifications.warn(game.i18n.format("DANGEROUSGARY.Warnings.DuplicateTalent", { name: item.name }))
+            return
+          }
+        }
         await this.actor.createEmbeddedDocuments("Item", [item], { renderSheet: false })
         if (item.type === "talent" && item.system.talentClass) {
           await this._updateClassLevel(item.system.talentClass)

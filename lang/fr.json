@@ -235,6 +235,9 @@
     "Add": "Ajouter",
     "Edit": "Modifier",
     "Delete": "Supprimer",
+    "Warnings": {
+      "DuplicateTalent": "{name} : ce talent est déjà possédé par le personnage."
+    },
     "RollClassSave": "Lancer la sauvegarde de classe",
     "Dialog": {
       "DamageOptions": "Options de dégâts",

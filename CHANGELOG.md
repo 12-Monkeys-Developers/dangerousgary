@@ -1,5 +1,6 @@
 1.3.1
 - Ajoute le support de Foundry V14
+- Drop d'un talent sur un personnage : message d'avertissement si le talent est déjà possédé
 
 1.3.0
 - Artefacts : nouveau type d'item avec capacités utilisables et message dédié dans le chat

@@ -241,6 +241,9 @@
     "RollDexterityTooltip": "Click: Dexterity save<br>Shift+Click: Class save (max)",
     "RollWillpower": "Roll Willpower save",
     "RollWillpowerTooltip": "Click: Willpower save<br>Shift+Click: Class save (max)",
+    "Warnings": {
+      "DuplicateTalent": "{name}: this talent is already possessed by the character."
+    },
     "RollClassSave": "Roll class save",
     "Dialog": {
       "DamageOptions": "Damage Options",
