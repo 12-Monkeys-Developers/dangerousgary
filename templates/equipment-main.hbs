@@ -2,7 +2,7 @@
   <section class="item-main">
     <div class="header">
       <img src="{{item.img}}" data-edit="img" data-action='editImage' data-tooltip="{{item.name}}" />
-      {{formInput fields.name value=source.name }}
+      {{formInput fields.name value=source.name disabled=locked }}
     </div>
     <div class="details">
       <fieldset>
