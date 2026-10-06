@@ -9,7 +9,7 @@
         <details>
           <summary>
             <span>
-              <span class="item-name" data-tooltip="{{{item.enrichedDescription}}}">
+              <span class="item-name" data-tooltip-html="{{item.enrichedDescription}}">
                 {{item.name}}
               </span>
               {{#if item.system.isBulky}}
@@ -56,7 +56,7 @@
           <summary>
             <span>
               <i class="fas fa-gem artefact-icon"></i>
-              <span class="item-name" data-tooltip="{{{item.enrichedDescription}}}">{{item.name}}</span>
+              <span class="item-name" data-tooltip-html="{{item.enrichedDescription}}">{{item.name}}</span>
               <span class="artefact-classes">
                 {{#each item.artefactData.allowedClassLabels as |cls|}}
                   <span class="artefact-class-badge">{{cls}}</span>
