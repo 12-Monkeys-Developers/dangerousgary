@@ -1,3 +1,9 @@
+# 1.3.7
+
+- Fiches items (Équipement, Attaque, Talent, Artefact) : le nom n'est modifiable qu'en mode Écriture
+- Correction de l'infobulle de description des attaques (Rencontre), des items et des talents (Personnage) : une description contenant un jet (ex. `[[/r 1d6]]`) ou un lien ne s'affiche plus dans le nom
+- Technique : fins de ligne LF dans tout le dépôt (`.gitattributes`, `.editorconfig`)
+
 # 1.3.6
 
 - Release technique : correction de l'url du manifeste
