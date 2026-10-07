@@ -103,20 +103,6 @@ export default class DangerousGaryChat {
       messageData.flags = this.flags
     }
 
-    // Set the whisper and blind parameters according to the player roll mode settings
-    switch (game.settings.get("core", "rollMode")) {
-      case "gmroll":
-        messageData.whisper = ChatMessage.getWhisperRecipients("GM").map((u) => u.id)
-        break
-      case "blindroll":
-        messageData.whisper = ChatMessage.getWhisperRecipients("GM").map((u) => u.id)
-        messageData.blind = true
-        break
-      case "selfroll":
-        messageData.whisper = [game.user.id]
-        break
-    }
-
     this.chatData = messageData
 
     return this
@@ -142,7 +128,8 @@ export default class DangerousGaryChat {
    */
   async display() {
     // Create the chat
-    this.chat = await ChatMessage.implementation.create(this.chatData)
+    // Le cœur applique la visibilité (destinataires, aveugle) selon le mode choisi dans le tchat
+    this.chat = await ChatMessage.implementation.create(this.chatData, { messageMode: game.settings.get("core", "messageMode") })
     return this
   }
 }

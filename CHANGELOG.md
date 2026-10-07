@@ -5,6 +5,7 @@
 - Guide du système : nouveau compendium « Guide du système » (7 pages illustrées : réglages, personnage, classes et artefacts, rencontre, jets, combat et macros), consultable par tous les joueurs
 - Correction : l'utilisation d'une capacité d'artefact depuis la fiche de personnage ne faisait rien (identifiant de l'artefact absent du bouton)
 - Compatibilité : Foundry VTT V14 uniquement
+- Visibilité des jets selon le mode choisi dans le tchat via l'API V14 (`core.rollMode` est déprécié)
 - Technique : fins de ligne LF dans tout le dépôt (`.gitattributes`, `.editorconfig`)
 
 # 1.3.6
