@@ -28,7 +28,8 @@
       "path": "packs/guide",
       "type": "JournalEntry",
       "ownership": {
-        "PLAYER": "OBSERVER",
+        "PLAYER": "NONE",
+        "TRUSTED": "NONE",
         "ASSISTANT": "OWNER"
       }
     },
