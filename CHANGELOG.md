@@ -6,6 +6,7 @@
 - Correction : l'utilisation d'une capacité d'artefact depuis la fiche de personnage ne faisait rien (identifiant de l'artefact absent du bouton)
 - Compatibilité : Foundry VTT V14 uniquement
 - Visibilité des jets selon le mode choisi dans le tchat via l'API V14 (`core.rollMode` est déprécié)
+- Suivi de combat : le libellé du bouton « A joué » est traduit (anglais : « Has acted »)
 - Technique : fins de ligne LF dans tout le dépôt (`.gitattributes`, `.editorconfig`)
 
 # 1.3.6

@@ -259,6 +259,7 @@
     "NewTalent": "Nouveau Talent",
     "Equip": "Équiper",
     "Unequip": "Déséquiper",
+    "HasActed": "A joué",
     "Roll": {
       "SaveRoll": "Sauvegarde de {ability} ({value})",
       "Success": "Succès",

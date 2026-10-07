@@ -259,6 +259,7 @@
     "NewTalent": "New Talent",
     "Equip": "Equip",
     "Unequip": "Unequip",
+    "HasActed": "Has acted",
     "Roll": {
       "SaveRoll": "{ability} Saving Throw ({value})",
       "Success": "Success",
