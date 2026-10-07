@@ -1,0 +1,676 @@
+_id: tlbfAE79HHg82HaN
+name: Guide du système
+pages:
+  - _id: nU5S7qoXnx7VCATH
+    name: Introduction
+    type: text
+    title:
+      show: false
+      level: 1
+    image: {}
+    text:
+      format: 1
+      content: |-
+        <div class="dg-guide">
+          <h2>Bienvenue</h2>
+          <p>
+            Ce guide présente ce que le système <strong>Dangerous Gary</strong> pour Foundry VTT met à votre disposition : les fiches des donjexeurs et des rencontres, les jets
+            de sauvegarde et de dégâts, les classes et leurs talents, les artefacts, le combat et les macros. Il ne remplace pas le livre de règles : il explique comment
+            Foundry vous aide à les appliquer.
+          </p>
+
+          <h3>Sommaire</h3>
+          <ul>
+            <li>@UUID[Compendium.dangerousgary.guide.JournalEntry.tlbfAE79HHg82HaN.JournalEntryPage.B5mvayI7qCFZcDBz]{Réglages} : le réglage du monde et la configuration des scènes et des tokens.</li>
+            <li>@UUID[Compendium.dangerousgary.guide.JournalEntry.tlbfAE79HHg82HaN.JournalEntryPage.AjSC5t5kjsmsNFZq]{Le Personnage} : la fiche des donjexeurs, l'équipement et les repos.</li>
+            <li>@UUID[Compendium.dangerousgary.guide.JournalEntry.tlbfAE79HHg82HaN.JournalEntryPage.mdWehQH6tzWz2xyA]{Classes, talents et artefacts} : l'onglet Classe et talents, l'Osmose et les artefacts.</li>
+            <li>@UUID[Compendium.dangerousgary.guide.JournalEntry.tlbfAE79HHg82HaN.JournalEntryPage.01Y5Jr6ZBUXkRBYz]{La Rencontre} : la fiche des Monstres et des PNJ, et leurs attaques.</li>
+            <li>@UUID[Compendium.dangerousgary.guide.JournalEntry.tlbfAE79HHg82HaN.JournalEntryPage.H6d2D2QVYtF1Kwbx]{Jets et messages} : les sauvegardes, les dégâts et les cartes du tchat.</li>
+            <li>@UUID[Compendium.dangerousgary.guide.JournalEntry.tlbfAE79HHg82HaN.JournalEntryPage.EDrxwaqLnf5XCESY]{Combat et macros} : le suivi de combat et la barre de macros.</li>
+          </ul>
+
+          <h3>Version</h3>
+          <p>Ce guide décrit la version <strong>1.3.7</strong> du système, qui fonctionne avec <strong>Foundry VTT V13 et V14</strong>.</p>
+
+          <h2>Les types de documents</h2>
+          <p>Le système définit deux types d'acteurs :</p>
+          <ul>
+            <li><strong>Personnage</strong> : un donjexeur, joué par un joueur ou par le MJ ;</li>
+            <li><strong>Rencontre</strong> : un Monstre ou un PNJ, avec ses attaques et ses pouvoirs.</li>
+          </ul>
+          <p>Et quatre types d'objets :</p>
+          <ul>
+            <li><strong>Équipement</strong> : un objet, une armure ou une arme, à déposer sur un Personnage ;</li>
+            <li><strong>Attaque</strong> : une attaque de Rencontre, avec sa formule de dégâts ;</li>
+            <li><strong>Talent</strong> : un talent de classe, à déposer sur un Personnage ;</li>
+            <li><strong>Artefact</strong> : un objet doté de capacités liées aux classes, à déposer sur un Personnage.</li>
+          </ul>
+          <p>
+            Chaque fiche n'accepte que les objets qui la concernent : une fiche de Personnage refuse les attaques, une fiche de Rencontre n'accepte que les attaques.
+          </p>
+
+          <h2>Les compendiums</h2>
+          <div class="guide-row">
+            <div class="guide-image guide-image-narrow"><img src="systems/dangerousgary/assets/guide/compendiums.webp" alt="Compendiums du système" /></div>
+            <div>
+              <p>Le système fournit deux compendiums :</p>
+              <ul>
+                <li><strong>Guide du système</strong> : ce guide, consultable par tous les joueurs.</li>
+                <li>
+                  <strong>Talents</strong> : les talents des neuf classes, du niveau 1 au niveau 9, rangés dans un dossier par classe. Par défaut, seuls le MJ, les joueurs de
+                  confiance (en lecture) et les assistants (en écriture) y ont accès.
+                </li>
+              </ul>
+              <p>Faites glisser un talent du compendium sur une fiche de Personnage pour l'ajouter (voir @UUID[Compendium.dangerousgary.guide.JournalEntry.tlbfAE79HHg82HaN.JournalEntryPage.mdWehQH6tzWz2xyA]{Classes, talents et artefacts}).</p>
+            </div>
+          </div>
+        </div>
+    video:
+      controls: true
+      volume: 0.5
+    src: null
+    system: {}
+    sort: 100000
+    ownership:
+      default: -1
+    flags: {}
+    _key: '!journal.pages!tlbfAE79HHg82HaN.nU5S7qoXnx7VCATH'
+  - _id: B5mvayI7qCFZcDBz
+    name: Réglages
+    type: text
+    title:
+      show: false
+      level: 1
+    image: {}
+    text:
+      format: 1
+      content: |-
+        <div class="dg-guide">
+          <h2>Le réglage du système</h2>
+          <div class="guide-image"><img src="systems/dangerousgary/assets/guide/reglages.webp" alt="Réglages du système" /></div>
+          <p>
+            Le système n'a qu'un réglage, dans la fenêtre <strong>Paramètres de la partie</strong> (onglet <strong>Paramètres</strong> de la barre latérale), catégorie
+            <strong>Dangerous Gary</strong> :
+          </p>
+          <table class="guide-table">
+            <tr>
+              <th>Réglage</th>
+              <th>Effet</th>
+            </tr>
+            <tr>
+              <td><strong>Classe et talents</strong></td>
+              <td>
+                Désactivé par défaut. Une fois activé, les joueurs voient l'onglet <strong>Classe et talents</strong> de leur fiche, ainsi que les <strong>artefacts</strong> dans
+                l'onglet Équipement. Le MJ voit toujours cet onglet et ces artefacts, que le réglage soit actif ou non : il peut préparer les classes avant de les révéler.
+                Changer ce réglage recharge le monde.
+              </td>
+            </tr>
+          </table>
+          <p class="guide-astuce">
+            Les classes et les talents arrivent en cours de campagne. Laissez le réglage désactivé au début et activez-le quand les donjexeurs découvrent leur premier talent.
+          </p>
+
+          <h2>Scènes et tokens</h2>
+          <ul>
+            <li>La grille des nouvelles scènes est réglée sur <strong>1,5 m</strong> par case.</li>
+            <li>
+              Un nouveau <strong>Personnage</strong> reçoit un token <strong>lié</strong> à sa fiche, de disposition <strong>amicale</strong> et doté de la
+              <strong>vision</strong>. Les Rencontres gardent les réglages par défaut de Foundry.
+            </li>
+            <li>
+              Les barres des tokens affichent par défaut les <strong>points de vie</strong> (barre principale) et la <strong>Force</strong> (barre secondaire), les deux
+              compteurs qui mènent au choc et à la mort.
+            </li>
+          </ul>
+        </div>
+    video:
+      controls: true
+      volume: 0.5
+    src: null
+    system: {}
+    sort: 200000
+    ownership:
+      default: -1
+    flags: {}
+    _key: '!journal.pages!tlbfAE79HHg82HaN.B5mvayI7qCFZcDBz'
+  - _id: AjSC5t5kjsmsNFZq
+    name: Le Personnage
+    type: text
+    title:
+      show: false
+      level: 1
+    image: {}
+    text:
+      format: 1
+      content: |-
+        <div class="dg-guide">
+          <h2>Le Personnage</h2>
+          <div class="guide-image"><img src="systems/dangerousgary/assets/guide/fiche-personnage.webp" alt="Fiche de personnage en mode Lecture" /></div>
+
+          <h3>Mode Lecture et mode Écriture</h3>
+          <p>
+            Toutes les fiches s'ouvrent en mode <strong>Lecture</strong> : on joue (jets, équipement, repos) sans risquer de modifier une valeur de référence par erreur.
+            L'interrupteur en haut à gauche de la barre de titre passe la fiche en mode <strong>Écriture</strong>.
+          </p>
+          <div class="guide-image"><img src="systems/dangerousgary/assets/guide/fiche-personnage-edition.webp" alt="Fiche de personnage en mode Écriture" /></div>
+          <p>En mode Lecture, restent modifiables :</p>
+          <ul>
+            <li>le nom, la description courte sous le nom et le portrait (un clic sur le portrait ouvre le sélecteur d'image) ;</li>
+            <li>les valeurs <strong>actuelles</strong> des caractéristiques et des points de vie, qui bougent sans cesse en jeu ;</li>
+            <li>les points d'équipement et l'état équipé des objets.</li>
+          </ul>
+          <p>Le mode Écriture débloque en plus :</p>
+          <ul>
+            <li>les <strong>maximums</strong> des caractéristiques et des points de vie, les points d'expérience ;</li>
+            <li>les trois <strong>spécialités</strong> et l'<strong>atout</strong> (nom et description) ;</li>
+            <li>les boutons pour modifier ou supprimer un objet, et la zone <strong>Divers</strong> de l'équipement.</li>
+          </ul>
+          <p>
+            On peut déposer des objets sur la fiche dans les deux modes. Sur les fiches d'objets, le nom n'est modifiable qu'en mode Écriture.
+          </p>
+
+          <h3>Caractéristiques, points de vie et expérience</h3>
+          <ul>
+            <li>
+              <strong>Force</strong>, <strong>Dextérité</strong> et <strong>Volonté</strong> ont une valeur actuelle et un maximum. Cliquez sur le nom d'une caractéristique pour
+              faire une sauvegarde, <kbd>Maj</kbd>+clic pour une sauvegarde de classe (voir @UUID[Compendium.dangerousgary.guide.JournalEntry.tlbfAE79HHg82HaN.JournalEntryPage.H6d2D2QVYtF1Kwbx]{Jets et messages}).
+            </li>
+            <li>Les <strong>points de vie</strong> ont eux aussi une valeur actuelle et un maximum.</li>
+            <li>Les <strong>points d'expérience</strong> se modifient en mode Écriture.</li>
+          </ul>
+          <p>Faites glisser le nom d'une caractéristique dans la barre de macros pour créer un raccourci de sauvegarde (voir @UUID[Compendium.dangerousgary.guide.JournalEntry.tlbfAE79HHg82HaN.JournalEntryPage.EDrxwaqLnf5XCESY]{Combat et macros}).</p>
+
+          <h3>Spécialités et atout</h3>
+          <p>
+            La colonne de gauche contient trois emplacements de <strong>spécialité</strong>. À droite, l'<strong>atout</strong> a un nom et une description en texte riche.
+          </p>
+
+          <h3>Les onglets</h3>
+          <ul>
+            <li><strong>Biographie</strong> : un texte libre.</li>
+            <li><strong>Équipement</strong> (ouvert par défaut) : les objets, les armures, les armes et, si les classes sont actives, les artefacts.</li>
+            <li><strong>Classe et talents</strong> : les classes, les talents et l'Osmose (voir @UUID[Compendium.dangerousgary.guide.JournalEntry.tlbfAE79HHg82HaN.JournalEntryPage.mdWehQH6tzWz2xyA]{Classes, talents et artefacts}). Visible des joueurs seulement si le réglage est actif.</li>
+          </ul>
+
+          <h2>Les repos</h2>
+          <div class="guide-row">
+            <div class="guide-image guide-image-card"><img src="systems/dangerousgary/assets/guide/menu-repos.webp" alt="Menu de la barre de titre avec les repos" /></div>
+            <div>
+              <p>Les repos se trouvent dans le menu de la barre de titre de la fiche (bouton <strong>⋮</strong>) :</p>
+              <table class="guide-table">
+                <tr>
+                  <th>Repos</th>
+                  <th>Effet</th>
+                </tr>
+                <tr>
+                  <td><strong>Pause</strong></td>
+                  <td>Points de vie au maximum.</td>
+                </tr>
+                <tr>
+                  <td><strong>Repos</strong></td>
+                  <td>Points de vie au maximum, +1 en Force, Dextérité et Volonté.</td>
+                </tr>
+                <tr>
+                  <td><strong>Repos sécurisé</strong></td>
+                  <td>Points de vie au maximum, +2 dans chaque caractéristique.</td>
+                </tr>
+                <tr>
+                  <td><strong>Repos médicalisé</strong></td>
+                  <td>Points de vie au maximum, +3 dans chaque caractéristique.</td>
+                </tr>
+              </table>
+              <p>Une caractéristique ne dépasse jamais son maximum. Le repos s'applique immédiatement, sans message dans le tchat.</p>
+            </div>
+          </div>
+
+          <h2>L'équipement</h2>
+          <p>
+            En haut de l'onglet, le compteur de <strong>points d'équipement</strong> se modifie librement. En dessous, la liste des objets : un clic sur une ligne déplie sa
+            description, qui apparaît aussi en infobulle au survol du nom. Chaque ligne indique :
+          </p>
+          <ul>
+            <li><strong>Encombrant</strong> pour un objet encombrant ;</li>
+            <li>la <strong>protection</strong> d'une armure ;</li>
+            <li>la formule de <strong>dégâts</strong> d'une arme, suivie de l'icône <i class="fas fa-burst"></i> si l'arme inflige des dommages critiques.</li>
+          </ul>
+          <p>
+            Le bouclier <i class="fa-regular fa-shield"></i> <strong>équipe</strong> ou déséquipe l'objet. Une arme n'affiche son dé <i class="fas fa-dice-d20"></i> de dégâts
+            que lorsqu'elle est équipée. Une arme peut aussi être glissée dans la barre de macros (voir @UUID[Compendium.dangerousgary.guide.JournalEntry.tlbfAE79HHg82HaN.JournalEntryPage.EDrxwaqLnf5XCESY]{Combat et macros}).
+          </p>
+          <p>Sous la liste, la zone <strong>Divers</strong> accueille en texte libre le petit matériel qui ne mérite pas un objet.</p>
+
+          <h3>La fiche d'équipement</h3>
+          <div class="guide-row">
+            <div class="guide-image guide-image-card"><img src="systems/dangerousgary/assets/guide/fiche-arme.webp" alt="Fiche d'une arme" /></div>
+            <div>
+              <p>
+                Un équipement est un objet, une <strong>armure</strong> ou une <strong>arme</strong>. On peut le marquer comme <strong>encombrant</strong> ou
+                <strong>équipé</strong>. Une armure a une valeur de <strong>protection</strong>. Une arme a une <strong>catégorie</strong>, une formule de
+                <strong>dégâts</strong> et une case <strong>Dommages critiques</strong>.
+              </p>
+              <p>Choisir une catégorie remplit les dégâts et les dommages critiques avec les valeurs du livre, modifiables ensuite :</p>
+              <table class="guide-table">
+                <tr>
+                  <th>Catégorie</th>
+                  <th>Dégâts</th>
+                  <th>Critiques</th>
+                </tr>
+                <tr>
+                  <td>Corps à corps</td>
+                  <td>1d4</td>
+                  <td>non</td>
+                </tr>
+                <tr>
+                  <td>Armes de mêlée</td>
+                  <td>1d6</td>
+                  <td>non</td>
+                </tr>
+                <tr>
+                  <td>Armes à distance</td>
+                  <td>1d8</td>
+                  <td>non</td>
+                </tr>
+                <tr>
+                  <td>Grandes armes de mêlée</td>
+                  <td>1d8</td>
+                  <td>non</td>
+                </tr>
+                <tr>
+                  <td>Armes de poing</td>
+                  <td>1d8</td>
+                  <td>oui</td>
+                </tr>
+                <tr>
+                  <td>Fusils</td>
+                  <td>1d10</td>
+                  <td>oui</td>
+                </tr>
+                <tr>
+                  <td>Armes de guerre</td>
+                  <td>1d12</td>
+                  <td>oui</td>
+                </tr>
+              </table>
+              <p>La catégorie <strong>Autres</strong> ne change rien : saisissez la formule à la main.</p>
+            </div>
+          </div>
+          <p class="guide-astuce">
+            La protection d'une armure est indicative : elle n'est pas déduite automatiquement des dégâts. Retirez-la à la main des dégâts subis par le donjexeur.
+          </p>
+        </div>
+    video:
+      controls: true
+      volume: 0.5
+    src: null
+    system: {}
+    sort: 300000
+    ownership:
+      default: -1
+    flags: {}
+    _key: '!journal.pages!tlbfAE79HHg82HaN.AjSC5t5kjsmsNFZq'
+  - _id: mdWehQH6tzWz2xyA
+    name: Classes, talents et artefacts
+    type: text
+    title:
+      show: false
+      level: 1
+    image: {}
+    text:
+      format: 1
+      content: |-
+        <div class="dg-guide">
+          <h2>Classe et talents</h2>
+          <div class="guide-image"><img src="systems/dangerousgary/assets/guide/fiche-personnage-classes.webp" alt="Onglet Classe et talents" /></div>
+          <p>
+            L'onglet <strong>Classe et talents</strong> n'apparaît aux joueurs que si le réglage <strong>Classe et talents</strong> est actif (voir @UUID[Compendium.dangerousgary.guide.JournalEntry.tlbfAE79HHg82HaN.JournalEntryPage.B5mvayI7qCFZcDBz]{Réglages}). Il présente
+            les neuf classes, chacune avec son niveau (0 à 9) et ses talents, triés par niveau. Chaque classe est liée à une caractéristique, indiquée entre parenthèses :
+          </p>
+          <table class="guide-table">
+            <tr>
+              <th>Force</th>
+              <th>Dextérité</th>
+              <th>Volonté</th>
+            </tr>
+            <tr>
+              <td>Clerc, Guerrier, Paladin</td>
+              <td>Druide, Moine, Voleur</td>
+              <td>Barde, Magicien, Rôdeur</td>
+            </tr>
+          </table>
+
+          <h3>Ajouter un talent</h3>
+          <div class="guide-row">
+            <div class="guide-image guide-image-card"><img src="systems/dangerousgary/assets/guide/compendium-talents.webp" alt="Compendium des talents" /></div>
+            <div>
+              <p>
+                Faites glisser un talent du compendium <strong>Talents</strong> (un dossier par classe) sur la fiche. Il se range dans sa classe, et le
+                <strong>niveau de la classe</strong> est recalculé : il devient égal au nombre de talents de cette classe possédés par le personnage. Supprimer un talent
+                recalcule aussi le niveau.
+              </p>
+              <p>
+                Un même talent ne peut pas être ajouté deux fois : un avertissement s'affiche. En mode Écriture, le niveau de classe peut aussi être saisi à la main, mais il
+                sera recalculé au prochain ajout ou retrait de talent dans cette classe.
+              </p>
+            </div>
+          </div>
+
+          <h3>La fiche de talent</h3>
+          <div class="guide-row">
+            <div class="guide-image guide-image-card"><img src="systems/dangerousgary/assets/guide/fiche-talent.webp" alt="Fiche d'un talent" /></div>
+            <div>
+              <p>
+                Un talent a une <strong>classe</strong>, un <strong>niveau</strong> (1 à 9), une case <strong>Spécial</strong> et une description. Sur la fiche de personnage, un
+                talent spécial est suivi d'un astérisque, et son niveau est indiqué entre parenthèses. La description apparaît en infobulle au survol du nom.
+              </p>
+            </div>
+          </div>
+
+          <h3>Utiliser un talent</h3>
+          <p>
+            Le dé <i class="fas fa-dice-d20"></i> à côté d'un talent lance la <strong>sauvegarde de classe</strong> : un d20 contre le <strong>maximum</strong> de la
+            caractéristique de la classe. En cas d'échec, le donjexeur perd autant de <strong>points de vie</strong> que le niveau du talent. S'il n'a plus assez de points de
+            vie, le reste est retiré de sa <strong>Force</strong>. La carte du tchat indique la perte (voir @UUID[Compendium.dangerousgary.guide.JournalEntry.tlbfAE79HHg82HaN.JournalEntryPage.H6d2D2QVYtF1Kwbx]{Jets et messages}).
+          </p>
+          <p>Faites glisser un talent dans la barre de macros pour créer un raccourci de sa sauvegarde de classe (voir @UUID[Compendium.dangerousgary.guide.JournalEntry.tlbfAE79HHg82HaN.JournalEntryPage.EDrxwaqLnf5XCESY]{Combat et macros}).</p>
+
+          <h3>L'Osmose</h3>
+          <p>
+            La jauge d'<strong>Osmose</strong>, en haut de l'onglet, compte trois cases. En mode Écriture, cliquez sur une case pour fixer la valeur ; cliquez sur la dernière
+            case remplie pour la vider.
+          </p>
+
+          <h2>Les artefacts</h2>
+          <div class="guide-row">
+            <div class="guide-image guide-image-card"><img src="systems/dangerousgary/assets/guide/fiche-artefact.webp" alt="Fiche d'un artefact" /></div>
+            <div>
+              <p>
+                Un artefact a jusqu'à trois <strong>classes nécessaires</strong> et jusqu'à trois <strong>capacités</strong>, chacune avec un <strong>niveau requis</strong>
+                et une description. Le total des capacités et des classes ne peut pas dépasser quatre : la fiche grise les cases de classe et retire le bouton
+                <strong>Ajouter une capacité</strong> quand cette limite est atteinte.
+              </p>
+              <p>En mode Écriture, la corbeille d'une capacité la retire.</p>
+            </div>
+          </div>
+
+          <h3>Les artefacts sur la fiche de personnage</h3>
+          <div class="guide-image"><img src="systems/dangerousgary/assets/guide/inventaire-artefact.webp" alt="Artefact dans l'onglet Équipement" /></div>
+          <p>
+            Les artefacts s'affichent dans l'onglet <strong>Équipement</strong>, sous les objets, avec leurs classes. Ils n'apparaissent que si les classes sont actives (le MJ
+            les voit toujours). Dépliez un artefact pour voir ses capacités :
+          </p>
+          <ul>
+            <li>
+              une capacité est <strong>débloquée</strong> si le personnage a, dans l'une des classes de l'artefact, un niveau au moins égal au niveau requis. La main
+              <i class="fas fa-hand-sparkles"></i> l'utilise ;
+            </li>
+            <li>sinon, elle est verrouillée <i class="fas fa-lock"></i> ;</li>
+            <li>un artefact dont le personnage ne possède aucune des classes est grisé.</li>
+          </ul>
+          <div class="guide-row">
+            <div class="guide-image guide-image-card"><img src="systems/dangerousgary/assets/guide/carte-artefact.webp" alt="Utilisation d'un artefact dans le tchat" /></div>
+            <div>
+              <p>
+                Utiliser une capacité publie dans le tchat une carte avec l'image et le nom de l'artefact, le niveau de la capacité et sa description. Les effets (dégâts,
+                perte de caractéristique…) restent à appliquer à la main ; un jet écrit dans la description sous la forme <code>[[/r 1d6]]</code> devient un lien cliquable.
+              </p>
+            </div>
+          </div>
+        </div>
+    video:
+      controls: true
+      volume: 0.5
+    src: null
+    system: {}
+    sort: 400000
+    ownership:
+      default: -1
+    flags: {}
+    _key: '!journal.pages!tlbfAE79HHg82HaN.mdWehQH6tzWz2xyA'
+  - _id: 01Y5Jr6ZBUXkRBYz
+    name: La Rencontre
+    type: text
+    title:
+      show: false
+      level: 1
+    image: {}
+    text:
+      format: 1
+      content: |-
+        <div class="dg-guide">
+          <h2>La Rencontre</h2>
+          <div class="guide-image"><img src="systems/dangerousgary/assets/guide/fiche-rencontre.webp" alt="Fiche de rencontre" /></div>
+          <p>
+            La fiche de <strong>Rencontre</strong> décrit un Monstre ou un PNJ sur une seule page. Comme pour le Personnage, elle s'ouvre en mode <strong>Lecture</strong> ;
+            l'interrupteur de la barre de titre passe en mode <strong>Écriture</strong> pour modifier les maximums et gérer les attaques.
+          </p>
+
+          <h3>L'en-tête</h3>
+          <ul>
+            <li>Le portrait (un clic ouvre le sélecteur d'image) et le nom.</li>
+            <li>
+              <strong>FOR</strong>, <strong>DEX</strong> et <strong>VOL</strong>, avec leur valeur actuelle et leur maximum : cliquez sur l'abréviation pour faire une
+              sauvegarde. Une Rencontre n'a pas de sauvegarde de classe.
+            </li>
+            <li>Les <strong>PV</strong> et l'<strong>Armure</strong>. Comme pour les donjexeurs, l'armure n'est pas déduite automatiquement des dégâts.</li>
+          </ul>
+
+          <h3>Les attaques</h3>
+          <div class="guide-row">
+            <div class="guide-image guide-image-card"><img src="systems/dangerousgary/assets/guide/fiche-attaque.webp" alt="Fiche d'une attaque" /></div>
+            <div>
+              <p>
+                Chaque attaque est un objet de type <strong>Attaque</strong> : un nom, une formule de <strong>dégâts</strong> et une description. En mode Écriture, le
+                <strong>+</strong> du cadre <strong>Attaques</strong> en crée une ; on peut aussi en déposer une venue de la barre latérale ou d'un compendium.
+              </p>
+              <p>
+                Sur la fiche, la ligne d'une attaque affiche ses dégâts ; un clic la déplie pour lire sa description. Le dé <i class="fas fa-dice-d20"></i> lance les dégâts,
+                <kbd>Maj</kbd>+clic propose une attaque contrainte ou exaltée (voir @UUID[Compendium.dangerousgary.guide.JournalEntry.tlbfAE79HHg82HaN.JournalEntryPage.H6d2D2QVYtF1Kwbx]{Jets et messages}).
+              </p>
+            </div>
+          </div>
+          <p class="guide-astuce">
+            Les dégâts d'une Rencontre n'explosent jamais : la case <strong>Dommages critiques</strong> n'existe que sur les armes des donjexeurs. Pour un effet du type « sur
+            un 6, la cible subit désormais 1D8 », créez une seconde attaque (par exemple <em>Morsure</em> 1d6 et <em>Morsure agrippée</em> 1d8).
+          </p>
+
+          <h3>Description et pouvoirs</h3>
+          <p>
+            Sous les attaques, deux zones de texte riche : les <strong>Pouvoirs</strong> et la <strong>Description</strong>. Un jet écrit sous la forme
+            <code>[[/r 1d4]]</code> devient un lien cliquable, pratique pour un pouvoir qui fait perdre des points de caractéristique.
+          </p>
+        </div>
+    video:
+      controls: true
+      volume: 0.5
+    src: null
+    system: {}
+    sort: 500000
+    ownership:
+      default: -1
+    flags: {}
+    _key: '!journal.pages!tlbfAE79HHg82HaN.01Y5Jr6ZBUXkRBYz'
+  - _id: H6d2D2QVYtF1Kwbx
+    name: Jets et messages
+    type: text
+    title:
+      show: false
+      level: 1
+    image: {}
+    text:
+      format: 1
+      content: |-
+        <div class="dg-guide">
+          <h2>Les sauvegardes</h2>
+          <div class="guide-row">
+            <div class="guide-image guide-image-card"><img src="systems/dangerousgary/assets/guide/carte-sauvegarde.webp" alt="Sauvegarde réussie" /></div>
+            <div>
+              <p>
+                Un clic sur le nom d'une caractéristique lance <strong>1d20</strong> : la sauvegarde est réussie si le résultat est <strong>inférieur ou égal</strong> à la valeur
+                actuelle de la caractéristique.
+              </p>
+              <ul>
+                <li>Un <strong>1</strong> est toujours une réussite <strong>critique</strong> <i class="fas fa-check-double"></i>.</li>
+                <li>Un <strong>20</strong> est toujours un <strong>fumble</strong> <i class="fas fa-skull-crossbones"></i>, quelle que soit la caractéristique.</li>
+                <li>Sinon, la carte affiche une réussite <i class="fas fa-check"></i> ou un échec <i class="fas fa-times"></i>.</li>
+              </ul>
+              <p>
+                La carte rappelle la caractéristique et la valeur visée, par exemple « Sauvegarde de DEX (12) » ; l'infobulle de ce texte précise s'il s'agit d'une sauvegarde de
+                caractéristique ou de classe.
+              </p>
+            </div>
+          </div>
+          <div class="guide-row">
+            <div class="guide-image guide-image-card"><img src="systems/dangerousgary/assets/guide/carte-sauvegarde-echec.webp" alt="Fumble sur une sauvegarde" /></div>
+            <div>
+              <h3>La sauvegarde de classe</h3>
+              <p>
+                Sur la fiche de Personnage, <kbd>Maj</kbd>+clic sur une caractéristique lance une <strong>sauvegarde de classe</strong> : le d20 est comparé au
+                <strong>maximum</strong> de la caractéristique, et non à sa valeur actuelle.
+              </p>
+            </div>
+          </div>
+
+          <h3>Les talents</h3>
+          <div class="guide-row">
+            <div class="guide-image guide-image-card"><img src="systems/dangerousgary/assets/guide/carte-talent-echec.webp" alt="Échec d'un talent" /></div>
+            <div>
+              <p>
+                Le dé d'un talent lance la sauvegarde de classe de sa classe. La carte affiche le nom du talent. En cas d'échec, le donjexeur perd autant de points de vie que le
+                niveau du talent, le reste étant retiré de sa Force : la carte l'indique (par exemple « -2 PV, -1 FOR ») et la fiche est mise à jour.
+              </p>
+            </div>
+          </div>
+
+          <h2>Les dégâts</h2>
+          <div class="guide-row">
+            <div class="guide-image guide-image-card"><img src="systems/dangerousgary/assets/guide/carte-degats-critique.webp" alt="Dégâts avec dommages critiques" /></div>
+            <div>
+              <p>
+                Le dé <i class="fas fa-dice-d20"></i> d'une arme équipée ou d'une attaque lance sa formule de dégâts. Le survol du total affiche la formule lancée.
+              </p>
+              <p>
+                Une arme avec <strong>Dommages critiques</strong> lance un dé qui <strong>explose une fois</strong> : si le dé fait son maximum, un second dé est ajouté. L'icône
+                <i class="fas fa-burst"></i> n'apparaît sur la carte que si le dé a réellement explosé.
+              </p>
+            </div>
+          </div>
+
+          <h3>Attaques contraintes et exaltées</h3>
+          <div class="guide-row">
+            <div class="guide-image guide-image-card"><img src="systems/dangerousgary/assets/guide/fenetre-degats.webp" alt="Fenêtre des options de dégâts" /></div>
+            <div>
+              <p><kbd>Maj</kbd>+clic sur le dé de dégâts ouvre la fenêtre <strong>Options de dégâts</strong> :</p>
+              <ul>
+                <li><strong>Normale</strong> : la formule de l'arme ou de l'attaque ;</li>
+                <li><strong>Contrainte (1d4)</strong> : 1d4, quelle que soit l'arme <i class="fas fa-link"></i> ;</li>
+                <li><strong>Exaltée (dégâts max)</strong> : le maximum de chaque dé de la formule <i class="fas fa-crown"></i>.</li>
+              </ul>
+              <p>Une attaque contrainte ou exaltée n'explose jamais.</p>
+            </div>
+          </div>
+          <div class="guide-row">
+            <div class="guide-image guide-image-card"><img src="systems/dangerousgary/assets/guide/carte-degats-contrainte.webp" alt="Attaque contrainte" /></div>
+            <div class="guide-image guide-image-card"><img src="systems/dangerousgary/assets/guide/carte-degats-exaltee.webp" alt="Attaque exaltée" /></div>
+          </div>
+          <p class="guide-astuce">
+            Les dégâts ne sont pas appliqués automatiquement : retirez-les à la main des points de vie de la cible, après déduction de son armure.
+          </p>
+
+          <h2>Les cartes du tchat</h2>
+          <p>
+            Chaque carte affiche le portrait et le nom du personnage ou de la Rencontre qui a lancé le jet. Les jets respectent le mode de diffusion choisi dans le tchat
+            (public, MJ seulement, aveugle, pour soi).
+          </p>
+        </div>
+    video:
+      controls: true
+      volume: 0.5
+    src: null
+    system: {}
+    sort: 600000
+    ownership:
+      default: -1
+    flags: {}
+    _key: '!journal.pages!tlbfAE79HHg82HaN.H6d2D2QVYtF1Kwbx'
+  - _id: EDrxwaqLnf5XCESY
+    name: Combat et macros
+    type: text
+    title:
+      show: false
+      level: 1
+    image: {}
+    text:
+      format: 1
+      content: |-
+        <div class="dg-guide">
+          <h2>Le suivi de combat</h2>
+          <div class="guide-row">
+            <div class="guide-image guide-image-narrow"><img src="systems/dangerousgary/assets/guide/combat.webp" alt="Suivi de combat" /></div>
+            <div>
+              <p>
+                Dangerous Gary n'utilise pas de jet d'initiative : les donjexeurs agissent avant les Monstres. Le suivi de combat du système applique cette règle tout seul.
+              </p>
+              <ul>
+                <li>
+                  Les boutons de jet d'initiative et la valeur d'initiative ne sont pas affichés. Quand un combattant est ajouté au combat (un MJ doit être connecté), sa place
+                  est calculée : les <strong>Personnages</strong> d'abord, du plus <strong>dextre</strong> au moins dextre, puis les <strong>Rencontres</strong>, dans un ordre
+                  aléatoire.
+                </li>
+                <li>
+                  Le poing <i class="fas fa-fist-raised"></i> marque un combattant comme <strong>ayant joué</strong> : il descend en bas de la liste et s'estompe. Le MJ peut
+                  cliquer sur tous les poings, un joueur seulement sur ceux de ses personnages. Un second clic annule.
+                </li>
+                <li>Le MJ peut <strong>faire glisser</strong> un combattant sur un autre pour changer l'ordre du round en cours.</li>
+                <li>
+                  Au <strong>round suivant</strong>, toutes les marques « a joué » sont effacées et l'ordre est recalculé : les Personnages selon leur Dextérité actuelle, les
+                  Rencontres de nouveau au hasard.
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <h2>La barre de macros</h2>
+          <div class="guide-image"><img src="systems/dangerousgary/assets/guide/barre-macros.webp" alt="Macros créées par glisser-déposer" /></div>
+          <p>Faites glisser un élément de la fiche de Personnage dans la barre de macros pour créer un raccourci :</p>
+          <table class="guide-table">
+            <tr>
+              <th>Élément glissé</th>
+              <th>Clic</th>
+              <th><kbd>Maj</kbd>+clic</th>
+            </tr>
+            <tr>
+              <td>Nom d'une caractéristique (FOR, DEX, VOL)</td>
+              <td>Sauvegarde</td>
+              <td>Sauvegarde de classe</td>
+            </tr>
+            <tr>
+              <td>Arme (ligne de l'équipement avec des dégâts)</td>
+              <td>Jet de dégâts</td>
+              <td>Options de dégâts (contrainte, exaltée)</td>
+            </tr>
+            <tr>
+              <td>Talent (onglet Classe et talents)</td>
+              <td colspan="2">Sauvegarde de classe du talent, avec perte de points de vie en cas d'échec</td>
+            </tr>
+          </table>
+          <p>
+            La macro porte le nom de l'élément suivi de celui du personnage, par exemple « Pistolet (Brenda) ». Si une macro de ce nom existe déjà, elle est réutilisée au lieu
+            d'être dupliquée. Les jets d'une Rencontre se lancent depuis sa fiche : elle ne crée pas de macro.
+          </p>
+        </div>
+    video:
+      controls: true
+      volume: 0.5
+    src: null
+    system: {}
+    sort: 700000
+    ownership:
+      default: -1
+    flags: {}
+    _key: '!journal.pages!tlbfAE79HHg82HaN.EDrxwaqLnf5XCESY'
+folder: null
+sort: 0
+ownership:
+  default: 0
+flags: {}
+_key: '!journal!tlbfAE79HHg82HaN'

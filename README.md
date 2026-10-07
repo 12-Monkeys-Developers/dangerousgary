@@ -27,6 +27,7 @@ Ce système est développé par Kristov.
 
 ## Général
 
+  - Guide du système : compendium « Guide du système », illustré, qui présente les fiches, les jets, le combat et les macros
   - Localisation : anglais et français
   - Token lié automatiquement pour les personnages, avec vision activée
   - PV et FOR affichés sur les barres du token (attribut primaire et secondaire)

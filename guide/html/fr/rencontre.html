@@ -1,0 +1,43 @@
+<div class="dg-guide">
+  <h2>La Rencontre</h2>
+  <div class="guide-image"><img src="@@img:fiche-rencontre@@" alt="Fiche de rencontre" /></div>
+  <p>
+    La fiche de <strong>Rencontre</strong> décrit un Monstre ou un PNJ sur une seule page. Comme pour le Personnage, elle s'ouvre en mode <strong>Lecture</strong> ;
+    l'interrupteur de la barre de titre passe en mode <strong>Écriture</strong> pour modifier les maximums et gérer les attaques.
+  </p>
+
+  <h3>L'en-tête</h3>
+  <ul>
+    <li>Le portrait (un clic ouvre le sélecteur d'image) et le nom.</li>
+    <li>
+      <strong>FOR</strong>, <strong>DEX</strong> et <strong>VOL</strong>, avec leur valeur actuelle et leur maximum : cliquez sur l'abréviation pour faire une
+      sauvegarde. Une Rencontre n'a pas de sauvegarde de classe.
+    </li>
+    <li>Les <strong>PV</strong> et l'<strong>Armure</strong>. Comme pour les donjexeurs, l'armure n'est pas déduite automatiquement des dégâts.</li>
+  </ul>
+
+  <h3>Les attaques</h3>
+  <div class="guide-row">
+    <div class="guide-image guide-image-card"><img src="@@img:fiche-attaque@@" alt="Fiche d'une attaque" /></div>
+    <div>
+      <p>
+        Chaque attaque est un objet de type <strong>Attaque</strong> : un nom, une formule de <strong>dégâts</strong> et une description. En mode Écriture, le
+        <strong>+</strong> du cadre <strong>Attaques</strong> en crée une ; on peut aussi en déposer une venue de la barre latérale ou d'un compendium.
+      </p>
+      <p>
+        Sur la fiche, la ligne d'une attaque affiche ses dégâts ; un clic la déplie pour lire sa description. Le dé <i class="fas fa-dice-d20"></i> lance les dégâts,
+        <kbd>Maj</kbd>+clic propose une attaque contrainte ou exaltée (voir @@page:jets@@).
+      </p>
+    </div>
+  </div>
+  <p class="guide-astuce">
+    Les dégâts d'une Rencontre n'explosent jamais : la case <strong>Dommages critiques</strong> n'existe que sur les armes des donjexeurs. Pour un effet du type « sur
+    un 6, la cible subit désormais 1D8 », créez une seconde attaque (par exemple <em>Morsure</em> 1d6 et <em>Morsure agrippée</em> 1d8).
+  </p>
+
+  <h3>Description et pouvoirs</h3>
+  <p>
+    Sous les attaques, deux zones de texte riche : les <strong>Pouvoirs</strong> et la <strong>Description</strong>. Un jet écrit sous la forme
+    <code>[[/r 1d4]]</code> devient un lien cliquable, pratique pour un pouvoir qui fait perdre des points de caractéristique.
+  </p>
+</div>

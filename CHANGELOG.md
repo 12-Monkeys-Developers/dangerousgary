@@ -2,6 +2,7 @@
 
 - Fiches items (Équipement, Attaque, Talent, Artefact) : le nom n'est modifiable qu'en mode Écriture
 - Correction de l'infobulle de description des attaques (Rencontre), des items et des talents (Personnage) : une description contenant un jet (ex. `[[/r 1d6]]`) ou un lien ne s'affiche plus dans le nom
+- Guide du système : nouveau compendium « Guide du système » (7 pages illustrées : réglages, personnage, classes et artefacts, rencontre, jets, combat et macros), consultable par tous les joueurs
 - Correction : l'utilisation d'une capacité d'artefact depuis la fiche de personnage ne faisait rien (identifiant de l'artefact absent du bouton)
 - Technique : fins de ligne LF dans tout le dépôt (`.gitattributes`, `.editorconfig`)
 

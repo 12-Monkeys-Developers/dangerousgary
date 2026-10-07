@@ -22,6 +22,17 @@
   "scripts": [],
   "packs": [
     {
+      "name": "guide",
+      "label": "Guide du système",
+      "system": "dangerousgary",
+      "path": "packs/guide",
+      "type": "JournalEntry",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    },
+    {
       "name": "talents",
       "label": "Talents",
       "system": "dangerousgary",

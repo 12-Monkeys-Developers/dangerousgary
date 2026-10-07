@@ -1,0 +1,98 @@
+<div class="dg-guide">
+  <h2>Classe et talents</h2>
+  <div class="guide-image"><img src="@@img:fiche-personnage-classes@@" alt="Onglet Classe et talents" /></div>
+  <p>
+    L'onglet <strong>Classe et talents</strong> n'apparaît aux joueurs que si le réglage <strong>Classe et talents</strong> est actif (voir @@page:options@@). Il présente
+    les neuf classes, chacune avec son niveau (0 à 9) et ses talents, triés par niveau. Chaque classe est liée à une caractéristique, indiquée entre parenthèses :
+  </p>
+  <table class="guide-table">
+    <tr>
+      <th>Force</th>
+      <th>Dextérité</th>
+      <th>Volonté</th>
+    </tr>
+    <tr>
+      <td>Clerc, Guerrier, Paladin</td>
+      <td>Druide, Moine, Voleur</td>
+      <td>Barde, Magicien, Rôdeur</td>
+    </tr>
+  </table>
+
+  <h3>Ajouter un talent</h3>
+  <div class="guide-row">
+    <div class="guide-image guide-image-card"><img src="@@img:compendium-talents@@" alt="Compendium des talents" /></div>
+    <div>
+      <p>
+        Faites glisser un talent du compendium <strong>Talents</strong> (un dossier par classe) sur la fiche. Il se range dans sa classe, et le
+        <strong>niveau de la classe</strong> est recalculé : il devient égal au nombre de talents de cette classe possédés par le personnage. Supprimer un talent
+        recalcule aussi le niveau.
+      </p>
+      <p>
+        Un même talent ne peut pas être ajouté deux fois : un avertissement s'affiche. En mode Écriture, le niveau de classe peut aussi être saisi à la main, mais il
+        sera recalculé au prochain ajout ou retrait de talent dans cette classe.
+      </p>
+    </div>
+  </div>
+
+  <h3>La fiche de talent</h3>
+  <div class="guide-row">
+    <div class="guide-image guide-image-card"><img src="@@img:fiche-talent@@" alt="Fiche d'un talent" /></div>
+    <div>
+      <p>
+        Un talent a une <strong>classe</strong>, un <strong>niveau</strong> (1 à 9), une case <strong>Spécial</strong> et une description. Sur la fiche de personnage, un
+        talent spécial est suivi d'un astérisque, et son niveau est indiqué entre parenthèses. La description apparaît en infobulle au survol du nom.
+      </p>
+    </div>
+  </div>
+
+  <h3>Utiliser un talent</h3>
+  <p>
+    Le dé <i class="fas fa-dice-d20"></i> à côté d'un talent lance la <strong>sauvegarde de classe</strong> : un d20 contre le <strong>maximum</strong> de la
+    caractéristique de la classe. En cas d'échec, le donjexeur perd autant de <strong>points de vie</strong> que le niveau du talent. S'il n'a plus assez de points de
+    vie, le reste est retiré de sa <strong>Force</strong>. La carte du tchat indique la perte (voir @@page:jets@@).
+  </p>
+  <p>Faites glisser un talent dans la barre de macros pour créer un raccourci de sa sauvegarde de classe (voir @@page:combat@@).</p>
+
+  <h3>L'Osmose</h3>
+  <p>
+    La jauge d'<strong>Osmose</strong>, en haut de l'onglet, compte trois cases. En mode Écriture, cliquez sur une case pour fixer la valeur ; cliquez sur la dernière
+    case remplie pour la vider.
+  </p>
+
+  <h2>Les artefacts</h2>
+  <div class="guide-row">
+    <div class="guide-image guide-image-card"><img src="@@img:fiche-artefact@@" alt="Fiche d'un artefact" /></div>
+    <div>
+      <p>
+        Un artefact a jusqu'à trois <strong>classes nécessaires</strong> et jusqu'à trois <strong>capacités</strong>, chacune avec un <strong>niveau requis</strong>
+        et une description. Le total des capacités et des classes ne peut pas dépasser quatre : la fiche grise les cases de classe et retire le bouton
+        <strong>Ajouter une capacité</strong> quand cette limite est atteinte.
+      </p>
+      <p>En mode Écriture, la corbeille d'une capacité la retire.</p>
+    </div>
+  </div>
+
+  <h3>Les artefacts sur la fiche de personnage</h3>
+  <div class="guide-image"><img src="@@img:inventaire-artefact@@" alt="Artefact dans l'onglet Équipement" /></div>
+  <p>
+    Les artefacts s'affichent dans l'onglet <strong>Équipement</strong>, sous les objets, avec leurs classes. Ils n'apparaissent que si les classes sont actives (le MJ
+    les voit toujours). Dépliez un artefact pour voir ses capacités :
+  </p>
+  <ul>
+    <li>
+      une capacité est <strong>débloquée</strong> si le personnage a, dans l'une des classes de l'artefact, un niveau au moins égal au niveau requis. La main
+      <i class="fas fa-hand-sparkles"></i> l'utilise ;
+    </li>
+    <li>sinon, elle est verrouillée <i class="fas fa-lock"></i> ;</li>
+    <li>un artefact dont le personnage ne possède aucune des classes est grisé.</li>
+  </ul>
+  <div class="guide-row">
+    <div class="guide-image guide-image-card"><img src="@@img:carte-artefact@@" alt="Utilisation d'un artefact dans le tchat" /></div>
+    <div>
+      <p>
+        Utiliser une capacité publie dans le tchat une carte avec l'image et le nom de l'artefact, le niveau de la capacité et sa description. Les effets (dégâts,
+        perte de caractéristique…) restent à appliquer à la main ; un jet écrit dans la description sous la forme <code>[[/r 1d6]]</code> devient un lien cliquable.
+      </p>
+    </div>
+  </div>
+</div>

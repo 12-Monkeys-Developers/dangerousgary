@@ -1450,3 +1450,77 @@
 .combat-tracker .combatant.has-acted {
   opacity: 0.5;
 }
+/* Guide du système : pages de journal du compendium « Guide du système » */
+:root {
+  --dg-guide-accent: var(--dg-text-red);
+  --dg-guide-tip-background: rgba(204, 0, 0, 0.08);
+}
+.dg-guide h2 {
+  font-family: var(--dg-font-title);
+  font-weight: normal;
+  border-bottom: 2px solid var(--dg-guide-accent);
+  margin-top: 1.5rem;
+}
+.dg-guide h3 {
+  font-family: var(--dg-font-body);
+  font-weight: bold;
+  border-bottom: none;
+  margin-top: 1rem;
+}
+.dg-guide img {
+  border: none;
+  max-width: 100%;
+  height: auto;
+}
+.dg-guide .guide-image {
+  text-align: center;
+  margin: 0.75rem auto;
+}
+.dg-guide .guide-image img {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+.dg-guide .guide-image-narrow {
+  flex: 0 0 220px;
+}
+.dg-guide .guide-image-card {
+  flex: 0 1 280px;
+  max-width: 280px;
+}
+.dg-guide .guide-image-half {
+  flex: 1 1 45%;
+}
+.dg-guide .guide-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: flex-start;
+  justify-content: center;
+}
+.dg-guide .guide-row > div:not(.guide-image) {
+  flex: 1 1 300px;
+}
+.dg-guide .guide-row .guide-image {
+  margin: 0;
+}
+.dg-guide .guide-astuce {
+  border-left: 4px solid var(--dg-guide-accent);
+  background: var(--dg-guide-tip-background);
+  padding: 0.25rem 0.75rem;
+  margin: 0.75rem 0;
+}
+.dg-guide .guide-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.5rem 0;
+}
+.dg-guide .guide-table th,
+.dg-guide .guide-table td {
+  border: 1px solid var(--dg-guide-accent);
+  padding: 0.25rem 0.5rem;
+  text-align: left;
+  vertical-align: top;
+}
+.dg-guide code,
+.dg-guide kbd {
+  white-space: nowrap;
+}

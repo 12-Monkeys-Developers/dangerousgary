@@ -1,0 +1,83 @@
+<div class="dg-guide">
+  <h2>Les sauvegardes</h2>
+  <div class="guide-row">
+    <div class="guide-image guide-image-card"><img src="@@img:carte-sauvegarde@@" alt="Sauvegarde réussie" /></div>
+    <div>
+      <p>
+        Un clic sur le nom d'une caractéristique lance <strong>1d20</strong> : la sauvegarde est réussie si le résultat est <strong>inférieur ou égal</strong> à la valeur
+        actuelle de la caractéristique.
+      </p>
+      <ul>
+        <li>Un <strong>1</strong> est toujours une réussite <strong>critique</strong> <i class="fas fa-check-double"></i>.</li>
+        <li>Un <strong>20</strong> est toujours un <strong>fumble</strong> <i class="fas fa-skull-crossbones"></i>, quelle que soit la caractéristique.</li>
+        <li>Sinon, la carte affiche une réussite <i class="fas fa-check"></i> ou un échec <i class="fas fa-times"></i>.</li>
+      </ul>
+      <p>
+        La carte rappelle la caractéristique et la valeur visée, par exemple « Sauvegarde de DEX (12) » ; l'infobulle de ce texte précise s'il s'agit d'une sauvegarde de
+        caractéristique ou de classe.
+      </p>
+    </div>
+  </div>
+  <div class="guide-row">
+    <div class="guide-image guide-image-card"><img src="@@img:carte-sauvegarde-echec@@" alt="Fumble sur une sauvegarde" /></div>
+    <div>
+      <h3>La sauvegarde de classe</h3>
+      <p>
+        Sur la fiche de Personnage, <kbd>Maj</kbd>+clic sur une caractéristique lance une <strong>sauvegarde de classe</strong> : le d20 est comparé au
+        <strong>maximum</strong> de la caractéristique, et non à sa valeur actuelle.
+      </p>
+    </div>
+  </div>
+
+  <h3>Les talents</h3>
+  <div class="guide-row">
+    <div class="guide-image guide-image-card"><img src="@@img:carte-talent-echec@@" alt="Échec d'un talent" /></div>
+    <div>
+      <p>
+        Le dé d'un talent lance la sauvegarde de classe de sa classe. La carte affiche le nom du talent. En cas d'échec, le donjexeur perd autant de points de vie que le
+        niveau du talent, le reste étant retiré de sa Force : la carte l'indique (par exemple « -2 PV, -1 FOR ») et la fiche est mise à jour.
+      </p>
+    </div>
+  </div>
+
+  <h2>Les dégâts</h2>
+  <div class="guide-row">
+    <div class="guide-image guide-image-card"><img src="@@img:carte-degats-critique@@" alt="Dégâts avec dommages critiques" /></div>
+    <div>
+      <p>
+        Le dé <i class="fas fa-dice-d20"></i> d'une arme équipée ou d'une attaque lance sa formule de dégâts. Le survol du total affiche la formule lancée.
+      </p>
+      <p>
+        Une arme avec <strong>Dommages critiques</strong> lance un dé qui <strong>explose une fois</strong> : si le dé fait son maximum, un second dé est ajouté. L'icône
+        <i class="fas fa-burst"></i> n'apparaît sur la carte que si le dé a réellement explosé.
+      </p>
+    </div>
+  </div>
+
+  <h3>Attaques contraintes et exaltées</h3>
+  <div class="guide-row">
+    <div class="guide-image guide-image-card"><img src="@@img:fenetre-degats@@" alt="Fenêtre des options de dégâts" /></div>
+    <div>
+      <p><kbd>Maj</kbd>+clic sur le dé de dégâts ouvre la fenêtre <strong>Options de dégâts</strong> :</p>
+      <ul>
+        <li><strong>Normale</strong> : la formule de l'arme ou de l'attaque ;</li>
+        <li><strong>Contrainte (1d4)</strong> : 1d4, quelle que soit l'arme <i class="fas fa-link"></i> ;</li>
+        <li><strong>Exaltée (dégâts max)</strong> : le maximum de chaque dé de la formule <i class="fas fa-crown"></i>.</li>
+      </ul>
+      <p>Une attaque contrainte ou exaltée n'explose jamais.</p>
+    </div>
+  </div>
+  <div class="guide-row">
+    <div class="guide-image guide-image-card"><img src="@@img:carte-degats-contrainte@@" alt="Attaque contrainte" /></div>
+    <div class="guide-image guide-image-card"><img src="@@img:carte-degats-exaltee@@" alt="Attaque exaltée" /></div>
+  </div>
+  <p class="guide-astuce">
+    Les dégâts ne sont pas appliqués automatiquement : retirez-les à la main des points de vie de la cible, après déduction de son armure.
+  </p>
+
+  <h2>Les cartes du tchat</h2>
+  <p>
+    Chaque carte affiche le portrait et le nom du personnage ou de la Rencontre qui a lancé le jet. Les jets respectent le mode de diffusion choisi dans le tchat
+    (public, MJ seulement, aveugle, pour soi).
+  </p>
+</div>

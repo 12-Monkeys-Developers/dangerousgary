@@ -1,0 +1,92 @@
+/* Guide du système : pages de journal du compendium « Guide du système » */
+:root {
+  --dg-guide-accent: var(--dg-text-red);
+  --dg-guide-tip-background: rgba(204, 0, 0, 0.08);
+}
+
+.dg-guide {
+  h2 {
+    font-family: var(--dg-font-title);
+    font-weight: normal;
+    border-bottom: 2px solid var(--dg-guide-accent);
+    margin-top: 1.5rem;
+  }
+
+  h3 {
+    font-family: var(--dg-font-body);
+    font-weight: bold;
+    border-bottom: none;
+    margin-top: 1rem;
+  }
+
+  img {
+    border: none;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .guide-image {
+    text-align: center;
+    margin: 0.75rem auto;
+
+    img {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    }
+  }
+
+  // Captures étroites (barre latérale, carte du tchat) ou de taille moyenne, posées à côté du texte
+  .guide-image-narrow {
+    flex: 0 0 220px;
+  }
+
+  .guide-image-card {
+    flex: 0 1 280px;
+    max-width: 280px;
+  }
+
+  .guide-image-half {
+    flex: 1 1 45%;
+  }
+
+  .guide-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: flex-start;
+    justify-content: center;
+
+    > div:not(.guide-image) {
+      flex: 1 1 300px;
+    }
+
+    .guide-image {
+      margin: 0;
+    }
+  }
+
+  .guide-astuce {
+    border-left: 4px solid var(--dg-guide-accent);
+    background: var(--dg-guide-tip-background);
+    padding: 0.25rem 0.75rem;
+    margin: 0.75rem 0;
+  }
+
+  .guide-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0.5rem 0;
+
+    th,
+    td {
+      border: 1px solid var(--dg-guide-accent);
+      padding: 0.25rem 0.5rem;
+      text-align: left;
+      vertical-align: top;
+    }
+  }
+
+  code,
+  kbd {
+    white-space: nowrap;
+  }
+}
