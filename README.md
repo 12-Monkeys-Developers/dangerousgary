@@ -32,7 +32,7 @@ Ce système est développé par Kristov.
   - Token lié automatiquement pour les personnages, avec vision activée
   - PV et FOR affichés sur les barres du token (attribut primaire et secondaire)
   - Grille configurée en mètres (1,5m par case)
-  - Compatible Foundry VTT v13
+  - Compatible Foundry VTT v14
 
 ## Fiches de personnage
 
