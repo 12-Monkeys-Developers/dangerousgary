@@ -93,14 +93,27 @@
     }
 
     .artefact-capacity {
+      --dg-editor-toggle-size: 28px;
       border-left: 3px solid var(--dg-text-red);
       padding-left: 8px;
 
+      // Le bouton d'édition est posé en haut à droite de l'éditeur : on lui réserve sa hauteur (sinon une
+      // description courte le coupe) et une marge à droite du texte (sinon il le recouvre).
       prose-mirror.inactive {
-        --min-height: 0;
+        --min-height: var(--dg-editor-toggle-size);
+        min-height: var(--dg-editor-toggle-size);
 
         .editor-content {
           position: relative;
+          padding-right: calc(var(--dg-editor-toggle-size) + 4px);
+        }
+
+        button.toggle {
+          width: var(--dg-editor-toggle-size);
+          height: var(--dg-editor-toggle-size);
+          min-height: unset;
+          padding: 0;
+          line-height: var(--dg-editor-toggle-size);
         }
       }
 

@@ -1034,14 +1034,24 @@
   margin-top: 6px;
 }
 .dangerousgary.item.artefact .item-artefact .artefact-capacity {
+  --dg-editor-toggle-size: 28px;
   border-left: 3px solid var(--dg-text-red);
   padding-left: 8px;
 }
 .dangerousgary.item.artefact .item-artefact .artefact-capacity prose-mirror.inactive {
-  --min-height: 0;
+  --min-height: var(--dg-editor-toggle-size);
+  min-height: var(--dg-editor-toggle-size);
 }
 .dangerousgary.item.artefact .item-artefact .artefact-capacity prose-mirror.inactive .editor-content {
   position: relative;
+  padding-right: calc(var(--dg-editor-toggle-size) + 4px);
+}
+.dangerousgary.item.artefact .item-artefact .artefact-capacity prose-mirror.inactive button.toggle {
+  width: var(--dg-editor-toggle-size);
+  height: var(--dg-editor-toggle-size);
+  min-height: unset;
+  padding: 0;
+  line-height: var(--dg-editor-toggle-size);
 }
 .dangerousgary.item.artefact .item-artefact .artefact-capacity prose-mirror.active {
   --min-height: 8rem;

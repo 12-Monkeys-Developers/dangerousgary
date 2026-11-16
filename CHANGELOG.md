@@ -4,6 +4,7 @@
 - Nouveau réglage « Dévoiler les capacités des artefacts » (désactivé par défaut) : sans lui, un joueur ne voit plus que les capacités dont son personnage a le niveau requis, les autres étant masquées
 - Guide du système : nouveau compendium « Guide du système » (7 pages illustrées : réglages, personnage, classes et artefacts, rencontre, jets, combat et macros), réservé au MJ par défaut
 - Correction : l'utilisation d'une capacité d'artefact depuis la fiche de personnage ne faisait rien (identifiant de l'artefact absent du bouton)
+- Correction : sur la fiche d'un artefact, le bouton d'édition de la description d'une capacité était coupé ou recouvrait le texte
 - Compatibilité : Foundry VTT V14 uniquement
 - Visibilité des jets selon le mode choisi dans le tchat via l'API V14 (`core.rollMode` est déprécié)
 - Suivi de combat : le libellé du bouton « A joué » est traduit (anglais : « Has acted »)
