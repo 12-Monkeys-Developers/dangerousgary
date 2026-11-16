@@ -62,6 +62,10 @@
     },
     "Encounter": {
       "FIELDS": {
+        "regeneration": {
+          "label": "Regeneration",
+          "hint": "HP regained at each new round: a number or a die (3, 1d6). Empty: no regeneration."
+        },
         "attacksAgainst": {
           "label": "Attacks against it",
           "hint": "Type imposed on attacks targeting this encounter. Change it with the situation (flying, in the dark, pinned…)."
@@ -197,6 +201,7 @@
       "current": "current",
       "max": "max",
       "short": {
+        "xp": "XP",
         "hp": "HP",
         "str": "STR",
         "dex": "DEX",
@@ -325,6 +330,8 @@
       "NextRoundLocked": "Next round: every combatant must have acted"
     },
     "Trigger": {
+      "Ongoing": "every round",
+      "OngoingHint": "The effect is not applied at once: it is put on the target and offered to the GM at each new round, until they end it.",
       "EveryHit": "every hit",
       "OnDie": "die {range}",
       "Name": "Effect name",
@@ -341,9 +348,12 @@
         "damage": "Damage",
         "str": "STR loss",
         "dex": "DEX loss",
-        "wil": "WIL loss"
+        "wil": "WIL loss",
+        "xp": "XP loss"
       },
       "Summary": {
+        "heal": "+{value} HP",
+        "ongoing": "{effect} per round",
         "damage": "{value} damage",
         "ability": "-{value} {ability}",
         "save": "{ability} save",
@@ -380,6 +390,14 @@
         "lowest": "Two dice, keep lowest"
       },
       "MixedTargets": "The targets do not share the same defences: their effects on the roll are not applied. Target them separately."
+    },
+    "Ongoing": {
+      "Title": "Ongoing effects",
+      "RoundTitle": "Round {round}: ongoing effects",
+      "Regeneration": "Regeneration",
+      "Apply": "Apply",
+      "End": "End the effect",
+      "Ended": "ended"
     }
   }
 }

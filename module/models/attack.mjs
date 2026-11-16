@@ -20,6 +20,8 @@ export default class DangerousGaryAttackData extends foundry.abstract.TypeDataMo
           save: new fields.StringField({ required: true, blank: true, initial: "", choices: DangerousGaryAttackData.ABILITIES }),
           effect: new fields.StringField({ required: true, blank: false, initial: "none", choices: DangerousGaryAttackData.TRIGGER_EFFECTS }),
           formula: new fields.StringField({ required: true, blank: true, initial: "" }),
+          // Effet continu : au lieu d'être subi une fois, il est posé sur la cible et proposé à chaque changement de round
+          ongoing: new fields.BooleanField({ required: true, initial: false }),
           text: new fields.StringField({ required: true, blank: true, initial: "" }),
         }),
       ),
@@ -39,6 +41,7 @@ export default class DangerousGaryAttackData extends foundry.abstract.TypeDataMo
     str: "DANGEROUSGARY.Trigger.Effects.str",
     dex: "DANGEROUSGARY.Trigger.Effects.dex",
     wil: "DANGEROUSGARY.Trigger.Effects.wil",
+    xp: "DANGEROUSGARY.Trigger.Effects.xp",
   }
 
   /**
@@ -53,7 +56,7 @@ export default class DangerousGaryAttackData extends foundry.abstract.TypeDataMo
         if (natural === null) return false
         return natural >= (trigger.min ?? trigger.max) && natural <= (trigger.max ?? trigger.min)
       })
-      .map(({ name, save, effect, formula, text }) => ({ name, save, effect, formula, text }))
+      .map(({ name, save, effect, formula, ongoing, text }) => ({ name, save, effect, formula, ongoing, text }))
   }
 
   /** @override */

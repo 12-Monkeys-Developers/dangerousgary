@@ -1,4 +1,5 @@
 import { DamageCard } from "../damage.mjs"
+import { RoundCard } from "../round.mjs"
 import DangerousGaryDamageMessageData from "../models/damage-message.mjs"
 
 export default class DangerousGaryChatMessage extends ChatMessage {
@@ -10,7 +11,32 @@ export default class DangerousGaryChatMessage extends ChatMessage {
     this._enrichChatCard(html)
     // Jet caché à cet utilisateur : le cœur a déjà rendu un contenu neutre, la carte dévoilerait le résultat et les cibles
     if (this.type === "damage" && this.isContentVisible) await this._renderDamageCard(html)
+    if (this.type === "round" && this.isContentVisible) await this._renderRoundCard(html)
     return html
+  }
+
+  /**
+   * Rend la carte de début de round (effets continus, régénérations) à la place du contenu du message, et active ses boutons.
+   * @param {HTMLElement} html L'élément du message.
+   */
+  async _renderRoundCard(html) {
+    const content = html.querySelector(".message-content")
+    if (!content) return
+    content.innerHTML = await foundry.applications.handlebars.renderTemplate("systems/dangerousgary/templates/round-card.hbs", RoundCard.prepareContext(this))
+    content.addEventListener("click", (event) => {
+      const button = event.target.closest("[data-action]")
+      if (!button) return
+      switch (button.dataset.action) {
+        case "applyOngoing":
+          button.disabled = true
+          return RoundCard.apply(this, Number(button.dataset.index))
+        case "endOngoing":
+          button.disabled = true
+          return RoundCard.end(this, Number(button.dataset.index))
+        case "panToToken":
+          return DamageCard.panToToken(button.dataset.tokenUuid)
+      }
+    })
   }
 
   /**

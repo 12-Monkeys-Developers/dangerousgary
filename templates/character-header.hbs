@@ -3,5 +3,18 @@
   <div class="character-details">
     <div class="character-name">{{formInput fields.name value=source.name disabled=locked }}</div>
     <div class="character-short-description">{{formInput systemFields.shortDescription value=system.shortDescription }}</div>
+    {{#if ongoingEffects.length}}
+    <ul class="ongoing-effects">
+      {{#each ongoingEffects as |effect|}}
+        <li data-tooltip="{{effect.text}}">
+          <img src="{{effect.img}}" alt="" />
+          <span><strong>{{effect.name}}</strong>{{#if effect.summary}} : {{effect.summary}}{{/if}}</span>
+          {{#if @root.canEndOngoing}}
+            <a data-action="endOngoing" data-effect-id="{{effect.id}}" data-tooltip="{{localize 'DANGEROUSGARY.Ongoing.End'}}"><i class="fas fa-ban"></i></a>
+          {{/if}}
+        </li>
+      {{/each}}
+    </ul>
+    {{/if}}
   </div>
 </div>

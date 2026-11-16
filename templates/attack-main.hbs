@@ -35,6 +35,10 @@
               <label>{{localize "DANGEROUSGARY.Trigger.Effect"}}</label>
               {{formInput @root.triggerFields.effect value=trigger.effect name=(concat "system.triggers." trigger.key ".effect") disabled=@root.locked localize=true}}
               {{formInput @root.triggerFields.formula value=trigger.formula name=(concat "system.triggers." trigger.key ".formula") disabled=@root.locked placeholder="1d6"}}
+              <label class="trigger-ongoing" data-tooltip="{{localize 'DANGEROUSGARY.Trigger.OngoingHint'}}">
+                {{formInput @root.triggerFields.ongoing value=trigger.ongoing name=(concat "system.triggers." trigger.key ".ongoing") disabled=@root.locked}}
+                {{localize "DANGEROUSGARY.Trigger.Ongoing"}}
+              </label>
             </div>
             <div class="trigger-row">
               {{formInput @root.triggerFields.text value=trigger.text name=(concat "system.triggers." trigger.key ".text") disabled=@root.locked placeholder=(localize "DANGEROUSGARY.Trigger.Text")}}

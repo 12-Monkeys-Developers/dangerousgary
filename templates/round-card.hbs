@@ -1,0 +1,32 @@
+<div class="dice-roll round-card">
+  <div class="roll-line"><span class="roll-label">{{title}}</span></div>
+  <ul class="damage-targets">
+    {{#each entries as |entry|}}
+      <li class="damage-target {{entry.status}}">
+        <a class="target-token" data-action="panToToken" data-token-uuid="{{entry.tokenUuid}}" data-tooltip="{{localize 'DANGEROUSGARY.Damage.PanToToken'}}">
+          <img src="{{entry.img}}" alt="{{entry.name}}" />
+        </a>
+        <div class="target-body">
+          <span class="target-name">{{entry.name}}</span>
+          <span class="target-line target-trigger {{entry.status}}">
+            <strong>{{entry.label}}</strong>{{#if entry.isEnded}} : {{localize "DANGEROUSGARY.Ongoing.Ended"}}{{else}}{{#if entry.summary}} : {{entry.summary}}{{/if}}{{/if}}
+          </span>
+          {{#if @root.isGM}}
+            <div class="round-card-buttons">
+              {{#if entry.isPending}}
+                <button type="button" class="damage-card-button" data-action="applyOngoing" data-index="{{entry.index}}">
+                  <i class="fas fa-check"></i> {{localize "DANGEROUSGARY.Ongoing.Apply"}}
+                </button>
+              {{/if}}
+              {{#if entry.canEnd}}
+                <button type="button" class="damage-card-button" data-action="endOngoing" data-index="{{entry.index}}">
+                  <i class="fas fa-ban"></i> {{localize "DANGEROUSGARY.Ongoing.End"}}
+                </button>
+              {{/if}}
+            </div>
+          {{/if}}
+        </div>
+      </li>
+    {{/each}}
+  </ul>
+</div>

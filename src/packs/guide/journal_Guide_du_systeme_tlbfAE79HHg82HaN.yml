@@ -500,6 +500,10 @@ pages:
                 Les attaques des donjexeurs de ce niveau ou moins sont contraintes (0 : pas d'aura). Le niveau d'un donjexeur est son niveau le plus élevé parmi ses classes.
               </td>
             </tr>
+            <tr>
+              <td><strong>Régénération</strong></td>
+              <td>Les PV regagnés à chaque changement de round : un nombre ou un dé (<code>3</code>, <code>1d6</code>). Vide : pas de régénération.</td>
+            </tr>
           </table>
           <p class="guide-astuce">
             Le type imposé par la cible se combine avec les états de l'attaquant : une contrainte et une exaltation se compensent. <kbd>Maj</kbd>+clic sur le dé de dégâts
@@ -552,7 +556,14 @@ pages:
               <td><strong>Effet</strong> et formule</td>
               <td>
                 <strong>Dégâts</strong> supplémentaires (armure déduite), <strong>perte</strong> de points de FOR, de DEX ou de VOL, ou <strong>Aucun</strong> pour un simple
-                rappel. La formule accepte un dé (<code>1d4</code>) ou un nombre.
+                rappel. La formule accepte un dé (<code>1d4</code>) ou un nombre. S'y ajoute la <strong>perte d'XP</strong>.
+              </td>
+            </tr>
+            <tr>
+              <td><strong>chaque round</strong></td>
+              <td>
+                Case à cocher : l'effet devient <strong>continu</strong>. Il n'est pas subi tout de suite mais posé sur la cible, puis proposé à chaque changement de round
+                (voir @UUID[Compendium.dangerousgary.guide.JournalEntry.tlbfAE79HHg82HaN.JournalEntryPage.EDrxwaqLnf5XCESY]{Combat et macros}).
               </td>
             </tr>
             <tr>
@@ -568,7 +579,7 @@ pages:
           <p>Sur la fiche de la Rencontre, le survol du nom d'une attaque affiche sa description, puis ses options et un résumé de chaque effet spécial.</p>
           <p class="guide-astuce">
             Exemples : Ghast, <em>Venin paralysant</em> — dé 4, effet Perte de DEX <code>1d4</code>. Voisin, <em>Déchirure dimensionnelle</em> — dé 6, sauvegarde DEX, effet
-            Dégâts <code>1d10</code>. Les effets qui durent (dégâts à chaque round, états) restent à suivre à la main.
+            Dégâts <code>1d10</code>. Chien-hyène, <em>Mâchoire verrouillée</em> — dé 6, effet Dégâts <code>1d8</code>, case « chaque round » cochée.
           </p>
 
           <h3>Description et pouvoirs</h3>
@@ -790,6 +801,28 @@ pages:
               </ul>
             </div>
           </div>
+
+          <h2>Les effets continus</h2>
+          <p>
+            Certains effets durent : une mâchoire verrouillée qui inflige des dégâts à chaque round, un drain de Force ou d'expérience, des flammes. Ils sont posés sur le
+            token par un effet spécial d'attaque dont la case <strong>chaque round</strong> est cochée (voir @UUID[Compendium.dangerousgary.guide.JournalEntry.tlbfAE79HHg82HaN.JournalEntryPage.01Y5Jr6ZBUXkRBYz]{La Rencontre}). Une icône les signale sur le token, et la
+            fiche du Personnage ou de la Rencontre les liste sous son en-tête.
+          </p>
+          <p>
+            À chaque <strong>Round suivant</strong>, le système publie une carte « Round N : effets continus » qui liste, pour chaque combattant non vaincu, ses effets
+            continus et la <strong>régénération</strong> des Rencontres blessées. Le MJ y dispose de deux boutons par ligne :
+          </p>
+          <ul>
+            <li><strong>Appliquer</strong> : lance la formule et applique le résultat (dégâts avec armure déduite, perte de caractéristique ou d'XP, PV regagnés) ;</li>
+            <li>
+              <strong>Mettre fin à l'effet</strong> : retire l'effet continu de l'acteur, qui ne sera plus proposé. Le MJ peut aussi y mettre fin à tout moment depuis la
+              fiche, avec l'icône <i class="fas fa-ban"></i>.
+            </li>
+          </ul>
+          <p class="guide-astuce">
+            Les joueurs voient sur la carte les lignes de leurs personnages, pas celles des Rencontres. Rien n'est appliqué sans le clic du MJ : un personnage libéré entre
+            deux rounds n'encaisse pas de dégâts par erreur.
+          </p>
 
           <h2>La barre de macros</h2>
           <div class="guide-image"><img src="systems/dangerousgary/assets/guide/barre-macros.webp" alt="Macros créées par glisser-déposer" /></div>

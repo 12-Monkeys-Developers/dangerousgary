@@ -62,6 +62,10 @@
     },
     "Encounter": {
       "FIELDS": {
+        "regeneration": {
+          "label": "Régénération",
+          "hint": "PV regagnés à chaque changement de round : un nombre ou un dé (3, 1d6). Vide : pas de régénération."
+        },
         "attacksAgainst": {
           "label": "Attaques contre elle",
           "hint": "Type imposé aux attaques qui ciblent cette rencontre. À changer selon la situation (en vol, dans le noir, immobilisée…)."
@@ -197,6 +201,7 @@
       "current": "actuel",
       "max": "max",
       "short": {
+        "xp": "XP",
         "hp": "PV",
         "str": "FOR",
         "dex": "DEX",
@@ -325,6 +330,8 @@
       "NextRoundLocked": "Round suivant : tous les combattants doivent avoir joué"
     },
     "Trigger": {
+      "Ongoing": "chaque round",
+      "OngoingHint": "L'effet n'est pas subi tout de suite : il est posé sur la cible et proposé au MJ à chaque changement de round, jusqu'à ce qu'il y mette fin.",
       "EveryHit": "à chaque coup",
       "OnDie": "dé {range}",
       "Name": "Nom de l'effet",
@@ -341,9 +348,12 @@
         "damage": "Dégâts",
         "str": "Perte de FOR",
         "dex": "Perte de DEX",
-        "wil": "Perte de VOL"
+        "wil": "Perte de VOL",
+        "xp": "Perte d'XP"
       },
       "Summary": {
+        "heal": "+{value} PV",
+        "ongoing": "{effect} par round",
         "damage": "{value} dégâts",
         "ability": "-{value} {ability}",
         "save": "sauvegarde de {ability}",
@@ -380,6 +390,14 @@
         "lowest": "Deux dés, le plus bas"
       },
       "MixedTargets": "Les cibles n'ont pas les mêmes défenses : leurs effets sur le jet ne sont pas appliqués. Ciblez-les séparément."
+    },
+    "Ongoing": {
+      "Title": "Effets continus",
+      "RoundTitle": "Round {round} : effets continus",
+      "Regeneration": "Régénération",
+      "Apply": "Appliquer",
+      "End": "Mettre fin à l'effet",
+      "Ended": "terminé"
     }
   }
 }

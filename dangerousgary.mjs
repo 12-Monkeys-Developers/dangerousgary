@@ -35,7 +35,8 @@ Hooks.once('init', async function () {
   // Chat
   CONFIG.ChatMessage.documentClass = documents.DangerousGaryChatMessage
   CONFIG.ChatMessage.dataModels = {
-    damage: models.DangerousGaryDamageMessageData
+    damage: models.DangerousGaryDamageMessageData,
+    round: models.DangerousGaryRoundMessageData
   }
 
   // Requêtes traitées par le MJ actif pour les joueurs

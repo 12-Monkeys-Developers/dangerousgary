@@ -47,6 +47,7 @@ export default class DangerousGaryDamageMessageData extends foundry.abstract.Typ
               save: new fields.StringField({ required: true, blank: true, initial: "" }),
               effect: new fields.StringField({ required: true, blank: false, initial: "none" }),
               formula: new fields.StringField({ required: true, blank: true, initial: "" }),
+              ongoing: new fields.BooleanField({ required: true, initial: false }),
               // pending : sauvegarde à lancer ; saved : sauvegarde réussie ; applied : effet subi ; info : rien à appliquer
               status: new fields.StringField({ required: true, blank: false, initial: "info", choices: ["pending", "saved", "applied", "info"] }),
               // Dégâts subis ou points de caractéristique perdus

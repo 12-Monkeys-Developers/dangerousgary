@@ -35,6 +35,9 @@
   --dg-font-body: "Volkhov", serif;
 }
 /* Styles limited to Dangerous Gary sheets */
+.dangerousgary {
+  /* Effets continus posés sur un acteur (fiches Personnage et Rencontre) */
+}
 .dangerousgary input[type="checkbox"],
 .dangerousgary input[type="radio"] {
   --checkbox-checked-color: var(--dg-text-red);
@@ -49,6 +52,44 @@
   padding-right: 4px;
   padding-top: 2px;
   padding-bottom: 2px;
+}
+.dangerousgary .ongoing-effects {
+  list-style: none;
+  margin: 4px 0 0;
+  padding: 0;
+}
+.dangerousgary .ongoing-effects li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 6px;
+  font-size: 0.9rem;
+  color: #222;
+  background: rgba(255, 255, 255, 0.85);
+  border-left: 3px solid var(--dg-text-red);
+}
+.dangerousgary .ongoing-effects li + li {
+  margin-top: 2px;
+}
+.dangerousgary .ongoing-effects img {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  padding: 1px;
+  background: #222;
+  border: none;
+  border-radius: 3px;
+}
+.dangerousgary .ongoing-effects span {
+  flex: 1;
+  color: #222;
+}
+.dangerousgary .ongoing-effects a {
+  flex: none;
+  color: #888;
+}
+.dangerousgary .ongoing-effects a:hover {
+  color: var(--dg-text-red);
 }
 .dangerousgary.actor.character {
   min-width: 500px;
@@ -593,6 +634,13 @@
   flex: 0 0 3.5em;
   text-align: center;
 }
+.dangerousgary.actor.encounter .encounter-defences .defence-row input[type="text"] {
+  flex: 0 0 6em;
+  text-align: center;
+}
+.dangerousgary.actor.encounter .encounter-defences .defence-row + .defence-row {
+  margin-top: 6px;
+}
 .dangerousgary.actor.encounter .encounter-description {
   flex: 1;
   display: flex;
@@ -865,6 +913,12 @@
 .dangerousgary.item.attack .attack-triggers .trigger-row input[type="text"] {
   flex: 1 1 5em;
   min-width: 0;
+}
+.dangerousgary.item.attack .attack-triggers .trigger-ongoing {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-weight: normal;
 }
 .dangerousgary.item.attack .attack-triggers .remove-trigger-btn {
   flex: none;
@@ -1615,6 +1669,19 @@
 .damage-card .damage-card-button:hover:not(:disabled) {
   color: #fff;
   background: var(--dg-text-red);
+}
+.round-card .damage-target.ended .target-name,
+.round-card .damage-target.ended .target-trigger {
+  color: #777;
+}
+.round-card .round-card-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.round-card .round-card-buttons .damage-card-button {
+  flex: 1;
+  white-space: nowrap;
 }
 .combat-tracker .combatant .fa-fist-raised {
   color: gray;

@@ -29,7 +29,9 @@ export default class DangerousGaryEncounterData extends foundry.abstract.TypeDat
             attacksAgainst: new fields.StringField({ required: true, blank: false, initial: "normal", choices: DangerousGaryEncounterData.ATTACKS_AGAINST }),
             damageReduction: new fields.StringField({ required: true, blank: false, initial: "none", choices: DangerousGaryEncounterData.DAMAGE_REDUCTIONS }),
             // Les attaques des donjexeurs de niveau inférieur ou égal sont contraintes ; 0 = pas d'aura
-            terror: new fields.NumberField({ required: true, nullable: false, integer: true, initial: 0, min: 0, max: 9 })
+            terror: new fields.NumberField({ required: true, nullable: false, integer: true, initial: 0, min: 0, max: 9 }),
+            // PV regagnés à chaque changement de round (formule : 3, 1d6) ; vide = pas de régénération
+            regeneration: new fields.StringField({ required: true, blank: true, initial: "" })
         };
     }
 

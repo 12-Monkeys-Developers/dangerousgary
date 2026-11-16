@@ -1,6 +1,6 @@
 import DangerousGaryChat from "../chat.mjs"
 import { DamageCard } from "../damage.mjs"
-import { CONSTRAINING_STATUSES, EXALTING_STATUS, STATUS_EFFECTS, UNLUCKY_STATUS } from "../config.mjs"
+import { CONSTRAINING_STATUSES, EXALTING_STATUS, ONGOING_ICONS, STATUS_EFFECTS, UNLUCKY_STATUS } from "../config.mjs"
 
 export default class DangerousGaryActor extends Actor {
   get isCharacter() {
@@ -129,6 +129,70 @@ export default class DangerousGaryActor extends Actor {
     if (strLost > 0) updates["system.abilities.str.value"] = strAfter
     if (!foundry.utils.isEmpty(updates)) await this.update(updates)
     return { hpBefore, hpAfter, strBefore, strAfter }
+  }
+
+  /**
+   * Applique un effet chiffré à l'acteur : dégâts (armure déduite), perte de points d'une caractéristique ou d'expérience, ou soin.
+   * @param {object} data
+   * @param {"none"|"damage"|"str"|"dex"|"wil"|"xp"|"heal"} data.effect L'effet.
+   * @param {string} data.formula La formule : un dé ou un nombre.
+   * @param {object} [options]
+   * @param {boolean} [options.ignoreArmour] Les dégâts ignorent l'armure.
+   * @returns {Promise<number|null>} Les dégâts subis, les points perdus ou les PV regagnés ; null sans effet chiffré.
+   */
+  async applyEffect({ effect, formula }, { ignoreArmour = false } = {}) {
+    if (effect === "none" || !formula) return null
+    const roll = await new Roll(String(formula)).evaluate()
+    const value = Math.max(0, roll.total)
+    if (effect === "damage") {
+      const real = Math.max(0, value - (ignoreArmour ? 0 : this.armour))
+      await this.applyDamage(real)
+      return real
+    }
+    if (effect === "heal") {
+      const { value: hp, max } = this.system.hp
+      const healed = Math.max(0, Math.min(value, max - hp))
+      if (healed > 0) await this.update({ "system.hp.value": hp + healed })
+      return healed
+    }
+    // Perte d'expérience : seuls les personnages en ont
+    const path = effect === "xp" ? "system.xp" : `system.abilities.${effect}.value`
+    const current = foundry.utils.getProperty(this, path)
+    if (typeof current !== "number") return 0
+    const lost = Math.min(value, current)
+    if (lost > 0) await this.update({ [path]: current - lost })
+    return lost
+  }
+
+  /**
+   * Les effets continus posés sur l'acteur : proposés à chaque changement de round tant qu'ils ne sont pas retirés.
+   * @type {ActiveEffect[]}
+   */
+  get ongoingEffects() {
+    return this.effects.filter((effect) => effect.getFlag("dangerousgary", "ongoing"))
+  }
+
+  /**
+   * Pose un effet continu sur l'acteur.
+   * @param {object} data
+   * @param {string} data.name Le nom de l'effet.
+   * @param {string} data.effect Ce qu'il fait à chaque round : damage, str, dex, wil ou xp.
+   * @param {string} data.formula La formule appliquée à chaque round.
+   * @param {boolean} [data.ignoreArmour] Les dégâts ignorent l'armure.
+   * @param {string} [data.text] Une précision (comment y mettre fin…).
+   * @returns {Promise<ActiveEffect>}
+   */
+  async addOngoingEffect({ name, effect, formula, ignoreArmour = false, text = "" }) {
+    const [created] = await this.createEmbeddedDocuments("ActiveEffect", [
+      {
+        name: name || game.i18n.localize("DANGEROUSGARY.Ongoing.Title"),
+        img: ONGOING_ICONS[effect] ?? ONGOING_ICONS.damage,
+        description: text,
+        showIcon: CONST.ACTIVE_EFFECT_SHOW_ICON.ALWAYS,
+        flags: { dangerousgary: { ongoing: { effect, formula, ignoreArmour } } },
+      },
+    ])
+    return created
   }
 
   /**

@@ -30,3 +30,16 @@ export const EXALTING_STATUS = "exalted"
 
 /** État qui fait lancer deux dés aux sauvegardes et garder le pire. */
 export const UNLUCKY_STATUS = "unlucky"
+
+/**
+ * Icône d'un effet continu selon ce qu'il fait perdre ou regagner.
+ * @type {Record<string, string>}
+ */
+export const ONGOING_ICONS = {
+  damage: "icons/svg/blood.svg",
+  str: "icons/svg/degen.svg",
+  dex: "icons/svg/degen.svg",
+  wil: "icons/svg/degen.svg",
+  xp: "icons/svg/degen.svg",
+  heal: "icons/svg/regen.svg",
+}

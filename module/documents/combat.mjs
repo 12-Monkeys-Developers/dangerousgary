@@ -1,3 +1,5 @@
+import { RoundCard } from "../round.mjs"
+
 export default class DangerousGaryCombat extends foundry.documents.Combat {
   /** @override */
   async _onEnter(combatant) {
@@ -46,6 +48,9 @@ export default class DangerousGaryCombat extends foundry.documents.Combat {
     }
     const advanceTime =
       Math.max(this.turns.length - (this.turn || 0), 0) * CONFIG.time.turnTime + CONFIG.time.roundTime
-    return this.update({ round: this.round + 1, turn }, { advanceTime })
+    const updated = await this.update({ round: this.round + 1, turn }, { advanceTime })
+    // Début de round : carte des effets continus et des régénérations à traiter
+    await RoundCard.create(this)
+    return updated
   }
 }

@@ -182,16 +182,12 @@ export class DamageCard {
    */
   static async applyTriggerEffect(actor, trigger, ignoreArmour) {
     if (trigger.effect === "none" || !trigger.formula) return null
-    const roll = await new Roll(trigger.formula).evaluate()
-    if (trigger.effect === "damage") {
-      const real = Math.max(0, roll.total - (ignoreArmour ? 0 : actor.armour))
-      await actor.applyDamage(real)
-      return real
+    // Effet continu : il est posé sur la cible et sera proposé à chaque changement de round
+    if (trigger.ongoing) {
+      await actor.addOngoingEffect({ name: trigger.name, effect: trigger.effect, formula: trigger.formula, ignoreArmour, text: trigger.text })
+      return null
     }
-    const current = actor.system.abilities[trigger.effect].value
-    const lost = Math.min(Math.max(0, roll.total), current)
-    if (lost > 0) await actor.update({ [`system.abilities.${trigger.effect}.value`]: current - lost })
-    return lost
+    return actor.applyEffect(trigger, { ignoreArmour })
   }
 
   /**
@@ -204,7 +200,9 @@ export class DamageCard {
     const parts = []
     let effect = ""
     if (trigger.effect === "damage") effect = game.i18n.format("DANGEROUSGARY.Trigger.Summary.damage", { value: trigger.amount ?? trigger.formula })
+    else if (trigger.effect === "heal") effect = game.i18n.format("DANGEROUSGARY.Trigger.Summary.heal", { value: trigger.amount ?? trigger.formula })
     else if (trigger.effect !== "none") effect = game.i18n.format("DANGEROUSGARY.Trigger.Summary.ability", { value: trigger.amount ?? trigger.formula, ability: ability(trigger.effect) })
+    if (effect && trigger.ongoing) effect = game.i18n.format("DANGEROUSGARY.Trigger.Summary.ongoing", { effect })
     if (trigger.status === "saved") parts.push(game.i18n.format("DANGEROUSGARY.Trigger.Summary.saved", { ability: ability(trigger.save) }))
     else if (trigger.save && trigger.status !== "applied") {
       parts.push(game.i18n.format(effect ? "DANGEROUSGARY.Trigger.Summary.saveOr" : "DANGEROUSGARY.Trigger.Summary.save", { ability: ability(trigger.save), effect }))

@@ -54,9 +54,26 @@
       {{formInput systemFields.attacksAgainst value=system.attacksAgainst localize=true }}
       <label data-tooltip="{{localize 'DANGEROUSGARY.Encounter.FIELDS.damageReduction.hint'}}">{{localize "DANGEROUSGARY.Encounter.FIELDS.damageReduction.label"}}</label>
       {{formInput systemFields.damageReduction value=system.damageReduction localize=true disabled=locked }}
+    </div>
+    <div class="defence-row">
       <label data-tooltip="{{localize 'DANGEROUSGARY.Encounter.FIELDS.terror.hint'}}">{{localize "DANGEROUSGARY.Encounter.FIELDS.terror.label"}}</label>
       {{formInput systemFields.terror value=system.terror disabled=locked }}
+      <label data-tooltip="{{localize 'DANGEROUSGARY.Encounter.FIELDS.regeneration.hint'}}">{{localize "DANGEROUSGARY.Encounter.FIELDS.regeneration.label"}}</label>
+      {{formInput systemFields.regeneration value=system.regeneration disabled=locked placeholder="1d6" }}
     </div>
+    {{#if ongoingEffects.length}}
+    <ul class="ongoing-effects">
+      {{#each ongoingEffects as |effect|}}
+        <li data-tooltip="{{effect.text}}">
+          <img src="{{effect.img}}" alt="" />
+          <span><strong>{{effect.name}}</strong>{{#if effect.summary}} : {{effect.summary}}{{/if}}</span>
+          {{#if @root.canEndOngoing}}
+            <a data-action="endOngoing" data-effect-id="{{effect.id}}" data-tooltip="{{localize 'DANGEROUSGARY.Ongoing.End'}}"><i class="fas fa-ban"></i></a>
+          {{/if}}
+        </li>
+      {{/each}}
+    </ul>
+    {{/if}}
   </fieldset>
 
   <fieldset class="encounter-attacks">
