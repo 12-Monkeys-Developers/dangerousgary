@@ -46,7 +46,8 @@ export default class DangerousGaryActor extends Actor {
     const success = total <= abilityValue || isCritical
 
     const abilityShort = game.i18n.localize(`DANGEROUSGARY.Labels.short.${ability}`)
-    const introText = game.i18n.format("DANGEROUSGARY.Roll.SaveRoll", { ability: abilityShort, value: abilityValue })
+    // Sauvegarde de classe (valeur max) : le libellé de la carte la distingue de la sauvegarde de caractéristique
+    const introText = game.i18n.format(useMax ? "DANGEROUSGARY.Roll.ClassSaveRoll" : "DANGEROUSGARY.Roll.SaveRoll", { ability: abilityShort, value: abilityValue })
 
     let chatData = {
       rollType: "save",

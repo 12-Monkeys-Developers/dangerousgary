@@ -6,6 +6,7 @@
 - Rencontre : une attaque avec des dégâts peut être glissée dans la barre de macros (Clic : jet de dégâts, Maj+Clic : options) ; la macro s'applique au token sélectionné de cette rencontre
 - Attaques des rencontres : cases « Dommages critiques » (dé explosif) et « Ignore l'armure », et effets spéciaux déclenchés par le résultat du dé de dégâts ou à chaque coup (dégâts supplémentaires, perte de FOR/DEX/VOL, sauvegarde pour l'éviter, texte libre) ; la carte de dégâts les applique à la cible ou propose la sauvegarde
 - États : le système propose sa propre liste d'états sur le HUD des tokens ; Contraint, Étourdi, Ralenti et Aveugle rendent les attaques contraintes, Exalté les rend exaltées, Malchance fait lancer deux dés aux sauvegardes en gardant le pire
+- Tchat : la carte d'une sauvegarde de classe (Maj+Clic sur une caractéristique, talent) l'indique dans son libellé, au lieu de la seule infobulle
 - Guide du système : nouveau compendium « Guide du système » (7 pages illustrées : réglages, personnage, classes et artefacts, rencontre, jets, combat et macros), réservé au MJ par défaut
 - Correction : l'utilisation d'une capacité d'artefact depuis la fiche de personnage ne faisait rien (identifiant de l'artefact absent du bouton)
 - Correction : sur la fiche d'un artefact, le bouton d'édition de la description d'une capacité était coupé ou recouvrait le texte

@@ -276,6 +276,7 @@
     "HasActed": "A joué",
     "Roll": {
       "SaveRoll": "Sauvegarde de {ability} ({value})",
+      "ClassSaveRoll": "Sauvegarde de classe {ability} ({value})",
       "Success": "Succès",
       "Failure": "Échec",
       "Critical": "Critique",

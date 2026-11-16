@@ -588,7 +588,8 @@ pages:
               <h3>La sauvegarde de classe</h3>
               <p>
                 Sur la fiche de Personnage, <kbd>Maj</kbd>+clic sur une caractéristique lance une <strong>sauvegarde de classe</strong> : le d20 est comparé au
-                <strong>maximum</strong> de la caractéristique, et non à sa valeur actuelle.
+                <strong>maximum</strong> de la caractéristique, et non à sa valeur actuelle. La carte du tchat l'indique : « Sauvegarde de classe FOR (12) » au lieu de
+                « Sauvegarde de FOR (10) ».
               </p>
             </div>
           </div>

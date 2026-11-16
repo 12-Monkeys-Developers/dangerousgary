@@ -276,6 +276,7 @@
     "HasActed": "Has acted",
     "Roll": {
       "SaveRoll": "{ability} Saving Throw ({value})",
+      "ClassSaveRoll": "{ability} Class Saving Throw ({value})",
       "Success": "Success",
       "Failure": "Failure",
       "Critical": "Critical",
