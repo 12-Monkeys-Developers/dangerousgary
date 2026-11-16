@@ -62,6 +62,18 @@
     },
     "Encounter": {
       "FIELDS": {
+        "attacksAgainst": {
+          "label": "Attaques contre elle",
+          "hint": "Type imposé aux attaques qui ciblent cette rencontre. À changer selon la situation (en vol, dans le noir, immobilisée…)."
+        },
+        "damageReduction": {
+          "label": "Dégâts reçus",
+          "hint": "Divisés par deux (avant l'armure), ou l'attaquant lance deux dés de dégâts et garde le plus bas."
+        },
+        "terror": {
+          "label": "Aura de terreur",
+          "hint": "Les attaques des donjexeurs de ce niveau ou moins sont contraintes. 0 : pas d'aura. Le niveau d'un donjexeur est son niveau le plus élevé parmi ses classes."
+        },
         "description": {
           "label": "Description",
           "hint": "Une brève description de la rencontre."
@@ -294,6 +306,7 @@
       "TalentDamageWithStr": "-{hp} PV, -{str} FOR"
     },
     "Damage": {
+      "Halved": "Dégâts divisés par deux",
       "Dealt": "{total} dégâts infligés",
       "ArmourDetail": "Armure {armour} : {real} dégâts subis",
       "RealDetail": "{real} dégâts subis",
@@ -353,6 +366,20 @@
       "burning": "En feu",
       "poisoned": "Empoisonné",
       "invisible": "Invisible"
+    },
+    "Defence": {
+      "Title": "Défenses",
+      "AttacksAgainst": {
+        "normal": "Normales",
+        "constrained": "Contraintes",
+        "exalted": "Exaltées"
+      },
+      "DamageReduction": {
+        "none": "Normaux",
+        "half": "Divisés par deux",
+        "lowest": "Deux dés, le plus bas"
+      },
+      "MixedTargets": "Les cibles n'ont pas les mêmes défenses : leurs effets sur le jet ne sont pas appliqués. Ciblez-les séparément."
     }
   }
 }

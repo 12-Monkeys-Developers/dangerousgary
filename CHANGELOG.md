@@ -8,6 +8,7 @@
 - États : le système propose sa propre liste d'états sur le HUD des tokens ; Contraint, Étourdi, Ralenti et Aveugle rendent les attaques contraintes, Exalté les rend exaltées, Malchance fait lancer deux dés aux sauvegardes en gardant le pire
 - Tchat : la carte d'une sauvegarde de classe (Maj+Clic sur une caractéristique, talent) l'indique dans son libellé, au lieu de la seule infobulle
 - Fiches Personnage et Rencontre : le nom n'est modifiable qu'en mode Écriture, de même que l'armure d'une rencontre ; un talent ne peut être déposé sur un personnage qu'en mode Écriture
+- Rencontre : cadre « Défenses » — attaques contre elle contraintes ou exaltées, dégâts reçus divisés par deux ou lancés avec deux dés en gardant le plus bas, aura de terreur (attaques contraintes pour les donjexeurs dont le niveau le plus élevé ne dépasse pas l'aura) ; ces défenses s'appliquent au jet de dégâts quand la rencontre est ciblée
 - Guide du système : nouveau compendium « Guide du système » (7 pages illustrées : réglages, personnage, classes et artefacts, rencontre, jets, combat et macros), réservé au MJ par défaut
 - Correction : l'utilisation d'une capacité d'artefact depuis la fiche de personnage ne faisait rien (identifiant de l'artefact absent du bouton)
 - Correction : sur la fiche d'un artefact, le bouton d'édition de la description d'une capacité était coupé ou recouvrait le texte

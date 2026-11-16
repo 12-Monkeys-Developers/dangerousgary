@@ -47,6 +47,18 @@
     </div>
   </div>
 
+  <fieldset class="encounter-defences">
+    <legend>{{localize "DANGEROUSGARY.Defence.Title"}}</legend>
+    <div class="defence-row">
+      <label data-tooltip="{{localize 'DANGEROUSGARY.Encounter.FIELDS.attacksAgainst.hint'}}">{{localize "DANGEROUSGARY.Encounter.FIELDS.attacksAgainst.label"}}</label>
+      {{formInput systemFields.attacksAgainst value=system.attacksAgainst localize=true }}
+      <label data-tooltip="{{localize 'DANGEROUSGARY.Encounter.FIELDS.damageReduction.hint'}}">{{localize "DANGEROUSGARY.Encounter.FIELDS.damageReduction.label"}}</label>
+      {{formInput systemFields.damageReduction value=system.damageReduction localize=true disabled=locked }}
+      <label data-tooltip="{{localize 'DANGEROUSGARY.Encounter.FIELDS.terror.hint'}}">{{localize "DANGEROUSGARY.Encounter.FIELDS.terror.label"}}</label>
+      {{formInput systemFields.terror value=system.terror disabled=locked }}
+    </div>
+  </fieldset>
+
   <fieldset class="encounter-attacks">
     <legend>{{localize "DANGEROUSGARY.Attacks"}}    {{#unless locked}}<a class="item-control" data-action="createItem" data-type="attack" data-tooltip="{{localize 'DANGEROUSGARY.NewAttack'}}"><i class="fas fa-plus"></i></a>{{/unless}}</legend>
     <div class="encounter-items-list">

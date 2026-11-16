@@ -473,6 +473,40 @@ pages:
             <li>Les <strong>PV</strong> et l'<strong>Armure</strong>. Comme pour les donjexeurs, l'armure n'est pas déduite automatiquement des dégâts.</li>
           </ul>
 
+          <h3>Les défenses</h3>
+          <p>Le cadre <strong>Défenses</strong> règle ce que la Rencontre impose à ceux qui l'attaquent. Il agit quand son token est <strong>ciblé</strong> au moment du jet de dégâts.</p>
+          <table class="guide-table">
+            <tr>
+              <th>Réglage</th>
+              <th>Effet</th>
+            </tr>
+            <tr>
+              <td><strong>Attaques contre elle</strong></td>
+              <td>
+                <strong>Contraintes</strong> ou <strong>Exaltées</strong> : les jets de dégâts qui la ciblent prennent ce type. Ce réglage reste modifiable en mode Lecture,
+                car il dépend de la situation (en vol, dans le noir, immobilisée…).
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Dégâts reçus</strong></td>
+              <td>
+                <strong>Divisés par deux</strong> (arrondi à l'inférieur, avant l'armure), ou <strong>Deux dés, le plus bas</strong> : l'attaquant lance deux dés de dégâts
+                et garde le plus faible.
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Aura de terreur</strong></td>
+              <td>
+                Les attaques des donjexeurs de ce niveau ou moins sont contraintes (0 : pas d'aura). Le niveau d'un donjexeur est son niveau le plus élevé parmi ses classes.
+              </td>
+            </tr>
+          </table>
+          <p class="guide-astuce">
+            Le type imposé par la cible se combine avec les états de l'attaquant : une contrainte et une exaltation se compensent. <kbd>Maj</kbd>+clic sur le dé de dégâts
+            permet toujours de choisir un autre type. Si plusieurs cibles n'ont pas les mêmes défenses, un avertissement s'affiche et elles ne sont pas appliquées :
+            ciblez-les séparément.
+          </p>
+
           <h3>Les attaques</h3>
           <div class="guide-row">
             <div class="guide-image guide-image-card"><img src="systems/dangerousgary/assets/guide/fiche-attaque.webp" alt="Fiche d'une attaque" /></div>

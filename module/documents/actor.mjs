@@ -92,6 +92,19 @@ export default class DangerousGaryActor extends Actor {
   }
 
   /**
+   * Le type d'attaque d'un jet de dégâts sans choix explicite : celui des états de l'acteur combiné à celui qu'imposent
+   * les défenses des cibles (contrainte et exaltée se compensent).
+   * @param {{attackType: string}} [defence] Les défenses des cibles (DamageCard.targetsDefence).
+   * @returns {"normal"|"constrained"|"exalted"}
+   */
+  getAttackType(defence = DamageCard.targetsDefence(this)) {
+    const score = { constrained: -1, normal: 0, exalted: 1 }
+    const total = score[this.statusAttackType] + score[defence.attackType]
+    if (total === 0) return "normal"
+    return total < 0 ? "constrained" : "exalted"
+  }
+
+  /**
    * Armure déduite des dégâts subis : celle de la rencontre, ou celle des équipements équipés du personnage.
    * @type {number}
    */
@@ -129,9 +142,12 @@ export default class DangerousGaryActor extends Actor {
    * @param {Item} [root0.item] L'attaque d'une rencontre : armure ignorée, déclencheurs
    */
   async rollDamage(itemName, formula, { criticalDamage = false, constrained, exalted, item = null } = {}) {
-    // Sans type d'attaque choisi, les états de l'acteur l'imposent
+    // Défenses des cibles : type d'attaque imposé, deux dés de dégâts en gardant le plus bas
+    const defence = DamageCard.targetsDefence(this)
+    if (defence.mixed) ui.notifications.warn("DANGEROUSGARY.Defence.MixedTargets", { localize: true })
+    // Sans type d'attaque choisi, les états de l'acteur et les défenses des cibles l'imposent
     if (constrained === undefined && exalted === undefined) {
-      const attackType = this.statusAttackType
+      const attackType = this.getAttackType(defence)
       constrained = attackType === "constrained"
       exalted = attackType === "exalted"
     }
@@ -139,12 +155,14 @@ export default class DangerousGaryActor extends Actor {
     exalted = !!exalted
     let roll
     if (constrained) {
-      roll = await new Roll("1d4").roll()
+      roll = await new Roll(defence.keepLowest ? "2d4kl1" : "1d4").roll()
     } else if (exalted) {
       const maxFormula = formula.replace(/(\d+)d(\d+)/gi, (_, num, faces) => String(Number(num) * Number(faces)))
       roll = await new Roll(maxFormula).roll()
     } else {
-      const rollFormula = criticalDamage ? formula.replace(/(\d+d\d+)/gi, "$1xo") : formula
+      let rollFormula = criticalDamage ? formula.replace(/(\d+d\d+)/gi, "$1xo") : formula
+      // Deux dés de dégâts, le plus bas est gardé
+      if (defence.keepLowest) rollFormula = rollFormula.replace(/(\d+)d(\d+)(xo)?/gi, (_, num, faces, xo) => `${Number(num) * 2}d${faces}${xo ?? ""}kl${num}`)
       roll = await new Roll(rollFormula).roll()
     }
     const result = roll.total
@@ -155,7 +173,7 @@ export default class DangerousGaryActor extends Actor {
     // Des tokens sont ciblés : carte de dégâts, appliqués à chaque cible
     // Attaque d'une rencontre : armure ignorée, déclencheurs activés par le résultat naturel du dé (le maximum pour une attaque exaltée)
     const ignoreArmour = !!item?.system.ignoreArmour
-    const natural = exalted ? Math.max(0, ...Array.from(formula.matchAll(/d(\d+)/gi), (m) => Number(m[1]))) || null : (roll.dice[0]?.results[0]?.result ?? null)
+    const natural = exalted ? Math.max(0, ...Array.from(formula.matchAll(/d(\d+)/gi), (m) => Number(m[1]))) || null : (roll.dice[0]?.results.find((r) => r.active)?.result ?? null)
     const triggers = item?.system.firedTriggers?.(natural) ?? []
 
     const targets = DamageCard.getTargets(roll.total, { ignoreArmour, triggers })
@@ -190,8 +208,9 @@ export default class DangerousGaryActor extends Actor {
   }
 
   async promptDamageRoll(itemName, formula, { criticalDamage = false, item = null } = {}) {
-    // Le type imposé par les états de l'acteur est présélectionné
-    const checked = (type) => (this.statusAttackType === type ? "checked" : "")
+    // Le type imposé par les états de l'acteur et les défenses des cibles est présélectionné
+    const defaultType = this.getAttackType()
+    const checked = (type) => (defaultType === type ? "checked" : "")
     // Mêmes icônes que les états Contraint et Exalté
     const icon = (statusId) => `<img class="attack-type-icon" src="${STATUS_EFFECTS.find((status) => status.id === statusId).img}" alt="" />`
     const attackType = await foundry.applications.api.DialogV2.prompt({

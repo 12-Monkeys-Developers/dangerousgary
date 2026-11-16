@@ -53,6 +53,14 @@ export default class DangerousGaryCharacterData extends foundry.abstract.TypeDat
   static LOCALIZATION_PREFIXES = ["DANGEROUSGARY.Character"]
 
   /**
+   * Niveau du donjexeur quand une règle ne précise pas de classe (aura de terreur, Osmose) : son niveau le plus élevé parmi ses classes.
+   * @type {number}
+   */
+  get level() {
+    return Math.max(0, ...Object.values(this.classes))
+  }
+
+  /**
    * Armure du personnage : somme de l'armure de ses équipements de type Armure équipés.
    * @type {number}
    */

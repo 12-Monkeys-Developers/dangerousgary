@@ -21,7 +21,7 @@ export class DamageCard {
   static getTargetInfo(token, total, { ignoreArmour = false, triggers = [] } = {}) {
     const actor = token?.actor
     if (!actor) return null
-    const armour = ignoreArmour ? 0 : actor.armour
+    const { armour, real, halved } = DamageCard.realDamage(actor, total, ignoreArmour)
     return {
       // Avec une sauvegarde, le déclencheur attend le jet de la cible ; sinon il est résolu à l'application des dégâts
       triggers: triggers.map((trigger) => ({ ...trigger, status: trigger.save ? "pending" : "info", amount: null })),
@@ -31,7 +31,52 @@ export class DamageCard {
       img: token.document.texture.src ?? actor.img,
       type: actor.type,
       armour,
-      real: Math.max(0, total - armour),
+      real,
+      halved,
+    }
+  }
+
+  /**
+   * Les dégâts réellement subis par un acteur : divisés par deux (arrondi à l'inférieur) si sa défense le prévoit, puis armure déduite.
+   * @param {Actor} actor La cible.
+   * @param {number} total Le total du jet de dégâts.
+   * @param {boolean} [ignoreArmour] L'attaque ignore l'armure.
+   * @returns {{armour: number, real: number, halved: boolean}}
+   */
+  static realDamage(actor, total, ignoreArmour = false) {
+    const halved = actor.system.damageReduction === "half"
+    const armour = ignoreArmour ? 0 : actor.armour
+    return { armour, halved, real: Math.max(0, (halved ? Math.floor(total / 2) : total) - armour) }
+  }
+
+  /**
+   * Ce que les défenses des cibles imposent au jet de dégâts d'un attaquant : le type d'attaque (attaques contraintes ou exaltées
+   * contre la cible, aura de terreur pour un donjexeur de niveau insuffisant) et le lancer de deux dés en gardant le plus bas.
+   * Avec plusieurs cibles, une contrainte ne s'applique que si toutes l'imposent : sinon `mixed` le signale.
+   * @param {Actor} attacker L'attaquant.
+   * @param {Token[]} [tokens] Les tokens ciblés.
+   * @returns {{attackType: "normal"|"constrained"|"exalted", keepLowest: boolean, mixed: boolean}}
+   */
+  static targetsDefence(attacker, tokens = Array.from(game.user.targets)) {
+    const defences = tokens
+      .map((token) => token.actor)
+      .filter((actor) => actor?.isEncounter)
+      .map((actor) => {
+        let attackType = actor.system.attacksAgainst
+        // Aura de terreur : un donjexeur de niveau insuffisant attaque en contrainte (une attaque exaltée redevient normale)
+        if (attacker.isCharacter && actor.system.terror > 0 && attacker.system.level <= actor.system.terror) {
+          attackType = attackType === "exalted" ? "normal" : "constrained"
+        }
+        return { attackType, keepLowest: actor.system.damageReduction === "lowest" }
+      })
+    const others = tokens.length - defences.length
+    if (!defences.length) return { attackType: "normal", keepLowest: false, mixed: false }
+    const sameType = defences.every((d) => d.attackType === defences[0].attackType) && (!others || defences[0].attackType === "normal")
+    const sameLowest = defences.every((d) => d.keepLowest === defences[0].keepLowest) && (!others || !defences[0].keepLowest)
+    return {
+      attackType: sameType ? defences[0].attackType : "normal",
+      keepLowest: sameLowest && defences[0].keepLowest,
+      mixed: !sameType || !sameLowest,
     }
   }
 
@@ -85,8 +130,7 @@ export class DamageCard {
         ui.notifications.warn(game.i18n.format("DANGEROUSGARY.Damage.TargetNotFound", { name: target.name }))
         continue
       }
-      target.armour = message.system.ignoreArmour ? 0 : actor.armour
-      target.real = Math.max(0, message.system.total - target.armour)
+      Object.assign(target, DamageCard.realDamage(actor, message.system.total, message.system.ignoreArmour))
       Object.assign(target, await actor.applyDamage(target.real), { applied: true })
       // Déclencheurs sans sauvegarde : l'effet est subi aussitôt
       for (const trigger of target.triggers) {

@@ -535,6 +535,7 @@
   text-shadow: 0 0 10px rgba(204, 0, 0, 0.5);
   cursor: url("/systems/dangerousgary/assets/d20-highlight.svg") 32 24, pointer;
 }
+.dangerousgary.actor.encounter .encounter-defences,
 .dangerousgary.actor.encounter .encounter-attacks,
 .dangerousgary.actor.encounter .encounter-powers,
 .dangerousgary.actor.encounter .encounter-description {
@@ -545,14 +546,17 @@
   box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.6);
   border-radius: 5px;
 }
+.dangerousgary.actor.encounter .encounter-defences input,
 .dangerousgary.actor.encounter .encounter-attacks input,
 .dangerousgary.actor.encounter .encounter-powers input,
 .dangerousgary.actor.encounter .encounter-description input,
+.dangerousgary.actor.encounter .encounter-defences select,
 .dangerousgary.actor.encounter .encounter-attacks select,
 .dangerousgary.actor.encounter .encounter-powers select,
 .dangerousgary.actor.encounter .encounter-description select {
   color: #222;
 }
+.dangerousgary.actor.encounter .encounter-defences legend,
 .dangerousgary.actor.encounter .encounter-attacks legend,
 .dangerousgary.actor.encounter .encounter-powers legend,
 .dangerousgary.actor.encounter .encounter-description legend {
@@ -564,10 +568,30 @@
   font-family: var(--dg-font-body);
   margin-bottom: 6px;
 }
+.dangerousgary.actor.encounter .encounter-defences > *:not(legend),
 .dangerousgary.actor.encounter .encounter-attacks > *:not(legend),
 .dangerousgary.actor.encounter .encounter-powers > *:not(legend),
 .dangerousgary.actor.encounter .encounter-description > *:not(legend) {
   clear: both;
+}
+.dangerousgary.actor.encounter .encounter-defences .defence-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+}
+.dangerousgary.actor.encounter .encounter-defences .defence-row label {
+  flex: none;
+  font-weight: bold;
+  white-space: nowrap;
+}
+.dangerousgary.actor.encounter .encounter-defences .defence-row select {
+  flex: 1 1 8em;
+  min-width: 0;
+}
+.dangerousgary.actor.encounter .encounter-defences .defence-row input[type="number"] {
+  flex: 0 0 3.5em;
+  text-align: center;
 }
 .dangerousgary.actor.encounter .encounter-description {
   flex: 1;

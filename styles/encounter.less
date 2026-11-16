@@ -108,6 +108,7 @@
   }
 
   /* --- Shared panel fieldset style --- */
+  .encounter-defences,
   .encounter-attacks,
   .encounter-powers,
   .encounter-description {
@@ -134,6 +135,29 @@
 
     > *:not(legend) {
       clear: both;
+    }
+  }
+
+  .encounter-defences .defence-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 10px;
+
+    label {
+      flex: none;
+      font-weight: bold;
+      white-space: nowrap;
+    }
+
+    select {
+      flex: 1 1 8em;
+      min-width: 0;
+    }
+
+    input[type="number"] {
+      flex: 0 0 3.5em;
+      text-align: center;
     }
   }
 

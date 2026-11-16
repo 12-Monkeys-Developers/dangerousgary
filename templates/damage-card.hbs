@@ -26,24 +26,27 @@
           <span class="target-name">{{target.name}}</span>
           {{#if target.showDetail}}
             <span class="target-line">
-              {{#if target.armour}}
+              {{#if target.halved}}{{localize "DANGEROUSGARY.Damage.Halved"}} · {{/if}}{{#if target.armour}}
                 {{localize "DANGEROUSGARY.Damage.ArmourDetail" armour=target.armour real=target.real}}
               {{else}}
                 {{localize "DANGEROUSGARY.Damage.RealDetail" real=target.real}}
               {{/if}}
             </span>
             {{#if target.applied}}
-              <span class="target-line target-loss {{#if target.strLost}}overflow{{/if}}">
-                <i class="fas fa-heart-crack"></i>
-                {{#if target.strLost}}
-                  {{localize "DANGEROUSGARY.Roll.TalentDamageWithStr" hp=target.hpLost str=target.strLost}}
-                {{else}}
-                  {{localize "DANGEROUSGARY.Roll.TalentDamage" hp=target.hpLost}}
-                {{/if}}
-              </span>
-              <span class="target-line target-state">
-                {{localize "DANGEROUSGARY.Damage.StateHp" before=target.hpBefore after=target.hpAfter}}{{#if target.strLost}} · {{localize "DANGEROUSGARY.Damage.StateStr" before=target.strBefore after=target.strAfter}}{{/if}}
-              </span>
+              {{!-- Perte et état : seulement si des dégâts sont réellement subis après l'armure --}}
+              {{#if target.real}}
+                <span class="target-line target-loss {{#if target.strLost}}overflow{{/if}}">
+                  <i class="fas fa-heart-crack"></i>
+                  {{#if target.strLost}}
+                    {{localize "DANGEROUSGARY.Roll.TalentDamageWithStr" hp=target.hpLost str=target.strLost}}
+                  {{else}}
+                    {{localize "DANGEROUSGARY.Roll.TalentDamage" hp=target.hpLost}}
+                  {{/if}}
+                </span>
+                <span class="target-line target-state">
+                  {{localize "DANGEROUSGARY.Damage.StateHp" before=target.hpBefore after=target.hpAfter}}{{#if target.strLost}} · {{localize "DANGEROUSGARY.Damage.StateStr" before=target.strBefore after=target.strAfter}}{{/if}}
+                </span>
+              {{/if}}
               {{#if target.isDead}}
                 <span class="target-line target-dead"><i class="fas fa-skull"></i> {{localize "DANGEROUSGARY.Damage.StrengthZero"}}</span>
               {{/if}}

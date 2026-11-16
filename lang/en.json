@@ -62,6 +62,18 @@
     },
     "Encounter": {
       "FIELDS": {
+        "attacksAgainst": {
+          "label": "Attacks against it",
+          "hint": "Type imposed on attacks targeting this encounter. Change it with the situation (flying, in the dark, pinned…)."
+        },
+        "damageReduction": {
+          "label": "Damage taken",
+          "hint": "Halved (before armour), or the attacker rolls two damage dice and keeps the lowest."
+        },
+        "terror": {
+          "label": "Aura of terror",
+          "hint": "Attacks from characters of this level or lower are constrained. 0: no aura. A character's level is their highest class level."
+        },
         "description": {
           "label": "Description",
           "hint": "A brief description of the encounter."
@@ -294,6 +306,7 @@
       "TalentDamageWithStr": "-{hp} HP, -{str} STR"
     },
     "Damage": {
+      "Halved": "Damage halved",
       "Dealt": "{total} damage dealt",
       "ArmourDetail": "Armour {armour}: {real} damage taken",
       "RealDetail": "{real} damage taken",
@@ -353,6 +366,20 @@
       "burning": "Burning",
       "poisoned": "Poisoned",
       "invisible": "Invisible"
+    },
+    "Defence": {
+      "Title": "Defences",
+      "AttacksAgainst": {
+        "normal": "Normal",
+        "constrained": "Constrained",
+        "exalted": "Exalted"
+      },
+      "DamageReduction": {
+        "none": "Normal",
+        "half": "Halved",
+        "lowest": "Two dice, keep lowest"
+      },
+      "MixedTargets": "The targets do not share the same defences: their effects on the roll are not applied. Target them separately."
     }
   }
 }

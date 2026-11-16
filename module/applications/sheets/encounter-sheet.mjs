@@ -10,7 +10,7 @@ export default class DangerousGaryEncounterSheet extends DangerousGaryBaseActorS
     classes: ["dangerousgary", "actor", "encounter"],
     position: {
       width: 870,
-      height: 500,
+      height: 570,
     },
     form: {
       submitOnChange: true,

@@ -30,6 +30,8 @@ export default class DangerousGaryDamageMessageData extends foundry.abstract.Typ
           armour: new fields.NumberField({ required: true, nullable: false, integer: true, min: 0, initial: 0 }),
           // Dégâts réels : total moins l'armure
           real: new fields.NumberField({ required: true, nullable: false, integer: true, min: 0, initial: 0 }),
+          // Défense de la cible : dégâts divisés par deux avant l'armure
+          halved: new fields.BooleanField({ required: true, initial: false }),
           applied: new fields.BooleanField({ required: true, initial: false }),
           hpBefore: points(),
           hpAfter: points(),
