@@ -10,6 +10,16 @@ export class Macros {
         this.createMacro(slot, macroName, command, item.img)
         break
       }
+      case "rollAttack": {
+        const actor = await fromUuid(dropData.actorUuid)
+        const item = actor?.items.get(dropData.itemId)
+        if (!item) return
+        // Token sélectionné de cette Rencontre (tokens non liés compris), sinon la Rencontre d'où vient la macro
+        const command = `// Clic: Jet de dégâts | Shift+Clic: Options (contrainte/exaltée)\nconst actor = canvas.tokens?.controlled.map((t) => t.actor).find((a) => a?.id === '${actor.id}') ?? (await fromUuid('${actor.uuid}'))\nconst item = actor?.items.get('${item.id}') ?? actor?.items.getName(${JSON.stringify(item.name)})\nif (item) { if (event?.shiftKey) { actor.promptDamageRoll(item.name, item.system.damageFormula) } else { actor.rollDamage(item.name, item.system.damageFormula) } }`
+        const macroName = `${item.name} (${actor.name})`
+        this.createMacro(slot, macroName, command, item.img)
+        break
+      }
       case "rollSave": {
         const actor = game.actors.get(dropData.actorId)
         if (!actor) return

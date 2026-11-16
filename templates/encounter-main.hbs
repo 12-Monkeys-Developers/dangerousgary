@@ -51,7 +51,7 @@
     <legend>{{localize "DANGEROUSGARY.Attacks"}}    {{#unless locked}}<a class="item-control" data-action="createItem" data-type="attack" data-tooltip="{{localize 'DANGEROUSGARY.NewAttack'}}"><i class="fas fa-plus"></i></a>{{/unless}}</legend>
     <div class="encounter-items-list">
       {{#each attacks as |item id|}}
-        <div class="item" data-item-id="{{item.id}}">
+        <div class="item {{#if item.system.hasDamage}}draggable{{/if}}" data-item-id="{{item.id}}" data-drag-type="rollAttack">
           <details>
             <summary>
               <span>

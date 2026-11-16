@@ -86,6 +86,23 @@ export default class DangerousGaryEncounterSheet extends DangerousGaryBaseActorS
   }
 
   /**
+   * Début du glisser d'une attaque : vers la barre de macros, elle crée une macro de jet de dégâts.
+   * @param {DragEvent} event       The originating DragEvent
+   * @protected
+   */
+  _onDragStart(event) {
+    const el = event.currentTarget.closest(".draggable")
+    if (el?.dataset.dragType !== "rollAttack" || !el.dataset.itemId) return
+    const dragData = {
+      type: "rollAttack",
+      // Acteur du token pour un token non lié : la macro retrouve ainsi la Rencontre d'origine
+      actorUuid: this.actor.uuid,
+      itemId: el.dataset.itemId,
+    }
+    event.dataTransfer.setData("text/plain", JSON.stringify(dragData))
+  }
+
+  /**
    * Define whether a user is able to conclude a drag-and-drop workflow for a given drop selector
    * @param {string} selector       The candidate HTML selector for the drop target
    * @returns {boolean}             Can the current user drop on this selector?

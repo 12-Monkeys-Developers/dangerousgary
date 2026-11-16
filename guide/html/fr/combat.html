@@ -27,7 +27,7 @@
 
   <h2>La barre de macros</h2>
   <div class="guide-image"><img src="@@img:barre-macros@@" alt="Macros créées par glisser-déposer" /></div>
-  <p>Faites glisser un élément de la fiche de Personnage dans la barre de macros pour créer un raccourci :</p>
+  <p>Faites glisser un élément d'une fiche dans la barre de macros pour créer un raccourci :</p>
   <table class="guide-table">
     <tr>
       <th>Élément glissé</th>
@@ -45,12 +45,21 @@
       <td>Options de dégâts (contrainte, exaltée)</td>
     </tr>
     <tr>
+      <td>Attaque d'une Rencontre (ligne avec des dégâts)</td>
+      <td>Jet de dégâts</td>
+      <td>Options de dégâts (contrainte, exaltée)</td>
+    </tr>
+    <tr>
       <td>Talent (onglet Classe et talents)</td>
       <td colspan="2">Sauvegarde de classe du talent, avec perte de points de vie en cas d'échec</td>
     </tr>
   </table>
   <p>
     La macro porte le nom de l'élément suivi de celui du personnage, par exemple « Pistolet (Brenda) ». Si une macro de ce nom existe déjà, elle est réutilisée au lieu
-    d'être dupliquée. Les jets d'une Rencontre se lancent depuis sa fiche : elle ne crée pas de macro.
+    d'être dupliquée.
+  </p>
+  <p>
+    La macro d'une attaque de Rencontre sert à tous les tokens de ce Monstre : elle lance les dégâts pour le token <strong>sélectionné</strong> de cette Rencontre,
+    et à défaut pour la Rencontre d'où elle a été glissée. Comme tout jet de dégâts, elle les applique aux tokens ciblés.
   </p>
 </div>
