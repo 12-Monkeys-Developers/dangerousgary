@@ -283,6 +283,11 @@ export default class DangerousGaryCharacterSheet extends DangerousGaryBaseActorS
         const item = await fromUuid(data.uuid)
         if (item.type !== "equipment" && item.type !== "talent" && item.type !== "artefact") return
         if (item.type === "talent") {
+          // Un talent ne s'ajoute qu'en mode Écriture
+          if (!this.isEditMode) {
+            ui.notifications.warn("DANGEROUSGARY.Warnings.TalentDropEditMode", { localize: true })
+            return
+          }
           const duplicate = this.actor.itemTypes.talent.find(t => t.name === item.name)
           if (duplicate) {
             ui.notifications.warn(game.i18n.format("DANGEROUSGARY.Warnings.DuplicateTalent", { name: item.name }))

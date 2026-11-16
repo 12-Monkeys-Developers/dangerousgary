@@ -256,7 +256,8 @@
     "RollWillpower": "Roll Willpower save",
     "RollWillpowerTooltip": "Click: Willpower save<br>Shift+Click: Class save (max)",
     "Warnings": {
-      "DuplicateTalent": "{name}: this talent is already possessed by the character."
+      "DuplicateTalent": "{name}: this talent is already possessed by the character.",
+      "TalentDropEditMode": "Switch the sheet to Edit mode to add a talent."
     },
     "RollClassSave": "Roll class save",
     "Dialog": {

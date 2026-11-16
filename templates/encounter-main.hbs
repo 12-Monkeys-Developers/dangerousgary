@@ -3,7 +3,7 @@
   <div class="encounter-header">
     <div><img class="encounter-img" src="{{actor.img}}" data-edit="img" data-action="editImage" data-tooltip="{{actor.name}}" /></div>
     <div class="encounter-details">
-      <div class="encounter-name">{{formInput fields.name value=source.name }}</div>
+      <div class="encounter-name">{{formInput fields.name value=source.name disabled=locked }}</div>
       <div class="encounter-stats">
         <div class="stat-block">
           <span class="stat-label rollable" data-action="rollSave" data-ability="str" data-tooltip="{{localize 'DANGEROUSGARY.RollStrength'}}" data-tooltip-direction="UP"><strong>{{localize "DANGEROUSGARY.Labels.short.str"}}</strong></span>
@@ -40,7 +40,7 @@
         <div class="stat-block">
           <span class="stat-label"><strong>{{localize "DANGEROUSGARY.Labels.long.armour"}}</strong></span>
           <div class="stat-inputs">
-            {{formInput systemFields.armour value=system.armour }}
+            {{formInput systemFields.armour value=system.armour disabled=locked }}
           </div>
         </div>
       </div>

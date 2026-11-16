@@ -176,7 +176,8 @@ pages:
             <li>les boutons pour modifier ou supprimer un objet, et la zone <strong>Divers</strong> de l'équipement.</li>
           </ul>
           <p>
-            On peut déposer des objets sur la fiche dans les deux modes. Sur les fiches d'objets, le nom n'est modifiable qu'en mode Écriture.
+            On peut déposer des objets sur la fiche dans les deux modes, sauf les talents, qui ne se déposent qu'en mode Écriture. Le nom du personnage, comme celui d'une
+            Rencontre ou d'un objet, n'est modifiable qu'en mode Écriture.
           </p>
 
           <h3>Caractéristiques, points de vie et expérience</h3>
@@ -353,7 +354,7 @@ pages:
             <div class="guide-image guide-image-card"><img src="systems/dangerousgary/assets/guide/compendium-talents.webp" alt="Compendium des talents" /></div>
             <div>
               <p>
-                Faites glisser un talent du compendium <strong>Talents</strong> (un dossier par classe) sur la fiche. Il se range dans sa classe, et le
+                Faites glisser un talent du compendium <strong>Talents</strong> (un dossier par classe) sur la fiche, passée en mode <strong>Écriture</strong>. Il se range dans sa classe, et le
                 <strong>niveau de la classe</strong> est recalculé : il devient égal au nombre de talents de cette classe possédés par le personnage. Supprimer un talent
                 recalcule aussi le niveau.
               </p>
