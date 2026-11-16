@@ -12,6 +12,8 @@ export default class DangerousGaryChat {
     this.chatData = null
     this.flags = null
     this.rolls = null
+    this.type = null
+    this.system = null
   }
 
   /**
@@ -65,6 +67,18 @@ export default class DangerousGaryChat {
   }
 
   /**
+   * Sets the type of the message and its system data
+   * @param {string} type The message subtype, as declared in system.json
+   * @param {object} system The data of the message data model
+   * @returns the instance
+   */
+  withType(type, system) {
+    this.type = type
+    this.system = system
+    return this
+  }
+
+  /**
    * @description Creates the chat message
    * @returns this instance
    */
@@ -97,6 +111,11 @@ export default class DangerousGaryChat {
       messageData.style = CONST.CHAT_MESSAGE_STYLES.OTHER
       const pool = foundry.dice.terms.PoolTerm.fromRolls(this.rolls)
       messageData.rolls.push(Roll.defaultImplementation.fromTerms([pool]))
+    }
+    // Set the message subtype if necessary
+    if (this.type) {
+      messageData.type = this.type
+      messageData.system = this.system
     }
     // Set the flags parameter if necessary
     if (this.flags) {

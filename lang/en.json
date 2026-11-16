@@ -274,6 +274,21 @@
       "ClassSave": "Class save",
       "TalentDamage": "-{hp} HP",
       "TalentDamageWithStr": "-{hp} HP, -{str} STR"
+    },
+    "Damage": {
+      "Dealt": "{total} damage dealt",
+      "ArmourDetail": "Armour {armour}: {real} damage taken",
+      "RealDetail": "{real} damage taken",
+      "StateHp": "HP {before} → {after}",
+      "StateStr": "STR {before} → {after}",
+      "StrengthZero": "Strength at 0",
+      "StrSave": "Strength save",
+      "StrSaveDone": "Strength save rolled",
+      "NotApplied": "Damage not applied",
+      "Apply": "Apply damage",
+      "PanToToken": "Pan to token",
+      "NoActiveGM": "No GM connected: the damage is not applied. The GM can apply it from the card.",
+      "TargetNotFound": "{name}: target not found, damage not applied."
     }
   }
 }

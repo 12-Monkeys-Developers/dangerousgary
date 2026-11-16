@@ -274,6 +274,21 @@
       "ClassSave": "Sauvegarde de classe",
       "TalentDamage": "-{hp} PV",
       "TalentDamageWithStr": "-{hp} PV, -{str} FOR"
+    },
+    "Damage": {
+      "Dealt": "{total} dégâts infligés",
+      "ArmourDetail": "Armure {armour} : {real} dégâts subis",
+      "RealDetail": "{real} dégâts subis",
+      "StateHp": "PV {before} → {after}",
+      "StateStr": "FOR {before} → {after}",
+      "StrengthZero": "Force à 0",
+      "StrSave": "Sauvegarde de Force",
+      "StrSaveDone": "Sauvegarde de Force lancée",
+      "NotApplied": "Dégâts non appliqués",
+      "Apply": "Appliquer les dégâts",
+      "PanToToken": "Centrer la vue sur le token",
+      "NoActiveGM": "Aucun MJ connecté : les dégâts ne sont pas appliqués. Le MJ pourra les appliquer depuis la carte.",
+      "TargetNotFound": "{name} : cible introuvable, dégâts non appliqués."
     }
   }
 }

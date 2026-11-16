@@ -1,5 +1,6 @@
 # 1.3.8
 
+- Ciblage : un jet de dégâts lancé avec des tokens ciblés applique les dégâts à chaque cible (armure déduite, armure équipée pour un personnage), les dégâts qui débordent des PV étant retirés de la Force ; la carte du tchat liste les cibles et propose la sauvegarde de Force. Les joueurs ne voient que les dégâts infligés à une rencontre, le MJ voit son armure et les dégâts réels
 - Guide du système : nouveau compendium « Guide du système » (7 pages illustrées : réglages, personnage, classes et artefacts, rencontre, jets, combat et macros), réservé au MJ par défaut
 - Correction : l'utilisation d'une capacité d'artefact depuis la fiche de personnage ne faisait rien (identifiant de l'artefact absent du bouton)
 - Compatibilité : Foundry VTT V14 uniquement

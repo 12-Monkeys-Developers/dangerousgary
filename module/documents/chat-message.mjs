@@ -1,9 +1,68 @@
+import { DamageCard } from "../damage.mjs"
+import DangerousGaryDamageMessageData from "../models/damage-message.mjs"
+
 export default class DangerousGaryChatMessage extends ChatMessage {
+  static DAMAGE_TEMPLATE = "systems/dangerousgary/templates/damage-card.hbs"
+
   /** @inheritDoc */
   async renderHTML({ canDelete, canClose = false, ...rest } = {}) {
     const html = await super.renderHTML({ canDelete, canClose, ...rest })
     this._enrichChatCard(html)
+    // Jet caché à cet utilisateur : le cœur a déjà rendu un contenu neutre, la carte dévoilerait le résultat et les cibles
+    if (this.type === "damage" && this.isContentVisible) await this._renderDamageCard(html)
     return html
+  }
+
+  /**
+   * Rend la carte de dégâts à la place du contenu du message, et active ses boutons.
+   * @param {HTMLElement} html L'élément du message.
+   */
+  async _renderDamageCard(html) {
+    const content = html.querySelector(".message-content")
+    if (!content) return
+    content.innerHTML = await foundry.applications.handlebars.renderTemplate(DangerousGaryChatMessage.DAMAGE_TEMPLATE, this._prepareDamageContext())
+    content.addEventListener("click", this._onDamageCardAction.bind(this))
+  }
+
+  /**
+   * Le contexte de rendu de la carte de dégâts : un joueur ne voit le détail (armure, dégâts réels, PV, Force) que pour un personnage.
+   * @returns {object}
+   */
+  _prepareDamageContext() {
+    const system = this.system
+    const Data = DangerousGaryDamageMessageData
+    return {
+      system,
+      label: game.i18n.format("DANGEROUSGARY.Roll.AttackRollDamage", { itemName: system.source }),
+      targets: system.targets.map((target) => ({
+        ...target,
+        showDetail: Data.canSeeDetail(target),
+        hpLost: Data.hpLost(target),
+        strLost: Data.strLost(target),
+        isDead: target.applied && target.strAfter === 0 && Data.canSeeDetail(target),
+        canRollStrSave: Data.canRollStrSave(target),
+      })),
+      canApply: game.user.isGM && system.hasPendingTargets,
+    }
+  }
+
+  /**
+   * Clic sur un bouton de la carte de dégâts.
+   * @param {PointerEvent} event
+   */
+  async _onDamageCardAction(event) {
+    const button = event.target.closest("[data-action]")
+    if (!button) return
+    switch (button.dataset.action) {
+      case "applyDamage":
+        button.disabled = true
+        return DamageCard.apply(this)
+      case "rollStrSave":
+        button.disabled = true
+        return DamageCard.rollStrSave(this, Number(button.dataset.index))
+      case "panToToken":
+        return DamageCard.panToToken(button.dataset.tokenUuid)
+    }
   }
 
   /**

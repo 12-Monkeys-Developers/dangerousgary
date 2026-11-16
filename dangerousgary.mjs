@@ -3,6 +3,7 @@ import * as models from "./module/models/_module.mjs"
 import * as documents from "./module/documents/_module.mjs"
 import * as applications from "./module/applications/_module.mjs"
 import { Macros } from "./module/macros.mjs"
+import { DamageCard } from "./module/damage.mjs"
 import "./module/elements/toggle-switch.mjs"
 
 Hooks.once('init', async function () {
@@ -32,6 +33,13 @@ Hooks.once('init', async function () {
 
   // Chat
   CONFIG.ChatMessage.documentClass = documents.DangerousGaryChatMessage
+  CONFIG.ChatMessage.dataModels = {
+    damage: models.DangerousGaryDamageMessageData
+  }
+
+  // Requêtes traitées par le MJ actif pour les joueurs
+  CONFIG.queries[DamageCard.QUERY_APPLY] = DamageCard._handleApplyQuery
+  CONFIG.queries[DamageCard.QUERY_MARK_SAVE] = DamageCard._handleMarkSaveQuery
 
   // Register sheet application classes
   foundry.documents.collections.Actors.unregisterSheet("core", foundry.appv1.sheets.ActorSheet);

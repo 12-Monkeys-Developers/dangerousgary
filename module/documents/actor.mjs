@@ -1,4 +1,5 @@
 import DangerousGaryChat from "../chat.mjs"
+import { DamageCard } from "../damage.mjs"
 
 export default class DangerousGaryActor extends Actor {
   get isCharacter() {
@@ -60,18 +61,10 @@ export default class DangerousGaryActor extends Actor {
 
     // Talent failure: lose HP equal to talent level, overflow to STR
     if (!success && talentLevel) {
-      let damage = talentLevel
-      const currentHp = this.system.hp.value
-      const hpLost = Math.min(damage, currentHp)
-      const strLost = damage - hpLost
-      const updates = { "system.hp.value": currentHp - hpLost }
-      if (strLost > 0) {
-        updates["system.abilities.str.value"] = Math.max(0, this.system.abilities.str.value - strLost)
-      }
-      await this.update(updates)
-      chatData.talentDamage = damage
-      chatData.talentHpLost = hpLost
-      chatData.talentStrLost = strLost
+      const result = await this.applyDamage(talentLevel)
+      chatData.talentDamage = talentLevel
+      chatData.talentHpLost = result.hpBefore - result.hpAfter
+      chatData.talentStrLost = result.strBefore - result.strAfter
     }
 
     let chat = await new DangerousGaryChat(this).withTemplate("systems/dangerousgary/templates/roll-result.hbs").withData(chatData).withRolls([roll]).create()
@@ -82,7 +75,34 @@ export default class DangerousGaryActor extends Actor {
   }
 
   /**
-   *
+   * Armure déduite des dégâts subis : celle de la rencontre, ou celle des équipements équipés du personnage.
+   * @type {number}
+   */
+  get armour() {
+    return this.system.armour ?? 0
+  }
+
+  /**
+   * Applique des dégâts (armure déjà déduite) : ils sont retirés des PV, et ce qui déborde est retiré de la Force.
+   * @param {number} damage Les dégâts réels.
+   * @returns {Promise<{hpBefore: number, hpAfter: number, strBefore: number, strAfter: number}>} Les PV et la Force avant et après.
+   */
+  async applyDamage(damage) {
+    const hpBefore = this.system.hp.value
+    const strBefore = this.system.abilities.str.value
+    const hpLost = Math.min(Math.max(0, damage), hpBefore)
+    const strLost = Math.min(Math.max(0, damage) - hpLost, strBefore)
+    const hpAfter = hpBefore - hpLost
+    const strAfter = strBefore - strLost
+    const updates = {}
+    if (hpLost > 0) updates["system.hp.value"] = hpAfter
+    if (strLost > 0) updates["system.abilities.str.value"] = strAfter
+    if (!foundry.utils.isEmpty(updates)) await this.update(updates)
+    return { hpBefore, hpAfter, strBefore, strAfter }
+  }
+
+  /**
+   * Lance les dégâts d'une arme ou d'une attaque. Si des tokens sont ciblés, les dégâts leur sont appliqués.
    * @param {*} itemName
    * @param {*} formula
    * @param root0
@@ -105,6 +125,16 @@ export default class DangerousGaryActor extends Actor {
     const isCriticalDamage = !constrained && !exalted && criticalDamage && roll.dice.some((die) => die.results.some((r) => r.exploded))
 
     const label = game.i18n.format("DANGEROUSGARY.Roll.AttackRollDamage", { itemName })
+
+    // Des tokens sont ciblés : carte de dégâts, appliqués à chaque cible
+    const targets = DamageCard.getTargets(roll.total)
+    if (targets.length) {
+      const system = { source: itemName, formula: roll.formula, total: roll.total, isCriticalDamage, isConstrained: constrained, isExalted: exalted, targets }
+      const chat = await new DangerousGaryChat(this).withContent(label).withType("damage", system).withRolls([roll]).create()
+      await chat.display()
+      await DamageCard.apply(chat.chat)
+      return { roll, result }
+    }
 
     let chatData = {
       rollType: "damage",

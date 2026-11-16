@@ -67,6 +67,9 @@
         "htmlFields": ["description", "powers"]
       }
     },
+    "ChatMessage": {
+      "damage": {}
+    },
     "Item": {
       "equipment": {
         "htmlFields": ["description"]

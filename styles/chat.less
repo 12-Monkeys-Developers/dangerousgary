@@ -164,3 +164,82 @@
     }
   }
 }
+
+.damage-card {
+  .damage-targets {
+    list-style: none;
+    margin: 6px 0 0;
+    padding: 0;
+    border-top: 1px solid var(--dg-text-red);
+  }
+
+  .damage-target {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 6px 0;
+
+    & + .damage-target {
+      border-top: 1px dotted #888;
+    }
+
+    &.dead .target-name {
+      text-decoration: line-through;
+    }
+  }
+
+  .target-token img {
+    display: block;
+    width: 36px;
+    height: 36px;
+    object-fit: cover;
+    border: 1px solid var(--dg-text-red);
+  }
+
+  .target-body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .target-name {
+    font-weight: bold;
+    color: var(--dg-text-red);
+  }
+
+  .target-line {
+    font-size: 0.95rem;
+  }
+
+  .target-loss,
+  .target-dead {
+    font-weight: bold;
+    color: #c62828;
+  }
+
+  .target-state,
+  .target-pending,
+  .target-save-done {
+    font-size: 0.85rem;
+    color: #555;
+  }
+
+  .target-pending {
+    font-style: italic;
+  }
+
+  .damage-card-button {
+    margin-top: 4px;
+    font-family: var(--dg-font-body);
+    color: #222;
+    background: #fff;
+    border: 1px solid var(--dg-text-red);
+    cursor: pointer;
+
+    &:hover:not(:disabled) {
+      color: #fff;
+      background: var(--dg-text-red);
+    }
+  }
+}

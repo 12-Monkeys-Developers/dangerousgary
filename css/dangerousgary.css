@@ -1441,6 +1441,70 @@
 .artefact-use .artefact-use-description p {
   margin: 0;
 }
+.damage-card .damage-targets {
+  list-style: none;
+  margin: 6px 0 0;
+  padding: 0;
+  border-top: 1px solid var(--dg-text-red);
+}
+.damage-card .damage-target {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 6px 0;
+}
+.damage-card .damage-target + .damage-target {
+  border-top: 1px dotted #888;
+}
+.damage-card .damage-target.dead .target-name {
+  text-decoration: line-through;
+}
+.damage-card .target-token img {
+  display: block;
+  width: 36px;
+  height: 36px;
+  object-fit: cover;
+  border: 1px solid var(--dg-text-red);
+}
+.damage-card .target-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 2px;
+}
+.damage-card .target-name {
+  font-weight: bold;
+  color: var(--dg-text-red);
+}
+.damage-card .target-line {
+  font-size: 0.95rem;
+}
+.damage-card .target-loss,
+.damage-card .target-dead {
+  font-weight: bold;
+  color: #c62828;
+}
+.damage-card .target-state,
+.damage-card .target-pending,
+.damage-card .target-save-done {
+  font-size: 0.85rem;
+  color: #555;
+}
+.damage-card .target-pending {
+  font-style: italic;
+}
+.damage-card .damage-card-button {
+  margin-top: 4px;
+  font-family: var(--dg-font-body);
+  color: #222;
+  background: #fff;
+  border: 1px solid var(--dg-text-red);
+  cursor: pointer;
+}
+.damage-card .damage-card-button:hover:not(:disabled) {
+  color: #fff;
+  background: var(--dg-text-red);
+}
 .combat-tracker .combatant .fa-fist-raised {
   color: gray;
 }

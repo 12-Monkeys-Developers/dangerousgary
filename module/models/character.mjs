@@ -53,6 +53,14 @@ export default class DangerousGaryCharacterData extends foundry.abstract.TypeDat
   static LOCALIZATION_PREFIXES = ["DANGEROUSGARY.Character"]
 
   /**
+   * Armure du personnage : somme de l'armure de ses équipements de type Armure équipés.
+   * @type {number}
+   */
+  get armour() {
+    return this.parent.itemTypes.equipment.filter((i) => i.system.isArmor && i.system.isEquipped).reduce((total, i) => total + (i.system.armour ?? 0), 0)
+  }
+
+  /**
    * A few minutes of rest and a swig of water recovers all of a character's lost hp.
    */
   shortRest() {
