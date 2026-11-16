@@ -2,6 +2,7 @@
 
 - Ciblage : un jet de dégâts lancé avec des tokens ciblés applique les dégâts à chaque cible (armure déduite, armure équipée pour un personnage), les dégâts qui débordent des PV étant retirés de la Force ; la carte du tchat liste les cibles et propose la sauvegarde de Force. Les joueurs ne voient que les dégâts infligés à une rencontre, le MJ voit son armure et les dégâts réels
 - Nouveau réglage « Dévoiler les capacités des artefacts » (désactivé par défaut) : sans lui, un joueur ne voit plus que les capacités dont son personnage a le niveau requis, les autres étant masquées
+- Fiche de personnage, onglet Équipement : l'infobulle d'un artefact affiche sa description puis ses capacités avec leur niveau requis ; sans le réglage « Dévoiler les capacités des artefacts », un joueur n'y voit que les capacités accessibles, et seules les classes nécessaires dont il atteint le niveau sont affichées (sur la fiche de personnage comme sur la fiche de l'artefact)
 - Guide du système : nouveau compendium « Guide du système » (7 pages illustrées : réglages, personnage, classes et artefacts, rencontre, jets, combat et macros), réservé au MJ par défaut
 - Correction : l'utilisation d'une capacité d'artefact depuis la fiche de personnage ne faisait rien (identifiant de l'artefact absent du bouton)
 - Correction : sur la fiche d'un artefact, le bouton d'édition de la description d'une capacité était coupé ou recouvrait le texte

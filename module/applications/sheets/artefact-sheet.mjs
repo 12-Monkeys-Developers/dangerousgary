@@ -42,7 +42,11 @@ export default class DangerousGaryArtefactSheet extends DangerousGaryBaseItemShe
         enrichedDescription: await foundry.applications.ux.TextEditor.implementation.enrichHTML(cap.description, { async: true }),
       })
     }
+    // Capacités non dévoilées à un joueur : les classes nécessaires sont affichées en lecture seule, limitées à celles qu'il peut voir
+    const classesRestricted = !game.user.isGM && !game.settings.get("dangerousgary", "revealArtefactCapacities")
     return {
+      classesRestricted,
+      visibleClassLabels: this.document.system.visibleClasses().map((key) => game.i18n.localize(`DANGEROUSGARY.Talent.Classes.${key}`)),
       fields: this.document.schema.fields,
       systemFields: this.document.system.schema.fields,
       item: this.document,

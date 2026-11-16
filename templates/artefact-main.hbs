@@ -9,7 +9,15 @@
   <section class="item-artefact">
     <fieldset>
       <legend>{{localize "DANGEROUSGARY.Artefact.FIELDS.allowedClasses.label"}}</legend>
-      {{formInput systemFields.allowedClasses value=system.allowedClasses type="checkboxes" localize=true disabled=locked}}
+      {{#if classesRestricted}}
+        <div class="artefact-classes">
+          {{#each visibleClassLabels as |cls|}}
+            <span class="artefact-class-badge">{{cls}}</span>
+          {{/each}}
+        </div>
+      {{else}}
+        {{formInput systemFields.allowedClasses value=system.allowedClasses type="checkboxes" localize=true disabled=locked}}
+      {{/if}}
     </fieldset>
     <fieldset>
       <legend>{{localize "DANGEROUSGARY.Artefact.FIELDS.artefactCapacities.label"}}</legend>

@@ -101,7 +101,7 @@ export default class DangerousGaryCharacterSheet extends DangerousGaryBaseActorS
           for (const item of this.actor.itemTypes.artefact ?? []) {
             item.enrichedDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(item.system.description, { async: true })
             const bestClassLevel = item.system.bestClassLevel(this.document)
-            const allowedClassLabels = Array.from(item.system.allowedClasses, (key) => game.i18n.localize(`DANGEROUSGARY.Talent.Classes.${key}`))
+            const allowedClassLabels = item.system.visibleClasses().map((key) => game.i18n.localize(`DANGEROUSGARY.Talent.Classes.${key}`))
             const capacities = []
             for (const [key, cap] of item.system.visibleCapacities()) {
               capacities.push({
@@ -111,7 +111,11 @@ export default class DangerousGaryCharacterSheet extends DangerousGaryBaseActorS
                 unlocked: bestClassLevel >= cap.level,
               })
             }
-            item.artefactData = { bestClassLevel, allowedClassLabels, capacities, canUse: bestClassLevel >= 1 }
+            // Infobulle : la description, puis les capacités visibles avec leur niveau requis
+            const levelLabel = game.i18n.localize("DANGEROUSGARY.Artefact.LevelAbbr")
+            const capacityLines = capacities.map((cap) => `<li><strong>${levelLabel} ${cap.level}</strong> ${cap.description}</li>`).join("")
+            const tooltip = `${item.enrichedDescription}${capacityLines ? `<ul class="dg-artefact-tooltip-capacities">${capacityLines}</ul>` : ""}`
+            item.artefactData = { bestClassLevel, allowedClassLabels, capacities, tooltip, canUse: bestClassLevel >= 1 }
             context.artefacts.push(item)
           }
         }

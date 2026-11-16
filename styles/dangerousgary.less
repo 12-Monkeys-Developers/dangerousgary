@@ -26,3 +26,16 @@
 @import "chat.less";
 @import "combat-tracker.less";
 @import "guide.less";
+
+/* Infobulle d'un artefact (fiche de personnage) : capacités sous la description */
+#tooltip .dg-artefact-tooltip-capacities,
+.locked-tooltip .dg-artefact-tooltip-capacities {
+  margin: 6px 0 0;
+  padding-left: 1.2em;
+  text-align: left;
+
+  li p {
+    display: inline;
+    margin: 0;
+  }
+}

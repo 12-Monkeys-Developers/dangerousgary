@@ -57,6 +57,22 @@ export default class DangerousGaryArtefactData extends foundry.abstract.TypeData
     return capacities.filter(([, capacity]) => capacity.level <= level)
   }
 
+  /**
+   * Les classes nécessaires que l'utilisateur peut voir : toutes pour le MJ ou si le réglage « Dévoiler les capacités des artefacts » est actif,
+   * sinon celles dans lesquelles le personnage qui porte l'artefact atteint le niveau requis par au moins une capacité.
+   * @param {User} [user]
+   * @returns {string[]} Les clés des classes.
+   */
+  visibleClasses(user = game.user) {
+    const allowed = Array.from(this.allowedClasses)
+    if (user.isGM || game.settings.get("dangerousgary", "revealArtefactCapacities")) return allowed
+    const classes = this.parent.actor?.system.classes
+    if (!classes) return []
+    const levels = Object.values(this.artefactCapacities).map((capacity) => capacity.level)
+    const required = levels.length ? Math.min(...levels) : 1
+    return allowed.filter((key) => (classes[key] ?? 0) >= required)
+  }
+
   /** @inheritDoc */
   async _preCreate(data, options, user) {
     let updates = {}

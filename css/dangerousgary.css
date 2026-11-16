@@ -1027,6 +1027,18 @@
 .dangerousgary.item.artefact .item-artefact fieldset > *:not(legend) {
   clear: both;
 }
+.dangerousgary.item.artefact .item-artefact .artefact-classes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  min-height: 1.2em;
+}
+.dangerousgary.item.artefact .item-artefact .artefact-class-badge {
+  font-size: 0.85rem;
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 3px;
+  padding: 1px 6px;
+}
 .dangerousgary.item.artefact .item-artefact .artefact-capacities {
   display: flex;
   flex-direction: column;
@@ -1597,4 +1609,16 @@
 .dg-guide code,
 .dg-guide kbd {
   white-space: nowrap;
+}
+/* Infobulle d'un artefact (fiche de personnage) : capacités sous la description */
+#tooltip .dg-artefact-tooltip-capacities,
+.locked-tooltip .dg-artefact-tooltip-capacities {
+  margin: 6px 0 0;
+  padding-left: 1.2em;
+  text-align: left;
+}
+#tooltip .dg-artefact-tooltip-capacities li p,
+.locked-tooltip .dg-artefact-tooltip-capacities li p {
+  display: inline;
+  margin: 0;
 }
