@@ -285,6 +285,7 @@
       "Constrained": "Constrained Attack",
       "Exalted": "Exalted Attack",
       "IgnoreArmour": "Ignores armour",
+      "Unlucky": "Unlucky: two dice, the worst is kept",
       "AbilitySave": "Ability save",
       "ClassSave": "Class save",
       "TalentDamage": "-{hp} HP",
@@ -334,6 +335,22 @@
         "saveOr": "{ability} save or {effect}",
         "saved": "{ability} save passed"
       }
+    },
+    "Status": {
+      "dead": "Dead",
+      "unconscious": "Unconscious",
+      "constrained": "Constrained",
+      "exalted": "Exalted",
+      "unlucky": "Unlucky",
+      "stunned": "Stunned",
+      "slowed": "Slowed",
+      "blind": "Blind",
+      "prone": "Prone",
+      "paralysis": "Paralysed",
+      "grappled": "Grappled",
+      "burning": "Burning",
+      "poisoned": "Poisoned",
+      "invisible": "Invisible"
     }
   }
 }

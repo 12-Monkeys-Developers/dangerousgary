@@ -4,6 +4,7 @@ import * as documents from "./module/documents/_module.mjs"
 import * as applications from "./module/applications/_module.mjs"
 import { Macros } from "./module/macros.mjs"
 import { DamageCard } from "./module/damage.mjs"
+import { STATUS_EFFECTS } from "./module/config.mjs"
 import "./module/elements/toggle-switch.mjs"
 
 Hooks.once('init', async function () {
@@ -50,6 +51,11 @@ Hooks.once('init', async function () {
   foundry.documents.collections.Items.registerSheet("dangerousgary", applications.DangerousGaryAttackSheet, { types: ["attack"], makeDefault: true });
   foundry.documents.collections.Items.registerSheet("dangerousgary", applications.DangerousGaryTalentSheet, { types: ["talent"], makeDefault: true });
   foundry.documents.collections.Items.registerSheet("dangerousgary", applications.DangerousGaryArtefactSheet, { types: ["artefact"], makeDefault: true });
+
+  // États : la liste du système remplace celle du cœur
+  // (le tableau du cœur indexe aussi les états par identifiant : on le vide et on le remplit, sans le remplacer)
+  CONFIG.statusEffects.length = 0
+  CONFIG.statusEffects.push(...STATUS_EFFECTS.map((status) => ({ ...status })))
 
   // Combat
   CONFIG.ui.combat = applications.DangerousGaryCombatTracker

@@ -285,6 +285,7 @@
       "Constrained": "Attaque contrainte",
       "Exalted": "Attaque exaltée",
       "IgnoreArmour": "Ignore l'armure",
+      "Unlucky": "Malchance : deux dés, le pire est gardé",
       "AbilitySave": "Sauvegarde de caractéristique",
       "ClassSave": "Sauvegarde de classe",
       "TalentDamage": "-{hp} PV",
@@ -334,6 +335,22 @@
         "saveOr": "sauvegarde de {ability} ou {effect}",
         "saved": "sauvegarde de {ability} réussie"
       }
+    },
+    "Status": {
+      "dead": "Mort",
+      "unconscious": "Inconscient",
+      "constrained": "Contraint",
+      "exalted": "Exalté",
+      "unlucky": "Malchance",
+      "stunned": "Étourdi",
+      "slowed": "Ralenti",
+      "blind": "Aveugle",
+      "prone": "À terre",
+      "paralysis": "Paralysé",
+      "grappled": "Agrippé",
+      "burning": "En feu",
+      "poisoned": "Empoisonné",
+      "invisible": "Invisible"
     }
   }
 }

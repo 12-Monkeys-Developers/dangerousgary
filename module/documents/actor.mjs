@@ -1,5 +1,6 @@
 import DangerousGaryChat from "../chat.mjs"
 import { DamageCard } from "../damage.mjs"
+import { CONSTRAINING_STATUSES, EXALTING_STATUS, STATUS_EFFECTS, UNLUCKY_STATUS } from "../config.mjs"
 
 export default class DangerousGaryActor extends Actor {
   get isCharacter() {
@@ -35,7 +36,9 @@ export default class DangerousGaryActor extends Actor {
    * @returns
    */
   async rollSave(ability, { useMax = false, talentName = null, talentLevel = null } = {}) {
-    const roll = await new Roll("1d20").roll()
+    // Malchance : deux dés, le pire (le plus haut) est gardé
+    const isUnlucky = this.statuses.has(UNLUCKY_STATUS)
+    const roll = await new Roll(isUnlucky ? "2d20kh" : "1d20").roll()
     const total = roll.total
     const abilityValue = useMax ? this.system.abilities[ability].max : this.system.abilities[ability].value
     const isCritical = total === 1
@@ -57,6 +60,7 @@ export default class DangerousGaryActor extends Actor {
       isCritical,
       isFumble,
       isClassSave: useMax,
+      isUnlucky,
     }
 
     // Talent failure: lose HP equal to talent level, overflow to STR
@@ -72,6 +76,18 @@ export default class DangerousGaryActor extends Actor {
     await chat.display()
 
     return { roll, total, success }
+  }
+
+  /**
+   * Le type d'attaque imposé par les états de l'acteur : contrainte (Contraint, Étourdi, Ralenti, Aveugle), exaltée (Exalté),
+   * normale sinon ou si les deux se compensent.
+   * @type {"normal"|"constrained"|"exalted"}
+   */
+  get statusAttackType() {
+    const constrained = CONSTRAINING_STATUSES.some((status) => this.statuses.has(status))
+    const exalted = this.statuses.has(EXALTING_STATUS)
+    if (constrained === exalted) return "normal"
+    return constrained ? "constrained" : "exalted"
   }
 
   /**
@@ -111,7 +127,15 @@ export default class DangerousGaryActor extends Actor {
    * @param root0.exalted
    * @param {Item} [root0.item] L'attaque d'une rencontre : armure ignorée, déclencheurs
    */
-  async rollDamage(itemName, formula, { criticalDamage = false, constrained = false, exalted = false, item = null } = {}) {
+  async rollDamage(itemName, formula, { criticalDamage = false, constrained, exalted, item = null } = {}) {
+    // Sans type d'attaque choisi, les états de l'acteur l'imposent
+    if (constrained === undefined && exalted === undefined) {
+      const attackType = this.statusAttackType
+      constrained = attackType === "constrained"
+      exalted = attackType === "exalted"
+    }
+    constrained = !!constrained
+    exalted = !!exalted
     let roll
     if (constrained) {
       roll = await new Roll("1d4").roll()
@@ -165,14 +189,18 @@ export default class DangerousGaryActor extends Actor {
   }
 
   async promptDamageRoll(itemName, formula, { criticalDamage = false, item = null } = {}) {
+    // Le type imposé par les états de l'acteur est présélectionné
+    const checked = (type) => (this.statusAttackType === type ? "checked" : "")
+    // Mêmes icônes que les états Contraint et Exalté
+    const icon = (statusId) => `<img class="attack-type-icon" src="${STATUS_EFFECTS.find((status) => status.id === statusId).img}" alt="" />`
     const attackType = await foundry.applications.api.DialogV2.prompt({
       window: { title: game.i18n.localize("DANGEROUSGARY.Dialog.DamageOptions") },
       content: `
         <fieldset class="damage-options">
           <legend>${game.i18n.localize("DANGEROUSGARY.Dialog.AttackType")}</legend>
-          <label><input type="radio" name="attackType" value="normal" checked> ${game.i18n.localize("DANGEROUSGARY.Dialog.Normal")}</label>
-          <label><input type="radio" name="attackType" value="constrained"> ${game.i18n.localize("DANGEROUSGARY.Dialog.Constrained")}</label>
-          <label><input type="radio" name="attackType" value="exalted"> ${game.i18n.localize("DANGEROUSGARY.Dialog.Exalted")}</label>
+          <label><input type="radio" name="attackType" value="normal" ${checked("normal")}> ${game.i18n.localize("DANGEROUSGARY.Dialog.Normal")}</label>
+          <label><input type="radio" name="attackType" value="constrained" ${checked("constrained")}> ${icon("constrained")} ${game.i18n.localize("DANGEROUSGARY.Dialog.Constrained")}</label>
+          <label><input type="radio" name="attackType" value="exalted" ${checked("exalted")}> ${icon(EXALTING_STATUS)} ${game.i18n.localize("DANGEROUSGARY.Dialog.Exalted")}</label>
         </fieldset>
       `,
       ok: {

@@ -20,6 +20,9 @@
         {{/if}}
       {{/if}}
     {{/if}}
+    {{#if isUnlucky}}
+      <span class="roll-icon unlucky" data-tooltip="{{localize 'DANGEROUSGARY.Roll.Unlucky'}}"><i class="fas fa-cat"></i></span>
+    {{/if}}
     {{#if isCriticalDamage}}
       <span class="roll-icon critical-damage" data-tooltip="{{localize 'DANGEROUSGARY.Roll.CriticalDamage'}}"><i class="fas fa-burst"></i></span>
     {{/if}}
