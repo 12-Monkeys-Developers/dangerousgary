@@ -33,6 +33,30 @@ export default class DangerousGaryArtefactData extends foundry.abstract.TypeData
   /** @override */
   static LOCALIZATION_PREFIXES = ["DANGEROUSGARY.Artefact"]
 
+  /**
+   * Le meilleur niveau d'un personnage parmi les classes nécessaires à l'artefact.
+   * @param {Actor|null} actor Le personnage.
+   * @returns {number}
+   */
+  bestClassLevel(actor) {
+    const classes = actor?.system.classes
+    if (!classes) return 0
+    return Math.max(0, ...Array.from(this.allowedClasses, (key) => classes[key] ?? 0))
+  }
+
+  /**
+   * Les capacités que l'utilisateur peut voir : toutes pour le MJ ou si le réglage « Dévoiler les capacités des artefacts » est actif,
+   * sinon celles dont le personnage qui porte l'artefact a le niveau dans une classe nécessaire.
+   * @param {User} [user]
+   * @returns {Array<[string, object]>} Les couples clé / capacité.
+   */
+  visibleCapacities(user = game.user) {
+    const capacities = Object.entries(this.artefactCapacities)
+    if (user.isGM || game.settings.get("dangerousgary", "revealArtefactCapacities")) return capacities
+    const level = this.bestClassLevel(this.parent.actor)
+    return capacities.filter(([, capacity]) => capacity.level <= level)
+  }
+
   /** @inheritDoc */
   async _preCreate(data, options, user) {
     let updates = {}

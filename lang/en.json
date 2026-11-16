@@ -214,6 +214,10 @@
       "enableClasses": {
         "name": "Classes & Talents",
         "hint": "Allows players to access the Classes & Talents tab on the character sheet."
+      },
+      "revealArtefactCapacities": {
+        "name": "Reveal artefact capacities",
+        "hint": "Checked: a player sees every capacity of the artefacts they own. Unchecked: they only see the capacities for which they have the required level in a required class."
       }
     },
     "Artefact": {

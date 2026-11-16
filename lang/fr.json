@@ -214,6 +214,10 @@
       "enableClasses": {
         "name": "Classe et talents",
         "hint": "Permet aux joueurs d'accéder à l'onglet Classe et talents sur la fiche de personnage."
+      },
+      "revealArtefactCapacities": {
+        "name": "Dévoiler les capacités des artefacts",
+        "hint": "Coché : un joueur voit toutes les capacités des artefacts qu'il possède. Décoché : il ne voit que celles dont il a le niveau suffisant dans une classe nécessaire."
       }
     },
     "Artefact": {

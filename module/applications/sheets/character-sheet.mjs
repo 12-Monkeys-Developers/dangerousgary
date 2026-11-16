@@ -100,16 +100,10 @@ export default class DangerousGaryCharacterSheet extends DangerousGaryBaseActorS
         if (context.enableClasses) {
           for (const item of this.actor.itemTypes.artefact ?? []) {
             item.enrichedDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(item.system.description, { async: true })
-            const allowedClasses = item.system.allowedClasses
-            const classes = this.document.system.classes
-            let bestClassLevel = 0
-            const allowedClassLabels = []
-            for (const key of allowedClasses) {
-              allowedClassLabels.push(game.i18n.localize(`DANGEROUSGARY.Talent.Classes.${key}`))
-              if (classes[key] > bestClassLevel) bestClassLevel = classes[key]
-            }
+            const bestClassLevel = item.system.bestClassLevel(this.document)
+            const allowedClassLabels = Array.from(item.system.allowedClasses, (key) => game.i18n.localize(`DANGEROUSGARY.Talent.Classes.${key}`))
             const capacities = []
-            for (const [key, cap] of Object.entries(item.system.artefactCapacities)) {
+            for (const [key, cap] of item.system.visibleCapacities()) {
               capacities.push({
                 key,
                 level: cap.level,

@@ -33,7 +33,8 @@ export default class DangerousGaryArtefactSheet extends DangerousGaryBaseItemShe
   async _prepareContext() {
     const capacities = this.document.system.artefactCapacities
     const enrichedCapacities = []
-    for (const [key, cap] of Object.entries(capacities)) {
+    // Un joueur ne voit que les capacités qui lui sont dévoilées
+    for (const [key, cap] of this.document.system.visibleCapacities()) {
       enrichedCapacities.push({
         key,
         level: cap.level,

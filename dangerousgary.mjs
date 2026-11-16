@@ -67,6 +67,21 @@ Hooks.once('init', async function () {
     requiresReload: true,
   })
 
+  game.settings.register("dangerousgary", "revealArtefactCapacities", {
+    name: "DANGEROUSGARY.Settings.revealArtefactCapacities.name",
+    hint: "DANGEROUSGARY.Settings.revealArtefactCapacities.hint",
+    scope: "world",
+    config: true,
+    type: Boolean,
+    default: false,
+    // Les fiches ouvertes affichent aussitôt les capacités dévoilées ou masquées
+    onChange: () => {
+      for (const app of foundry.applications.instances.values()) {
+        if (app.document?.type === "character" || app.document?.type === "artefact") app.render()
+      }
+    },
+  })
+
 })
 
 Hooks.on("hotbarDrop", (bar, data, slot) => {
