@@ -83,6 +83,62 @@
     }
   }
 
+  .attack-triggers {
+    .attack-trigger {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 8px;
+      padding-left: 8px;
+      border-left: 3px solid var(--dg-text-red);
+    }
+
+    .trigger-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+
+      label {
+        flex: none;
+        font-weight: bold;
+        white-space: nowrap;
+      }
+
+      input[type="number"] {
+        flex: 0 0 3.2em;
+        text-align: center;
+      }
+
+      select {
+        flex: 1 1 5em;
+        min-width: 0;
+      }
+
+      input[type="text"] {
+        flex: 1 1 5em;
+        min-width: 0;
+      }
+    }
+
+    .remove-trigger-btn {
+      flex: none;
+      width: auto;
+      padding: 2px 4px;
+      color: #888;
+      background: none;
+      border: none;
+      cursor: pointer;
+
+      &:hover {
+        color: var(--dg-text-red);
+      }
+    }
+
+    .add-trigger-btn {
+      cursor: pointer;
+    }
+  }
+
   .attack-description {
     flex: 1;
     display: flex;

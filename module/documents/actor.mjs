@@ -109,8 +109,9 @@ export default class DangerousGaryActor extends Actor {
    * @param root0.criticalDamage
    * @param root0.constrained
    * @param root0.exalted
+   * @param {Item} [root0.item] L'attaque d'une rencontre : armure ignorée, déclencheurs
    */
-  async rollDamage(itemName, formula, { criticalDamage = false, constrained = false, exalted = false } = {}) {
+  async rollDamage(itemName, formula, { criticalDamage = false, constrained = false, exalted = false, item = null } = {}) {
     let roll
     if (constrained) {
       roll = await new Roll("1d4").roll()
@@ -127,9 +128,14 @@ export default class DangerousGaryActor extends Actor {
     const label = game.i18n.format("DANGEROUSGARY.Roll.AttackRollDamage", { itemName })
 
     // Des tokens sont ciblés : carte de dégâts, appliqués à chaque cible
-    const targets = DamageCard.getTargets(roll.total)
+    // Attaque d'une rencontre : armure ignorée, déclencheurs activés par le résultat naturel du dé (le maximum pour une attaque exaltée)
+    const ignoreArmour = !!item?.system.ignoreArmour
+    const natural = exalted ? Math.max(0, ...Array.from(formula.matchAll(/d(\d+)/gi), (m) => Number(m[1]))) || null : (roll.dice[0]?.results[0]?.result ?? null)
+    const triggers = item?.system.firedTriggers?.(natural) ?? []
+
+    const targets = DamageCard.getTargets(roll.total, { ignoreArmour, triggers })
     if (targets.length) {
-      const system = { source: itemName, formula: roll.formula, total: roll.total, isCriticalDamage, isConstrained: constrained, isExalted: exalted, targets }
+      const system = { source: itemName, formula: roll.formula, total: roll.total, isCriticalDamage, isConstrained: constrained, isExalted: exalted, ignoreArmour, natural, targets }
       const chat = await new DangerousGaryChat(this).withContent(label).withType("damage", system).withRolls([roll]).create()
       await chat.display()
       await DamageCard.apply(chat.chat)
@@ -146,6 +152,9 @@ export default class DangerousGaryActor extends Actor {
       isCriticalDamage,
       isConstrained: constrained,
       isExalted: exalted,
+      ignoreArmour,
+      // Sans cible, les déclencheurs activés sont rappelés sur la carte
+      triggers: triggers.map((trigger) => ({ name: trigger.name, summary: DamageCard.describeTrigger(trigger) })),
     }
 
     let chat = await new DangerousGaryChat(this).withTemplate("systems/dangerousgary/templates/roll-result.hbs").withData(chatData).withRolls([roll]).create()
@@ -155,7 +164,7 @@ export default class DangerousGaryActor extends Actor {
     return { roll, result }
   }
 
-  async promptDamageRoll(itemName, formula, { criticalDamage = false } = {}) {
+  async promptDamageRoll(itemName, formula, { criticalDamage = false, item = null } = {}) {
     const attackType = await foundry.applications.api.DialogV2.prompt({
       window: { title: game.i18n.localize("DANGEROUSGARY.Dialog.DamageOptions") },
       content: `
@@ -174,6 +183,7 @@ export default class DangerousGaryActor extends Actor {
     })
     if (!attackType) return
     return this.rollDamage(itemName, formula, {
+      item,
       criticalDamage,
       constrained: attackType === "constrained",
       exalted: attackType === "exalted",

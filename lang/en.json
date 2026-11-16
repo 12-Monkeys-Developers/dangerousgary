@@ -167,6 +167,16 @@
         },
         "damageFormula": {
           "label": "Damage"
+        },
+        "criticalDamage": {
+          "label": "Critical damage",
+          "hint": "On the maximum result, the damage die is rolled once more and added."
+        },
+        "ignoreArmour": {
+          "label": "Ignores armour"
+        },
+        "triggers": {
+          "label": "Special effects"
         }
       }
     },
@@ -274,6 +284,7 @@
       "CriticalDamage": "Critical Damage",
       "Constrained": "Constrained Attack",
       "Exalted": "Exalted Attack",
+      "IgnoreArmour": "Ignores armour",
       "AbilitySave": "Ability save",
       "ClassSave": "Class save",
       "TalentDamage": "-{hp} HP",
@@ -296,6 +307,33 @@
     },
     "Combat": {
       "NextRoundLocked": "Next round: every combatant must have acted"
+    },
+    "Trigger": {
+      "EveryHit": "every hit",
+      "OnDie": "die {range}",
+      "Name": "Effect name",
+      "Add": "Add a special effect",
+      "Remove": "Remove this effect",
+      "Range": "Die",
+      "RangeHint": "Results of the damage die that trigger the effect (for instance 5 to 6). Leave empty for an effect on every hit.",
+      "Save": "Save",
+      "Effect": "Effect",
+      "Text": "Details (condition, duration…)",
+      "RollSave": "{ability} save",
+      "Effects": {
+        "none": "None (text)",
+        "damage": "Damage",
+        "str": "STR loss",
+        "dex": "DEX loss",
+        "wil": "WIL loss"
+      },
+      "Summary": {
+        "damage": "{value} damage",
+        "ability": "-{value} {ability}",
+        "save": "{ability} save",
+        "saveOr": "{ability} save or {effect}",
+        "saved": "{ability} save passed"
+      }
     }
   }
 }

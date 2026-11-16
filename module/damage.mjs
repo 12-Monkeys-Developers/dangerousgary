@@ -7,19 +7,24 @@ import DangerousGaryDamageMessageData from "./models/damage-message.mjs"
 export class DamageCard {
   static QUERY_APPLY = "dangerousgary.applyDamage"
 
-  static QUERY_MARK_SAVE = "dangerousgary.markStrSave"
+  static QUERY_UPDATE_TARGET = "dangerousgary.updateDamageTarget"
 
   /**
    * Décrit un token ciblé : l'acteur, son image, son armure et les dégâts réels qu'il subit.
    * @param {Token} token Le token ciblé.
    * @param {number} total Le total du jet de dégâts.
+   * @param {object} [options]
+   * @param {boolean} [options.ignoreArmour] L'attaque ignore l'armure.
+   * @param {object[]} [options.triggers] Les déclencheurs de l'attaque activés par le jet.
    * @returns {object|null} Les données de la cible enregistrées dans la carte, ou null sans acteur.
    */
-  static getTargetInfo(token, total) {
+  static getTargetInfo(token, total, { ignoreArmour = false, triggers = [] } = {}) {
     const actor = token?.actor
     if (!actor) return null
-    const armour = actor.armour
+    const armour = ignoreArmour ? 0 : actor.armour
     return {
+      // Avec une sauvegarde, le déclencheur attend le jet de la cible ; sinon il est résolu à l'application des dégâts
+      triggers: triggers.map((trigger) => ({ ...trigger, status: trigger.save ? "pending" : "info", amount: null })),
       uuid: actor.uuid,
       tokenUuid: token.document.uuid,
       name: token.document.name ?? actor.name,
@@ -33,11 +38,12 @@ export class DamageCard {
   /**
    * Les cibles de l'utilisateur pour un jet de dégâts.
    * @param {number} total Le total du jet de dégâts.
+   * @param {object} [options] Les options de getTargetInfo.
    * @returns {object[]}
    */
-  static getTargets(total) {
+  static getTargets(total, options) {
     return Array.from(game.user.targets)
-      .map((token) => DamageCard.getTargetInfo(token, total))
+      .map((token) => DamageCard.getTargetInfo(token, total, options))
       .filter((target) => target)
   }
 
@@ -79,9 +85,15 @@ export class DamageCard {
         ui.notifications.warn(game.i18n.format("DANGEROUSGARY.Damage.TargetNotFound", { name: target.name }))
         continue
       }
-      target.armour = actor.armour
+      target.armour = message.system.ignoreArmour ? 0 : actor.armour
       target.real = Math.max(0, message.system.total - target.armour)
       Object.assign(target, await actor.applyDamage(target.real), { applied: true })
+      // Déclencheurs sans sauvegarde : l'effet est subi aussitôt
+      for (const trigger of target.triggers) {
+        if (trigger.status !== "info" || trigger.effect === "none") continue
+        trigger.amount = await DamageCard.applyTriggerEffect(actor, trigger, message.system.ignoreArmour)
+        trigger.status = "applied"
+      }
     }
     await message.update({ "system.targets": targets })
   }
@@ -114,40 +126,118 @@ export class DamageCard {
     const actor = await fromUuid(target.uuid)
     if (!actor) return
     await actor.rollSave("str")
-    if (message.canUserModify(game.user, "update")) {
-      await DamageCard.#markStrSave(message, index)
-      return
-    }
-    await game.users.activeGM?.query(DamageCard.QUERY_MARK_SAVE, { messageId: message.id, index })
+    await DamageCard.#updateTarget(message, index, { saveRolled: true })
   }
 
   /**
-   * Note sur la carte que la sauvegarde de Force d'une cible a été lancée.
+   * Applique l'effet d'un déclencheur à un acteur : dégâts supplémentaires (armure déduite) ou perte de points d'une caractéristique.
+   * @param {Actor} actor La cible.
+   * @param {object} trigger Le déclencheur.
+   * @param {boolean} ignoreArmour L'attaque ignore l'armure.
+   * @returns {Promise<number|null>} Les dégâts subis ou les points perdus, null sans effet chiffré.
+   */
+  static async applyTriggerEffect(actor, trigger, ignoreArmour) {
+    if (trigger.effect === "none" || !trigger.formula) return null
+    const roll = await new Roll(trigger.formula).evaluate()
+    if (trigger.effect === "damage") {
+      const real = Math.max(0, roll.total - (ignoreArmour ? 0 : actor.armour))
+      await actor.applyDamage(real)
+      return real
+    }
+    const current = actor.system.abilities[trigger.effect].value
+    const lost = Math.min(Math.max(0, roll.total), current)
+    if (lost > 0) await actor.update({ [`system.abilities.${trigger.effect}.value`]: current - lost })
+    return lost
+  }
+
+  /**
+   * Décrit un déclencheur en une ligne : son texte, sa sauvegarde éventuelle et son effet, ou son résultat une fois résolu.
+   * @param {object} trigger Le déclencheur d'une attaque ou d'une cible de carte.
+   * @returns {string}
+   */
+  static describeTrigger(trigger) {
+    const ability = (key) => game.i18n.localize(`DANGEROUSGARY.Labels.short.${key}`)
+    const parts = []
+    let effect = ""
+    if (trigger.effect === "damage") effect = game.i18n.format("DANGEROUSGARY.Trigger.Summary.damage", { value: trigger.amount ?? trigger.formula })
+    else if (trigger.effect !== "none") effect = game.i18n.format("DANGEROUSGARY.Trigger.Summary.ability", { value: trigger.amount ?? trigger.formula, ability: ability(trigger.effect) })
+    if (trigger.status === "saved") parts.push(game.i18n.format("DANGEROUSGARY.Trigger.Summary.saved", { ability: ability(trigger.save) }))
+    else if (trigger.save && trigger.status !== "applied") {
+      parts.push(game.i18n.format(effect ? "DANGEROUSGARY.Trigger.Summary.saveOr" : "DANGEROUSGARY.Trigger.Summary.save", { ability: ability(trigger.save), effect }))
+    } else if (effect) parts.push(effect)
+    if (trigger.text && trigger.status !== "saved") parts.push(trigger.text)
+    return parts.join(" · ")
+  }
+
+  /**
+   * Lance la sauvegarde d'un déclencheur pour une cible : réussie, l'effet est évité ; ratée, il est appliqué.
    * @param {ChatMessage} message La carte de dégâts.
    * @param {number} index L'indice de la cible dans la carte.
+   * @param {number} triggerIndex L'indice du déclencheur de la cible.
    * @returns {Promise<void>}
    */
-  static async #markStrSave(message, index) {
+  static async rollTriggerSave(message, index, triggerIndex) {
+    const target = message.system.targets[index]
+    const trigger = target?.triggers[triggerIndex]
+    if (!trigger || !DangerousGaryDamageMessageData.canRollTriggerSave(target, trigger)) return
+    const actor = await fromUuid(target.uuid)
+    if (!actor) return
+    const { success } = await actor.rollSave(trigger.save)
+    const triggers = message.system.toObject().targets[index].triggers
+    if (success) triggers[triggerIndex].status = "saved"
+    else {
+      triggers[triggerIndex].amount = await DamageCard.applyTriggerEffect(actor, trigger, message.system.ignoreArmour)
+      triggers[triggerIndex].status = "applied"
+    }
+    await DamageCard.#updateTarget(message, index, { triggers })
+  }
+
+  /**
+   * Met à jour une cible de la carte : directement si l'utilisateur peut modifier le message, sinon par le MJ actif.
+   * @param {ChatMessage} message La carte de dégâts.
+   * @param {number} index L'indice de la cible dans la carte.
+   * @param {object} changes Les changements : saveRolled, triggers.
+   * @returns {Promise<void>}
+   */
+  static async #updateTarget(message, index, changes) {
+    if (message.canUserModify(game.user, "update")) {
+      await DamageCard.#writeTarget(message, index, changes)
+      return
+    }
+    await game.users.activeGM?.query(DamageCard.QUERY_UPDATE_TARGET, { messageId: message.id, index, changes })
+  }
+
+  /**
+   * Écrit les changements d'une cible dans la carte.
+   * @param {ChatMessage} message La carte de dégâts.
+   * @param {number} index L'indice de la cible dans la carte.
+   * @param {object} changes Les changements : saveRolled, triggers.
+   * @returns {Promise<void>}
+   */
+  static async #writeTarget(message, index, { saveRolled, triggers }) {
     const targets = message.system.toObject().targets
-    targets[index].saveRolled = true
+    if (saveRolled !== undefined) targets[index].saveRolled = !!saveRolled
+    if (Array.isArray(triggers)) targets[index].triggers = triggers
     await message.update({ "system.targets": targets })
   }
 
   /**
-   * Requête "dangerousgary.markStrSave" côté MJ : demandée par un joueur qui peut lancer la sauvegarde de la cible.
+   * Requête "dangerousgary.updateDamageTarget" côté MJ : demandée par un joueur propriétaire de la cible, après une sauvegarde lancée depuis la carte.
    * @param {object} data
    * @param {string} data.messageId L'id de la carte.
    * @param {number} data.index L'indice de la cible dans la carte.
+   * @param {object} data.changes Les changements : saveRolled, triggers.
    * @param {object} context
    * @param {User} context.user L'utilisateur qui a envoyé la requête.
    * @returns {Promise<boolean>} La carte a-t-elle été mise à jour.
    */
-  static async _handleMarkSaveQuery({ messageId, index }, { user }) {
+  static async _handleUpdateTargetQuery({ messageId, index, changes }, { user }) {
     const message = game.messages.get(messageId)
     if (message?.type !== "damage") return false
     const target = message.system.targets[index]
-    if (!target || !DangerousGaryDamageMessageData.canRollStrSave(target, user)) return false
-    await DamageCard.#markStrSave(message, index)
+    const actor = target ? await fromUuid(target.uuid) : null
+    if (!actor?.testUserPermission(user, "OWNER")) return false
+    await DamageCard.#writeTarget(message, index, changes ?? {})
     return true
   }
 

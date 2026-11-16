@@ -812,6 +812,51 @@
 .dangerousgary.item.attack .attack-main .details fieldset > *:not(legend) {
   clear: both;
 }
+.dangerousgary.item.attack .attack-triggers .attack-trigger {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 8px;
+  padding-left: 8px;
+  border-left: 3px solid var(--dg-text-red);
+}
+.dangerousgary.item.attack .attack-triggers .trigger-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.dangerousgary.item.attack .attack-triggers .trigger-row label {
+  flex: none;
+  font-weight: bold;
+  white-space: nowrap;
+}
+.dangerousgary.item.attack .attack-triggers .trigger-row input[type="number"] {
+  flex: 0 0 3.2em;
+  text-align: center;
+}
+.dangerousgary.item.attack .attack-triggers .trigger-row select {
+  flex: 1 1 5em;
+  min-width: 0;
+}
+.dangerousgary.item.attack .attack-triggers .trigger-row input[type="text"] {
+  flex: 1 1 5em;
+  min-width: 0;
+}
+.dangerousgary.item.attack .attack-triggers .remove-trigger-btn {
+  flex: none;
+  width: auto;
+  padding: 2px 4px;
+  color: #888;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.dangerousgary.item.attack .attack-triggers .remove-trigger-btn:hover {
+  color: var(--dg-text-red);
+}
+.dangerousgary.item.attack .attack-triggers .add-trigger-btn {
+  cursor: pointer;
+}
 .dangerousgary.item.attack .attack-description {
   flex: 1;
   display: flex;
@@ -1424,6 +1469,14 @@
 .dice-roll .roll-icon.exalted {
   color: #f9a825;
 }
+.dice-roll .roll-trigger {
+  margin-top: 4px;
+  text-align: center;
+  color: #6a1b9a;
+}
+.dice-roll .roll-icon.ignore-armour {
+  color: #37474f;
+}
 .dice-roll .roll-talent-damage {
   display: flex;
   justify-content: center;
@@ -1514,6 +1567,15 @@
 }
 .damage-card .target-pending {
   font-style: italic;
+}
+.damage-card .target-trigger {
+  color: #6a1b9a;
+}
+.damage-card .target-trigger.saved {
+  color: #2e7d32;
+}
+.damage-card .target-trigger.applied {
+  color: #c62828;
 }
 .damage-card .damage-card-button {
   margin-top: 4px;
@@ -1610,15 +1672,19 @@
 .dg-guide kbd {
   white-space: nowrap;
 }
-/* Infobulle d'un artefact (fiche de personnage) : capacités sous la description */
+/* Infobulles d'un artefact (capacités) et d'une attaque (effets spéciaux) : liste sous la description */
 #tooltip .dg-artefact-tooltip-capacities,
-.locked-tooltip .dg-artefact-tooltip-capacities {
+.locked-tooltip .dg-artefact-tooltip-capacities,
+#tooltip .dg-tooltip-list,
+.locked-tooltip .dg-tooltip-list {
   margin: 6px 0 0;
   padding-left: 1.2em;
   text-align: left;
 }
 #tooltip .dg-artefact-tooltip-capacities li p,
-.locked-tooltip .dg-artefact-tooltip-capacities li p {
+.locked-tooltip .dg-artefact-tooltip-capacities li p,
+#tooltip .dg-tooltip-list li p,
+.locked-tooltip .dg-tooltip-list li p {
   display: inline;
   margin: 0;
 }

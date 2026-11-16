@@ -1,4 +1,5 @@
 import DangerousGaryBaseActorSheet from "./base-actor-sheet.mjs"
+import { DamageCard } from "../../damage.mjs"
 
 const { ux } = foundry.applications
 const { DragDrop } = foundry.applications.ux
@@ -52,6 +53,7 @@ export default class DangerousGaryEncounterSheet extends DangerousGaryBaseActorS
     const attacksRaw = this.actor.itemTypes.attack
     for (const item of attacksRaw) {
       item.enrichedDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(item.system.description, { async: true })
+      item.tooltip = `${item.enrichedDescription}${DangerousGaryEncounterSheet.#specialEffectsSummary(item)}`
       attacks.push(item)
     }
 
@@ -60,6 +62,30 @@ export default class DangerousGaryEncounterSheet extends DangerousGaryBaseActorS
     })
 
     return context
+  }
+
+  /**
+   * Résumé des options et des effets spéciaux d'une attaque, ajouté à son infobulle sous la description.
+   * @param {Item} item L'attaque.
+   * @returns {string} Une liste HTML, vide sans option ni effet spécial.
+   */
+  static #specialEffectsSummary(item) {
+    const escape = foundry.utils.escapeHTML
+    const lines = []
+    if (item.system.criticalDamage) lines.push(`<li>${game.i18n.localize("DANGEROUSGARY.Attack.FIELDS.criticalDamage.label")}</li>`)
+    if (item.system.ignoreArmour) lines.push(`<li>${game.i18n.localize("DANGEROUSGARY.Attack.FIELDS.ignoreArmour.label")}</li>`)
+    for (const trigger of Object.values(item.system.triggers)) {
+      const { min, max } = trigger
+      let range = game.i18n.localize("DANGEROUSGARY.Trigger.EveryHit")
+      if (min !== null || max !== null) {
+        const from = min ?? max
+        const to = max ?? min
+        range = game.i18n.format("DANGEROUSGARY.Trigger.OnDie", { range: from === to ? `${from}` : `${from}-${to}` })
+      }
+      const summary = DamageCard.describeTrigger(trigger)
+      lines.push(`<li><strong>${escape(trigger.name)}</strong> (${range})${summary ? ` : ${escape(summary)}` : ""}</li>`)
+    }
+    return lines.length ? `<ul class="dg-tooltip-list">${lines.join("")}</ul>` : ""
   }
 
   /** @inheritDoc */
@@ -160,10 +186,13 @@ export default class DangerousGaryEncounterSheet extends DangerousGaryBaseActorS
   static async #onAttackRollDamage(event, target) {
     const itemName = target.getAttribute("data-name")
     const formula = target.getAttribute("data-formula")
+    // L'attaque porte le dé explosif, l'armure ignorée et les déclencheurs
+    const item = this.actor.items.get(target.closest("[data-item-id]")?.dataset.itemId)
+    const options = { item, criticalDamage: !!item?.system.criticalDamage }
     if (event.shiftKey) {
-      await this.actor.promptDamageRoll(itemName, formula)
+      await this.actor.promptDamageRoll(itemName, formula, options)
     } else {
-      await this.actor.rollDamage(itemName, formula)
+      await this.actor.rollDamage(itemName, formula, options)
     }
   }
 

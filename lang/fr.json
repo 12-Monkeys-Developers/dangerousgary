@@ -167,6 +167,16 @@
         },
         "damageFormula": {
           "label": "Dégâts"
+        },
+        "criticalDamage": {
+          "label": "Dommages critiques",
+          "hint": "Sur le résultat maximal, le dé de dégâts est relancé une fois et ajouté."
+        },
+        "ignoreArmour": {
+          "label": "Ignore l'armure"
+        },
+        "triggers": {
+          "label": "Effets spéciaux"
         }
       }
     },
@@ -274,6 +284,7 @@
       "CriticalDamage": "Dommages critiques",
       "Constrained": "Attaque contrainte",
       "Exalted": "Attaque exaltée",
+      "IgnoreArmour": "Ignore l'armure",
       "AbilitySave": "Sauvegarde de caractéristique",
       "ClassSave": "Sauvegarde de classe",
       "TalentDamage": "-{hp} PV",
@@ -296,6 +307,33 @@
     },
     "Combat": {
       "NextRoundLocked": "Round suivant : tous les combattants doivent avoir joué"
+    },
+    "Trigger": {
+      "EveryHit": "à chaque coup",
+      "OnDie": "dé {range}",
+      "Name": "Nom de l'effet",
+      "Add": "Ajouter un effet spécial",
+      "Remove": "Retirer cet effet",
+      "Range": "Dé",
+      "RangeHint": "Résultats du dé de dégâts qui déclenchent l'effet (par exemple 5 à 6). Laissez vide pour un effet à chaque coup.",
+      "Save": "Sauvegarde",
+      "Effect": "Effet",
+      "Text": "Précision (état, durée…)",
+      "RollSave": "Sauvegarde de {ability}",
+      "Effects": {
+        "none": "Aucun (texte)",
+        "damage": "Dégâts",
+        "str": "Perte de FOR",
+        "dex": "Perte de DEX",
+        "wil": "Perte de VOL"
+      },
+      "Summary": {
+        "damage": "{value} dégâts",
+        "ability": "-{value} {ability}",
+        "save": "sauvegarde de {ability}",
+        "saveOr": "sauvegarde de {ability} ou {effect}",
+        "saved": "sauvegarde de {ability} réussie"
+      }
     }
   }
 }

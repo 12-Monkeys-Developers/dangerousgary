@@ -8,6 +8,44 @@
       <fieldset>
         <legend>{{localize "DANGEROUSGARY.Labels.details"}}</legend>
         {{formGroup systemFields.damageFormula value=system.damageFormula disabled=locked }}
+        {{formGroup systemFields.criticalDamage value=system.criticalDamage disabled=locked localize=true }}
+        {{formGroup systemFields.ignoreArmour value=system.ignoreArmour disabled=locked localize=true }}
+      </fieldset>
+      <fieldset class="attack-triggers">
+        <legend>{{localize "DANGEROUSGARY.Attack.FIELDS.triggers.label"}}</legend>
+        {{#each triggers as |trigger|}}
+          <div class="attack-trigger" data-key="{{trigger.key}}">
+            <div class="trigger-row">
+              {{formInput @root.triggerFields.name value=trigger.name name=(concat "system.triggers." trigger.key ".name") disabled=@root.locked placeholder=(localize "DANGEROUSGARY.Trigger.Name")}}
+              {{#unless @root.locked}}
+              <button type="button" class="remove-trigger-btn" data-action="removeTrigger" data-key="{{trigger.key}}" data-tooltip="{{localize 'DANGEROUSGARY.Trigger.Remove'}}">
+                <i class="fas fa-trash"></i>
+              </button>
+              {{/unless}}
+            </div>
+            <div class="trigger-row">
+              <label data-tooltip="{{localize 'DANGEROUSGARY.Trigger.RangeHint'}}">{{localize "DANGEROUSGARY.Trigger.Range"}}</label>
+              {{formInput @root.triggerFields.min value=trigger.min name=(concat "system.triggers." trigger.key ".min") disabled=@root.locked}}
+              <span>–</span>
+              {{formInput @root.triggerFields.max value=trigger.max name=(concat "system.triggers." trigger.key ".max") disabled=@root.locked}}
+              <label>{{localize "DANGEROUSGARY.Trigger.Save"}}</label>
+              {{formInput @root.triggerFields.save value=trigger.save name=(concat "system.triggers." trigger.key ".save") disabled=@root.locked localize=true blank="—"}}
+            </div>
+            <div class="trigger-row">
+              <label>{{localize "DANGEROUSGARY.Trigger.Effect"}}</label>
+              {{formInput @root.triggerFields.effect value=trigger.effect name=(concat "system.triggers." trigger.key ".effect") disabled=@root.locked localize=true}}
+              {{formInput @root.triggerFields.formula value=trigger.formula name=(concat "system.triggers." trigger.key ".formula") disabled=@root.locked placeholder="1d6"}}
+            </div>
+            <div class="trigger-row">
+              {{formInput @root.triggerFields.text value=trigger.text name=(concat "system.triggers." trigger.key ".text") disabled=@root.locked placeholder=(localize "DANGEROUSGARY.Trigger.Text")}}
+            </div>
+          </div>
+        {{/each}}
+        {{#unless locked}}
+        <button type="button" class="add-trigger-btn" data-action="addTrigger">
+          <i class="fas fa-plus"></i> {{localize "DANGEROUSGARY.Trigger.Add"}}
+        </button>
+        {{/unless}}
       </fieldset>
     </div>
   </section>

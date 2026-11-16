@@ -11,6 +11,9 @@
     {{#if system.isExalted}}
       <span class="roll-icon exalted" data-tooltip="{{localize 'DANGEROUSGARY.Roll.Exalted'}}"><i class="fas fa-crown"></i></span>
     {{/if}}
+    {{#if system.ignoreArmour}}
+      <span class="roll-icon ignore-armour" data-tooltip="{{localize 'DANGEROUSGARY.Roll.IgnoreArmour'}}"><i class="fas fa-shield-slash"></i></span>
+    {{/if}}
   </div>
 
   <ul class="damage-targets">
@@ -51,6 +54,16 @@
               {{else if target.saveRolled}}
                 <span class="target-line target-save-done"><i class="fas fa-check"></i> {{localize "DANGEROUSGARY.Damage.StrSaveDone"}}</span>
               {{/if}}
+              {{#each target.triggers as |trigger|}}
+                <span class="target-line target-trigger {{trigger.status}}">
+                  <i class="fas fa-bolt"></i> <strong>{{trigger.name}}</strong>{{#if trigger.summary}} : {{trigger.summary}}{{/if}}
+                </span>
+                {{#if trigger.canRollSave}}
+                  <button type="button" class="damage-card-button" data-action="rollTriggerSave" data-index="{{@../index}}" data-trigger-index="{{@index}}">
+                    <i class="fas fa-dice-d20"></i> {{trigger.saveLabel}}
+                  </button>
+                {{/if}}
+              {{/each}}
             {{else}}
               <span class="target-line target-pending">{{localize "DANGEROUSGARY.Damage.NotApplied"}}</span>
             {{/if}}

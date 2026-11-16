@@ -41,6 +41,12 @@ export default class DangerousGaryChatMessage extends ChatMessage {
         strLost: Data.strLost(target),
         isDead: target.applied && target.strAfter === 0 && Data.canSeeDetail(target),
         canRollStrSave: Data.canRollStrSave(target),
+        triggers: target.triggers.map((trigger) => ({
+          ...trigger,
+          summary: DamageCard.describeTrigger(trigger),
+          canRollSave: Data.canRollTriggerSave(target, trigger),
+          saveLabel: trigger.save ? game.i18n.format("DANGEROUSGARY.Trigger.RollSave", { ability: game.i18n.localize(`DANGEROUSGARY.Labels.short.${trigger.save}`) }) : "",
+        })),
       })),
       canApply: game.user.isGM && system.hasPendingTargets,
     }
@@ -60,6 +66,9 @@ export default class DangerousGaryChatMessage extends ChatMessage {
       case "rollStrSave":
         button.disabled = true
         return DamageCard.rollStrSave(this, Number(button.dataset.index))
+      case "rollTriggerSave":
+        button.disabled = true
+        return DamageCard.rollTriggerSave(this, Number(button.dataset.index), Number(button.dataset.triggerIndex))
       case "panToToken":
         return DamageCard.panToToken(button.dataset.tokenUuid)
     }

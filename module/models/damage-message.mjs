@@ -16,6 +16,9 @@ export default class DangerousGaryDamageMessageData extends foundry.abstract.Typ
       isCriticalDamage: new fields.BooleanField({ required: true, initial: false }),
       isConstrained: new fields.BooleanField({ required: true, initial: false }),
       isExalted: new fields.BooleanField({ required: true, initial: false }),
+      ignoreArmour: new fields.BooleanField({ required: true, initial: false }),
+      // Résultat naturel du premier dé de dégâts : il active les déclencheurs de l'attaque
+      natural: new fields.NumberField({ required: true, nullable: true, integer: true, initial: null }),
       targets: new fields.ArrayField(
         new fields.SchemaField({
           // Acteur de la cible (acteur synthétique pour un token non lié)
@@ -34,6 +37,20 @@ export default class DangerousGaryDamageMessageData extends foundry.abstract.Typ
           strAfter: points(),
           // Sauvegarde de Force lancée après un débordement des dégâts
           saveRolled: new fields.BooleanField({ required: true, initial: false }),
+          // Déclencheurs de l'attaque activés par ce jet, et leur résolution pour cette cible
+          triggers: new fields.ArrayField(
+            new fields.SchemaField({
+              name: new fields.StringField({ required: true, blank: true, initial: "" }),
+              text: new fields.StringField({ required: true, blank: true, initial: "" }),
+              save: new fields.StringField({ required: true, blank: true, initial: "" }),
+              effect: new fields.StringField({ required: true, blank: false, initial: "none" }),
+              formula: new fields.StringField({ required: true, blank: true, initial: "" }),
+              // pending : sauvegarde à lancer ; saved : sauvegarde réussie ; applied : effet subi ; info : rien à appliquer
+              status: new fields.StringField({ required: true, blank: false, initial: "info", choices: ["pending", "saved", "applied", "info"] }),
+              // Dégâts subis ou points de caractéristique perdus
+              amount: points(),
+            }),
+          ),
         }),
       ),
     }
@@ -74,6 +91,20 @@ export default class DangerousGaryDamageMessageData extends foundry.abstract.Typ
    */
   static canSeeDetail(target, user = game.user) {
     return user.isGM || target.type === "character"
+  }
+
+  /**
+   * L'utilisateur peut-il lancer la sauvegarde d'un déclencheur en attente : le MJ ou un propriétaire de la cible.
+   * @param {object} target Une cible de la carte.
+   * @param {object} trigger Un déclencheur de la cible.
+   * @param {User} [user]
+   * @returns {boolean}
+   */
+  static canRollTriggerSave(target, trigger, user = game.user) {
+    if (!target.applied || trigger?.status !== "pending") return false
+    if (user.isGM) return true
+    const actor = fromUuidSync(target.uuid)
+    return !!actor?.testUserPermission(user, "OWNER")
   }
 
   /**

@@ -6,7 +6,54 @@ export default class DangerousGaryAttackData extends foundry.abstract.TypeDataMo
     return {
       description: new fields.HTMLField({ required: false, blank: true, initial: "", textSearch: true }),
       damageFormula: new fields.StringField({ required: false, nullable: true }),
+      // Dé explosif : sur le résultat maximal, le dé est relancé une fois et ajouté
+      criticalDamage: new fields.BooleanField({ required: true, nullable: false, initial: false }),
+      ignoreArmour: new fields.BooleanField({ required: true, nullable: false, initial: false }),
+      // Effets spéciaux déclenchés par le résultat naturel du dé de dégâts (ou à chaque coup), indexés par un identifiant
+      triggers: new fields.TypedObjectField(
+        new fields.SchemaField({
+          name: new fields.StringField({ required: true, blank: true, initial: "" }),
+          // Plage de faces du dé de dégâts qui déclenche l'effet ; vide = à chaque coup
+          min: new fields.NumberField({ required: true, nullable: true, integer: true, min: 1, initial: null }),
+          max: new fields.NumberField({ required: true, nullable: true, integer: true, min: 1, initial: null }),
+          // Sauvegarde qui évite l'effet ; vide = pas de sauvegarde
+          save: new fields.StringField({ required: true, blank: true, initial: "", choices: DangerousGaryAttackData.ABILITIES }),
+          effect: new fields.StringField({ required: true, blank: false, initial: "none", choices: DangerousGaryAttackData.TRIGGER_EFFECTS }),
+          formula: new fields.StringField({ required: true, blank: true, initial: "" }),
+          text: new fields.StringField({ required: true, blank: true, initial: "" }),
+        }),
+      ),
     }
+  }
+
+  static ABILITIES = {
+    str: "DANGEROUSGARY.Labels.short.str",
+    dex: "DANGEROUSGARY.Labels.short.dex",
+    wil: "DANGEROUSGARY.Labels.short.wil",
+  }
+
+  // Effet d'un déclencheur : aucun (texte seul), dégâts supplémentaires, ou perte de points d'une caractéristique
+  static TRIGGER_EFFECTS = {
+    none: "DANGEROUSGARY.Trigger.Effects.none",
+    damage: "DANGEROUSGARY.Trigger.Effects.damage",
+    str: "DANGEROUSGARY.Trigger.Effects.str",
+    dex: "DANGEROUSGARY.Trigger.Effects.dex",
+    wil: "DANGEROUSGARY.Trigger.Effects.wil",
+  }
+
+  /**
+   * Les déclencheurs activés par un jet de dégâts.
+   * @param {number|null} natural Le résultat naturel du premier dé de dégâts, ou null sans dé.
+   * @returns {object[]} Les déclencheurs, prêts à être enregistrés dans une carte de dégâts.
+   */
+  firedTriggers(natural) {
+    return Object.values(this.triggers)
+      .filter((trigger) => {
+        if (trigger.min === null && trigger.max === null) return true
+        if (natural === null) return false
+        return natural >= (trigger.min ?? trigger.max) && natural <= (trigger.max ?? trigger.min)
+      })
+      .map(({ name, save, effect, formula, text }) => ({ name, save, effect, formula, text }))
   }
 
   /** @override */

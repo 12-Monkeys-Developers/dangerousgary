@@ -7,8 +7,8 @@ export default class DangerousGaryAttackSheet extends DangerousGaryBaseItemSheet
   static DEFAULT_OPTIONS = {
     classes: ["dangerousgary", "item", "attack"],
     position: {
-      width: 350,
-      height: 500
+      width: 460,
+      height: 620
     },
     form: {
       submitOnChange: true
@@ -17,7 +17,9 @@ export default class DangerousGaryAttackSheet extends DangerousGaryBaseItemSheet
       resizable: true
     },
     actions: {
-      editImage: DangerousGaryAttackSheet.#onEditImage
+      editImage: DangerousGaryAttackSheet.#onEditImage,
+      addTrigger: DangerousGaryAttackSheet.#onAddTrigger,
+      removeTrigger: DangerousGaryAttackSheet.#onRemoveTrigger
     }
   };
 
@@ -38,8 +40,24 @@ export default class DangerousGaryAttackSheet extends DangerousGaryBaseItemSheet
       source: this.document.toObject(),
       enrichedDescription: await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.document.system.description, { async: true }),
       locked: this.isPlayMode,
+      triggers: Object.entries(this.document.system.triggers).map(([key, trigger]) => ({ key, ...trigger })),
+      triggerFields: this.document.system.schema.fields.triggers.element.fields,
     }
     return context;
+  }
+
+  /** Ajoute un déclencheur vide à l'attaque. */
+  static async #onAddTrigger() {
+    await this.document.update({ [`system.triggers.${foundry.utils.randomID()}`]: {} })
+  }
+
+  /**
+   * Retire un déclencheur de l'attaque.
+   * @param {PointerEvent} event
+   * @param {HTMLElement} target Le bouton, qui porte la clé du déclencheur.
+   */
+  static async #onRemoveTrigger(event, target) {
+    await this.document.update({ [`system.triggers.-=${target.dataset.key}`]: null })
   }
 
   static async #onEditImage(event, target) {
