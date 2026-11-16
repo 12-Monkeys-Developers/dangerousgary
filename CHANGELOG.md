@@ -11,6 +11,7 @@
 - Visibilité des jets selon le mode choisi dans le tchat via l'API V14 (`core.rollMode` est déprécié)
 - Correction : dans le suivi de combat, les infobulles des boutons Masquer, Vaincu, Ping et Centrer affichaient leur clé au lieu de leur traduction (clés renommées en V14) ; le bouton « A joué » n'était plus affiché aux joueurs
 - Suivi de combat : le bouton « A joué » est le dernier des boutons d'un combattant ; un joueur peut marquer son combattant comme ayant joué mais ne peut plus l'annuler, le MJ change l'état de tous librement
+- Suivi de combat : les boutons Tour précédent et Tour suivant sont retirés ; le bouton Round suivant n'est cliquable que lorsque tous les combattants (hors vaincus) ont joué ; un clic du MJ sur un combattant sélectionne son token, centre la vue et en fait le combattant actif
 - Suivi de combat : le libellé du bouton « A joué » est traduit (anglais : « Has acted »)
 
 # 1.3.7

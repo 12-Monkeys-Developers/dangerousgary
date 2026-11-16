@@ -293,6 +293,9 @@
       "PanToToken": "Pan to token",
       "NoActiveGM": "No GM connected: the damage is not applied. The GM can apply it from the card.",
       "TargetNotFound": "{name}: target not found, damage not applied."
+    },
+    "Combat": {
+      "NextRoundLocked": "Next round: every combatant must have acted"
     }
   }
 }

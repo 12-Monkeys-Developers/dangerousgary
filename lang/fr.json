@@ -293,6 +293,9 @@
       "PanToToken": "Centrer la vue sur le token",
       "NoActiveGM": "Aucun MJ connecté : les dégâts ne sont pas appliqués. Le MJ pourra les appliquer depuis la carte.",
       "TargetNotFound": "{name} : cible introuvable, dégâts non appliqués."
+    },
+    "Combat": {
+      "NextRoundLocked": "Round suivant : tous les combattants doivent avoir joué"
     }
   }
 }

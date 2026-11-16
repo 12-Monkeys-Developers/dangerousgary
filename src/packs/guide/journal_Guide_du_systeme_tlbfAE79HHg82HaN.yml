@@ -663,6 +663,14 @@ pages:
                 </li>
                 <li>Le MJ peut <strong>faire glisser</strong> un combattant sur un autre pour changer l'ordre du round en cours.</li>
                 <li>
+                  Il n'y a pas de boutons de tour précédent ou suivant. Un <strong>clic</strong> sur un combattant sélectionne son token et centre la vue sur lui ; pour le
+                  MJ, il devient aussi le combattant actif du suivi.
+                </li>
+                <li>
+                  Le bouton <strong>Round suivant</strong> <i class="fa-solid fa-forward-step"></i> reste grisé tant que tous les combattants (hors vaincus) n'ont pas
+                  joué. Si le MJ annule la marque d'un combattant, il se grise de nouveau.
+                </li>
+                <li>
                   Au <strong>round suivant</strong>, toutes les marques « a joué » sont effacées et l'ordre est recalculé : les Personnages selon leur Dextérité actuelle, les
                   Rencontres de nouveau au hasard.
                 </li>

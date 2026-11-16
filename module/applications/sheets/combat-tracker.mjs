@@ -16,7 +16,7 @@ export default class DangerousGaryCombatTracker extends sidebar.tabs.CombatTrack
       scrollable: [""],
     },
     footer: {
-      template: "templates/sidebar/tabs/combat/footer.hbs",
+      template: "systems/dangerousgary/templates/combat-tracker-footer.hbs",
     },
   }
 
@@ -25,6 +25,28 @@ export default class DangerousGaryCombatTracker extends sidebar.tabs.CombatTrack
     const turn = await super._prepareTurnContext(combat, combatant, index)
     turn.hasActed = combatant.getFlag("world", "hasActed")
     return turn
+  }
+
+  /** @inheritDoc */
+  async _prepareCombatContext(context, options) {
+    await super._prepareCombatContext(context, options)
+    // Le round suivant n'est proposé que lorsque tous les combattants (hors vaincus) ont joué
+    const combatants = this.viewed?.combatants.filter((c) => !c.isDefeated) ?? []
+    context.canNextRound = combatants.every((c) => c.getFlag("world", "hasActed"))
+  }
+
+  /**
+   * Clic sur un combattant : le cœur sélectionne son token et centre la vue ; le MJ en fait aussi le combattant actif du suivi.
+   * @inheritDoc
+   */
+  _onCombatantMouseDown(event, target) {
+    super._onCombatantMouseDown(event, target)
+    if (event.type === "dblclick" || !game.user.isGM) return
+    if (foundry.utils.isElementInstanceOf(event.target, "input") || foundry.utils.isElementInstanceOf(event.target, "button")) return
+    const combat = this.viewed
+    if (!combat?.started) return
+    const turn = combat.turns.findIndex((t) => t.id === target?.dataset.combatantId)
+    if (turn !== -1 && turn !== combat.turn) combat.update({ turn })
   }
 
   static #onCombatantAct(...args) {
