@@ -35,7 +35,11 @@ export default class DangerousGaryCombatTracker extends sidebar.tabs.CombatTrack
     event.preventDefault()
     const combat = this.viewed
     const combatant = combat.combatants.get(target.dataset.combatantId)
-    await combatant.setFlag("world", "hasActed", !combatant.getFlag("world", "hasActed"))
+    if (!combatant) return
+    const hasActed = !!combatant.getFlag("world", "hasActed")
+    // Un joueur marque son combattant comme ayant joué mais ne peut pas l'annuler : seul le MJ change l'état librement
+    if (hasActed && !game.user.isGM) return
+    await combatant.setFlag("world", "hasActed", !hasActed)
   }
 
   /** @inheritdoc */

@@ -9,6 +9,8 @@
 - Correction : sur la fiche d'un artefact, le bouton d'édition de la description d'une capacité était coupé ou recouvrait le texte
 - Compatibilité : Foundry VTT V14 uniquement
 - Visibilité des jets selon le mode choisi dans le tchat via l'API V14 (`core.rollMode` est déprécié)
+- Correction : dans le suivi de combat, les infobulles des boutons Masquer, Vaincu, Ping et Centrer affichaient leur clé au lieu de leur traduction (clés renommées en V14) ; le bouton « A joué » n'était plus affiché aux joueurs
+- Suivi de combat : le bouton « A joué » est le dernier des boutons d'un combattant ; un joueur peut marquer son combattant comme ayant joué mais ne peut plus l'annuler, le MJ change l'état de tous librement
 - Suivi de combat : le libellé du bouton « A joué » est traduit (anglais : « Has acted »)
 
 # 1.3.7
