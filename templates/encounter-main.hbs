@@ -59,7 +59,7 @@
       <label data-tooltip="{{localize 'DANGEROUSGARY.Encounter.FIELDS.terror.hint'}}">{{localize "DANGEROUSGARY.Encounter.FIELDS.terror.label"}}</label>
       {{formInput systemFields.terror value=system.terror disabled=locked }}
       <label data-tooltip="{{localize 'DANGEROUSGARY.Encounter.FIELDS.regeneration.hint'}}">{{localize "DANGEROUSGARY.Encounter.FIELDS.regeneration.label"}}</label>
-      {{formInput systemFields.regeneration value=system.regeneration disabled=locked placeholder="1d6" }}
+      {{formInput systemFields.regeneration value=system.regeneration disabled=locked placeholder=(localize "DANGEROUSGARY.Trigger.FormulaPlaceholder") }}
     </div>
     {{#if ongoingEffects.length}}
     <ul class="ongoing-effects">

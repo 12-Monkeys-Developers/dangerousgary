@@ -331,6 +331,7 @@
     },
     "Trigger": {
       "Ongoing": "every round",
+      "FormulaPlaceholder": "formula, e.g. 1d6",
       "OngoingHint": "The effect is not applied at once: it is put on the target and offered to the GM at each new round, until they end it.",
       "EveryHit": "every hit",
       "OnDie": "die {range}",

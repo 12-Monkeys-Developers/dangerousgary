@@ -92,6 +92,10 @@
   color: var(--dg-text-red);
 }
 .dangerousgary.actor.character {
+.dangerousgary input::placeholder {
+  font-style: italic;
+  opacity: 0.5;
+}
   min-width: 500px;
   /* --- Panel mixin --- */
   /* --- Window content: dark background --- */

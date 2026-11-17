@@ -68,3 +68,9 @@ input[type="radio"] {
     }
   }
 }
+
+/* Texte indicatif d'un champ vide : en italique et estompé, pour ne pas être pris pour une valeur saisie */
+input::placeholder {
+  font-style: italic;
+  opacity: 0.5;
+}

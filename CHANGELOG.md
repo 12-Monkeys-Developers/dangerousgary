@@ -14,6 +14,7 @@
 - Suivi de combat : les boutons Tour précédent et Tour suivant sont retirés ; le bouton Round suivant n'est cliquable que lorsque tous les combattants (hors vaincus) ont joué ; un clic du MJ sur un combattant sélectionne son token, centre la vue et en fait le combattant actif
 - Correction : sur la fiche d'un artefact, le bouton d'édition de la description d'une capacité était coupé ou recouvrait le texte
 - Correction : dans le suivi de combat, les infobulles des boutons Masquer, Vaincu, Ping et Centrer affichaient leur clé au lieu de leur traduction (clés renommées en V14) ; le bouton « A joué » n'était plus affiché aux joueurs
+- Fiches : le texte indicatif d'un champ de formule vide (« formule, ex. 1d6 ») est en italique et estompé, pour ne plus être confondu avec une valeur saisie
 
 # 1.3.8
 

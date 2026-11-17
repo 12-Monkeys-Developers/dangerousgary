@@ -331,6 +331,7 @@
     },
     "Trigger": {
       "Ongoing": "chaque round",
+      "FormulaPlaceholder": "formule, ex. 1d6",
       "OngoingHint": "L'effet n'est pas subi tout de suite : il est posé sur la cible et proposé au MJ à chaque changement de round, jusqu'à ce qu'il y mette fin.",
       "EveryHit": "à chaque coup",
       "OnDie": "dé {range}",
