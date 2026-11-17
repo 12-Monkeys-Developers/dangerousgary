@@ -173,7 +173,8 @@
         "thief": "Voleur",
         "bard": "Barde",
         "mage": "Magicien",
-        "ranger": "Rôdeur"
+        "ranger": "Rôdeur",
+        "assassin": "Assassin"
       }
     },
     "Attack": {
@@ -330,8 +331,8 @@
       "NextRoundLocked": "Round suivant : tous les combattants doivent avoir joué"
     },
     "Trigger": {
-      "Ongoing": "chaque round",
       "FormulaPlaceholder": "formule, ex. 1d6",
+      "Ongoing": "chaque round",
       "OngoingHint": "L'effet n'est pas subi tout de suite : il est posé sur la cible et proposé au MJ à chaque changement de round, jusqu'à ce qu'il y mette fin.",
       "EveryHit": "à chaque coup",
       "OnDie": "dé {range}",
@@ -399,6 +400,12 @@
       "Apply": "Appliquer",
       "End": "Mettre fin à l'effet",
       "Ended": "terminé"
+    },
+    "Assassin": {
+      "Save": "Sauvegarde de classe Assassin",
+      "Formula": "Moyenne inférieure de FOR, DEX et VOL initiales",
+      "NpcOnly": "Assassin est réservé aux PNJ. Retirez cette classe et ses talents avant de donner la propriété à un joueur.",
+      "Denied": "Action non autorisée."
     }
   }
 }

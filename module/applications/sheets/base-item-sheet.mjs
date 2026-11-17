@@ -1,6 +1,12 @@
+import { isAssassinTalent } from "../../assassin.mjs"
 const { HandlebarsApplicationMixin } = foundry.applications.api
 
 export default class DangerousGaryBaseItemSheet extends HandlebarsApplicationMixin(foundry.applications.sheets.ItemSheetV2) {
+
+  _canRender(options) {
+    if (isAssassinTalent(this.document) && !game.user.isGM) return false
+    return super._canRender(options)
+  }
 
   static SHEET_MODES = { EDIT: 0, PLAY: 1 }
 

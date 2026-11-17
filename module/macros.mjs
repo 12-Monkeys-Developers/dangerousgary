@@ -1,3 +1,4 @@
+import { canManageAssassin, denyAssassin, isAssassinTalent } from "./assassin.mjs"
 export class Macros {
   static createDangerousGaryMacro = async function (dropData, slot) {
     switch (dropData.type) {
@@ -31,18 +32,21 @@ export class Macros {
         break
       }
       case "rollClassSave": {
-        const actor = game.actors.get(dropData.actorId)
+        const actor = dropData.actorUuid ? await fromUuid(dropData.actorUuid) : game.actors.get(dropData.actorId)
         const item = actor?.items.get(dropData.itemId)
-        if (!item) return
-        const command = `const actor = game.actors.get('${dropData.actorId}')\nconst item = actor?.items.get('${dropData.itemId}')\nif (item) actor.rollSave('${dropData.ability}', { useMax: true, talentName: item.name, talentLevel: item.system.level })`
-        const macroName = `${item.name} (${actor.name})`
-        this.createMacro(slot, macroName, command, item.img || "icons/svg/sun.svg")
+        if (!item || item.type !== "talent") return
+        const assassin = isAssassinTalent(item)
+        if (assassin && !canManageAssassin(actor)) return denyAssassin()
+        const key = assassin ? "assassin" : item.system.talentClass
+        const command = `const actor = await fromUuid(${JSON.stringify(actor.uuid)})\nif (actor) await actor.rollClassSave(${JSON.stringify(key)}, { talentId: ${JSON.stringify(item.id)} })`
+        await this.createMacro(slot, `${item.name} (${actor.name})`, command, item.img || "icons/svg/sun.svg", { assassin })
         break
       }
     }
   }
 
-  static createMacro = async function (slot, name, command, img) {
+  static createMacro = async function (slot, name, command, img, { assassin = false } = {}) {
+    if (assassin && !game.user.isGM) return denyAssassin()
     let macro = game.macros.contents.find((m) => m.name === name)
     if (!macro) {
       macro = await Macro.create(
@@ -51,11 +55,13 @@ export class Macros {
           type: "script",
           img: img,
           command: command,
-          flags: { "dangerousgary.macro": true },
+          flags: { "dangerousgary.macro": true, dangerousgary: { assassin } },
+          ...(assassin ? { ownership: { default: 0 } } : {}),
         },
         { displaySheet: false },
       )
     }
+    if (assassin && macro) await macro.update({ command, ownership: { default: 0 }, flags: { ...macro.flags, dangerousgary: { ...macro.flags.dangerousgary, assassin: true } } }, { recursive: false })
     const alreadyInHotbar = Object.values(game.user.hotbar).includes(macro.id)
     if (!alreadyInHotbar) {
       game.user.assignHotbarMacro(macro, slot)

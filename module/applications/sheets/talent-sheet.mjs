@@ -30,6 +30,7 @@ export default class DangerousGaryTalentSheet extends DangerousGaryBaseItemSheet
   async _prepareContext() {
     const choices = this.document.system.schema.fields.talentClass.choices
     const sorted = Object.entries(choices)
+      .filter(([key]) => key !== "assassin" || game.user.isGM)
       .map(([key, label]) => [key, game.i18n.localize(label)])
       .sort((a, b) => a[1].localeCompare(b[1]))
     const talentClassChoices = Object.fromEntries(sorted)

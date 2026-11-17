@@ -9,6 +9,7 @@ export default class DangerousGaryTalentData extends foundry.abstract.TypeDataMo
         blank: true,
         initial: "",
         choices: {
+          assassin: "DANGEROUSGARY.Talent.Classes.assassin",
           cleric: "DANGEROUSGARY.Talent.Classes.cleric",
           fighter: "DANGEROUSGARY.Talent.Classes.fighter",
           paladin: "DANGEROUSGARY.Talent.Classes.paladin",

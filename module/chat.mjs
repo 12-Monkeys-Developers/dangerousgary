@@ -145,10 +145,10 @@ export default class DangerousGaryChat {
    * @description Displays the chat message
    * @returns this instance
    */
-  async display() {
+  async display({ messageMode = game.settings.get("core", "messageMode") } = {}) {
     // Create the chat
     // Le cœur applique la visibilité (destinataires, aveugle) selon le mode choisi dans le tchat
-    this.chat = await ChatMessage.implementation.create(this.chatData, { messageMode: game.settings.get("core", "messageMode") })
+    this.chat = await ChatMessage.implementation.create(this.chatData, { messageMode })
     return this
   }
 }

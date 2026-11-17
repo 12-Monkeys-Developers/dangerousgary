@@ -22,6 +22,7 @@ export default class DangerousGaryCharacterData extends foundry.abstract.TypeDat
       }),
       osmose: new fields.NumberField({ required: true, nullable: false, integer: true, initial: 0, min: 0, max: 3 }),
       classes: new fields.SchemaField({
+        assassin: new fields.NumberField({ required: true, nullable: false, integer: true, initial: 0, min: 0, max: 9 }),
         cleric: new fields.NumberField({ required: true, nullable: false, integer: true, initial: 0, min: 0, max: 9 }),
         fighter: new fields.NumberField({ required: true, nullable: false, integer: true, initial: 0, min: 0, max: 9 }),
         paladin: new fields.NumberField({ required: true, nullable: false, integer: true, initial: 0, min: 0, max: 9 }),

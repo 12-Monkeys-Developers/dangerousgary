@@ -37,6 +37,7 @@
 /* Styles limited to Dangerous Gary sheets */
 .dangerousgary {
   /* Effets continus posés sur un acteur (fiches Personnage et Rencontre) */
+  /* Texte indicatif d'un champ vide : en italique et estompé, pour ne pas être pris pour une valeur saisie */
 }
 .dangerousgary input[type="checkbox"],
 .dangerousgary input[type="radio"] {
@@ -91,11 +92,11 @@
 .dangerousgary .ongoing-effects a:hover {
   color: var(--dg-text-red);
 }
-.dangerousgary.actor.character {
 .dangerousgary input::placeholder {
   font-style: italic;
   opacity: 0.5;
 }
+.dangerousgary.actor.character {
   min-width: 500px;
   /* --- Panel mixin --- */
   /* --- Window content: dark background --- */
@@ -486,6 +487,15 @@
   font-weight: 700;
   font-family: var(--dg-font-body);
   margin: 10px 0 4px;
+}
+.dangerousgary.actor.character .assassin-panel {
+  border-color: #6651ad;
+}
+.dangerousgary.actor.character .assassin-panel .class-name {
+  color: #6651ad;
+}
+.dangerousgary.actor.character .assassin-panel .class-header input {
+  width: 4em;
 }
 .dangerousgary.actor.encounter {
   min-width: 675px;

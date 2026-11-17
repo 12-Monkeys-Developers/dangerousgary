@@ -8,6 +8,28 @@
       <span class="osmose-pip {{#if (gte system.osmose 3)}}filled{{/if}}" {{#unless locked}}data-action="toggleOsmose"{{/unless}} data-value="3"></span>
     </div>
   </div>
+  {{#if canManageAssassin}}
+  <div class="classes-panel panel assassin-panel">
+    <div class="class-header">
+      <span class="class-name">{{localize "DANGEROUSGARY.Talent.Classes.assassin"}}</span>
+      <input type="number" name="system.classes.assassin" value="{{system.classes.assassin}}" min="0" max="9" {{#if locked}}disabled{{/if}} />
+    </div>
+    <p>{{localize "DANGEROUSGARY.Assassin.Save"}} : <strong>{{assassinSave}}</strong> — {{localize "DANGEROUSGARY.Assassin.Formula"}}
+      {{#if system.classes.assassin}}<button type="button" data-action="rollClassSave" data-talent-class="assassin" aria-label="{{localize 'DANGEROUSGARY.Assassin.Save'}}"><i class="fas fa-dice-d20"></i></button>{{/if}}
+    </p>
+    <div class="class-talents">
+      {{#each talentsByClass.assassin as |talent|}}
+      <div class="talent draggable" draggable="true" data-item-id="{{talent.id}}" data-drag-type="rollClassSave" data-talent-class="assassin">
+        <span class="talent-name" data-tooltip-html="{{talent.enrichedDescription}}">{{talent.name}} ({{talent.system.level}})</span>
+        <div class="talent-controls">
+          <button type="button" data-action="rollClassSave" data-talent-class="assassin" data-item-id="{{talent.id}}" aria-label="{{localize 'DANGEROUSGARY.Assassin.Save'}}"><i class="fas fa-dice-d20"></i></button>
+          {{#unless @root.locked}}<a data-action="edit" data-item-id="{{talent.id}}"><i class="fas fa-edit"></i></a><a data-action="delete" data-item-id="{{talent.id}}"><i class="fas fa-trash"></i></a>{{/unless}}
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+  {{/if}}
   <div class="classes-panel panel">
     <div class="classes-grid">
       <div class="class-cell">

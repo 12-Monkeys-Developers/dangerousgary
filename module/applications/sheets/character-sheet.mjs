@@ -1,3 +1,4 @@
+import { CLASS_ABILITIES, canManageAssassin, denyAssassin, isAssassinTalent, visibleAssassinHtml } from "../../assassin.mjs"
 import DangerousGaryChat from "../../chat.mjs"
 import DangerousGaryBaseActorSheet from "./base-actor-sheet.mjs"
 
@@ -69,6 +70,17 @@ export default class DangerousGaryCharacterSheet extends DangerousGaryBaseActorS
       enableClasses,
       locked: this.isPlayMode,
     })
+    context.canManageAssassin = canManageAssassin(this.actor)
+    context.assassinSave = context.canManageAssassin ? this.actor.getClassSaveValue("assassin") : null
+    if (!game.user.isGM) {
+      context.system = this.document.system.toObject()
+      delete context.system.classes.assassin
+      context.system.perk = visibleAssassinHtml(context.system.perk)
+      context.system.biography = visibleAssassinHtml(context.system.biography)
+      context.system.equipmentMisc = visibleAssassinHtml(context.system.equipmentMisc)
+      if (/Assassin/.test(context.system.perkName)) context.system.perkName = ""
+      context.source.system = context.system
+    }
     return context
   }
 
@@ -83,23 +95,23 @@ export default class DangerousGaryCharacterSheet extends DangerousGaryBaseActorS
         }
         break
       case "main":
-        context.enrichedPerk = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.document.system.perk, { async: true })
+        context.enrichedPerk = await foundry.applications.ux.TextEditor.implementation.enrichHTML(visibleAssassinHtml(this.document.system.perk), { async: true })
         break
       case "biography":
         context.tab = context.tabs.biography
-        context.enrichedBiography = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.document.system.biography, { async: true })
+        context.enrichedBiography = await foundry.applications.ux.TextEditor.implementation.enrichHTML(visibleAssassinHtml(this.document.system.biography), { async: true })
         break
       case "inventory":
         context.tab = context.tabs.inventory
         context.items = []
         context.artefacts = []
         for (const item of this.actor.itemTypes.equipment) {
-          item.enrichedDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(item.system.description, { async: true })
+          item.enrichedDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(visibleAssassinHtml(item.system.description), { async: true })
           context.items.push(item)
         }
         if (context.enableClasses) {
           for (const item of this.actor.itemTypes.artefact ?? []) {
-            item.enrichedDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(item.system.description, { async: true })
+            item.enrichedDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(visibleAssassinHtml(item.system.description), { async: true })
             const bestClassLevel = item.system.bestClassLevel(this.document)
             const allowedClassLabels = item.system.visibleClasses().map((key) => game.i18n.localize(`DANGEROUSGARY.Talent.Classes.${key}`))
             const capacities = []
@@ -107,7 +119,7 @@ export default class DangerousGaryCharacterSheet extends DangerousGaryBaseActorS
               capacities.push({
                 key,
                 level: cap.level,
-                description: await foundry.applications.ux.TextEditor.implementation.enrichHTML(cap.description, { async: true }),
+                description: await foundry.applications.ux.TextEditor.implementation.enrichHTML(visibleAssassinHtml(cap.description), { async: true }),
                 unlocked: bestClassLevel >= cap.level,
               })
             }
@@ -119,15 +131,16 @@ export default class DangerousGaryCharacterSheet extends DangerousGaryBaseActorS
             context.artefacts.push(item)
           }
         }
-        context.enrichedMiscEquipment = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.document.system.equipmentMisc, { async: true })
+        context.enrichedMiscEquipment = await foundry.applications.ux.TextEditor.implementation.enrichHTML(visibleAssassinHtml(this.document.system.equipmentMisc), { async: true })
         break
       case "classes":
         context.tab = context.tabs.classes
-        const classKeys = ["cleric", "fighter", "paladin", "druid", "monk", "thief", "bard", "mage", "ranger"]
+        const classKeys = [...Object.keys(CLASS_ABILITIES), ...(context.canManageAssassin ? ["assassin"] : [])]
         context.talentsByClass = {}
         for (const key of classKeys) context.talentsByClass[key] = []
         const talentsRaw = this.actor.itemTypes.talent ?? []
         for (const talent of talentsRaw) {
+          if (isAssassinTalent(talent) && !context.canManageAssassin) continue
           talent.enrichedDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(talent.system.description, { async: true })
           const classKey = talent.system.talentClass
           if (classKey && context.talentsByClass[classKey]) {
@@ -248,11 +261,13 @@ export default class DangerousGaryCharacterSheet extends DangerousGaryBaseActorS
         break
       case "rollClassSave":
         const ability = DangerousGaryCharacterSheet.CLASS_ABILITY[el.dataset.talentClass]
-        if (!ability) return
+        if (el.dataset.talentClass === "assassin" ? !canManageAssassin(this.actor) : !ability) return
         dragData = {
           type: "rollClassSave",
           actorId: this.document.id,
+          actorUuid: this.document.uuid,
           itemId: el.dataset.itemId,
+          talentClass: el.dataset.talentClass,
           ability,
         }
         break
@@ -282,6 +297,7 @@ export default class DangerousGaryCharacterSheet extends DangerousGaryBaseActorS
       case "Item":
         const item = await fromUuid(data.uuid)
         if (item.type !== "equipment" && item.type !== "talent" && item.type !== "artefact") return
+        if (isAssassinTalent(item) && !canManageAssassin(this.actor)) return denyAssassin()
         if (item.type === "talent") {
           // Un talent ne s'ajoute qu'en mode Écriture
           if (!this.isEditMode) {
@@ -440,21 +456,12 @@ export default class DangerousGaryCharacterSheet extends DangerousGaryBaseActorS
   }
 
   async _updateClassLevel(classKey) {
+    if (classKey === "assassin" && !canManageAssassin(this.actor)) return denyAssassin()
     const count = this.actor.itemTypes.talent.filter(t => t.system.talentClass === classKey).length
     await this.actor.update({ [`system.classes.${classKey}`]: count })
   }
 
-  static CLASS_ABILITY = {
-    cleric: "str",
-    fighter: "str",
-    paladin: "str",
-    druid: "dex",
-    monk: "dex",
-    thief: "dex",
-    bard: "wil",
-    mage: "wil",
-    ranger: "wil",
-  }
+  static CLASS_ABILITY = CLASS_ABILITIES
 
   static async #onToggleOsmose(event, target) {
     const clicked = Number(target.dataset.value)
@@ -469,7 +476,7 @@ export default class DangerousGaryCharacterSheet extends DangerousGaryBaseActorS
     const item = this.actor.items.get(itemId)
     if (!item) return
     const capacity = item.system.artefactCapacities[capacityKey]
-    if (!capacity) return
+    if (!capacity || !item.system.visibleCapacities().some(([key]) => key === capacityKey)) return
     const enrichedDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(capacity.description, { async: true })
     const chatData = {
       itemName: item.name,
@@ -481,16 +488,13 @@ export default class DangerousGaryCharacterSheet extends DangerousGaryBaseActorS
       .withTemplate("systems/dangerousgary/templates/artefact-use.hbs")
       .withData(chatData)
       .create()
-    if (chat) await chat.display()
+    const assassinUse = item.system.allowedClasses.has("assassin") && item.system.bestClassLevel(this.actor, { isGM: false }) < capacity.level
+    if (chat) await chat.display(assassinUse ? { messageMode: "gm" } : {})
   }
 
   static async #onRollClassSave(event, target) {
     const talentClass = target.dataset.talentClass
-    const ability = DangerousGaryCharacterSheet.CLASS_ABILITY[talentClass]
-    if (!ability) return
-    const itemId = target.dataset.itemId
-    const talent = this.actor.items.get(itemId)
-    await this.actor.rollSave(ability, { useMax: true, talentName: talent?.name, talentLevel: talent?.system.level })
+    await this.actor.rollClassSave(talentClass, { talentId: target.dataset.itemId ?? null })
   }
 
   //#endregion

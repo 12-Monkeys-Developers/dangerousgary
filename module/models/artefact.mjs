@@ -8,6 +8,7 @@ export default class DangerousGaryArtefactData extends foundry.abstract.TypeData
       allowedClasses: new fields.SetField(
         new fields.StringField({
           choices: {
+            assassin: "DANGEROUSGARY.Talent.Classes.assassin",
             bard: "DANGEROUSGARY.Talent.Classes.bard",
             cleric: "DANGEROUSGARY.Talent.Classes.cleric",
             druid: "DANGEROUSGARY.Talent.Classes.druid",
@@ -38,10 +39,10 @@ export default class DangerousGaryArtefactData extends foundry.abstract.TypeData
    * @param {Actor|null} actor Le personnage.
    * @returns {number}
    */
-  bestClassLevel(actor) {
+  bestClassLevel(actor, user = game.user) {
     const classes = actor?.system.classes
     if (!classes) return 0
-    return Math.max(0, ...Array.from(this.allowedClasses, (key) => classes[key] ?? 0))
+    return Math.max(0, ...Array.from(this.allowedClasses).filter(key => key !== "assassin" || user.isGM).map(key => classes[key] ?? 0))
   }
 
   /**
@@ -52,8 +53,9 @@ export default class DangerousGaryArtefactData extends foundry.abstract.TypeData
    */
   visibleCapacities(user = game.user) {
     const capacities = Object.entries(this.artefactCapacities)
+    if (!user.isGM && this.allowedClasses.size && !Array.from(this.allowedClasses).some(key => key !== "assassin")) return []
     if (user.isGM || game.settings.get("dangerousgary", "revealArtefactCapacities")) return capacities
-    const level = this.bestClassLevel(this.parent.actor)
+    const level = this.bestClassLevel(this.parent.actor, user)
     return capacities.filter(([, capacity]) => capacity.level <= level)
   }
 
@@ -64,7 +66,7 @@ export default class DangerousGaryArtefactData extends foundry.abstract.TypeData
    * @returns {string[]} Les clés des classes.
    */
   visibleClasses(user = game.user) {
-    const allowed = Array.from(this.allowedClasses)
+    const allowed = Array.from(this.allowedClasses).filter(key => key !== "assassin" || user.isGM)
     if (user.isGM || game.settings.get("dangerousgary", "revealArtefactCapacities")) return allowed
     const classes = this.parent.actor?.system.classes
     if (!classes) return []

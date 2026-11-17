@@ -1,3 +1,4 @@
+import { secretMacroAllowed } from "./module/assassin.mjs"
 // Import Modules
 import * as models from "./module/models/_module.mjs"
 import * as documents from "./module/documents/_module.mjs"
@@ -97,3 +98,6 @@ Hooks.on("hotbarDrop", (bar, data, slot) => {
     return false
   }
 })
+
+Hooks.on("preCreateMacro", secretMacroAllowed)
+Hooks.on("preUpdateMacro", secretMacroAllowed)

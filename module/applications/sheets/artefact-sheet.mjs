@@ -1,3 +1,4 @@
+import { visibleAssassinHtml } from "../../assassin.mjs"
 import DangerousGaryBaseItemSheet from "./base-item-sheet.mjs"
 
 export default class DangerousGaryArtefactSheet extends DangerousGaryBaseItemSheet {
@@ -38,21 +39,21 @@ export default class DangerousGaryArtefactSheet extends DangerousGaryBaseItemShe
       enrichedCapacities.push({
         key,
         level: cap.level,
-        description: cap.description,
-        enrichedDescription: await foundry.applications.ux.TextEditor.implementation.enrichHTML(cap.description, { async: true }),
+        description: visibleAssassinHtml(cap.description),
+        enrichedDescription: await foundry.applications.ux.TextEditor.implementation.enrichHTML(visibleAssassinHtml(cap.description), { async: true }),
       })
     }
     // Capacités non dévoilées à un joueur : les classes nécessaires sont affichées en lecture seule, limitées à celles qu'il peut voir
-    const classesRestricted = !game.user.isGM && !game.settings.get("dangerousgary", "revealArtefactCapacities")
+    const classesRestricted = !game.user.isGM
     return {
       classesRestricted,
       visibleClassLabels: this.document.system.visibleClasses().map((key) => game.i18n.localize(`DANGEROUSGARY.Talent.Classes.${key}`)),
       fields: this.document.schema.fields,
       systemFields: this.document.system.schema.fields,
       item: this.document,
-      system: this.document.system,
+      system: game.user.isGM ? this.document.system : { ...this.document.system.toObject(), description: visibleAssassinHtml(this.document.system.description) },
       source: this.document.toObject(),
-      enrichedDescription: await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.document.system.description, { async: true }),
+      enrichedDescription: await foundry.applications.ux.TextEditor.implementation.enrichHTML(visibleAssassinHtml(this.document.system.description), { async: true }),
       enrichedCapacities,
       canAddCapacity: Object.keys(capacities).length < 3 && Object.keys(capacities).length + this.document.system.allowedClasses.size < 4,
       capacityLevelField: this.document.system.schema.fields.artefactCapacities.element.fields.level,

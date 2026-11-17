@@ -173,7 +173,8 @@
         "thief": "Thief",
         "bard": "Bard",
         "mage": "Mage",
-        "ranger": "Ranger"
+        "ranger": "Ranger",
+        "assassin": "Assassin"
       }
     },
     "Attack": {
@@ -330,8 +331,8 @@
       "NextRoundLocked": "Next round: every combatant must have acted"
     },
     "Trigger": {
-      "Ongoing": "every round",
       "FormulaPlaceholder": "formula, e.g. 1d6",
+      "Ongoing": "every round",
       "OngoingHint": "The effect is not applied at once: it is put on the target and offered to the GM at each new round, until they end it.",
       "EveryHit": "every hit",
       "OnDie": "die {range}",
@@ -399,6 +400,12 @@
       "Apply": "Apply",
       "End": "End the effect",
       "Ended": "ended"
+    },
+    "Assassin": {
+      "Save": "Assassin class save",
+      "Formula": "Rounded-down average of initial STR, DEX and WIL",
+      "NpcOnly": "Assassin is restricted to NPCs. Remove this class and its talents before granting ownership to a player.",
+      "Denied": "Action not allowed."
     }
   }
 }

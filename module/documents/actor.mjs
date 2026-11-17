@@ -1,3 +1,4 @@
+import { CLASS_ABILITIES, actorUpdateAllowed, canManageAssassin, denyAssassin, hasAssassin, playerOwnsSource } from "../assassin.mjs"
 import DangerousGaryChat from "../chat.mjs"
 import { DamageCard } from "../damage.mjs"
 import { CONSTRAINING_STATUSES, EXALTING_STATUS, ONGOING_ICONS, STATUS_EFFECTS, UNLUCKY_STATUS } from "../config.mjs"
@@ -12,6 +13,7 @@ export default class DangerousGaryActor extends Actor {
   }
 
   async _preCreate(data, options, user) {
+    if (hasAssassin(data) && (!user.isGM || this.type !== "character" || playerOwnsSource(data))) return denyAssassin()
     await super._preCreate(data, options, user)
 
     // Configure prototype token settings
@@ -26,6 +28,26 @@ export default class DangerousGaryActor extends Actor {
     }
   }
 
+  async _preUpdate(changes, options, user) {
+    if (!actorUpdateAllowed(this, changes, user)) return false
+    return super._preUpdate(changes, options, user)
+  }
+
+  getClassSaveValue(classKey) {
+    if (classKey === "assassin") return Math.floor(["str", "dex", "wil"].reduce((sum, key) => sum + this.system.abilities[key].max, 0) / 3)
+    const ability = CLASS_ABILITIES[classKey]
+    return ability ? this.system.abilities[ability].max : null
+  }
+
+  async rollClassSave(classKey, { talentId = null } = {}) {
+    const talent = talentId ? this.items.get(talentId) : null
+    if (talentId && (!talent || talent.type !== "talent" || talent.system.talentClass !== classKey)) return
+    if (classKey === "assassin" && (!canManageAssassin(this) || !this.system.classes.assassin)) return denyAssassin()
+    const value = this.getClassSaveValue(classKey)
+    if (value === null) return
+    return this.rollSave(CLASS_ABILITIES[classKey] ?? "assassin", { useMax: true, talentName: talent?.name, talentLevel: talent?.system.level, classKey })
+  }
+
   /**
    * Roll a save for ability
    * @param {*} ability
@@ -35,17 +57,19 @@ export default class DangerousGaryActor extends Actor {
    * @param root0.talentLevel
    * @returns
    */
-  async rollSave(ability, { useMax = false, talentName = null, talentLevel = null } = {}) {
+  async rollSave(ability, { useMax = false, talentName = null, talentLevel = null, classKey = null } = {}) {
+    const secret = ability === "assassin" || classKey === "assassin"
+    if (secret && (!canManageAssassin(this) || !this.system.classes.assassin)) return denyAssassin()
     // Malchance : deux dés, le pire (le plus haut) est gardé
     const isUnlucky = this.statuses.has(UNLUCKY_STATUS)
     const roll = await new Roll(isUnlucky ? "2d20kh" : "1d20").roll()
     const total = roll.total
-    const abilityValue = useMax ? this.system.abilities[ability].max : this.system.abilities[ability].value
+    const abilityValue = secret ? this.getClassSaveValue("assassin") : useMax ? this.system.abilities[ability].max : this.system.abilities[ability].value
     const isCritical = total === 1
     const isFumble = total === 20
-    const success = total <= abilityValue || isCritical
+    const success = isCritical || (!isFumble && total <= abilityValue)
 
-    const abilityShort = game.i18n.localize(`DANGEROUSGARY.Labels.short.${ability}`)
+    const abilityShort = game.i18n.localize(secret ? "DANGEROUSGARY.Talent.Classes.assassin" : `DANGEROUSGARY.Labels.short.${ability}`)
     // Sauvegarde de classe (valeur max) : le libellé de la carte la distingue de la sauvegarde de caractéristique
     const introText = game.i18n.format(useMax ? "DANGEROUSGARY.Roll.ClassSaveRoll" : "DANGEROUSGARY.Roll.SaveRoll", { ability: abilityShort, value: abilityValue })
 
@@ -74,7 +98,7 @@ export default class DangerousGaryActor extends Actor {
 
     let chat = await new DangerousGaryChat(this).withTemplate("systems/dangerousgary/templates/roll-result.hbs").withData(chatData).withRolls([roll]).create()
 
-    await chat.display()
+    await chat.display(secret ? { messageMode: "gm" } : {})
 
     return { roll, total, success }
   }

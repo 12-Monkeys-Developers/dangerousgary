@@ -81,7 +81,9 @@ Ce système est développé par Kristov.
 
   ## Classes & Talents (optionnel)
 
-  - 9 classes : Clerc, Guerrier, Paladin, Druide, Moine, Voleur, Barde, Mage, Rôdeur — chacune avec un niveau de 0 à 9
+  - 9 classes ordinaires : Clerc, Guerrier, Paladin, Druide, Moine, Voleur, Barde, Mage, Rôdeur — chacune avec un niveau de 0 à 9
+  - Assassin : dixième classe réservée aux PNJ sans propriétaire joueur, avec un bloc indigo visible uniquement du MJ. Ses talents sont des objets créés directement sur le PNJ, sans compendium dédié.
+  - Sauvegarde d’Assassin : moyenne des maxima de FOR, DEX et VOL, arrondie à l’inférieur. Les jets et les macros associés sont privés MJ ; Malchance et le coût d’un talent raté s’appliquent normalement.
   - Talents associés à une classe, avec niveau (1-9), description et marqueur spécial
   - Jet de classe : jet de sauvegarde contre le maximum de la caractéristique associée (FOR pour Clerc/Guerrier/Paladin, DEX pour Druide/Moine/Voleur, VOL pour Barde/Mage/Rôdeur)
   - Échec de talent : perte de PV égale au niveau du talent, le surplus déborde sur la FOR
@@ -126,3 +128,9 @@ Nous serons ravis d'y avoir vos retours sur le système, des signalements de bug
 
 <li>Foundry VTT support is covered by the following license: <a href="https://foundryvtt.com/article/license/">Limited License Agreement for module development 17/02/2021</a>.</li>
 </ul>
+
+## Classe Assassin : accès
+
+Le MJ peut sélectionner Assassin sur une fiche Talent et parmi les classes d’un artefact. Les joueurs ne voient ni ce choix, ni les talents d’Assassin, ni leur sauvegarde. Le réglage « Dévoiler les capacités des artefacts » ne révèle pas la classe Assassin. Une fiche ayant un niveau ou un talent d’Assassin ne peut pas être attribuée à un joueur comme propriétaire : retirer d’abord ces données, ou garder le joueur observateur.
+
+Cette restriction masque les interfaces ; les données restent présentes dans les documents transmis au navigateur. Elle ne constitue pas un stockage confidentiel contre un utilisateur inspectant la console.
