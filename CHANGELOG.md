@@ -1,3 +1,8 @@
+# 1.4.1
+
+- Osmose : un clic sur le mot Osmose (onglet Classe et talents) lance la sauvegarde d'Osmose ; ratée, une case de la jauge est cochée et la carte indique l'Atout d'Osmose de la classe la plus haute, ou la Disparition si les trois cases l'étaient déjà
+- Osmose : nouvelle case « Donjon » après la jauge (signalée dans l'en-tête de la fiche) ; dans un Donjon, la sauvegarde de classe d'un talent reçoit un bonus de +3 par case cochée, et un 1 sur une sauvegarde fait proposer la sauvegarde d'Osmose par un bouton sur la carte du tchat
+
 # 1.4.0
 
 - Ciblage : un jet de dégâts lancé avec des tokens ciblés applique les dégâts à chaque cible (armure déduite, armure équipée pour un personnage), les dégâts qui débordent des PV étant retirés de la Force ; la carte du tchat liste les cibles et propose la sauvegarde de Force. Les joueurs ne voient que les dégâts infligés à une rencontre, le MJ voit son armure et les dégâts réels

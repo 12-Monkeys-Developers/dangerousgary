@@ -14,6 +14,9 @@
   "DANGEROUSGARY": {
     "Character": {
       "FIELDS": {
+        "inDungeon": {
+          "label": "Dans un Donjon"
+        },
         "biography": {
           "label": "Biographie",
           "hint": "Une brève description de votre personnage."
@@ -296,6 +299,7 @@
     "Roll": {
       "SaveRoll": "Sauvegarde de {ability} ({value})",
       "ClassSaveRoll": "Sauvegarde de classe {ability} ({value})",
+      "ClassSaveRollOsmose": "Sauvegarde de classe {ability} ({value} + {bonus} Osmose)",
       "Success": "Succès",
       "Failure": "Échec",
       "Critical": "Critique",
@@ -406,6 +410,20 @@
       "Formula": "Moyenne inférieure de FOR, DEX et VOL initiales",
       "NpcOnly": "Assassin est réservé aux PNJ. Retirez cette classe et ses talents avant de donner la propriété à un joueur.",
       "Denied": "Action non autorisée."
+    },
+    "Osmose": {
+      "Rolled": "Sauvegarde d'Osmose lancée",
+      "DungeonHint": "Le personnage est dans un Donjon : un 1 sur une sauvegarde impose une sauvegarde d'Osmose",
+      "InDungeon": "Dans un Donjon",
+      "Required": "Un 1 dans un Donjon : sauvegarde d'Osmose requise",
+      "RollButton": "Sauvegarde d'Osmose",
+      "Roll": "Sauvegarde d'Osmose (niveau {level})",
+      "Tooltip": "Sauvegarde d'Osmose : réussie si le d20 dépasse strictement le niveau le plus élevé du donjexeur",
+      "RollTooltip": "Lancer une sauvegarde d'Osmose",
+      "Gauge": "Osmosé jusqu'à la sortie du Donjon : jauge {before} → {after}",
+      "Asset": "Atout d'Osmose : {classes}",
+      "Or": " ou ",
+      "Disappeared": "Disparition ! Les trois cases étaient cochées : le donjexeur est absorbé par le Donjon."
     }
   }
 }

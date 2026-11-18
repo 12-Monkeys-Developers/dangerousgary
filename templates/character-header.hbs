@@ -1,7 +1,12 @@
 <div class="standard-form character-header">
   <img class="character-img" src="{{actor.img}}" data-edit="img" data-action='editImage' data-tooltip="{{actor.name}}" />
   <div class="character-details">
-    <div class="character-name">{{formInput fields.name value=source.name disabled=locked }}</div>
+    <div class="character-name">
+      {{formInput fields.name value=source.name disabled=locked }}
+      {{#if system.inDungeon}}
+        <span class="dungeon-badge" data-tooltip="{{localize 'DANGEROUSGARY.Osmose.DungeonHint'}}"><i class="fas fa-dungeon"></i> {{localize "DANGEROUSGARY.Osmose.InDungeon"}}</span>
+      {{/if}}
+    </div>
     <div class="character-short-description">{{formInput systemFields.shortDescription value=system.shortDescription }}</div>
     {{#if ongoingEffects.length}}
     <ul class="ongoing-effects">

@@ -155,6 +155,25 @@
   flex: 1;
   padding-left: 12px;
 }
+.dangerousgary.actor.character .character-header .character-name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.dangerousgary.actor.character .character-header .character-name input {
+  flex: 1;
+  min-width: 0;
+}
+.dangerousgary.actor.character .character-header .dungeon-badge {
+  flex: none;
+  padding: 2px 8px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: #fff;
+  white-space: nowrap;
+  background: #4a148c;
+  border-radius: 4px;
+}
 .dangerousgary.actor.character .character-header .character-name input {
   font-family: var(--dg-font-title);
   color: var(--dg-text-red);
@@ -1289,6 +1308,18 @@
   display: flex;
   gap: 8px;
 }
+.dangerousgary.actor.character .osmose-block .osmose-dungeon {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 8px;
+  font-weight: bold;
+  color: var(--dg-text-red);
+  cursor: pointer;
+}
+.dangerousgary.actor.character .osmose-block .osmose-dungeon input {
+  margin: 0;
+}
 .dangerousgary.actor.character .osmose-block .osmose-pip {
   width: 20px;
   height: 20px;
@@ -1560,6 +1591,34 @@
 }
 .dice-roll .roll-icon.exalted {
   color: #f9a825;
+}
+.dice-roll .roll-osmose {
+  margin-top: 4px;
+  text-align: center;
+  font-weight: bold;
+  color: #4a148c;
+}
+.dice-roll .roll-osmose.disappeared {
+  color: #b71c1c;
+}
+.dice-roll .osmose-rolled {
+  display: block;
+  margin-top: 4px;
+  font-weight: normal;
+  color: #555;
+}
+.dice-roll .osmose-roll-button {
+  display: block;
+  margin: 4px auto 0;
+  font-family: var(--dg-font-body);
+  color: #222;
+  background: #fff;
+  border: 1px solid #4a148c;
+  cursor: pointer;
+}
+.dice-roll .osmose-roll-button:hover:not(:disabled) {
+  color: #fff;
+  background: #4a148c;
 }
 .dice-roll .roll-trigger {
   margin-top: 4px;

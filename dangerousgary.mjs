@@ -43,6 +43,7 @@ Hooks.once('init', async function () {
   // Requêtes traitées par le MJ actif pour les joueurs
   CONFIG.queries[DamageCard.QUERY_APPLY] = DamageCard._handleApplyQuery
   CONFIG.queries[DamageCard.QUERY_UPDATE_TARGET] = DamageCard._handleUpdateTargetQuery
+  CONFIG.queries[documents.DangerousGaryChatMessage.QUERY_MARK_OSMOSE] = documents.DangerousGaryChatMessage._handleMarkOsmoseQuery
 
   // Register sheet application classes
   foundry.documents.collections.Actors.unregisterSheet("core", foundry.appv1.sheets.ActorSheet);

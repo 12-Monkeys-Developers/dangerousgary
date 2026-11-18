@@ -21,6 +21,8 @@ export default class DangerousGaryCharacterData extends foundry.abstract.TypeDat
         third: new fields.StringField({ required: false, blank: true, initial: "" }),
       }),
       osmose: new fields.NumberField({ required: true, nullable: false, integer: true, initial: 0, min: 0, max: 3 }),
+      // Le personnage est dans un Donjon : bonus d'Osmose aux talents, sauvegarde d'Osmose sur un 1
+      inDungeon: new fields.BooleanField({ required: true, nullable: false, initial: false }),
       classes: new fields.SchemaField({
         assassin: new fields.NumberField({ required: true, nullable: false, integer: true, initial: 0, min: 0, max: 9 }),
         cleric: new fields.NumberField({ required: true, nullable: false, integer: true, initial: 0, min: 0, max: 9 }),

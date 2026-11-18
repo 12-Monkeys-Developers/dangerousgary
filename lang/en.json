@@ -14,6 +14,9 @@
   "DANGEROUSGARY": {
     "Character": {
       "FIELDS": {
+        "inDungeon": {
+          "label": "In a Dungeon"
+        },
         "biography": {
           "label": "Biography",
           "hint": "A brief description of your character."
@@ -296,6 +299,7 @@
     "Roll": {
       "SaveRoll": "{ability} Saving Throw ({value})",
       "ClassSaveRoll": "{ability} Class Saving Throw ({value})",
+      "ClassSaveRollOsmose": "{ability} Class Saving Throw ({value} + {bonus} Osmosis)",
       "Success": "Success",
       "Failure": "Failure",
       "Critical": "Critical",
@@ -406,6 +410,20 @@
       "Formula": "Rounded-down average of initial STR, DEX and WIL",
       "NpcOnly": "Assassin is restricted to NPCs. Remove this class and its talents before granting ownership to a player.",
       "Denied": "Action not allowed."
+    },
+    "Osmose": {
+      "Rolled": "Osmosis save rolled",
+      "DungeonHint": "The character is in a Dungeon: a 1 on a save requires an Osmosis save",
+      "InDungeon": "In a Dungeon",
+      "Required": "A 1 in a Dungeon: Osmosis save required",
+      "RollButton": "Osmosis save",
+      "Roll": "Osmosis save (level {level})",
+      "Tooltip": "Osmosis save: passed if the d20 is strictly higher than the character's highest level",
+      "RollTooltip": "Roll an Osmosis save",
+      "Gauge": "Osmosed until leaving the Dungeon: gauge {before} → {after}",
+      "Asset": "Osmosis asset: {classes}",
+      "Or": " or ",
+      "Disappeared": "Disappearance! All three boxes were checked: the character is absorbed by the Dungeon."
     }
   }
 }

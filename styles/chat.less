@@ -116,6 +116,39 @@
     }
   }
 
+  .roll-osmose {
+    margin-top: 4px;
+    text-align: center;
+    font-weight: bold;
+    color: #4a148c;
+
+    &.disappeared {
+      color: #b71c1c;
+    }
+  }
+
+  .osmose-rolled {
+    display: block;
+    margin-top: 4px;
+    font-weight: normal;
+    color: #555;
+  }
+
+  .osmose-roll-button {
+    display: block;
+    margin: 4px auto 0;
+    font-family: var(--dg-font-body);
+    color: #222;
+    background: #fff;
+    border: 1px solid #4a148c;
+    cursor: pointer;
+
+    &:hover:not(:disabled) {
+      color: #fff;
+      background: #4a148c;
+    }
+  }
+
   .roll-trigger {
     margin-top: 4px;
     text-align: center;

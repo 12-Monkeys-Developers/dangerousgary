@@ -1,12 +1,17 @@
 <section class="tab standard-form character-classes {{tab.cssClass}}" data-group="primary" data-tab="classes" {{#unless enableClasses}}hidden{{/unless}}>
 {{#if enableClasses}}
   <div class="osmose-block">
-    <span class="osmose-label">{{localize "DANGEROUSGARY.Labels.long.osmose"}}</span>
+    <span class="osmose-label rollable" data-action="rollOsmose" data-tooltip="{{localize 'DANGEROUSGARY.Osmose.RollTooltip'}}">{{localize "DANGEROUSGARY.Labels.long.osmose"}}</span>
     <div class="osmose-pips {{#if locked}}disabled{{/if}}">
       <span class="osmose-pip {{#if (gte system.osmose 1)}}filled{{/if}}" {{#unless locked}}data-action="toggleOsmose"{{/unless}} data-value="1"></span>
       <span class="osmose-pip {{#if (gte system.osmose 2)}}filled{{/if}}" {{#unless locked}}data-action="toggleOsmose"{{/unless}} data-value="2"></span>
       <span class="osmose-pip {{#if (gte system.osmose 3)}}filled{{/if}}" {{#unless locked}}data-action="toggleOsmose"{{/unless}} data-value="3"></span>
     </div>
+    {{!-- État de situation : modifiable dans les deux modes --}}
+    <label class="osmose-dungeon" data-tooltip="{{localize 'DANGEROUSGARY.Osmose.DungeonHint'}}">
+      <input type="checkbox" name="system.inDungeon" {{checked system.inDungeon}} />
+      <i class="fas fa-dungeon"></i> {{localize "DANGEROUSGARY.Osmose.InDungeon"}}
+    </label>
   </div>
   {{#if canManageAssassin}}
   <div class="classes-panel panel assassin-panel">

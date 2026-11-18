@@ -34,6 +34,7 @@ export default class DangerousGaryCharacterSheet extends DangerousGaryBaseActorS
       createItem: DangerousGaryCharacterSheet.#onCreateItem,
       rollClassSave: DangerousGaryCharacterSheet.#onRollClassSave,
       toggleOsmose: DangerousGaryCharacterSheet.#onToggleOsmose,
+      rollOsmose: DangerousGaryCharacterSheet.#onRollOsmose,
       useArtefact: DangerousGaryCharacterSheet.#onUseArtefact,
     },
   }
@@ -462,6 +463,11 @@ export default class DangerousGaryCharacterSheet extends DangerousGaryBaseActorS
   }
 
   static CLASS_ABILITY = CLASS_ABILITIES
+
+  /** Clic sur le mot Osmose : sauvegarde d'Osmose. */
+  static async #onRollOsmose() {
+    await this.actor.rollOsmose()
+  }
 
   static async #onToggleOsmose(event, target) {
     const clicked = Number(target.dataset.value)

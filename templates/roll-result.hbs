@@ -3,7 +3,7 @@
     <div class="roll-talent-name">{{talentName}}</div>
   {{/if}}
   <div class="roll-line">
-    <span class="roll-label" {{#if (eq rollType "save")}}data-tooltip="{{#if isClassSave}}{{localize 'DANGEROUSGARY.Roll.ClassSave'}}{{else}}{{localize 'DANGEROUSGARY.Roll.AbilitySave'}}{{/if}}"{{/if}}>{{{introText}}}</span>
+    <span class="roll-label" {{#if (eq rollType "save")}}data-tooltip="{{#if isOsmoseSave}}{{localize 'DANGEROUSGARY.Osmose.Tooltip'}}{{else if isClassSave}}{{localize 'DANGEROUSGARY.Roll.ClassSave'}}{{else}}{{localize 'DANGEROUSGARY.Roll.AbilitySave'}}{{/if}}"{{/if}}>{{{introText}}}</span>
     <span class="roll-total" {{#if formula}}data-tooltip="{{formula}}"{{/if}}>{{total}}</span>
     {{#if (eq rollType "save")}}
       {{#if success}}
@@ -33,6 +33,23 @@
       <span class="roll-icon exalted" data-tooltip="{{localize 'DANGEROUSGARY.Roll.Exalted'}}"><i class="fas fa-crown"></i></span>
     {{/if}}
   </div>
+  {{#if osmoseRequired}}
+    <div class="roll-osmose">
+      <i class="fas fa-dungeon"></i> {{localize "DANGEROUSGARY.Osmose.Required"}}
+      <button type="button" class="osmose-roll-button" data-action="rollOsmose" data-actor-uuid="{{actorUuid}}">
+        <i class="fas fa-dice-d20"></i> {{localize "DANGEROUSGARY.Osmose.RollButton"}}
+      </button>
+    </div>
+  {{/if}}
+  {{#if osmoseGauge}}
+    <div class="roll-osmose"><i class="fas fa-eye"></i> {{osmoseGauge}}</div>
+  {{/if}}
+  {{#if osmoseAsset}}
+    <div class="roll-osmose">{{osmoseAsset}}</div>
+  {{/if}}
+  {{#if osmoseDisappeared}}
+    <div class="roll-osmose disappeared"><i class="fas fa-ghost"></i> {{localize "DANGEROUSGARY.Osmose.Disappeared"}}</div>
+  {{/if}}
   {{#if ignoreArmour}}
     <div class="roll-trigger"><i class="fas fa-shield-slash"></i> {{localize "DANGEROUSGARY.Roll.IgnoreArmour"}}</div>
   {{/if}}

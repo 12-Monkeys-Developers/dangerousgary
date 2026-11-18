@@ -12,6 +12,7 @@ export default class DangerousGaryChatMessage extends ChatMessage {
     // Jet caché à cet utilisateur : le cœur a déjà rendu un contenu neutre, la carte dévoilerait le résultat et les cibles
     if (this.type === "damage" && this.isContentVisible) await this._renderDamageCard(html)
     if (this.type === "round" && this.isContentVisible) await this._renderRoundCard(html)
+    this._activateOsmoseButton(html)
     return html
   }
 
@@ -37,6 +38,70 @@ export default class DangerousGaryChatMessage extends ChatMessage {
           return DamageCard.panToToken(button.dataset.tokenUuid)
       }
     })
+  }
+
+  static QUERY_MARK_OSMOSE = "dangerousgary.markOsmoseRolled"
+
+  /**
+   * Bouton « Sauvegarde d'Osmose » d'une sauvegarde obtenant un 1 dans un Donjon : réservé au MJ et aux propriétaires
+   * du personnage, retiré pour les autres. Une fois la sauvegarde lancée, le message le retient (flag osmoseRolled)
+   * et le bouton est remplacé pour tout le monde par « Sauvegarde d'Osmose lancée ».
+   * @param {HTMLElement} html L'élément du message.
+   */
+  _activateOsmoseButton(html) {
+    const button = html.querySelector('[data-action="rollOsmose"]')
+    if (!button) return
+    if (this.getFlag("dangerousgary", "osmoseRolled")) {
+      const done = document.createElement("span")
+      done.classList.add("osmose-rolled")
+      done.innerHTML = `<i class="fas fa-check"></i> ${game.i18n.localize("DANGEROUSGARY.Osmose.Rolled")}`
+      button.replaceWith(done)
+      return
+    }
+    const actor = fromUuidSync(button.dataset.actorUuid)
+    if (!actor || !(game.user.isGM || actor.isOwner)) {
+      button.remove()
+      return
+    }
+    button.addEventListener("click", async (event) => {
+      event.preventDefault()
+      if (this.getFlag("dangerousgary", "osmoseRolled")) return
+      button.disabled = true
+      await actor.rollOsmose()
+      await this.#markOsmoseRolled()
+    })
+  }
+
+  /**
+   * Note dans le message que la sauvegarde d'Osmose a été lancée : directement si l'utilisateur peut modifier le message,
+   * sinon par le MJ actif.
+   * @returns {Promise<void>}
+   */
+  async #markOsmoseRolled() {
+    if (this.canUserModify(game.user, "update")) {
+      await this.setFlag("dangerousgary", "osmoseRolled", true)
+      return
+    }
+    const gm = game.users.activeGM
+    if (!gm) return ui.notifications.warn("DANGEROUSGARY.Damage.NoActiveGM", { localize: true })
+    await gm.query(DangerousGaryChatMessage.QUERY_MARK_OSMOSE, { messageId: this.id })
+  }
+
+  /**
+   * Requête "dangerousgary.markOsmoseRolled" côté MJ : demandée par un propriétaire du personnage de la carte.
+   * @param {object} data
+   * @param {string} data.messageId L'id du message.
+   * @param {object} context
+   * @param {User} context.user L'utilisateur qui a envoyé la requête.
+   * @returns {Promise<boolean>} Le message a-t-il été marqué.
+   */
+  static async _handleMarkOsmoseQuery({ messageId }, { user }) {
+    const message = game.messages.get(messageId)
+    const uuid = message?.content.match(/data-action="rollOsmose" data-actor-uuid="([^"]+)"/)?.[1]
+    const actor = uuid ? await fromUuid(uuid) : null
+    if (!actor?.testUserPermission(user, "OWNER")) return false
+    await message.setFlag("dangerousgary", "osmoseRolled", true)
+    return true
   }
 
   /**

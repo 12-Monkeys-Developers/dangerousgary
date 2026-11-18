@@ -65,13 +65,17 @@ export default class DangerousGaryActor extends Actor {
     const roll = await new Roll(isUnlucky ? "2d20kh" : "1d20").roll()
     const total = roll.total
     const abilityValue = secret ? this.getClassSaveValue("assassin") : useMax ? this.system.abilities[ability].max : this.system.abilities[ability].value
+    // Talent utilisé dans un Donjon par un donjexeur osmosé : +3 par case cochée de la jauge d'Osmose (livre de base p. 63)
+    const osmoseBonus = useMax && talentName && this.isCharacter && this.system.inDungeon ? 3 * (this.system.osmose ?? 0) : 0
     const isCritical = total === 1
     const isFumble = total === 20
-    const success = isCritical || (!isFumble && total <= abilityValue)
+    const success = isCritical || (!isFumble && total <= abilityValue + osmoseBonus)
 
     const abilityShort = game.i18n.localize(secret ? "DANGEROUSGARY.Talent.Classes.assassin" : `DANGEROUSGARY.Labels.short.${ability}`)
     // Sauvegarde de classe (valeur max) : le libellé de la carte la distingue de la sauvegarde de caractéristique
-    const introText = game.i18n.format(useMax ? "DANGEROUSGARY.Roll.ClassSaveRoll" : "DANGEROUSGARY.Roll.SaveRoll", { ability: abilityShort, value: abilityValue })
+    const introText = osmoseBonus
+      ? game.i18n.format("DANGEROUSGARY.Roll.ClassSaveRollOsmose", { ability: abilityShort, value: abilityValue, bonus: osmoseBonus })
+      : game.i18n.format(useMax ? "DANGEROUSGARY.Roll.ClassSaveRoll" : "DANGEROUSGARY.Roll.SaveRoll", { ability: abilityShort, value: abilityValue })
 
     let chatData = {
       rollType: "save",
@@ -86,6 +90,9 @@ export default class DangerousGaryActor extends Actor {
       isFumble,
       isClassSave: useMax,
       isUnlucky,
+      // Un 1 sur une sauvegarde réalisée dans un Donjon impose une sauvegarde d'Osmose (livre de base p. 63)
+      osmoseRequired: this.isCharacter && !!this.system.inDungeon && total === 1,
+      actorUuid: this.uuid,
     }
 
     // Talent failure: lose HP equal to talent level, overflow to STR
@@ -101,6 +108,50 @@ export default class DangerousGaryActor extends Actor {
     await chat.display(secret ? { messageMode: "gm" } : {})
 
     return { roll, total, success }
+  }
+
+  /**
+   * Sauvegarde d'Osmose d'un personnage (livre de base p. 63) : 1d20, réussie si le résultat dépasse strictement
+   * son niveau le plus élevé. Ratée, le donjexeur est osmosé : une case de sa jauge est cochée et il gagne l'Atout
+   * d'Osmose de sa classe la plus haute ; si les trois cases l'étaient déjà, il est frappé par la Disparition.
+   * @returns {Promise<{roll: Roll, total: number, success: boolean}|undefined>}
+   */
+  async rollOsmose() {
+    if (!this.isCharacter) return
+    // Malchance : deux dés, le pire est gardé, ici le plus bas puisque la sauvegarde se réussit au-dessus du niveau
+    const isUnlucky = this.statuses.has(UNLUCKY_STATUS)
+    const roll = await new Roll(isUnlucky ? "2d20kl" : "1d20").roll()
+    const level = this.system.level
+    const success = roll.total > level
+
+    const chatData = {
+      rollType: "save",
+      isOsmoseSave: true,
+      actingCharName: this.name,
+      actingCharImg: this.img,
+      introText: game.i18n.format("DANGEROUSGARY.Osmose.Roll", { level }),
+      total: roll.total,
+      success,
+      isUnlucky,
+    }
+
+    if (!success) {
+      const before = this.system.osmose
+      if (before >= 3) chatData.osmoseDisappeared = true
+      else {
+        await this.update({ "system.osmose": before + 1 })
+        chatData.osmoseGauge = game.i18n.format("DANGEROUSGARY.Osmose.Gauge", { before, after: before + 1 })
+      }
+      // Atout d'Osmose : celui de la classe au niveau le plus élevé (au choix du joueur en cas d'égalité) ; l'Assassin n'en a pas
+      const ordinary = Object.entries(this.system.classes).filter(([key, value]) => key !== "assassin" && value > 0)
+      const top = Math.max(0, ...ordinary.map(([, value]) => value))
+      const classes = ordinary.filter(([, value]) => value === top).map(([key]) => game.i18n.localize(`DANGEROUSGARY.Talent.Classes.${key}`))
+      if (classes.length && !chatData.osmoseDisappeared) chatData.osmoseAsset = game.i18n.format("DANGEROUSGARY.Osmose.Asset", { classes: classes.join(game.i18n.localize("DANGEROUSGARY.Osmose.Or")) })
+    }
+
+    const chat = await new DangerousGaryChat(this).withTemplate("systems/dangerousgary/templates/roll-result.hbs").withData(chatData).withRolls([roll]).create()
+    await chat.display()
+    return { roll, total: roll.total, success }
   }
 
   /**

@@ -389,6 +389,30 @@ pages:
             La jauge d'<strong>Osmose</strong>, en haut de l'onglet, compte trois cases. En mode Écriture, cliquez sur une case pour fixer la valeur ; cliquez sur la dernière
             case remplie pour la vider.
           </p>
+          <p>
+            Un clic sur le mot <strong>Osmose</strong> lance la <strong>sauvegarde d'Osmose</strong>, dans les deux modes : 1d20, réussie si le résultat dépasse
+            strictement le niveau le plus élevé du donjexeur. Ratée, le donjexeur est osmosé : une case de la jauge est cochée automatiquement et la carte du tchat
+            indique l'Atout d'Osmose de sa classe la plus haute (au choix du joueur en cas d'égalité). Si les trois cases étaient déjà cochées, la carte annonce la
+            Disparition.
+          </p>
+          <p>
+            La case <strong>Donjon</strong> <i class="fas fa-dungeon"></i>, à droite de la jauge, indique que le personnage est dans un Donjon. Elle se coche dans les deux
+            modes, à l'entrée et à la sortie du Donjon ; une pastille « Dans un Donjon » s'affiche alors dans l'en-tête de la fiche.
+            Elle conditionne deux règles :
+          </p>
+          <ul>
+            <li>
+              un <strong>1</strong> sur n'importe quelle sauvegarde du personnage dans un Donjon impose une sauvegarde d'Osmose : la carte du tchat l'annonce et propose le
+              bouton <strong>Sauvegarde d'Osmose</strong> au joueur du personnage et au MJ. Une fois lancée, la carte affiche « Sauvegarde d'Osmose lancée » pour
+              tout le monde : on ne peut pas la relancer pour le même 1 ;
+            </li>
+            <li>le bonus d'Osmose des talents, décrit ci-dessous, ne s'applique que dans un Donjon.</li>
+          </ul>
+          <p>
+            Dans un Donjon, tant que des cases sont cochées, la sauvegarde de classe d'un <strong>talent</strong> bénéficie d'un bonus de <strong>+3 par case</strong> : la carte l'indique,
+            par exemple « Sauvegarde de classe VOL (12 + 6 Osmose) ». Les sauvegardes de classe lancées hors talent (<kbd>Maj</kbd>+clic sur une caractéristique) n'en
+            bénéficient pas.
+          </p>
 
           <h2>Les artefacts</h2>
           <div class="guide-row">
