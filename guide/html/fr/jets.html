@@ -85,8 +85,12 @@
       les dégâts restants sont retirés des <strong>points de vie</strong>, et ce qui <strong>déborde</strong> est retiré de la <strong>Force</strong> ;
     </li>
     <li>
-      quand la Force est entamée, la carte propose le bouton <strong>Sauvegarde de Force</strong> au joueur du personnage (ou au MJ). Une Force tombée à 0 est
-      signalée.
+      quand la Force est entamée, la carte propose le bouton <strong>Sauvegarde de Force</strong> au joueur du personnage (ou au MJ). La carte du jet indique
+      « Sauvegarde de FOR contre l'inconscience ». Ratée, le personnage subit un <strong>choc</strong> : l'état <strong>Inconscient</strong> est posé sur lui, et la
+      carte d'origine affiche le résultat (« … subit un choc et est inconscient » ou « … résiste au choc et reste conscient »).
+    </li>
+    <li>
+      une Force tombée à 0 est signalée, et l'état <strong>Mort</strong> est posé : le combattant est marqué vaincu dans le suivi de combat.
     </li>
   </ul>
   <p>
@@ -122,7 +126,15 @@
       <td>Les sauvegardes lancent <strong>deux dés</strong> et gardent le pire. La carte l'indique par un chat noir <i class="fas fa-cat"></i>.</td>
     </tr>
     <tr>
-      <td>Mort, Inconscient, À terre, Paralysé, Agrippé, En feu, Empoisonné, Invisible</td>
+      <td><strong>Mort</strong>, <strong>Paralysé</strong>, <strong>Inconscient</strong></td>
+      <td>
+        Posés automatiquement quand une caractéristique tombe à 0 : Force → Mort (combattant vaincu), Dextérité → Paralysé, Volonté → Inconscient. Ils sont retirés
+        quand la caractéristique remonte au-dessus de 0. Inconscient est aussi posé quand une sauvegarde de Force contre le choc est ratée : celui-là reste à retirer
+        à la main depuis le HUD du token, quand le personnage est secouru, comme les états posés par le MJ.
+      </td>
+    </tr>
+    <tr>
+      <td>À terre, Agrippé, En feu, Empoisonné, Invisible</td>
       <td>Simples marqueurs : aucun effet automatique.</td>
     </tr>
   </table>

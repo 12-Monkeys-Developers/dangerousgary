@@ -1607,6 +1607,10 @@
   font-weight: normal;
   color: #555;
 }
+.dice-roll .osmose-rolled.failure {
+  font-weight: bold;
+  color: #b71c1c;
+}
 .dice-roll .osmose-roll-button {
   display: block;
   margin: 4px auto 0;

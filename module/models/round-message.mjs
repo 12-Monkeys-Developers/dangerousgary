@@ -24,6 +24,8 @@ export default class DangerousGaryRoundMessageData extends foundry.abstract.Type
           ignoreArmour: new fields.BooleanField({ required: true, initial: false }),
           status: new fields.StringField({ required: true, blank: false, initial: "pending", choices: ["pending", "applied", "ended"] }),
           amount: new fields.NumberField({ required: true, nullable: true, integer: true, initial: null }),
+          // Sauvegarde de Force contre le choc après des dégâts qui entament la Force : "" sans objet, pending à lancer, rolled lancée
+          strSave: new fields.StringField({ required: true, blank: true, initial: "", choices: ["", "pending", "rolled", "success", "failure"] }),
         }),
       ),
     }

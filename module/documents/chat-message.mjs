@@ -1,3 +1,4 @@
+import DangerousGaryActor from "./actor.mjs"
 import { DamageCard } from "../damage.mjs"
 import { RoundCard } from "../round.mjs"
 import DangerousGaryDamageMessageData from "../models/damage-message.mjs"
@@ -12,7 +13,7 @@ export default class DangerousGaryChatMessage extends ChatMessage {
     // Jet caché à cet utilisateur : le cœur a déjà rendu un contenu neutre, la carte dévoilerait le résultat et les cibles
     if (this.type === "damage" && this.isContentVisible) await this._renderDamageCard(html)
     if (this.type === "round" && this.isContentVisible) await this._renderRoundCard(html)
-    this._activateOsmoseButton(html)
+    this._activateSaveButtons(html)
     return html
   }
 
@@ -34,6 +35,9 @@ export default class DangerousGaryChatMessage extends ChatMessage {
         case "endOngoing":
           button.disabled = true
           return RoundCard.end(this, Number(button.dataset.index))
+        case "rollShockSave":
+          button.disabled = true
+          return RoundCard.rollShockSave(this, Number(button.dataset.index))
         case "panToToken":
           return DamageCard.panToToken(button.dataset.tokenUuid)
       }
@@ -43,64 +47,89 @@ export default class DangerousGaryChatMessage extends ChatMessage {
   static QUERY_MARK_OSMOSE = "dangerousgary.markOsmoseRolled"
 
   /**
-   * Bouton « Sauvegarde d'Osmose » d'une sauvegarde obtenant un 1 dans un Donjon : réservé au MJ et aux propriétaires
-   * du personnage, retiré pour les autres. Une fois la sauvegarde lancée, le message le retient (flag osmoseRolled)
-   * et le bouton est remplacé pour tout le monde par « Sauvegarde d'Osmose lancée ».
-   * @param {HTMLElement} html L'élément du message.
+   * Boutons de sauvegarde d'une carte de jet, mémorisés dans le message une fois lancés : sauvegarde d'Osmose (un 1 dans un Donjon)
+   * et sauvegarde de Force contre le choc (échec de talent qui entame la Force).
+   * @type {Record<string, {flag: string, label: (value: *, actor: Actor) => string, roll: (actor: Actor) => Promise}>}
    */
-  _activateOsmoseButton(html) {
-    const button = html.querySelector('[data-action="rollOsmose"]')
-    if (!button) return
-    if (this.getFlag("dangerousgary", "osmoseRolled")) {
-      const done = document.createElement("span")
-      done.classList.add("osmose-rolled")
-      done.innerHTML = `<i class="fas fa-check"></i> ${game.i18n.localize("DANGEROUSGARY.Osmose.Rolled")}`
-      button.replaceWith(done)
-      return
-    }
-    const actor = fromUuidSync(button.dataset.actorUuid)
-    if (!actor || !(game.user.isGM || actor.isOwner)) {
-      button.remove()
-      return
-    }
-    button.addEventListener("click", async (event) => {
-      event.preventDefault()
-      if (this.getFlag("dangerousgary", "osmoseRolled")) return
-      button.disabled = true
-      await actor.rollOsmose()
-      await this.#markOsmoseRolled()
-    })
+  static SAVE_BUTTONS = {
+    rollOsmose: { flag: "osmoseRolled", label: () => game.i18n.localize("DANGEROUSGARY.Osmose.Rolled"), roll: (actor) => actor.rollOsmose() },
+    // Le flag garde le résultat ("success" / "failure") pour l'afficher sur la carte d'origine
+    rollShockSave: {
+      flag: "strSaveRolled",
+      label: (value, actor) => (value === true ? game.i18n.localize("DANGEROUSGARY.Damage.StrSaveDone") : DangerousGaryActor.shockResultText(actor?.name ?? "", value === "success")),
+      roll: (actor) => actor.rollShockSave(),
+    },
   }
 
   /**
-   * Note dans le message que la sauvegarde d'Osmose a été lancée : directement si l'utilisateur peut modifier le message,
-   * sinon par le MJ actif.
+   * Active les boutons de sauvegarde d'une carte de jet : réservés au MJ et aux propriétaires du personnage, retirés pour les autres.
+   * Une fois la sauvegarde lancée, le message le retient et le bouton est remplacé pour tout le monde.
+   * @param {HTMLElement} html L'élément du message.
+   */
+  _activateSaveButtons(html) {
+    for (const [action, { flag, label, roll }] of Object.entries(DangerousGaryChatMessage.SAVE_BUTTONS)) {
+      const button = html.querySelector(`[data-action="${action}"]`)
+      if (!button) continue
+      const actor = fromUuidSync(button.dataset.actorUuid)
+      const done = this.getFlag("dangerousgary", flag)
+      if (done) {
+        const span = document.createElement("span")
+        span.classList.add("osmose-rolled")
+        if (done === "failure") span.classList.add("failure")
+        span.textContent = label(done, actor)
+        button.replaceWith(span)
+        continue
+      }
+      if (!actor || !(game.user.isGM || actor.isOwner)) {
+        button.remove()
+        continue
+      }
+      button.addEventListener("click", async (event) => {
+        event.preventDefault()
+        if (this.getFlag("dangerousgary", flag)) return
+        button.disabled = true
+        const result = await roll(actor)
+        // Osmose : simple marque ; choc : le résultat, affiché sur la carte
+        await this.#markSaveRolled(flag, flag === "osmoseRolled" ? true : result?.success ? "success" : "failure")
+      })
+    }
+  }
+
+  /**
+   * Note dans le message qu'une sauvegarde a été lancée : directement si l'utilisateur peut modifier le message, sinon par le MJ actif.
+   * @param {string} flag Le flag de la sauvegarde.
+   * @param {true|"success"|"failure"} [value] La valeur enregistrée : simple marque, ou résultat de la sauvegarde.
    * @returns {Promise<void>}
    */
-  async #markOsmoseRolled() {
+  async #markSaveRolled(flag, value = true) {
     if (this.canUserModify(game.user, "update")) {
-      await this.setFlag("dangerousgary", "osmoseRolled", true)
+      await this.setFlag("dangerousgary", flag, value)
       return
     }
     const gm = game.users.activeGM
     if (!gm) return ui.notifications.warn("DANGEROUSGARY.Damage.NoActiveGM", { localize: true })
-    await gm.query(DangerousGaryChatMessage.QUERY_MARK_OSMOSE, { messageId: this.id })
+    await gm.query(DangerousGaryChatMessage.QUERY_MARK_OSMOSE, { messageId: this.id, flag, value })
   }
 
   /**
-   * Requête "dangerousgary.markOsmoseRolled" côté MJ : demandée par un propriétaire du personnage de la carte.
+   * Requête "dangerousgary.markOsmoseRolled" côté MJ : demandée par un propriétaire du personnage de la carte,
+   * pour l'un des boutons de sauvegarde de la carte.
    * @param {object} data
    * @param {string} data.messageId L'id du message.
+   * @param {string} [data.flag] Le flag de la sauvegarde (osmoseRolled par défaut).
    * @param {object} context
    * @param {User} context.user L'utilisateur qui a envoyé la requête.
    * @returns {Promise<boolean>} Le message a-t-il été marqué.
    */
-  static async _handleMarkOsmoseQuery({ messageId }, { user }) {
+  static async _handleMarkOsmoseQuery({ messageId, flag = "osmoseRolled", value = true }, { user }) {
+    if (![true, "success", "failure"].includes(value)) return false
     const message = game.messages.get(messageId)
-    const uuid = message?.content.match(/data-action="rollOsmose" data-actor-uuid="([^"]+)"/)?.[1]
+    const entry = Object.entries(DangerousGaryChatMessage.SAVE_BUTTONS).find(([, button]) => button.flag === flag)
+    if (!message || !entry) return false
+    const uuid = message.content.match(new RegExp(`data-action="${entry[0]}" data-actor-uuid="([^"]+)"`))?.[1]
     const actor = uuid ? await fromUuid(uuid) : null
     if (!actor?.testUserPermission(user, "OWNER")) return false
-    await message.setFlag("dangerousgary", "osmoseRolled", true)
+    await message.setFlag("dangerousgary", flag, value)
     return true
   }
 
@@ -132,6 +161,7 @@ export default class DangerousGaryChatMessage extends ChatMessage {
         strLost: Data.strLost(target),
         isDead: target.applied && target.strAfter === 0 && Data.canSeeDetail(target),
         canRollStrSave: Data.canRollStrSave(target),
+        shockResult: target.saveRolled && typeof target.saveSuccess === "boolean" ? DangerousGaryActor.shockResultText(target.name, target.saveSuccess) : "",
         triggers: target.triggers.map((trigger) => ({
           ...trigger,
           summary: DamageCard.describeTrigger(trigger),

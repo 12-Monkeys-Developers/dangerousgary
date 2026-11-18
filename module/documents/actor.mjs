@@ -33,6 +33,74 @@ export default class DangerousGaryActor extends Actor {
     return super._preUpdate(changes, options, user)
   }
 
+  /**
+   * États posés quand une caractéristique tombe à 0 (livre de base p. 58) : Force → mort, Dextérité → paralysé,
+   * Volonté → inconscient. L'état Mort est l'état « vaincu » du cœur : le combattant est aussi marqué vaincu.
+   * @type {Record<string, {status: string, overlay: boolean}>}
+   */
+  static ZERO_ABILITY_STATUSES = {
+    str: { status: "dead", overlay: true },
+    dex: { status: "paralysis", overlay: false },
+    wil: { status: "unconscious", overlay: false },
+  }
+
+  /**
+   * Pose l'état d'une caractéristique tombée à 0, et le retire quand elle remonte au-dessus de 0 s'il avait été posé ainsi
+   * (flag dangerousgary.fromZero) : un état posé à la main par le MJ, ou l'Inconscient d'un choc, n'est pas retiré.
+   * Seul l'utilisateur qui a fait la mise à jour le fait : il possède l'acteur (les dégâts d'un joueur sur un monstre sont
+   * appliqués par le MJ), et aucun MJ connecté n'est nécessaire. Le cœur appelle aussi cette méthode pour l'acteur d'un token
+   * non lié (ActorDelta#_onUpdate), avec les changements. Une caractéristique déjà à 0 ne repose pas l'état si le MJ l'a retiré,
+   * puisqu'elle ne figure plus dans les changements.
+   * @inheritDoc
+   */
+  _onUpdate(changed, options, userId) {
+    super._onUpdate(changed, options, userId)
+    if (userId !== game.user.id) return
+    for (const [key, { status, overlay }] of Object.entries(DangerousGaryActor.ZERO_ABILITY_STATUSES)) {
+      const value = foundry.utils.getProperty(changed, `system.abilities.${key}.value`)
+      if (value === 0 && !this.statuses.has(status)) this.#addZeroStatus(key, status, overlay)
+      else if (value > 0) {
+        const ids = this.effects.filter((effect) => effect.getFlag("dangerousgary", "fromZero") === key && effect.statuses.has(status)).map((effect) => effect.id)
+        if (ids.length) this.deleteEmbeddedDocuments("ActiveEffect", ids)
+      }
+    }
+  }
+
+  /**
+   * Crée l'effet d'état d'une caractéristique tombée à 0, marqué de sa cause (comme Actor#toggleStatusEffect, plus le flag).
+   * @param {string} key La caractéristique : str, dex ou wil.
+   * @param {string} status L'identifiant de l'état.
+   * @param {boolean} overlay L'état s'affiche en grand sur le token.
+   * @returns {Promise<ActiveEffect>}
+   */
+  async #addZeroStatus(key, status, overlay) {
+    const ActiveEffect = getDocumentClass("ActiveEffect")
+    const effect = await ActiveEffect.fromStatusEffect(status, { parent: this })
+    effect.updateSource({ "flags.dangerousgary.fromZero": key, ...(overlay ? { "flags.core.overlay": true } : {}) })
+    return ActiveEffect.create(effect.toObject(), { parent: this, keepId: true })
+  }
+
+  /**
+   * Sauvegarde de Force après des dégâts qui entament la Force (livre de base p. 58) : ratée, le personnage subit un choc
+   * et bascule dans l'inconscience (état Inconscient).
+   * @returns {Promise<{roll: Roll, total: number, success: boolean}|undefined>}
+   */
+  async rollShockSave() {
+    const result = await this.rollSave("str", { shock: true })
+    if (result && !result.success && this.system.abilities.str.value > 0) await this.toggleStatusEffect("unconscious", { active: true })
+    return result
+  }
+
+  /**
+   * Le résultat d'une sauvegarde de Force contre le choc, en une phrase.
+   * @param {string} name Le nom du personnage.
+   * @param {boolean} success La sauvegarde est réussie.
+   * @returns {string}
+   */
+  static shockResultText(name, success) {
+    return game.i18n.format(success ? "DANGEROUSGARY.Damage.ShockAvoided" : "DANGEROUSGARY.Damage.Shocked", { name })
+  }
+
   getClassSaveValue(classKey) {
     if (classKey === "assassin") return Math.floor(["str", "dex", "wil"].reduce((sum, key) => sum + this.system.abilities[key].max, 0) / 3)
     const ability = CLASS_ABILITIES[classKey]
@@ -57,7 +125,7 @@ export default class DangerousGaryActor extends Actor {
    * @param root0.talentLevel
    * @returns
    */
-  async rollSave(ability, { useMax = false, talentName = null, talentLevel = null, classKey = null } = {}) {
+  async rollSave(ability, { useMax = false, talentName = null, talentLevel = null, classKey = null, shock = false } = {}) {
     const secret = ability === "assassin" || classKey === "assassin"
     if (secret && (!canManageAssassin(this) || !this.system.classes.assassin)) return denyAssassin()
     // Malchance : deux dés, le pire (le plus haut) est gardé
@@ -73,9 +141,11 @@ export default class DangerousGaryActor extends Actor {
 
     const abilityShort = game.i18n.localize(secret ? "DANGEROUSGARY.Talent.Classes.assassin" : `DANGEROUSGARY.Labels.short.${ability}`)
     // Sauvegarde de classe (valeur max) : le libellé de la carte la distingue de la sauvegarde de caractéristique
-    const introText = osmoseBonus
-      ? game.i18n.format("DANGEROUSGARY.Roll.ClassSaveRollOsmose", { ability: abilityShort, value: abilityValue, bonus: osmoseBonus })
-      : game.i18n.format(useMax ? "DANGEROUSGARY.Roll.ClassSaveRoll" : "DANGEROUSGARY.Roll.SaveRoll", { ability: abilityShort, value: abilityValue })
+    let introText
+    if (osmoseBonus) introText = game.i18n.format("DANGEROUSGARY.Roll.ClassSaveRollOsmose", { ability: abilityShort, value: abilityValue, bonus: osmoseBonus })
+    // Sauvegarde de Force contre le choc (dégâts qui entament la Force)
+    else if (shock) introText = game.i18n.format("DANGEROUSGARY.Roll.ShockSaveRoll", { ability: abilityShort, value: abilityValue })
+    else introText = game.i18n.format(useMax ? "DANGEROUSGARY.Roll.ClassSaveRoll" : "DANGEROUSGARY.Roll.SaveRoll", { ability: abilityShort, value: abilityValue })
 
     let chatData = {
       rollType: "save",
@@ -90,6 +160,8 @@ export default class DangerousGaryActor extends Actor {
       isFumble,
       isClassSave: useMax,
       isUnlucky,
+      // Sauvegarde contre le choc : la carte dit si le personnage tombe inconscient
+      shockResult: shock ? DangerousGaryActor.shockResultText(this.name, success) : null,
       // Un 1 sur une sauvegarde réalisée dans un Donjon impose une sauvegarde d'Osmose (livre de base p. 63)
       osmoseRequired: this.isCharacter && !!this.system.inDungeon && total === 1,
       actorUuid: this.uuid,
@@ -101,6 +173,8 @@ export default class DangerousGaryActor extends Actor {
       chatData.talentDamage = talentLevel
       chatData.talentHpLost = result.hpBefore - result.hpAfter
       chatData.talentStrLost = result.strBefore - result.strAfter
+      // Les dégâts ont entamé la Force sans la réduire à 0 : sauvegarde de Force contre le choc, proposée sur la carte
+      chatData.strSaveRequired = chatData.talentStrLost > 0 && result.strAfter > 0
     }
 
     let chat = await new DangerousGaryChat(this).withTemplate("systems/dangerousgary/templates/roll-result.hbs").withData(chatData).withRolls([roll]).create()

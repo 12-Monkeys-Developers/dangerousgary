@@ -54,6 +54,8 @@
                 <button type="button" class="damage-card-button" data-action="rollStrSave" data-index="{{@index}}">
                   <i class="fas fa-dice-d20"></i> {{localize "DANGEROUSGARY.Damage.StrSave"}}
                 </button>
+              {{else if target.shockResult}}
+                <span class="target-line {{#if target.saveSuccess}}target-save-done{{else}}target-dead{{/if}}">{{target.shockResult}}</span>
               {{else if target.saveRolled}}
                 <span class="target-line target-save-done"><i class="fas fa-check"></i> {{localize "DANGEROUSGARY.Damage.StrSaveDone"}}</span>
               {{/if}}

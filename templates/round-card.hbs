@@ -11,11 +11,19 @@
           <span class="target-line target-trigger {{entry.status}}">
             <strong>{{entry.label}}</strong>{{#if entry.isEnded}} : {{localize "DANGEROUSGARY.Ongoing.Ended"}}{{else}}{{#if entry.summary}} : {{entry.summary}}{{/if}}{{/if}}
           </span>
+          {{#if entry.shockResult}}
+            <span class="target-line {{#if (eq entry.strSave "success")}}target-save-done{{else}}target-dead{{/if}}">{{entry.shockResult}}</span>
+          {{/if}}
           {{#if @root.isGM}}
             <div class="round-card-buttons">
               {{#if entry.isPending}}
                 <button type="button" class="damage-card-button" data-action="applyOngoing" data-index="{{entry.index}}">
                   <i class="fas fa-check"></i> {{localize "DANGEROUSGARY.Ongoing.Apply"}}
+                </button>
+              {{/if}}
+              {{#if entry.canRollShockSave}}
+                <button type="button" class="damage-card-button" data-action="rollShockSave" data-index="{{entry.index}}">
+                  <i class="fas fa-dice-d20"></i> {{localize "DANGEROUSGARY.Damage.StrSave"}}
                 </button>
               {{/if}}
               {{#if entry.canEnd}}

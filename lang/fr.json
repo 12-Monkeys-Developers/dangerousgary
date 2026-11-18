@@ -300,6 +300,7 @@
       "SaveRoll": "Sauvegarde de {ability} ({value})",
       "ClassSaveRoll": "Sauvegarde de classe {ability} ({value})",
       "ClassSaveRollOsmose": "Sauvegarde de classe {ability} ({value} + {bonus} Osmose)",
+      "ShockSaveRoll": "Sauvegarde de {ability} contre l’inconscience ({value})",
       "Success": "Succès",
       "Failure": "Échec",
       "Critical": "Critique",
@@ -316,6 +317,8 @@
       "TalentDamageWithStr": "-{hp} PV, -{str} FOR"
     },
     "Damage": {
+      "ShockAvoided": "{name} résiste au choc et reste conscient",
+      "Shocked": "{name} subit un choc et est inconscient",
       "Halved": "Dégâts divisés par deux",
       "Dealt": "{total} dégâts infligés",
       "ArmourDetail": "Armure {armour} : {real} dégâts subis",

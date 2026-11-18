@@ -300,6 +300,7 @@
       "SaveRoll": "{ability} Saving Throw ({value})",
       "ClassSaveRoll": "{ability} Class Saving Throw ({value})",
       "ClassSaveRollOsmose": "{ability} Class Saving Throw ({value} + {bonus} Osmosis)",
+      "ShockSaveRoll": "{ability} Saving Throw against unconsciousness ({value})",
       "Success": "Success",
       "Failure": "Failure",
       "Critical": "Critical",
@@ -316,6 +317,8 @@
       "TalentDamageWithStr": "-{hp} HP, -{str} STR"
     },
     "Damage": {
+      "ShockAvoided": "{name} resists the shock and stays conscious",
+      "Shocked": "{name} suffers a shock and is unconscious",
       "Halved": "Damage halved",
       "Dealt": "{total} damage dealt",
       "ArmourDetail": "Armour {armour}: {real} damage taken",

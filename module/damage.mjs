@@ -137,6 +137,8 @@ export class DamageCard {
         if (trigger.status !== "info" || trigger.effect === "none") continue
         trigger.amount = await DamageCard.applyTriggerEffect(actor, trigger, message.system.ignoreArmour)
         trigger.status = "applied"
+        // Dégâts supplémentaires : PV et Force après coup, pour la perte affichée et la sauvegarde de Force
+        if (trigger.effect === "damage" && !trigger.ongoing) Object.assign(target, DamageCard.#currentHealth(actor))
       }
     }
     await message.update({ "system.targets": targets })
@@ -169,8 +171,17 @@ export class DamageCard {
     if (!target || !DangerousGaryDamageMessageData.canRollStrSave(target)) return
     const actor = await fromUuid(target.uuid)
     if (!actor) return
-    await actor.rollSave("str")
-    await DamageCard.#updateTarget(message, index, { saveRolled: true })
+    const result = await actor.rollShockSave()
+    await DamageCard.#updateTarget(message, index, { saveRolled: true, saveSuccess: !!result?.success })
+  }
+
+  /**
+   * Les PV et la Force actuels d'un acteur, au format des cibles de la carte.
+   * @param {Actor} actor
+   * @returns {{hpAfter: number, strAfter: number}}
+   */
+  static #currentHealth(actor) {
+    return { hpAfter: actor.system.hp.value, strAfter: actor.system.abilities.str.value }
   }
 
   /**
@@ -226,12 +237,14 @@ export class DamageCard {
     if (!actor) return
     const { success } = await actor.rollSave(trigger.save)
     const triggers = message.system.toObject().targets[index].triggers
+    const changes = { triggers }
     if (success) triggers[triggerIndex].status = "saved"
     else {
       triggers[triggerIndex].amount = await DamageCard.applyTriggerEffect(actor, trigger, message.system.ignoreArmour)
       triggers[triggerIndex].status = "applied"
+      if (trigger.effect === "damage" && !trigger.ongoing) Object.assign(changes, DamageCard.#currentHealth(actor))
     }
-    await DamageCard.#updateTarget(message, index, { triggers })
+    await DamageCard.#updateTarget(message, index, changes)
   }
 
   /**
@@ -256,10 +269,13 @@ export class DamageCard {
    * @param {object} changes Les changements : saveRolled, triggers.
    * @returns {Promise<void>}
    */
-  static async #writeTarget(message, index, { saveRolled, triggers }) {
+  static async #writeTarget(message, index, { saveRolled, saveSuccess, triggers, hpAfter, strAfter }) {
     const targets = message.system.toObject().targets
     if (saveRolled !== undefined) targets[index].saveRolled = !!saveRolled
+    if (typeof saveSuccess === "boolean") targets[index].saveSuccess = saveSuccess
     if (Array.isArray(triggers)) targets[index].triggers = triggers
+    if (Number.isInteger(hpAfter)) targets[index].hpAfter = hpAfter
+    if (Number.isInteger(strAfter)) targets[index].strAfter = strAfter
     await message.update({ "system.targets": targets })
   }
 

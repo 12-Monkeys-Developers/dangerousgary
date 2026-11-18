@@ -39,6 +39,8 @@ export default class DangerousGaryDamageMessageData extends foundry.abstract.Typ
           strAfter: points(),
           // Sauvegarde de Force lancée après un débordement des dégâts
           saveRolled: new fields.BooleanField({ required: true, initial: false }),
+          // Résultat de la sauvegarde de Force contre le choc : null tant qu'elle n'est pas lancée
+          saveSuccess: new fields.BooleanField({ required: true, nullable: true, initial: null }),
           // Déclencheurs de l'attaque activés par ce jet, et leur résolution pour cette cible
           triggers: new fields.ArrayField(
             new fields.SchemaField({

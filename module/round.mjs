@@ -1,3 +1,4 @@
+import DangerousGaryActor from "./documents/actor.mjs"
 import { DamageCard } from "./damage.mjs"
 
 /**
@@ -61,8 +62,28 @@ export class RoundCard {
     if (!game.user.isGM || entry?.status !== "pending") return
     const actor = await fromUuid(entry.uuid)
     if (!actor) return ui.notifications.warn(game.i18n.format("DANGEROUSGARY.Damage.TargetNotFound", { name: entry.name }))
+    const strBefore = actor.system.abilities?.str.value
     entry.amount = await actor.applyEffect(entry, { ignoreArmour: entry.ignoreArmour })
     entry.status = "applied"
+    const strAfter = actor.system.abilities?.str.value
+    if (entry.effect === "damage" && strAfter > 0 && strAfter < strBefore) entry.strSave = "pending"
+    await message.update({ "system.entries": entries })
+  }
+
+  /**
+   * Lance la sauvegarde de Force contre le choc d'une entrée dont les dégâts ont entamé la Force (MJ seulement).
+   * @param {ChatMessage} message La carte de round.
+   * @param {number} index L'indice de l'entrée.
+   * @returns {Promise<void>}
+   */
+  static async rollShockSave(message, index) {
+    const entries = message.system.toObject().entries
+    const entry = entries[index]
+    if (!game.user.isGM || entry?.strSave !== "pending") return
+    const actor = await fromUuid(entry.uuid)
+    if (!actor) return
+    const result = await actor.rollShockSave()
+    entry.strSave = result?.success ? "success" : "failure"
     await message.update({ "system.entries": entries })
   }
 
@@ -102,6 +123,8 @@ export class RoundCard {
           isPending: entry.status === "pending",
           isEnded: entry.status === "ended",
           canEnd: isGM && !!entry.effectId,
+          canRollShockSave: isGM && entry.strSave === "pending",
+          shockResult: ["success", "failure"].includes(entry.strSave) ? DangerousGaryActor.shockResultText(entry.name, entry.strSave === "success") : "",
         }))
         .filter((entry) => isGM || entry.type === "character"),
     }

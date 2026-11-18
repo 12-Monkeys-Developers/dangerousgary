@@ -66,4 +66,14 @@
       {{/if}}
     </div>
   {{/if}}
+  {{#if shockResult}}
+    <div class="roll-osmose {{#unless success}}disappeared{{/unless}}">{{shockResult}}</div>
+  {{/if}}
+  {{#if strSaveRequired}}
+    <div class="roll-osmose">
+      <button type="button" class="osmose-roll-button" data-action="rollShockSave" data-actor-uuid="{{actorUuid}}">
+        <i class="fas fa-dice-d20"></i> {{localize "DANGEROUSGARY.Damage.StrSave"}}
+      </button>
+    </div>
+  {{/if}}
 </div>
