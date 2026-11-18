@@ -6,6 +6,7 @@ import * as applications from "./module/applications/_module.mjs"
 import { Macros } from "./module/macros.mjs"
 import { DamageCard } from "./module/damage.mjs"
 import { STATUS_EFFECTS } from "./module/config.mjs"
+import { registerDungeonBadge } from "./module/token-dungeon.mjs"
 import "./module/elements/toggle-switch.mjs"
 
 Hooks.once('init', async function () {
@@ -101,4 +102,6 @@ Hooks.on("hotbarDrop", (bar, data, slot) => {
 })
 
 Hooks.on("preCreateMacro", secretMacroAllowed)
+// Pastille « Dans un Donjon » en haut à droite du token
+registerDungeonBadge()
 Hooks.on("preUpdateMacro", secretMacroAllowed)

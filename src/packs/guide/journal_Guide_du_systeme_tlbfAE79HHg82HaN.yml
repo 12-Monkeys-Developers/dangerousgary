@@ -404,7 +404,8 @@ pages:
           </p>
           <p>
             La case <strong>Donjon</strong> <i class="fas fa-dungeon"></i>, à droite de la jauge, indique que le personnage est dans un Donjon. Elle se coche dans les deux
-            modes, à l'entrée et à la sortie du Donjon ; une pastille « Dans un Donjon » s'affiche alors dans l'en-tête de la fiche.
+            modes, à l'entrée et à la sortie du Donjon ; une pastille « Dans un Donjon » s'affiche alors dans l'en-tête de la fiche, et une pastille
+            violette <i class="fas fa-dungeon"></i> en haut à droite du token, visible de tous.
             Elle conditionne deux règles :
           </p>
           <ul>

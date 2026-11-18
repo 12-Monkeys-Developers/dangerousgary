@@ -1,5 +1,6 @@
 # 1.4.1
 
+- Osmose : un personnage dont la case « Dans un Donjon » est cochée porte une pastille violette avec l'icône de donjon en haut à droite de son token
 - Repos : les quatre repos (Pause, Repos, Repos sécurisé, Repos médicalisé) quittent le menu de la barre de titre pour quatre icônes dans l'en-tête de la fiche de personnage, glissables dans la barre de macros ; chaque repos est annoncé dans le tchat avec les PV et caractéristiques avant et après
 - Santé : une caractéristique tombée à 0 pose son état (Force → Mort et combattant vaincu, Dextérité → Paralysé, Volonté → Inconscient), retiré quand elle remonte au-dessus de 0 ; une sauvegarde de Force ratée après des dégâts qui entament la Force pose l'état Inconscient (choc) ; la sauvegarde de Force est aussi proposée après l'échec d'un talent, les dégâts supplémentaires d'un effet spécial et les dégâts d'un effet continu
 - Osmose : un clic sur le mot Osmose (onglet Classe et talents) lance la sauvegarde d'Osmose ; ratée, une case de la jauge est cochée et la carte indique l'Atout d'Osmose de la classe la plus haute, ou la Disparition si les trois cases l'étaient déjà

@@ -9,8 +9,8 @@
     </div>
     {{!-- État de situation : modifiable dans les deux modes --}}
     <label class="osmose-dungeon" data-tooltip="{{localize 'DANGEROUSGARY.Osmose.DungeonHint'}}">
-      <input type="checkbox" name="system.inDungeon" {{checked system.inDungeon}} />
       <i class="fas fa-dungeon"></i> {{localize "DANGEROUSGARY.Osmose.InDungeon"}}
+      <input type="checkbox" name="system.inDungeon" {{checked system.inDungeon}} />
     </label>
   </div>
   {{#if canManageAssassin}}
