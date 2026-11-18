@@ -1,3 +1,7 @@
+# 1.4.2
+
+- Release technique : mise à jour de la CI
+
 # 1.4.1
 
 - Osmose : un personnage dont la case « Dans un Donjon » est cochée porte une pastille violette avec l'icône de donjon en haut à droite de son token

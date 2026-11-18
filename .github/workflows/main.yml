@@ -163,12 +163,21 @@ jobs:
           tag: ${{ github.event.release.tag_name }}
           body: ${{ github.event.release.body }}
 
+      # Annonce la version à foundryvtt.com (appel direct par curl : plus d'action tierce en Node 20)
       - name: Deploy Release
         id: deploy_release
-        uses: fjogeleit/http-request-action@v1
-        with:
-          url: "https://api.foundryvtt.com/_api/packages/release_version"
-          method: "POST"
-          contentType: "application/json"
-          customHeaders: '{"Authorization": "${{ secrets.FVTT_PACKAGE_RELEASE_TOKEN }}"}'
-          data: '{"id": "dangerousgary","dry-run":false,"release":{"version":"${{github.event.release.tag_name}}","manifest":"https://github.com/12-Monkeys-Developers/dangerousgary/releases/download/${{github.event.release.tag_name}}/system.json","notes":"https://github.com/12-Monkeys-Developers/dangerousgary/blob/main/CHANGELOG.md","compatibility":{"minimum":"14","verified":"14","maximum":"14"}}}'
+        env:
+          FVTT_TOKEN: ${{ secrets.FVTT_PACKAGE_RELEASE_TOKEN }}
+          TAG: ${{ github.event.release.tag_name }}
+        run: |
+          payload=$(cat <<JSON
+          {"id": "dangerousgary","dry-run":false,"release":{"version":"$TAG","manifest":"https://github.com/12-Monkeys-Developers/dangerousgary/releases/download/$TAG/system.json","notes":"https://github.com/12-Monkeys-Developers/dangerousgary/blob/main/CHANGELOG.md","compatibility":{"minimum":"14","verified":"14","maximum":"14"}}}
+          JSON
+          )
+          # Échoue si foundryvtt.com refuse la version ; affiche sa réponse dans le journal
+          curl --fail-with-body --silent --show-error \
+            -X POST "https://api.foundryvtt.com/_api/packages/release_version" \
+            -H "Content-Type: application/json" \
+            -H "Authorization: $FVTT_TOKEN" \
+            --data "$payload"
+          echo
