@@ -427,6 +427,21 @@
       "Asset": "Osmosis asset: {classes}",
       "Or": " or ",
       "Disappeared": "Disappearance! All three boxes were checked: the character is absorbed by the Dungeon."
+    },
+    "Rest": {
+      "Title": {
+        "short": "{name} takes a break",
+        "full": "{name} takes a rest",
+        "secure": "{name} takes a secure rest",
+        "medical": "{name} takes a medical rest"
+      },
+      "Hint": {
+        "short": "HP to maximum",
+        "full": "HP to maximum, +1 STR, DEX and WIL",
+        "secure": "HP to maximum, +2 STR, DEX and WIL",
+        "medical": "HP to maximum, +3 STR, DEX and WIL"
+      },
+      "Drag": "Drag to the macro bar to create a shortcut"
     }
   }
 }

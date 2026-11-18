@@ -24,10 +24,7 @@ export default class DangerousGaryCharacterSheet extends DangerousGaryBaseActorS
       delete: DangerousGaryCharacterSheet.#onItemDelete,
       rollSave: DangerousGaryCharacterSheet.#onItemRollSave,
       rollDamage: DangerousGaryCharacterSheet.#onItemRollDamage,
-      shortRest: DangerousGaryCharacterSheet.#onShortRest,
-      fullRest: DangerousGaryCharacterSheet.#onFullRest,
-      secureRest: DangerousGaryCharacterSheet.#onSecureRest,
-      medicalRest: DangerousGaryCharacterSheet.#onMedicalRest,
+      rest: DangerousGaryCharacterSheet.#onRest,
       equip: DangerousGaryCharacterSheet.#onItemEquip,
       unequip: DangerousGaryCharacterSheet.#onItemUnequip,
       editImage: DangerousGaryCharacterSheet.#onEditImage,
@@ -70,6 +67,12 @@ export default class DangerousGaryCharacterSheet extends DangerousGaryBaseActorS
       source: this.document.toObject(),
       enableClasses,
       locked: this.isPlayMode,
+      // Icônes de repos de l'en-tête : clic pour se reposer, glisser vers la barre de macros
+      rests: Object.entries(this.document.system.constructor.RESTS).map(([key, rest]) => ({
+        key,
+        icon: rest.icon,
+        tooltip: `<strong>${game.i18n.localize(rest.label)}</strong><br>${game.i18n.localize(`DANGEROUSGARY.Rest.Hint.${key}`)}<br><em>${game.i18n.localize("DANGEROUSGARY.Rest.Drag")}</em>`,
+      })),
     })
     context.canManageAssassin = canManageAssassin(this.actor)
     context.assassinSave = context.canManageAssassin ? this.actor.getClassSaveValue("assassin") : null
@@ -173,42 +176,6 @@ export default class DangerousGaryCharacterSheet extends DangerousGaryBaseActorS
     }).bind(this.element)
   }
 
-  /** @override */
-  _getHeaderControls() {
-    const controls = super._getHeaderControls()
-
-    if (!controls.find((c) => c.action === "shortRest")) {
-      controls.push({
-        icon: "fa-solid fa-heart-pulse",
-        label: "DANGEROUSGARY.Labels.long.shortRest",
-        action: "shortRest",
-      })
-    }
-    if (!controls.find((c) => c.action === "fullRest")) {
-      controls.push({
-        icon: "fas fa-bed",
-        label: "DANGEROUSGARY.Labels.long.fullRest",
-        action: "fullRest",
-      })
-    }
-    if (!controls.find((c) => c.action === "secureRest")) {
-      controls.push({
-        icon: "fas fa-house",
-        label: "DANGEROUSGARY.Labels.long.secureRest",
-        action: "secureRest",
-      })
-    }
-    if (!controls.find((c) => c.action === "medicalRest")) {
-      controls.push({
-        icon: "fas fa-kit-medical",
-        label: "DANGEROUSGARY.Labels.long.medicalRest",
-        action: "medicalRest",
-      })
-    }
-
-    return controls
-  }
-
   //#region Drag-and-Drop Workflow
 
   /**
@@ -252,6 +219,9 @@ export default class DangerousGaryCharacterSheet extends DangerousGaryBaseActorS
           actorId: this.document.id,
           itemId,
         }
+        break
+      case "rest":
+        dragData = { type: "rest", actorUuid: this.document.uuid, rest: el.dataset.rest }
         break
       case "rollSave":
         dragData = {
@@ -371,27 +341,12 @@ export default class DangerousGaryCharacterSheet extends DangerousGaryBaseActorS
   }
 
   /**
-   * @param {PointerEvent} event - The originating click event
-   * @param {HTMLElement} target - the capturing HTML element which defined a [data-action]
+   * Clic sur une icône de repos de l'en-tête.
+   * @param {PointerEvent} event
+   * @param {HTMLElement} target L'icône, qui porte le type de repos.
    */
-  static async #onShortRest(event, target) {
-    await this.actor.system.shortRest()
-  }
-
-  /**
-   * @param {PointerEvent} event - The originating click event
-   * @param {HTMLElement} target - the capturing HTML element which defined a [data-action]
-   */
-  static async #onFullRest(event, target) {
-    await this.actor.system.fullRest()
-  }
-
-  static async #onSecureRest(event, target) {
-    await this.actor.system.secureRest()
-  }
-
-  static async #onMedicalRest(event, target) {
-    await this.actor.system.medicalRest()
+  static async #onRest(event, target) {
+    await this.actor.system.rest(target.dataset.rest)
   }
 
   static async #onItemEquip(event, target) {

@@ -60,6 +60,24 @@
       }
     }
 
+    // Icônes de repos : sous la pastille « Dans un Donjon », alignées à droite
+    .rest-buttons {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin: 2px 0 4px;
+
+      .rest-button {
+        font-size: 1.1rem;
+        color: var(--dg-text-red);
+        cursor: pointer;
+
+        &:hover {
+          text-shadow: 0 0 6px rgba(204, 0, 0, 0.7);
+        }
+      }
+    }
+
     // Personnage dans un Donjon : pastille à côté du nom
     .dungeon-badge {
       flex: none;

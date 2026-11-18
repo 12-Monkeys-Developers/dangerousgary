@@ -164,6 +164,20 @@
   flex: 1;
   min-width: 0;
 }
+.dangerousgary.actor.character .character-header .rest-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin: 2px 0 4px;
+}
+.dangerousgary.actor.character .character-header .rest-buttons .rest-button {
+  font-size: 1.1rem;
+  color: var(--dg-text-red);
+  cursor: pointer;
+}
+.dangerousgary.actor.character .character-header .rest-buttons .rest-button:hover {
+  text-shadow: 0 0 6px rgba(204, 0, 0, 0.7);
+}
 .dangerousgary.actor.character .character-header .dungeon-badge {
   flex: none;
   padding: 2px 8px;
@@ -1759,6 +1773,27 @@
 .round-card .round-card-buttons .damage-card-button {
   flex: 1;
   white-space: nowrap;
+}
+.rest-result .rest-title {
+  font-weight: bold;
+  text-align: center;
+  color: var(--dg-text-red);
+}
+.rest-result .rest-lines {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px 12px;
+  margin: 4px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.rest-result .rest-lines li {
+  color: #555;
+}
+.rest-result .rest-lines li.changed {
+  font-weight: bold;
+  color: #2e7d32;
 }
 .combat-tracker .combatant .fa-fist-raised {
   color: gray;

@@ -427,6 +427,21 @@
       "Asset": "Atout d'Osmose : {classes}",
       "Or": " ou ",
       "Disappeared": "Disparition ! Les trois cases étaient cochées : le donjexeur est absorbé par le Donjon."
+    },
+    "Rest": {
+      "Title": {
+        "short": "{name} prend une pause",
+        "full": "{name} prend un repos",
+        "secure": "{name} prend un repos sécurisé",
+        "medical": "{name} prend un repos médicalisé"
+      },
+      "Hint": {
+        "short": "PV au maximum",
+        "full": "PV au maximum, +1 FOR, DEX et VOL",
+        "secure": "PV au maximum, +2 FOR, DEX et VOL",
+        "medical": "PV au maximum, +3 FOR, DEX et VOL"
+      },
+      "Drag": "Glisser dans la barre de macros pour créer un raccourci"
     }
   }
 }

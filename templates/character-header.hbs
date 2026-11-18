@@ -7,6 +7,13 @@
         <span class="dungeon-badge" data-tooltip="{{localize 'DANGEROUSGARY.Osmose.DungeonHint'}}"><i class="fas fa-dungeon"></i> {{localize "DANGEROUSGARY.Osmose.InDungeon"}}</span>
       {{/if}}
     </div>
+    {{#if editable}}
+    <div class="rest-buttons">
+      {{#each rests as |rest|}}
+        <a class="rest-button draggable" data-action="rest" data-rest="{{rest.key}}" data-drag-type="rest" data-tooltip-html="{{rest.tooltip}}"><i class="{{rest.icon}}"></i></a>
+      {{/each}}
+    </div>
+    {{/if}}
     <div class="character-short-description">{{formInput systemFields.shortDescription value=system.shortDescription }}</div>
     {{#if ongoingEffects.length}}
     <ul class="ongoing-effects">

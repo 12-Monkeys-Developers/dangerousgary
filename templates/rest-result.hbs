@@ -1,0 +1,11 @@
+<div class="dice-roll rest-result">
+  <div class="rest-title"><i class="{{icon}}"></i> {{title}}</div>
+  <ul class="rest-lines">
+    {{#each lines as |line|}}
+      <li class="{{#if line.changed}}changed{{/if}}">
+        <strong>{{line.label}}</strong>
+        {{#if line.changed}}{{line.before}} → {{line.after}}{{else}}{{line.after}}{{/if}}
+      </li>
+    {{/each}}
+  </ul>
+</div>

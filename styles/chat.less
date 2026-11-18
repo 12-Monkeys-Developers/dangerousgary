@@ -325,3 +325,30 @@
     }
   }
 }
+
+.rest-result {
+  .rest-title {
+    font-weight: bold;
+    text-align: center;
+    color: var(--dg-text-red);
+  }
+
+  .rest-lines {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px 12px;
+    margin: 4px 0 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+      color: #555;
+    }
+
+    li.changed {
+      font-weight: bold;
+      color: #2e7d32;
+    }
+  }
+}

@@ -1,3 +1,5 @@
+import DangerousGaryChat from "../chat.mjs"
+
 export default class DangerousGaryCharacterData extends foundry.abstract.TypeDataModel {
   /** @override */
   static defineSchema() {
@@ -72,34 +74,64 @@ export default class DangerousGaryCharacterData extends foundry.abstract.TypeDat
   }
 
   /**
-   * A few minutes of rest and a swig of water recovers all of a character's lost hp.
+   * Les repos : PV au maximum, et FOR, DEX, VOL augmentées de `recovery` (plafonnées au maximum). La Pause ne rend que les PV.
+   * `icon` : icône de la fiche ; `img` : image de la macro créée par glisser-déposer.
+   * @type {Record<string, {recovery: number, label: string, icon: string, img: string}>}
    */
-  shortRest() {
-    return this.parent.update({ "system.hp.value": this.hp.max })
+  static RESTS = {
+    short: { recovery: 0, label: "DANGEROUSGARY.Labels.long.shortRest", icon: "fa-solid fa-mug-hot", img: "icons/svg/tankard.svg" },
+    full: { recovery: 1, label: "DANGEROUSGARY.Labels.long.fullRest", icon: "fa-solid fa-bed", img: "icons/svg/sleep.svg" },
+    secure: { recovery: 2, label: "DANGEROUSGARY.Labels.long.secureRest", icon: "fa-solid fa-house-lock", img: "icons/svg/house.svg" },
+    medical: { recovery: 3, label: "DANGEROUSGARY.Labels.long.medicalRest", icon: "fa-solid fa-kit-medical", img: "icons/svg/heal.svg" },
   }
 
   /**
-   * Restore HP and recover ability points (capped at max).
-   * @param {number} abilityRecovery number of points to recover per ability
+   * Prend un repos et l'annonce dans le tchat, avec les PV et caractéristiques avant / après.
+   * Une caractéristique remontée au-dessus de 0 perd son état posé automatiquement (Actor#_onUpdate).
+   * @param {"short"|"full"|"secure"|"medical"} type Le repos.
+   * @returns {Promise<ChatMessage|undefined>} Le message du tchat.
    */
-  _rest(abilityRecovery) {
-    return this.parent.update({
-      "system.hp.value": this.hp.max,
-      "system.abilities.str.value": Math.min(this.abilities.str.value + abilityRecovery, this.abilities.str.max),
-      "system.abilities.dex.value": Math.min(this.abilities.dex.value + abilityRecovery, this.abilities.dex.max),
-      "system.abilities.wil.value": Math.min(this.abilities.wil.value + abilityRecovery, this.abilities.wil.max),
-    })
+  async rest(type) {
+    const rest = DangerousGaryCharacterData.RESTS[type]
+    if (!rest) return
+    const lines = [{ key: "hp", before: this.hp.value, after: this.hp.max }]
+    for (const key of ["str", "dex", "wil"]) {
+      const { value, max } = this.abilities[key]
+      lines.push({ key, before: value, after: Math.max(value, Math.min(value + rest.recovery, max)) })
+    }
+    const updates = {}
+    for (const { key, before, after } of lines) {
+      if (after !== before) updates[key === "hp" ? "system.hp.value" : `system.abilities.${key}.value`] = after
+    }
+    if (!foundry.utils.isEmpty(updates)) await this.parent.update(updates)
+
+    const data = {
+      title: game.i18n.format(`DANGEROUSGARY.Rest.Title.${type}`, { name: this.parent.name }),
+      icon: rest.icon,
+      lines: lines.map(({ key, before, after }) => ({ label: game.i18n.localize(`DANGEROUSGARY.Labels.short.${key}`), before, after, changed: after !== before })),
+    }
+    const chat = await new DangerousGaryChat(this.parent).withTemplate("systems/dangerousgary/templates/rest-result.hbs").withData(data).create()
+    await chat?.display()
+    return chat?.chat
   }
 
+  /** Pause : PV au maximum. */
+  shortRest() {
+    return this.rest("short")
+  }
+
+  /** Repos : PV au maximum, +1 FOR, DEX et VOL. */
   fullRest() {
-    return this._rest(1)
+    return this.rest("full")
   }
 
+  /** Repos sécurisé : PV au maximum, +2 FOR, DEX et VOL. */
   secureRest() {
-    return this._rest(2)
+    return this.rest("secure")
   }
 
+  /** Repos médicalisé : PV au maximum, +3 FOR, DEX et VOL. */
   medicalRest() {
-    return this._rest(3)
+    return this.rest("medical")
   }
 }

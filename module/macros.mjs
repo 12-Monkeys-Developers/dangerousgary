@@ -21,6 +21,14 @@ export class Macros {
         this.createMacro(slot, macroName, command, item.img)
         break
       }
+      case "rest": {
+        const actor = await fromUuid(dropData.actorUuid)
+        const rest = actor?.system.constructor.RESTS?.[dropData.rest]
+        if (!rest) return
+        const command = `const actor = await fromUuid(${JSON.stringify(actor.uuid)})\nif (actor) await actor.system.rest(${JSON.stringify(dropData.rest)})`
+        this.createMacro(slot, `${game.i18n.localize(rest.label)} (${actor.name})`, command, rest.img)
+        break
+      }
       case "rollSave": {
         const actor = game.actors.get(dropData.actorId)
         if (!actor) return
