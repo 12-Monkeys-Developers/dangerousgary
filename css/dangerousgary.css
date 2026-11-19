@@ -1370,14 +1370,12 @@
   font-size: 1.2rem;
   font-weight: bold;
 }
-.dangerousgary.actor.character .classes-panel .class-cell input[type="number"] {
+.dangerousgary.actor.character .classes-panel .class-cell .class-level {
   width: 40px;
   font-size: 1.1rem;
   font-weight: bold;
   text-align: center;
-  border: none;
   border-bottom: 2px solid var(--dg-text-red);
-  background: transparent;
   color: #000;
 }
 .dangerousgary.actor.character .classes-panel .class-cell .class-talents-label {

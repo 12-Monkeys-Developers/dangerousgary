@@ -1,3 +1,7 @@
+# 1.4.3
+
+- Classe et talents : le niveau d'une classe n'est plus modifiable à la main ; il est seulement affiché et suit le nombre de talents de la classe déposés sur la fiche
+
 # 1.4.2
 
 - Release technique : mise à jour de la CI
