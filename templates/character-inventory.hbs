@@ -29,6 +29,8 @@
           <div class="item-description">{{{item.enrichedDescription}}}</div>
         </details>
         <div class="item-controls">
+          {{!-- Mode Lecture : dégâts et Équiper / Déséquiper ; mode édition : Éditer et Supprimer --}}
+          {{#if @root.locked}}
           {{#if item.system.isEquipped}}
             {{#if item.system.hasDamage}}
               <span class="rollable" data-action="rollDamage" data-name="{{item.name}}" data-formula="{{item.system.damageFormula}}" data-critical-damage="{{item.system.criticalDamage}}" data-tooltip="{{localize 'DANGEROUSGARY.RollDamageTooltip'}}" data-tooltip-direction="UP">
@@ -40,9 +42,10 @@
           {{#if (not item.system.isEquipped)}}
             <a data-tooltip="{{localize 'DANGEROUSGARY.Equip'}}" data-action="equip" data-item-id="{{item.id}}"><i class="fa-regular fa-shield"></i></a>
           {{/if}}
+          {{/if}}
           {{#unless @root.locked}}
           <a data-tooltip="{{localize 'DANGEROUSGARY.Edit'}}" data-action="edit" data-item-id="{{item.id}}"><i class="fas fa-edit"></i></a>
-          <a data-tooltip="{{localize 'DANGEROUSGARY.Delete'}}" data-action="delete" data-item-id="{{item.id}}"><i class="fas fa-trash"></i></a>
+          <a data-tooltip-html="{{localize 'DANGEROUSGARY.Delete'}}{{#if @root.isGM}}<br>{{localize 'DANGEROUSGARY.DeleteShiftHint'}}{{/if}}" data-action="delete" data-item-id="{{item.id}}"><i class="fas fa-trash"></i></a>
           {{/unless}}
         </div>
       </div>
@@ -85,7 +88,7 @@
         <div class="item-controls">
           {{#unless @root.locked}}
           <a data-tooltip="{{localize 'DANGEROUSGARY.Edit'}}" data-action="edit" data-item-id="{{item.id}}"><i class="fas fa-edit"></i></a>
-          <a data-tooltip="{{localize 'DANGEROUSGARY.Delete'}}" data-action="delete" data-item-id="{{item.id}}"><i class="fas fa-trash"></i></a>
+          <a data-tooltip-html="{{localize 'DANGEROUSGARY.Delete'}}{{#if @root.isGM}}<br>{{localize 'DANGEROUSGARY.DeleteShiftHint'}}{{/if}}" data-action="delete" data-item-id="{{item.id}}"><i class="fas fa-trash"></i></a>
           {{/unless}}
         </div>
       </div>

@@ -273,6 +273,7 @@
     "Add": "Add",
     "Edit": "Edit",
     "Delete": "Delete",
+    "DeleteShiftHint": "Shift+Click: delete without confirmation",
     "RollStrength": "Roll Strength save",
     "RollStrengthTooltip": "Click: Strength save<br>Shift+Click: Class save (max)",
     "RollDexterity": "Roll Dexterity save",
@@ -282,7 +283,8 @@
     "Warnings": {
       "DuplicateTalent": "{name}: this talent is already possessed by the character.",
       "TalentLowerLevels": "{name} (level {level}): a talent of every lower level must have been taken in {className} first.",
-      "TalentDropEditMode": "Switch the sheet to Edit mode to add a talent."
+      "TalentDropEditMode": "Switch the sheet to Edit mode to add a talent.",
+      "ItemDropEditMode": "Switch the sheet to edit mode to add equipment."
     },
     "RollClassSave": "Roll class save",
     "Dialog": {

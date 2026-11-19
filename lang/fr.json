@@ -273,10 +273,12 @@
     "Add": "Ajouter",
     "Edit": "Modifier",
     "Delete": "Supprimer",
+    "DeleteShiftHint": "Maj+Clic : supprimer sans confirmation",
     "Warnings": {
       "DuplicateTalent": "{name} : ce talent est déjà possédé par le personnage.",
       "TalentLowerLevels": "{name} (niveau {level}) : tous les talents d'un niveau inférieur doivent avoir été pris en {className}.",
-      "TalentDropEditMode": "Passez la fiche en mode édition pour ajouter un talent."
+      "TalentDropEditMode": "Passez la fiche en mode édition pour ajouter un talent.",
+      "ItemDropEditMode": "Passez la fiche en mode édition pour ajouter un équipement."
     },
     "RollClassSave": "Lancer la sauvegarde de classe",
     "Dialog": {

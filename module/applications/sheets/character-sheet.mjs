@@ -67,6 +67,7 @@ export default class DangerousGaryCharacterSheet extends DangerousGaryBaseActorS
       source: this.document.toObject(),
       enableClasses,
       locked: this.isPlayMode,
+      isGM: game.user.isGM,
       // Icônes de repos de l'en-tête : clic pour se reposer, glisser vers la barre de macros
       rests: Object.entries(this.document.system.constructor.RESTS).map(([key, rest]) => ({
         key,
@@ -270,6 +271,11 @@ export default class DangerousGaryCharacterSheet extends DangerousGaryBaseActorS
       case "Item":
         const item = await fromUuid(data.uuid)
         if (item.type !== "equipment" && item.type !== "talent" && item.type !== "artefact") return
+        // Un équipement ou un artefact ne s'ajoute qu'en mode édition
+        if (item.type !== "talent" && !this.isEditMode) {
+          ui.notifications.warn("DANGEROUSGARY.Warnings.ItemDropEditMode", { localize: true })
+          return
+        }
         if (isAssassinTalent(item) && !canManageAssassin(this.actor)) return denyAssassin()
         if (item.type === "talent") {
           // Un talent ne s'ajoute qu'en mode Écriture
@@ -328,11 +334,13 @@ export default class DangerousGaryCharacterSheet extends DangerousGaryBaseActorS
     const itemId = target.getAttribute("data-item-id")
     const item = this.actor.items.get(itemId)
     const talentClass = item.type === "talent" ? item.system.talentClass : null
-    // Talent : confirmation par la fenêtre standard de Foundry avant la suppression
-    if (item.type === "talent") {
+    // Confirmation par la fenêtre standard de Foundry avant la suppression (talents, équipements, artefacts) ;
+    // le MJ la contourne avec Maj+Clic
+    if (event.shiftKey && game.user.isGM) await item.delete()
+    else {
       const deleted = await item.deleteDialog()
       if (!deleted) return
-    } else await item.delete()
+    }
     if (talentClass) {
       await this._updateClassLevel(talentClass)
     }
