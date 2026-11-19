@@ -1,5 +1,6 @@
 # 1.4.3
 
+- Talents spéciaux (*) : la règle (utilisable hors de son tour ou en plus d'une autre action, un seul par round) est rappelée en infobulle sur la case Spécial de la fiche Talent et en tête de l'infobulle d'un talent spécial dans l'onglet Classe et talents
 - Classe et talents : un talent de niveau X ne peut être déposé que si le personnage a déjà un talent de chaque niveau inférieur dans la même classe ; sinon un avertissement s'affiche
 - Classe et talents : le niveau d'une classe n'est plus modifiable à la main ; il est seulement affiché et suit le nombre de talents de la classe déposés sur la fiche
 - Assassin : nouveau compendium « Talents (MJ) », réservé au MJ, avec un dossier Assassin et les 9 talents de la classe (livre de base p. 102-103). Sur la fiche, le bloc Assassin disparaît : la classe s'affiche en dixième position de l'onglet Classe et talents, pour le MJ seul et seulement si un talent d'Assassin a été déposé, sous la forme « Assassin (X) » avec X la valeur de sa sauvegarde (moyenne inférieure des maxima de FOR, DEX et VOL, rappelée en infobulle) ; le niveau suit le nombre de talents déposés

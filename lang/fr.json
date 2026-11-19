@@ -153,6 +153,7 @@
       }
     },
     "Talent": {
+      "SpecialHint": "Talent spécial (*) : il peut être utilisé à un autre tour que celui du donjexeur et/ou en plus d'une autre action (attaque, usage d'un Talent ou d'un Artefact). Attention : il n'est possible d'utiliser qu'un seul Talent comportant un astérisque (*) par round.",
       "FIELDS": {
         "talentClass": {
           "label": "Classe"

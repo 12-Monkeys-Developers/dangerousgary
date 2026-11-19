@@ -146,6 +146,8 @@ export default class DangerousGaryCharacterSheet extends DangerousGaryBaseActorS
         for (const talent of talentsRaw) {
           if (isAssassinTalent(talent) && !context.canManageAssassin) continue
           talent.enrichedDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(talent.system.description, { async: true })
+          // Talent spécial (*) : la règle est rappelée en tête de l'infobulle
+          if (talent.system.special) talent.enrichedDescription = `<p><em>${game.i18n.localize("DANGEROUSGARY.Talent.SpecialHint")}</em></p>${talent.enrichedDescription}`
           const classKey = talent.system.talentClass
           if (classKey && context.talentsByClass[classKey]) {
             context.talentsByClass[classKey].push(talent)
