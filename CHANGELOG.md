@@ -1,5 +1,7 @@
 # 1.4.3
 
+- Onglet Équipement : un artefact grisé (aucune classe nécessaire possédée) l'explique en infobulle : « Vous ne possédez aucune des classes nécessaires à l'usage de l'artefact »
+- Onglet Équipement : les artefacts s'affichent sur deux colonnes, comme les équipements
 - Osmose : la case « Dans un Donjon » est visible même décochée (cadre rouge sur fond clair)
 - Onglet Équipement : un équipement ou un artefact ne se dépose qu'en mode édition ; en mode édition, les boutons Équiper et dégâts laissent la place à Éditer et Supprimer ; la suppression demande une confirmation (fenêtre standard de Foundry)
 - Suppression d'un talent ou d'un équipement : le MJ supprime sans confirmation par Maj+Clic, rappelé dans l'infobulle du bouton

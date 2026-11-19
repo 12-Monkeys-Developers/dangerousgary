@@ -54,7 +54,7 @@
   {{#if artefacts.length}}
   <div class="character-artefacts-list">
     {{#each artefacts as |item|}}
-      <div class="artefact-item {{#unless item.artefactData.canUse}}artefact-unusable{{/unless}}" data-item-id="{{item.id}}">
+      <div class="artefact-item {{#unless item.artefactData.canUse}}artefact-unusable{{/unless}}" data-item-id="{{item.id}}" {{#unless item.artefactData.canUse}}data-tooltip="{{localize 'DANGEROUSGARY.Artefact.Unusable'}}"{{/unless}}>
         <details>
           <summary>
             <span>

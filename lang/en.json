@@ -255,6 +255,7 @@
       }
     },
     "Artefact": {
+      "Unusable": "You have none of the classes required to use this artefact",
       "FIELDS": {
         "description": { "label": "Description" },
         "allowedClasses": { "label": "Required Classes" },

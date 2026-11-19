@@ -131,7 +131,9 @@ export default class DangerousGaryCharacterSheet extends DangerousGaryBaseActorS
             // Infobulle : la description, puis les capacités visibles avec leur niveau requis
             const levelLabel = game.i18n.localize("DANGEROUSGARY.Artefact.LevelAbbr")
             const capacityLines = capacities.map((cap) => `<li><strong>${levelLabel} ${cap.level}</strong> ${cap.description}</li>`).join("")
-            const tooltip = `${item.enrichedDescription}${capacityLines ? `<ul class="dg-artefact-tooltip-capacities">${capacityLines}</ul>` : ""}`
+            // Artefact inutilisable (aucune classe nécessaire possédée) : le rappel ouvre l'infobulle
+            const unusable = bestClassLevel < 1 ? `<p><strong>${game.i18n.localize("DANGEROUSGARY.Artefact.Unusable")}</strong></p>` : ""
+            const tooltip = `${unusable}${item.enrichedDescription}${capacityLines ? `<ul class="dg-artefact-tooltip-capacities">${capacityLines}</ul>` : ""}`
             item.artefactData = { bestClassLevel, allowedClassLabels, capacities, tooltip, canUse: bestClassLevel >= 1 }
             context.artefacts.push(item)
           }

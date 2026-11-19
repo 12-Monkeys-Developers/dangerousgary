@@ -463,7 +463,10 @@ pages:
               sans ce réglage, un joueur ne voit parmi les classes nécessaires que celles où son personnage atteint le niveau requis par au moins une capacité ; l'infobulle
               suit la même règle pour les capacités, et la fiche de l'artefact n'affiche que ces classes et ces capacités ;
             </li>
-            <li>un artefact dont le personnage ne possède aucune des classes est grisé.</li>
+            <li>
+              un artefact dont le personnage ne possède aucune des classes est grisé, et son infobulle l'indique : « Vous ne possédez aucune des classes nécessaires à l'usage
+              de l'artefact ».
+            </li>
           </ul>
           <div class="guide-row">
             <div class="guide-image guide-image-card"><img src="systems/dangerousgary/assets/guide/carte-artefact.webp" alt="Utilisation d'un artefact dans le tchat" /></div>
