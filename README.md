@@ -82,7 +82,7 @@ Ce système est développé par Kristov.
   ## Classes & Talents (optionnel)
 
   - 9 classes ordinaires : Clerc, Guerrier, Paladin, Druide, Moine, Voleur, Barde, Mage, Rôdeur — chacune avec un niveau de 0 à 9
-  - Assassin : dixième classe réservée aux PNJ sans propriétaire joueur, avec un bloc indigo visible uniquement du MJ. Ses talents sont des objets créés directement sur le PNJ, sans compendium dédié.
+  - Assassin : dixième classe réservée aux PNJ sans propriétaire joueur. Ses 9 talents (livre de base p. 102-103) sont dans le compendium « Talents (MJ) », dossier Assassin, réservé au MJ. Une fois un talent d'Assassin déposé sur un PNJ, la classe apparaît en dixième position de l'onglet Classe et talents, visible uniquement du MJ, sous la forme « Assassin (X) » où X est la valeur de sa sauvegarde.
   - Sauvegarde d’Assassin : moyenne des maxima de FOR, DEX et VOL, arrondie à l’inférieur. Les jets et les macros associés sont privés MJ ; Malchance et le coût d’un talent raté s’appliquent normalement.
   - Talents associés à une classe, avec niveau (1-9), description et marqueur spécial
   - Jet de classe : jet de sauvegarde contre le maximum de la caractéristique associée (FOR pour Clerc/Guerrier/Paladin, DEX pour Druide/Moine/Voleur, VOL pour Barde/Mage/Rôdeur)

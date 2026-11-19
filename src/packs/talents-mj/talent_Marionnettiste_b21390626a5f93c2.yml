@@ -1,0 +1,29 @@
+name: Marionnettiste
+type: talent
+img: icons/svg/sun.svg
+system:
+  description: >-
+    Un donjexeur à moins d’environ 10 mètres effectue une sauvegarde de Volonté. En cas d’échec,
+    l’utilisateur le contrôle pendant autant de rounds que son niveau d’Assassin, et peut lui
+    ordonner toute action, y compris de se blesser.
+  level: 8
+  talentClass: assassin
+  special: false
+_id: b21390626a5f93c2
+effects: []
+folder: AssassinTalentMJ
+sort: 800000
+ownership:
+  default: 0
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+  coreVersion: '14.370'
+  systemId: dangerousgary
+  systemVersion: '#{VERSION}#'
+  createdTime: 1795046400000
+  modifiedTime: 1795046400000
+  lastModifiedBy: null
+_key: '!items!b21390626a5f93c2'

@@ -1,0 +1,29 @@
+name: Crise cardiaque
+type: talent
+img: icons/svg/sun.svg
+system:
+  description: >-
+    Un donjexeur à moins d’environ 10 mètres est frappé d’une crise cardiaque et doit réussir une
+    sauvegarde de Force. En cas d’échec, il meurt. En cas de réussite, ses attaques sont contraintes
+    pendant un nombre de rounds égal au résultat de son D20.
+  level: 9
+  talentClass: assassin
+  special: false
+_id: 459b15297c5ba815
+effects: []
+folder: AssassinTalentMJ
+sort: 900000
+ownership:
+  default: 0
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+  coreVersion: '14.370'
+  systemId: dangerousgary
+  systemVersion: '#{VERSION}#'
+  createdTime: 1795046400000
+  modifiedTime: 1795046400000
+  lastModifiedBy: null
+_key: '!items!459b15297c5ba815'

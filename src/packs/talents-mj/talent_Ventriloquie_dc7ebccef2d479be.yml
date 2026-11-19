@@ -1,0 +1,29 @@
+name: Ventriloquie
+type: talent
+img: icons/svg/sun.svg
+system:
+  description: >-
+    Altère l’ouïe des autres donjexeurs à moins d’environ 10 mètres : sons, voix et bruits peuvent
+    être créés ou modifiés durant toute la scène. Une cible qui soupçonne l’illusion peut y mettre
+    fin en réussissant une sauvegarde de Volonté.
+  level: 1
+  talentClass: assassin
+  special: false
+_id: dc7ebccef2d479be
+effects: []
+folder: AssassinTalentMJ
+sort: 100000
+ownership:
+  default: 0
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+  coreVersion: '14.370'
+  systemId: dangerousgary
+  systemVersion: '#{VERSION}#'
+  createdTime: 1795046400000
+  modifiedTime: 1795046400000
+  lastModifiedBy: null
+_key: '!items!dc7ebccef2d479be'

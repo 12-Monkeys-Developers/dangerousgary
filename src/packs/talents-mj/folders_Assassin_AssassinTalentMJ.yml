@@ -1,0 +1,20 @@
+type: Item
+folder: null
+name: Assassin
+color: '#4b0082'
+sorting: m
+_id: AssassinTalentMJ
+description: ''
+sort: 100000
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+  coreVersion: '14.370'
+  systemId: dangerousgary
+  systemVersion: '#{VERSION}#'
+  createdTime: 1795046400000
+  modifiedTime: 1795046400000
+  lastModifiedBy: null
+_key: '!folders!AssassinTalentMJ'

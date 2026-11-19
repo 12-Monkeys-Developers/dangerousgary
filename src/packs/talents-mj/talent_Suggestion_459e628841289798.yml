@@ -1,0 +1,31 @@
+name: Suggestion
+type: talent
+img: icons/svg/sun.svg
+system:
+  description: >-
+    Après quelques minutes de conversation, la cible effectue une sauvegarde de Volonté. En cas
+    d’échec, une action programmée se déclenchera à un mot ou une situation déterminée. L’action
+    peut être violente, mais ne peut être délibérément dirigée contre la victime elle-même. La
+    suggestion disparaît après autant de jours que le niveau d’Assassin de l’utilisateur ; quitter
+    les Donjons ne l’annule pas.
+  level: 7
+  talentClass: assassin
+  special: false
+_id: 459e628841289798
+effects: []
+folder: AssassinTalentMJ
+sort: 700000
+ownership:
+  default: 0
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+  coreVersion: '14.370'
+  systemId: dangerousgary
+  systemVersion: '#{VERSION}#'
+  createdTime: 1795046400000
+  modifiedTime: 1795046400000
+  lastModifiedBy: null
+_key: '!items!459e628841289798'

@@ -44,6 +44,18 @@
         "TRUSTED": "OBSERVER",
         "ASSISTANT": "OWNER"
       }
+    },
+    {
+      "name": "talents-mj",
+      "label": "Talents (MJ)",
+      "system": "dangerousgary",
+      "path": "packs/talents-mj",
+      "type": "Item",
+      "ownership": {
+        "PLAYER": "NONE",
+        "TRUSTED": "NONE",
+        "ASSISTANT": "OWNER"
+      }
     }
   ],
   "languages": [

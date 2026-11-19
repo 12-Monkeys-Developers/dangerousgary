@@ -410,7 +410,7 @@
     },
     "Assassin": {
       "Save": "Sauvegarde de classe Assassin",
-      "Formula": "Moyenne inférieure de FOR, DEX et VOL initiales",
+      "Formula": "Moyenne inférieure de FOR, DEX et VOL maximales",
       "NpcOnly": "Assassin est réservé aux PNJ. Retirez cette classe et ses talents avant de donner la propriété à un joueur.",
       "Denied": "Action non autorisée."
     },

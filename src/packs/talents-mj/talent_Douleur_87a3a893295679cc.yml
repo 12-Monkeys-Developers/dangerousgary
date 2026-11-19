@@ -1,0 +1,30 @@
+name: Douleur
+type: talent
+img: icons/svg/sun.svg
+system:
+  description: >-
+    Un donjexeur à moins d’environ 10 mètres subit une douleur incapacitante. Ses dégâts d’attaque
+    sont diminués de 2, avec un minimum de 1, et ses sauvegardes subissent également un malus de 2.
+    Durée : autant de rounds que le niveau d’Assassin de l’utilisateur. Cet effet persiste même si
+    la victime quitte les Donjons.
+  level: 4
+  talentClass: assassin
+  special: false
+_id: 87a3a893295679cc
+effects: []
+folder: AssassinTalentMJ
+sort: 400000
+ownership:
+  default: 0
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+  coreVersion: '14.370'
+  systemId: dangerousgary
+  systemVersion: '#{VERSION}#'
+  createdTime: 1795046400000
+  modifiedTime: 1795046400000
+  lastModifiedBy: null
+_key: '!items!87a3a893295679cc'

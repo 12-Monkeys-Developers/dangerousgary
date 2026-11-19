@@ -1,0 +1,28 @@
+name: Malédiction du profane
+type: talent
+img: icons/svg/sun.svg
+system:
+  description: >-
+    Cible un donjexeur à moins d’environ 10 mètres qui a utilisé un Talent à son tour précédent.
+    Durant toute la scène, la victime ne peut plus utiliser aucun Talent de cette classe.
+  level: 6
+  talentClass: assassin
+  special: false
+_id: fc454c988ab98a31
+effects: []
+folder: AssassinTalentMJ
+sort: 600000
+ownership:
+  default: 0
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+  coreVersion: '14.370'
+  systemId: dangerousgary
+  systemVersion: '#{VERSION}#'
+  createdTime: 1795046400000
+  modifiedTime: 1795046400000
+  lastModifiedBy: null
+_key: '!items!fc454c988ab98a31'

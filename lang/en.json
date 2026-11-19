@@ -410,7 +410,7 @@
     },
     "Assassin": {
       "Save": "Assassin class save",
-      "Formula": "Rounded-down average of initial STR, DEX and WIL",
+      "Formula": "Rounded-down average of maximum STR, DEX and WIL",
       "NpcOnly": "Assassin is restricted to NPCs. Remove this class and its talents before granting ownership to a player.",
       "Denied": "Action not allowed."
     },

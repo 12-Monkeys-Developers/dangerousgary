@@ -1,0 +1,29 @@
+name: Poigne du nécrophage
+type: talent
+img: icons/svg/sun.svg
+system:
+  description: >-
+    Pendant autant de rounds que son niveau d’Assassin, les attaques au corps à corps de
+    l’utilisateur font perdre à leur victime un niveau de Talent choisi par celle-ci. La perte est
+    définitive ; seul le Talent Restauration du Clerc permet d’y remédier.
+  level: 5
+  talentClass: assassin
+  special: false
+_id: b76a279fa99f04de
+effects: []
+folder: AssassinTalentMJ
+sort: 500000
+ownership:
+  default: 0
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+  coreVersion: '14.370'
+  systemId: dangerousgary
+  systemVersion: '#{VERSION}#'
+  createdTime: 1795046400000
+  modifiedTime: 1795046400000
+  lastModifiedBy: null
+_key: '!items!b76a279fa99f04de'

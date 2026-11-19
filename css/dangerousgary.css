@@ -521,14 +521,8 @@
   font-family: var(--dg-font-body);
   margin: 10px 0 4px;
 }
-.dangerousgary.actor.character .assassin-panel {
-  border-color: #6651ad;
-}
-.dangerousgary.actor.character .assassin-panel .class-name {
+.dangerousgary.actor.character .assassin-cell .class-name {
   color: #6651ad;
-}
-.dangerousgary.actor.character .assassin-panel .class-header input {
-  width: 4em;
 }
 .dangerousgary.actor.encounter {
   min-width: 675px;
