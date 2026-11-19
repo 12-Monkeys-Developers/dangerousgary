@@ -1,5 +1,6 @@
 # 1.4.3
 
+- Osmose : la case « Dans un Donjon » est visible même décochée (cadre rouge sur fond clair)
 - Onglet Équipement : un équipement ou un artefact ne se dépose qu'en mode édition ; en mode édition, les boutons Équiper et dégâts laissent la place à Éditer et Supprimer ; la suppression demande une confirmation (fenêtre standard de Foundry)
 - Suppression d'un talent ou d'un équipement : le MJ supprime sans confirmation par Maj+Clic, rappelé dans l'infobulle du bouton
 - Classe et talents : en mode édition, un talent n'affiche plus que ses boutons Éditer et Supprimer, avec une infobulle chacun ; la suppression d'un talent demande une confirmation (fenêtre standard de Foundry)

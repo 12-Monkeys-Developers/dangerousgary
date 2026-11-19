@@ -37,8 +37,19 @@
       color: var(--dg-text-red);
       cursor: pointer;
 
-      input {
+      // Case visible même décochée. Foundry la dessine avec une icône (::before) dont la largeur ne suit pas
+      // exactement le cadre : décochée, l'icône est masquée et le carré est dessiné par le cadre lui-même ;
+      // cochée, l'icône cochée de Foundry, en rouge
+      input[type="checkbox"] {
+        --checkbox-checked-color: var(--dg-text-red);
         margin: 0;
+
+        &:not(:checked)::before {
+          color: transparent;
+          background: #f4f4f4;
+          border: 2px solid var(--dg-text-red);
+          box-sizing: border-box;
+        }
       }
     }
 

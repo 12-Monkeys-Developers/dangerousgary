@@ -1325,8 +1325,15 @@
   color: var(--dg-text-red);
   cursor: pointer;
 }
-.dangerousgary.actor.character .osmose-block .osmose-dungeon input {
+.dangerousgary.actor.character .osmose-block .osmose-dungeon input[type="checkbox"] {
+  --checkbox-checked-color: var(--dg-text-red);
   margin: 0;
+}
+.dangerousgary.actor.character .osmose-block .osmose-dungeon input[type="checkbox"]:not(:checked)::before {
+  color: transparent;
+  background: #f4f4f4;
+  border: 2px solid var(--dg-text-red);
+  box-sizing: border-box;
 }
 .dangerousgary.actor.character .osmose-block .osmose-pip {
   width: 20px;
