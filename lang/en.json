@@ -153,6 +153,8 @@
       }
     },
     "Talent": {
+      "Edit": "Edit this talent",
+      "Delete": "Delete this talent",
       "SpecialHint": "Special talent (*): it can be used on another turn than the character's and/or in addition to another action (attack, use of a Talent or an Artefact). Beware: only one Talent with an asterisk (*) can be used per round.",
       "FIELDS": {
         "talentClass": {

@@ -392,6 +392,10 @@ pages:
             caractéristique de la classe. En cas d'échec, le donjexeur perd autant de <strong>points de vie</strong> que le niveau du talent. S'il n'a plus assez de points de
             vie, le reste est retiré de sa <strong>Force</strong>. La carte du tchat indique la perte (voir @UUID[Compendium.dangerousgary.guide.JournalEntry.tlbfAE79HHg82HaN.JournalEntryPage.H6d2D2QVYtF1Kwbx]{Jets et messages}).
           </p>
+          <p>
+            En mode Écriture, le dé laisse la place aux boutons <i class="fas fa-edit"></i> <strong>Éditer</strong> et <i class="fas fa-trash"></i>
+            <strong>Supprimer</strong> du talent ; la suppression demande une confirmation.
+          </p>
           <p>Faites glisser un talent dans la barre de macros pour créer un raccourci de sa sauvegarde de classe (voir @UUID[Compendium.dangerousgary.guide.JournalEntry.tlbfAE79HHg82HaN.JournalEntryPage.EDrxwaqLnf5XCESY]{Combat et macros}).</p>
 
           <h3>L'Osmose</h3>

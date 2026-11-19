@@ -1,5 +1,6 @@
 # 1.4.3
 
+- Classe et talents : en mode édition, un talent n'affiche plus que ses boutons Éditer et Supprimer, avec une infobulle chacun ; la suppression d'un talent demande une confirmation (fenêtre standard de Foundry)
 - Talents spéciaux (*) : la règle (utilisable hors de son tour ou en plus d'une autre action, un seul par round) est rappelée en infobulle sur la case Spécial de la fiche Talent et en tête de l'infobulle d'un talent spécial dans l'onglet Classe et talents
 - Classe et talents : un talent de niveau X ne peut être déposé que si le personnage a déjà un talent de chaque niveau inférieur dans la même classe ; sinon un avertissement s'affiche
 - Classe et talents : le niveau d'une classe n'est plus modifiable à la main ; il est seulement affiché et suit le nombre de talents de la classe déposés sur la fiche

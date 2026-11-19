@@ -328,7 +328,11 @@ export default class DangerousGaryCharacterSheet extends DangerousGaryBaseActorS
     const itemId = target.getAttribute("data-item-id")
     const item = this.actor.items.get(itemId)
     const talentClass = item.type === "talent" ? item.system.talentClass : null
-    await item.delete()
+    // Talent : confirmation par la fenêtre standard de Foundry avant la suppression
+    if (item.type === "talent") {
+      const deleted = await item.deleteDialog()
+      if (!deleted) return
+    } else await item.delete()
     if (talentClass) {
       await this._updateClassLevel(talentClass)
     }
