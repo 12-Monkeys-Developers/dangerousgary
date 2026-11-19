@@ -280,6 +280,22 @@ export default class DangerousGaryCharacterSheet extends DangerousGaryBaseActorS
             ui.notifications.warn(game.i18n.format("DANGEROUSGARY.Warnings.DuplicateTalent", { name: item.name }))
             return
           }
+          // Un talent de niveau X demande d'avoir déjà un talent de chaque niveau de 1 à X-1 dans la même classe
+          const { level, talentClass } = item.system
+          if (talentClass && level > 1) {
+            const owned = new Set(this.actor.itemTypes.talent.filter((t) => t.system.talentClass === talentClass).map((t) => t.system.level))
+            const missing = Array.from({ length: level - 1 }, (_, i) => i + 1).filter((l) => !owned.has(l))
+            if (missing.length) {
+              ui.notifications.warn(
+                game.i18n.format("DANGEROUSGARY.Warnings.TalentLowerLevels", {
+                  name: item.name,
+                  level,
+                  className: game.i18n.localize(`DANGEROUSGARY.Talent.Classes.${talentClass}`),
+                }),
+              )
+              return
+            }
+          }
         }
         await this.actor.createEmbeddedDocuments("Item", [item], { renderSheet: false })
         if (item.type === "talent" && item.system.talentClass) {

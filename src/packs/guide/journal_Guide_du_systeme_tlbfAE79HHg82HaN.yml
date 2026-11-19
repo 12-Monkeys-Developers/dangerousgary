@@ -366,7 +366,8 @@ pages:
                 recalcule aussi le niveau.
               </p>
               <p>
-                Un même talent ne peut pas être ajouté deux fois : un avertissement s'affiche. Le niveau de classe n'est pas modifiable à la main : il est seulement affiché,
+                Un même talent ne peut pas être ajouté deux fois, et un talent de niveau X n'est accepté que si le personnage possède déjà un talent de chaque niveau
+                de 1 à X-1 dans la même classe : sinon, un avertissement s'affiche. Le niveau de classe n'est pas modifiable à la main : il est seulement affiché,
                 et suit toujours les talents de la classe.
               </p>
             </div>
