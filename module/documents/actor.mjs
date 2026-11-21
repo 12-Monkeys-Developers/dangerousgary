@@ -4,6 +4,17 @@ import { DamageCard } from "../damage.mjs"
 import { CONSTRAINING_STATUSES, EXALTING_STATUS, ONGOING_ICONS, STATUS_EFFECTS, UNLUCKY_STATUS } from "../config.mjs"
 
 export default class DangerousGaryActor extends Actor {
+  /**
+   * Données des formules : celles du cœur, plus des alias courts des caractéristiques du lanceur.
+   * `@for`, `@dex`, `@vol` : valeurs actuelles ; `@formax`, `@dexmax`, `@volmax` : maxima. Exemple : `ceil(@vol/2)`.
+   * @inheritDoc
+   */
+  getRollData() {
+    const data = { ...super.getRollData() }
+    const { str, dex, wil } = this.system.abilities ?? {}
+    return Object.assign(data, { for: str?.value, dex: dex?.value, vol: wil?.value, formax: str?.max, dexmax: dex?.max, volmax: wil?.max })
+  }
+
   get isCharacter() {
     return this.type === "character"
   }
@@ -366,17 +377,19 @@ export default class DangerousGaryActor extends Actor {
     }
     constrained = !!constrained
     exalted = !!exalted
+    // Les formules peuvent utiliser les caractéristiques du lanceur (@for, @vol, @volmax…)
+    const rollData = this.getRollData()
     let roll
     if (constrained) {
-      roll = await new Roll(defence.keepLowest ? "2d4kl1" : "1d4").roll()
+      roll = await new Roll(defence.keepLowest ? "2d4kl1" : "1d4", rollData).roll()
     } else if (exalted) {
       const maxFormula = formula.replace(/(\d+)d(\d+)/gi, (_, num, faces) => String(Number(num) * Number(faces)))
-      roll = await new Roll(maxFormula).roll()
+      roll = await new Roll(maxFormula, rollData).roll()
     } else {
       let rollFormula = criticalDamage ? formula.replace(/(\d+d\d+)/gi, "$1xo") : formula
       // Deux dés de dégâts, le plus bas est gardé
       if (defence.keepLowest) rollFormula = rollFormula.replace(/(\d+)d(\d+)(xo)?/gi, (_, num, faces, xo) => `${Number(num) * 2}d${faces}${xo ?? ""}kl${num}`)
-      roll = await new Roll(rollFormula).roll()
+      roll = await new Roll(rollFormula, rollData).roll()
     }
     const result = roll.total
     const isCriticalDamage = !constrained && !exalted && criticalDamage && roll.dice.some((die) => die.results.some((r) => r.exploded))
