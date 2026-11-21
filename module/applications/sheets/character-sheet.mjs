@@ -159,6 +159,8 @@ export default class DangerousGaryCharacterSheet extends DangerousGaryBaseActorS
         for (const key of classKeys) {
           context.talentsByClass[key].sort((a, b) => a.system.level - b.system.level)
         }
+        // Au moins une classe avec des niveaux (Assassin seulement pour qui peut le voir) : sinon, en mode Lecture, un message remplace la grille
+        context.hasClassLevels = Object.entries(this.document.system.classes).some(([key, level]) => level > 0 && (key !== "assassin" || context.canManageAssassin))
         break
     }
     return context

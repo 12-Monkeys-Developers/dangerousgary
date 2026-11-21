@@ -342,7 +342,9 @@ pages:
           <div class="guide-image"><img src="systems/dangerousgary/assets/guide/fiche-personnage-classes.webp" alt="Onglet Classe et talents" /></div>
           <p>
             L'onglet <strong>Classe et talents</strong> n'apparaît aux joueurs que si le réglage <strong>Classe et talents</strong> est actif (voir @UUID[Compendium.dangerousgary.guide.JournalEntry.tlbfAE79HHg82HaN.JournalEntryPage.B5mvayI7qCFZcDBz]{Réglages}). Il présente
-            les neuf classes, chacune avec son niveau (0 à 9) et ses talents, triés par niveau. Chaque classe est liée à une caractéristique, indiquée entre parenthèses :
+            les neuf classes, chacune avec son niveau (0 à 9) et ses talents, triés par niveau. En mode Lecture, seules les classes où le personnage a des niveaux sont
+            affichées ; en mode Écriture, les neuf classes le sont, pour pouvoir y déposer des talents. Chaque classe est liée à une caractéristique, indiquée entre
+            parenthèses :
           </p>
           <table class="guide-table">
             <tr>

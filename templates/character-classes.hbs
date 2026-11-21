@@ -13,8 +13,13 @@
       <input type="checkbox" name="system.inDungeon" {{checked system.inDungeon}} />
     </label>
   </div>
+  {{!-- Mode Lecture : seulement les classes où le personnage a des niveaux ; mode édition : toutes --}}
+  {{#if (and locked (not hasClassLevels))}}
+  <p class="classes-empty">{{localize "DANGEROUSGARY.Talent.NoClasses"}}</p>
+  {{else}}
   <div class="classes-panel panel">
     <div class="classes-grid">
+      {{#if (or (not @root.locked) system.classes.cleric)}}
       <div class="class-cell">
         <div class="class-header">
           <span class="class-name">{{localize "DANGEROUSGARY.Talent.Classes.cleric"}} ({{localize "DANGEROUSGARY.Labels.short.str"}})</span>
@@ -37,6 +42,8 @@
           {{/each}}
         </div>
       </div>
+      {{/if}}
+      {{#if (or (not @root.locked) system.classes.fighter)}}
       <div class="class-cell">
         <div class="class-header">
           <span class="class-name">{{localize "DANGEROUSGARY.Talent.Classes.fighter"}} ({{localize "DANGEROUSGARY.Labels.short.str"}})</span>
@@ -59,6 +66,8 @@
           {{/each}}
         </div>
       </div>
+      {{/if}}
+      {{#if (or (not @root.locked) system.classes.paladin)}}
       <div class="class-cell">
         <div class="class-header">
           <span class="class-name">{{localize "DANGEROUSGARY.Talent.Classes.paladin"}} ({{localize "DANGEROUSGARY.Labels.short.str"}})</span>
@@ -81,6 +90,8 @@
           {{/each}}
         </div>
       </div>
+      {{/if}}
+      {{#if (or (not @root.locked) system.classes.druid)}}
       <div class="class-cell">
         <div class="class-header">
           <span class="class-name">{{localize "DANGEROUSGARY.Talent.Classes.druid"}} ({{localize "DANGEROUSGARY.Labels.short.dex"}})</span>
@@ -103,6 +114,8 @@
           {{/each}}
         </div>
       </div>
+      {{/if}}
+      {{#if (or (not @root.locked) system.classes.monk)}}
       <div class="class-cell">
         <div class="class-header">
           <span class="class-name">{{localize "DANGEROUSGARY.Talent.Classes.monk"}} ({{localize "DANGEROUSGARY.Labels.short.dex"}})</span>
@@ -125,6 +138,8 @@
           {{/each}}
         </div>
       </div>
+      {{/if}}
+      {{#if (or (not @root.locked) system.classes.thief)}}
       <div class="class-cell">
         <div class="class-header">
           <span class="class-name">{{localize "DANGEROUSGARY.Talent.Classes.thief"}} ({{localize "DANGEROUSGARY.Labels.short.dex"}})</span>
@@ -147,6 +162,8 @@
           {{/each}}
         </div>
       </div>
+      {{/if}}
+      {{#if (or (not @root.locked) system.classes.bard)}}
       <div class="class-cell">
         <div class="class-header">
           <span class="class-name">{{localize "DANGEROUSGARY.Talent.Classes.bard"}} ({{localize "DANGEROUSGARY.Labels.short.wil"}})</span>
@@ -169,6 +186,8 @@
           {{/each}}
         </div>
       </div>
+      {{/if}}
+      {{#if (or (not @root.locked) system.classes.mage)}}
       <div class="class-cell">
         <div class="class-header">
           <span class="class-name">{{localize "DANGEROUSGARY.Talent.Classes.mage"}} ({{localize "DANGEROUSGARY.Labels.short.wil"}})</span>
@@ -191,6 +210,8 @@
           {{/each}}
         </div>
       </div>
+      {{/if}}
+      {{#if (or (not @root.locked) system.classes.ranger)}}
       <div class="class-cell">
         <div class="class-header">
           <span class="class-name">{{localize "DANGEROUSGARY.Talent.Classes.ranger"}} ({{localize "DANGEROUSGARY.Labels.short.wil"}})</span>
@@ -213,6 +234,7 @@
           {{/each}}
         </div>
       </div>
+      {{/if}}
       {{!-- Dixième classe, réservée aux PNJ : visible du MJ seul, et seulement si un talent d'Assassin a été déposé sur la fiche --}}
       {{#if (and canManageAssassin talentsByClass.assassin.length)}}
       <div class="class-cell assassin-cell">
@@ -240,5 +262,6 @@
       {{/if}}
     </div>
   </div>
+  {{/if}}
 {{/if}}
 </section>

@@ -1,3 +1,7 @@
+# 1.4.4
+
+- Onglet Classe et talents : en mode Lecture, seules les classes où le personnage a des niveaux sont affichées (un message remplace la grille s'il n'en a aucune) ; en mode édition, toutes les classes restent affichées pour pouvoir y déposer des talents
+
 # 1.4.3
 
 - Onglet Équipement : un artefact grisé (aucune classe nécessaire possédée) l'explique en infobulle : « Vous ne possédez aucune des classes nécessaires à l'usage de l'artefact »

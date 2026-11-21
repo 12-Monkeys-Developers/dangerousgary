@@ -1420,6 +1420,11 @@
   gap: 4px;
   font-size: 0.8rem;
 }
+.dangerousgary.actor.character .character-classes .classes-empty {
+  margin: 12px 0;
+  text-align: center;
+  font-style: italic;
+}
 .dangerousgary prose-mirror {
   display: flex;
   flex-direction: column;
