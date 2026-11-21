@@ -54,7 +54,7 @@
   {{#if artefacts.length}}
   <div class="character-artefacts-list">
     {{#each artefacts as |item|}}
-      <div class="artefact-item {{#unless item.artefactData.canUse}}artefact-unusable{{/unless}}" data-item-id="{{item.id}}" {{#unless item.artefactData.canUse}}data-tooltip="{{localize 'DANGEROUSGARY.Artefact.Unusable'}}"{{/unless}}>
+      <div class="artefact-item {{#unless item.artefactData.canUse}}artefact-unusable{{/unless}} {{#if item.system.hasDamage}}draggable{{/if}}" data-item-id="{{item.id}}" data-drag-type="rollDamage" {{#unless item.artefactData.canUse}}data-tooltip="{{localize 'DANGEROUSGARY.Artefact.Unusable'}}"{{/unless}}>
         <details>
           <summary>
             <span>
@@ -86,6 +86,21 @@
           </div>
         </details>
         <div class="item-controls">
+          {{!-- Mode Lecture : un dé par source de dégâts, l'infobulle en donne l'origine et la formule --}}
+          {{#if @root.locked}}
+          {{#if item.system.hasDamage}}
+          <span class="rollable" data-action="rollDamage" data-name="{{item.name}}" data-formula="{{item.system.damageFormula}}" data-critical-damage="{{item.system.criticalDamage}}" data-tooltip-html="{{item.artefactData.weaponTooltip}}" data-tooltip-direction="UP">
+            <i class="fas fa-dice-d20"></i>
+          </span>
+          {{/if}}
+          {{#each item.artefactData.capacities as |cap|}}
+          {{#if (and cap.unlocked cap.damageFormula)}}
+          <span class="rollable capacity-damage" data-action="rollDamage" data-name="{{cap.damageLabel}}" data-formula="{{cap.damageFormula}}" data-critical-damage="false" data-tooltip-html="{{cap.damageTooltip}}" data-tooltip-direction="UP">
+            <i class="fas fa-dice-d20"></i><sup>{{cap.level}}</sup>
+          </span>
+          {{/if}}
+          {{/each}}
+          {{/if}}
           {{#unless @root.locked}}
           <a data-tooltip="{{localize 'DANGEROUSGARY.Edit'}}" data-action="edit" data-item-id="{{item.id}}"><i class="fas fa-edit"></i></a>
           <a data-tooltip-html="{{localize 'DANGEROUSGARY.Delete'}}{{#if @root.isGM}}<br>{{localize 'DANGEROUSGARY.DeleteShiftHint'}}{{/if}}" data-action="delete" data-item-id="{{item.id}}"><i class="fas fa-trash"></i></a>

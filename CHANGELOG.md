@@ -1,5 +1,6 @@
 # 1.4.4
 
+- Artefacts : un artefact peut être une arme (formule de dégâts et dommages critiques, dé dans sa ligne de l'onglet Équipement, glissable dans la barre de macros) ; une capacité peut infliger des dégâts (formule par capacité, dé à côté de la main quand elle est débloquée)
 - Formules de dégâts : elles acceptent les caractéristiques du lanceur, @for, @dex, @vol (actuelles) et @formax, @dexmax, @volmax (maxima), par exemple ceil(@vol/2)
 - Onglet Classe et talents : en mode Lecture, seules les classes où le personnage a des niveaux sont affichées (un message remplace la grille s'il n'en a aucune) ; en mode édition, toutes les classes restent affichées pour pouvoir y déposer des talents
 

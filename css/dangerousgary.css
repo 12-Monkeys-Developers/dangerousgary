@@ -498,6 +498,10 @@
 .dangerousgary.actor.character .character-artefacts-list .artefact-capacities {
   padding: 4px 0 4px 20px;
 }
+.dangerousgary.actor.character .character-artefacts-list .capacity-damage sup {
+  font-size: 0.65rem;
+  margin-left: 1px;
+}
 .dangerousgary.actor.character .character-artefacts-list .artefact-capacity {
   display: flex;
   align-items: baseline;
@@ -1251,6 +1255,12 @@
 .dangerousgary.item.artefact .item-artefact .artefact-capacity prose-mirror.active {
   --min-height: 8rem;
 }
+.dangerousgary.item.artefact .item-artefact .artefact-weapon .hint {
+  margin: 4px 0 0;
+  font-size: 0.85rem;
+  font-style: italic;
+  color: #555;
+}
 .dangerousgary.item.artefact .item-artefact .capacity-header {
   display: flex;
   align-items: center;
@@ -1262,6 +1272,10 @@
 }
 .dangerousgary.item.artefact .item-artefact .capacity-header select {
   width: 60px;
+}
+.dangerousgary.item.artefact .item-artefact .capacity-header input[type="text"] {
+  flex: 1;
+  min-width: 0;
 }
 .dangerousgary.item.artefact .item-artefact .capacity-header .remove-capacity-btn {
   background: none;

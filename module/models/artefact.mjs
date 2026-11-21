@@ -25,9 +25,14 @@ export default class DangerousGaryArtefactData extends foundry.abstract.TypeData
         new fields.SchemaField({
           level: new fields.NumberField({ required: true, nullable: false, integer: true, initial: 1, min: 1, choices: { 1: "1", 2: "2", 3: "3", 4: "4", 5: "5", 6: "6", 7: "7", 8: "8", 9: "9" } }),
           description: new fields.HTMLField({ required: false, blank: true, initial: "" }),
+          // Capacité qui inflige des dégâts : formule lancée depuis la fiche quand la capacité est débloquée
+          damageFormula: new fields.StringField({ required: true, blank: true, initial: "" }),
         }),
         { validateKey: key => ["1", "2", "3"].includes(key) }
       ),
+      // L'artefact est aussi une arme : dégâts lancés depuis la fiche par tout porteur
+      damageFormula: new fields.StringField({ required: true, blank: true, initial: "" }),
+      criticalDamage: new fields.BooleanField({ required: true, nullable: false, initial: false }),
     }
   }
 
@@ -73,6 +78,14 @@ export default class DangerousGaryArtefactData extends foundry.abstract.TypeData
     const levels = Object.values(this.artefactCapacities).map((capacity) => capacity.level)
     const required = levels.length ? Math.min(...levels) : 1
     return allowed.filter((key) => (classes[key] ?? 0) >= required)
+  }
+
+  /**
+   * L'artefact inflige-t-il des dégâts comme une arme.
+   * @type {boolean}
+   */
+  get hasDamage() {
+    return !!this.damageFormula
   }
 
   /** @inheritDoc */

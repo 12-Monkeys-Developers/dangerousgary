@@ -126,15 +126,27 @@ export default class DangerousGaryCharacterSheet extends DangerousGaryBaseActorS
                 level: cap.level,
                 description: await foundry.applications.ux.TextEditor.implementation.enrichHTML(visibleAssassinHtml(cap.description), { async: true }),
                 unlocked: bestClassLevel >= cap.level,
+                damageFormula: cap.damageFormula,
+                damageLabel: `${item.name} (${game.i18n.localize("DANGEROUSGARY.Artefact.LevelAbbr")} ${cap.level})`,
+                // Infobulle du dé : l'origine (la capacité et son niveau), la formule, puis l'usage du clic
+                damageTooltip: `<strong>${game.i18n.format("DANGEROUSGARY.Artefact.CapacityDamageOrigin", { level: cap.level })}</strong> : ${cap.damageFormula}<br>${game.i18n.localize("DANGEROUSGARY.RollDamageTooltip")}`,
               })
             }
             // Infobulle : la description, puis les capacités visibles avec leur niveau requis
             const levelLabel = game.i18n.localize("DANGEROUSGARY.Artefact.LevelAbbr")
-            const capacityLines = capacities.map((cap) => `<li><strong>${levelLabel} ${cap.level}</strong> ${cap.description}</li>`).join("")
+            const damageText = (formula) => game.i18n.format("DANGEROUSGARY.Artefact.DamageText", { formula })
+            const capacityLines = capacities.map((cap) => `<li><strong>${levelLabel} ${cap.level}</strong> ${cap.description}${cap.damageFormula ? ` <em>${damageText(cap.damageFormula)}</em>` : ""}</li>`).join("")
+            // Artefact arme : sa formule (et ses dommages critiques) sous la description
+            const weapon = item.system.hasDamage
+              ? `<p><strong>${damageText(item.system.damageFormula)}</strong>${item.system.criticalDamage ? ` · ${game.i18n.localize("DANGEROUSGARY.Artefact.FIELDS.criticalDamage.label")}` : ""}</p>`
+              : ""
             // Artefact inutilisable (aucune classe nécessaire possédée) : le rappel ouvre l'infobulle
             const unusable = bestClassLevel < 1 ? `<p><strong>${game.i18n.localize("DANGEROUSGARY.Artefact.Unusable")}</strong></p>` : ""
-            const tooltip = `${unusable}${item.enrichedDescription}${capacityLines ? `<ul class="dg-artefact-tooltip-capacities">${capacityLines}</ul>` : ""}`
-            item.artefactData = { bestClassLevel, allowedClassLabels, capacities, tooltip, canUse: bestClassLevel >= 1 }
+            const tooltip = `${unusable}${item.enrichedDescription}${weapon}${capacityLines ? `<ul class="dg-artefact-tooltip-capacities">${capacityLines}</ul>` : ""}`
+            const weaponTooltip = item.system.hasDamage
+              ? `<strong>${game.i18n.localize("DANGEROUSGARY.Artefact.WeaponDamageOrigin")}</strong> : ${item.system.damageFormula}${item.system.criticalDamage ? ` · ${game.i18n.localize("DANGEROUSGARY.Artefact.FIELDS.criticalDamage.label")}` : ""}<br>${game.i18n.localize("DANGEROUSGARY.RollDamageTooltip")}`
+              : ""
+            item.artefactData = { bestClassLevel, allowedClassLabels, capacities, tooltip, weaponTooltip, canUse: bestClassLevel >= 1 }
             context.artefacts.push(item)
           }
         }

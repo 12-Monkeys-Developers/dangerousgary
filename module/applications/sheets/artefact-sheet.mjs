@@ -39,6 +39,7 @@ export default class DangerousGaryArtefactSheet extends DangerousGaryBaseItemShe
       enrichedCapacities.push({
         key,
         level: cap.level,
+        damageFormula: cap.damageFormula,
         description: visibleAssassinHtml(cap.description),
         enrichedDescription: await foundry.applications.ux.TextEditor.implementation.enrichHTML(visibleAssassinHtml(cap.description), { async: true }),
       })
@@ -58,6 +59,7 @@ export default class DangerousGaryArtefactSheet extends DangerousGaryBaseItemShe
       canAddCapacity: Object.keys(capacities).length < 3 && Object.keys(capacities).length + this.document.system.allowedClasses.size < 4,
       capacityLevelField: this.document.system.schema.fields.artefactCapacities.element.fields.level,
       capacityDescField: this.document.system.schema.fields.artefactCapacities.element.fields.description,
+      capacityDamageField: this.document.system.schema.fields.artefactCapacities.element.fields.damageFormula,
       locked: this.isPlayMode,
     }
   }

@@ -256,8 +256,16 @@
       }
     },
     "Artefact": {
+      "Weapon": "Weapon",
+      "CapacityDamage": "Damage",
+      "DamageText": "Damage: {formula}",
+      "WeaponDamageOrigin": "Artefact weapon",
+      "CapacityDamageOrigin": "Level {level} capacity",
+      "FormulaHint": "If the artefact is a weapon: its damage formula. Formulas (weapon and capacities) accept the bearer's abilities: @for, @dex, @vol (current), @formax, @dexmax, @volmax (maximum), e.g. ceil(@vol/2).",
       "Unusable": "You have none of the classes required to use this artefact",
       "FIELDS": {
+        "damageFormula": { "label": "Damage" },
+        "criticalDamage": { "label": "Critical damage" },
         "description": { "label": "Description" },
         "allowedClasses": { "label": "Required Classes" },
         "artefactCapacities": { "label": "Capacities" }

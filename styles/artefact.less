@@ -137,6 +137,13 @@
       }
     }
 
+    .artefact-weapon .hint {
+      margin: 4px 0 0;
+      font-size: 0.85rem;
+      font-style: italic;
+      color: #555;
+    }
+
     .capacity-header {
       display: flex;
       align-items: center;
@@ -149,6 +156,12 @@
 
       select {
         width: 60px;
+      }
+
+      // Formule de dégâts de la capacité
+      input[type="text"] {
+        flex: 1;
+        min-width: 0;
       }
 
       .remove-capacity-btn {

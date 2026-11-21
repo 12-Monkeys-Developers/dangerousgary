@@ -19,6 +19,15 @@
         {{formInput systemFields.allowedClasses value=system.allowedClasses type="checkboxes" localize=true disabled=locked}}
       {{/if}}
     </fieldset>
+    {{!-- Cadre Arme : toujours en mode édition ; en mode Lecture, seulement si l'artefact a une formule de dégâts --}}
+    {{#if (or (not locked) system.damageFormula)}}
+    <fieldset class="artefact-weapon">
+      <legend>{{localize "DANGEROUSGARY.Artefact.Weapon"}}</legend>
+      {{formGroup systemFields.damageFormula value=system.damageFormula disabled=locked localize=true placeholder=(localize "DANGEROUSGARY.Trigger.FormulaPlaceholder") }}
+      {{formGroup systemFields.criticalDamage value=system.criticalDamage disabled=locked localize=true }}
+      <p class="hint">{{localize "DANGEROUSGARY.Artefact.FormulaHint"}}</p>
+    </fieldset>
+    {{/if}}
     <fieldset>
       <legend>{{localize "DANGEROUSGARY.Artefact.FIELDS.artefactCapacities.label"}}</legend>
       <div class="artefact-capacities">
@@ -27,6 +36,8 @@
             <div class="capacity-header">
               <label>{{localize "DANGEROUSGARY.Artefact.RequiredLevel"}}</label>
               {{formInput @root.capacityLevelField value=cap.level name=(concat "system.artefactCapacities." cap.key ".level") disabled=@root.locked}}
+              <label>{{localize "DANGEROUSGARY.Artefact.CapacityDamage"}}</label>
+              {{formInput @root.capacityDamageField value=cap.damageFormula name=(concat "system.artefactCapacities." cap.key ".damageFormula") disabled=@root.locked placeholder=(localize "DANGEROUSGARY.Trigger.FormulaPlaceholder")}}
               {{#unless @root.locked}}
               <button type="button" class="remove-capacity-btn" data-action="removeCapacity" data-key="{{cap.key}}"
                       data-tooltip="{{localize 'DANGEROUSGARY.Artefact.RemoveCapacity'}}">

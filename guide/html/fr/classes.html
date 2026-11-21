@@ -105,6 +105,26 @@
       <p>En mode Écriture, la corbeille d'une capacité la retire.</p>
     </div>
   </div>
+  <h3>Les artefacts qui infligent des dégâts</h3>
+  <ul>
+    <li>
+      Un artefact qui est aussi une <strong>arme</strong> (une hallebarde, une épée) reçoit dans le cadre <strong>Arme</strong> sa formule de dégâts et, au besoin,
+      les <strong>Dommages critiques</strong>. Sur la fiche de personnage, son dé <i class="fas fa-dice-d20"></i> apparaît dans sa ligne en mode Lecture (l'infobulle
+      indique « Arme de l'artefact » et la formule), pour tout
+      porteur, sans condition de classe ; la ligne peut être glissée dans la barre de macros, comme une arme.
+    </li>
+    <li>
+      Une <strong>capacité</strong> qui inflige des dégâts reçoit sa formule dans le champ <strong>Dégâts</strong>, à côté du niveau requis. Une fois la capacité
+      débloquée, un dé apparaît dans la ligne de l'artefact, à côté de celui de l'arme, avec le niveau de la capacité en exposant ; l'infobulle indique
+      « Capacité de niveau X » et la formule.
+    </li>
+    <li>
+      Les formules acceptent les caractéristiques du porteur : <code>@for</code>, <code>@dex</code>, <code>@vol</code> (valeurs actuelles) et
+      <code>@formax</code>, <code>@dexmax</code>, <code>@volmax</code> (maxima). Exemple : <code>ceil(@vol/2)</code> pour « la moitié de la Volonté, arrondie au
+      supérieur ».
+    </li>
+  </ul>
+  <p>Ces jets passent par le jet de dégâts habituel : ciblage, armure, défenses de la cible et carte du tchat (voir @@page:jets@@).</p>
 
   <h3>Les artefacts sur la fiche de personnage</h3>
   <div class="guide-image"><img src="@@img:inventaire-artefact@@" alt="Artefact dans l'onglet Équipement" /></div>

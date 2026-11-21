@@ -256,8 +256,16 @@
       }
     },
     "Artefact": {
+      "Weapon": "Arme",
+      "CapacityDamage": "Dégâts",
+      "DamageText": "Dégâts : {formula}",
+      "WeaponDamageOrigin": "Arme de l'artefact",
+      "CapacityDamageOrigin": "Capacité de niveau {level}",
+      "FormulaHint": "Si l'artefact est une arme : formule de ses dégâts. Les formules (arme et capacités) acceptent les caractéristiques du porteur : @for, @dex, @vol (actuelles), @formax, @dexmax, @volmax (maxima), par exemple ceil(@vol/2).",
       "Unusable": "Vous ne possédez aucune des classes nécessaires à l'usage de l'artefact",
       "FIELDS": {
+        "damageFormula": { "label": "Dégâts" },
+        "criticalDamage": { "label": "Dommages critiques" },
         "description": { "label": "Description" },
         "allowedClasses": { "label": "Classes nécessaires" },
         "artefactCapacities": { "label": "Capacités" }
